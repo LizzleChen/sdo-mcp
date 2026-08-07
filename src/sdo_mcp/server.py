@@ -142,15 +142,16 @@ def get_forecast(
     """Population, household, or employment forecast series from a state
     demography office.
 
-    `state` is a 2-letter code; `geo_level` is 'state' or 'county' (plus TX
-    extras later); `geo` accepts a FIPS code or a name (unknown or ambiguous
-    names return candidates, never a guess); `variable` is 'population',
-    'households', or 'employment'. `scenario` only applies where the state
-    publishes scenarios (TX mid/high/low, FL low/medium/high) and defaults to
-    the state's recommended one. Every point is flagged estimate or projection;
-    if the state publishes nothing for the request, a structured refusal
-    explains why and points to the closest published geography (pointer only,
-    no numbers)."""
+    `state` is a 2-letter code; `geo_level` is 'state' or 'county' everywhere,
+    plus TX's 'msa', 'cog', and 'txdot_district' (decade totals). `geo`
+    accepts a FIPS code, a bare TDC id for TX COG/TxDOT levels ('18'), or a
+    name (unknown or ambiguous names return candidates, never a guess);
+    `variable` is 'population', 'households', or 'employment'. `scenario`
+    only applies where the state publishes scenarios (TX mid/high/low, FL
+    low/medium/high) and defaults to the state's recommended one. Every point
+    is flagged estimate or projection; if the state publishes nothing for the
+    request, a structured refusal explains why and points to the closest
+    published geography (pointer only, no numbers)."""
     state = state.strip().upper()
     variable = variable.strip().lower()
     geo_level = geo_level.strip().lower()

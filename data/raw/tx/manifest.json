@@ -5,7 +5,7 @@
   "retrieved_at": "2026-08-07",
   "sha256": "a3490ddd1bb8d1365e1441e5e128224288ba403dd234bedc0be6f532aa54db71",
   "records": null,
-  "note": "Projections/Totals API cross-check: {'counties': 254, 'decade_points': 1270, 'max_abs_diff': 0}"
+  "note": "Projections/Totals API cross-check: {'counties': 254, 'state': 1, 'decade_points': 1275, 'max_abs_diff': 0}"
  },
  {
   "file": "Full_Pop_Projections_High.zip",
@@ -21,6 +21,126 @@
   "retrieved_at": "2026-08-07",
   "sha256": "9ed7bc298f85846fe336f71175311eab21aff4010e68a0db2919860660131ef7",
   "records": null,
+  "note": ""
+ },
+ {
+  "file": "geography_msa_80202307.json",
+  "source": "https://demographics.texas.gov/api/Geography/tpepp/80202307",
+  "retrieved_at": "2026-08-07",
+  "sha256": "7b5007da005cfa96980fdb50edb7f82f326e18215656fb846a75e5906dee7cfd",
+  "records": 26,
+  "note": ""
+ },
+ {
+  "file": "geography_cog_90202104.json",
+  "source": "https://demographics.texas.gov/api/Geography/tpepp/90202104",
+  "retrieved_at": "2026-08-07",
+  "sha256": "bc04e93ebeff52bc0ce6a1b1eff4b63d0248d3d0a2ea39814804380f9790b0c9",
+  "records": 24,
+  "note": ""
+ },
+ {
+  "file": "geography_txdot_district_92000000.json",
+  "source": "https://demographics.texas.gov/api/Geography/tpepp/92000000",
+  "retrieved_at": "2026-08-07",
+  "sha256": "673c9f1af92b7c3e2e865b62c2568c4efed110db5fcf29c998896b43cc00137d",
+  "records": 25,
+  "note": ""
+ },
+ {
+  "file": "totals_msa_Mid.json",
+  "source": "https://demographics.texas.gov/api/Tpepp/Projections/Totals/Mid?AreaVintageID=80202307",
+  "retrieved_at": "2026-08-07",
+  "sha256": "70bfae108c11e1c39b3b930833b9a18f15538afbdb8d2055362047b9eb494d57",
+  "records": 26,
+  "note": ""
+ },
+ {
+  "file": "totals_msa_High.json",
+  "source": "https://demographics.texas.gov/api/Tpepp/Projections/Totals/High?AreaVintageID=80202307",
+  "retrieved_at": "2026-08-07",
+  "sha256": "d5c0481b33ee7f6973298189aee8ab4d7f50874e7213d6087313c11a6863f338",
+  "records": 26,
+  "note": ""
+ },
+ {
+  "file": "totals_msa_Low.json",
+  "source": "https://demographics.texas.gov/api/Tpepp/Projections/Totals/Low?AreaVintageID=80202307",
+  "retrieved_at": "2026-08-07",
+  "sha256": "1d36ead9ee426ff4362a5b56f63944c4ab78a1d99aed1b8976f5b111b577a850",
+  "records": 26,
+  "note": ""
+ },
+ {
+  "file": "totals_cog_Mid.json",
+  "source": "https://demographics.texas.gov/api/Tpepp/Projections/Totals/Mid?AreaVintageID=90202104",
+  "retrieved_at": "2026-08-07",
+  "sha256": "a386f84f6ccd2504985e83f7c704d1d9cbbd8d058239907bf5798288708b43a2",
+  "records": 24,
+  "note": ""
+ },
+ {
+  "file": "totals_cog_High.json",
+  "source": "https://demographics.texas.gov/api/Tpepp/Projections/Totals/High?AreaVintageID=90202104",
+  "retrieved_at": "2026-08-07",
+  "sha256": "b4c5e13ca92714ae6b9bd9a40313d6cda578bb1d369598a42ef9ed14359385b7",
+  "records": 24,
+  "note": ""
+ },
+ {
+  "file": "totals_cog_Low.json",
+  "source": "https://demographics.texas.gov/api/Tpepp/Projections/Totals/Low?AreaVintageID=90202104",
+  "retrieved_at": "2026-08-07",
+  "sha256": "c98cc88d53c42f88961d5fafe029e8b5ede27c8cb5101a7804a8c05c8b52b538",
+  "records": 24,
+  "note": ""
+ },
+ {
+  "file": "totals_txdot_district_Mid.json",
+  "source": "https://demographics.texas.gov/api/Tpepp/Projections/Totals/Mid?AreaVintageID=92000000",
+  "retrieved_at": "2026-08-07",
+  "sha256": "9fa8b199c88b1b4a2dfbc857282486aa32b73820b23c0da0e76eb6b199e81782",
+  "records": 25,
+  "note": ""
+ },
+ {
+  "file": "totals_txdot_district_High.json",
+  "source": "https://demographics.texas.gov/api/Tpepp/Projections/Totals/High?AreaVintageID=92000000",
+  "retrieved_at": "2026-08-07",
+  "sha256": "4bf51b16334e423d0d8642301223c50e5939e300098439927bd81b1842a11a54",
+  "records": 25,
+  "note": ""
+ },
+ {
+  "file": "totals_txdot_district_Low.json",
+  "source": "https://demographics.texas.gov/api/Tpepp/Projections/Totals/Low?AreaVintageID=92000000",
+  "retrieved_at": "2026-08-07",
+  "sha256": "b9cd682b56b1ab4b3ba373c3ff36260e92fffa7f535acbcc14085cfe6af3e968",
+  "records": 25,
+  "note": ""
+ },
+ {
+  "file": "totals_state_Mid.json",
+  "source": "https://demographics.texas.gov/api/Tpepp/Projections/Totals/Mid?AreaVintageID=10000000",
+  "retrieved_at": "2026-08-07",
+  "sha256": "99ccdd8707914ed992a2275d8dfd28783f11699d0a245507dba15883839fc936",
+  "records": 1,
+  "note": "partition cross-check: {'levels': 2, 'scenarios': 3, 'decade_points': 30, 'max_abs_diff': 0}"
+ },
+ {
+  "file": "totals_state_High.json",
+  "source": "https://demographics.texas.gov/api/Tpepp/Projections/Totals/High?AreaVintageID=10000000",
+  "retrieved_at": "2026-08-07",
+  "sha256": "29b2af2e441546db047b3f5b69f70a1fbfbd8fc0eb3038daf0ae8592a5a7c88a",
+  "records": 1,
+  "note": ""
+ },
+ {
+  "file": "totals_state_Low.json",
+  "source": "https://demographics.texas.gov/api/Tpepp/Projections/Totals/Low?AreaVintageID=10000000",
+  "retrieved_at": "2026-08-07",
+  "sha256": "1e3777aa87ac4ce24951af7a50120ef8af45e6a04b6569680cc140e08a961aab",
+  "records": 1,
   "note": ""
  }
 ]

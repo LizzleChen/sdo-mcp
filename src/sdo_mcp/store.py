@@ -81,6 +81,12 @@ def resolve_geo(conn, state: str, geo_level: str, geo: str) -> dict:
     if not rows:
         return {"error": f"no {geo_level} geography list loaded for {state}"}
 
+    # Prefixed ids are ids, not names: a geo_id returned by a previous query
+    # (e.g. TX 'tx-cog-18') must be re-queryable verbatim.
+    by_id = {r["geo_id"]: r["name"] for r in rows}
+    if g in by_id:
+        return {"geo_id": g, "name": by_id[g]}
+
     if g.isdigit():
         if geo_level == "county" and len(g) <= 3:
             sf = state_fips(conn, state) or ""
@@ -89,9 +95,15 @@ def resolve_geo(conn, state: str, geo_level: str, geo: str) -> dict:
             gid = g.zfill(2)
         else:
             gid = g
-        for r in rows:
-            if r["geo_id"] == gid:
-                return {"geo_id": gid, "name": r["name"]}
+        if gid in by_id:
+            return {"geo_id": gid, "name": by_id[gid]}
+        # TX COG/TxDOT ids are TDC's own integers stored prefixed
+        # ('tx-cog-18'); a bare int is accepted as shorthand. MSA ids are
+        # already the bare 5-digit CBSA FIPS, covered by the direct match.
+        if state == "TX" and geo_level in ("cog", "txdot_district"):
+            prefixed = {"cog": "tx-cog-", "txdot_district": "tx-txdot-"}[geo_level] + g
+            if prefixed in by_id:
+                return {"geo_id": prefixed, "name": by_id[prefixed]}
         return {"error": f"FIPS {geo!r} is not a {state} {geo_level}"}
 
     key = _name_key(g)
