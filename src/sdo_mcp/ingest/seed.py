@@ -55,14 +55,14 @@ COVERAGE = [
     ("TX", "population", "county", "available",
      "Vintage 2024: all 254 counties, annual 2020-2060, Mid/High/Low scenarios."),
     ("TX", "population", "msa", "available",
-     "Vintage 2024 MSA totals are published via the TDC API (decade years); "
-     "not yet ingested into this server."),
+     "Vintage 2024 MSA totals via the TDC Totals API, decade years "
+     "(2020, 2030, 2040, 2050, 2060), Mid/High/Low scenarios."),
     ("TX", "population", "cog", "available",
-     "Vintage 2024 COG totals are published via the TDC API (decade years); "
-     "not yet ingested into this server."),
+     "Vintage 2024 COG totals via the TDC Totals API, decade years "
+     "(2020, 2030, 2040, 2050, 2060), Mid/High/Low scenarios."),
     ("TX", "population", "txdot_district", "available",
-     "Vintage 2024 TxDOT district totals are published via the TDC API "
-     "(decade years); not yet ingested into this server."),
+     "Vintage 2024 TxDOT district totals via the TDC Totals API, decade years "
+     "(2020, 2030, 2040, 2050, 2060), Mid/High/Low scenarios."),
     ("TX", "population", "place", "not_published",
      "TDC publishes place estimates only — no place/city projections. County is the "
      "smallest projected geography."),

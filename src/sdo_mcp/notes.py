@@ -66,7 +66,9 @@ STATES = {
         ),
         "geography_floor": (
             "county (254), plus MSAs, COGs, Comptroller regions, and TxDOT "
-            "districts. No place/city projections (places get estimates only)."
+            "districts. MSA/COG/TxDOT totals are served at decade resolution "
+            "(2020, 2030-2060); annual detail stays county-only. No place/city "
+            "projections (places get estimates only)."
         ),
         "scenarios": ["mid", "high", "low"],
         "default_scenario": "mid",
