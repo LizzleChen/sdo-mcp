@@ -38,7 +38,17 @@ This server hides that mess behind uniform MCP tools.
 - `plan/` — local planning and research notes, **gitignored**, never committed.
   - `plan/PLAN.md` — implementation plan and status.
   - `plan/RESEARCH.md` — per-state endpoint verification findings.
-- (Server code layout TBD — see plan/PLAN.md.)
+  - `plan/DESIGN.md` — the Phase-1 blueprint (schema, tools, adapter contract).
+- `src/sdo_mcp/` — the server (Python 3.12+, MCP SDK).
+  - `server.py` — the four MCP tools; `store.py` + `schema.sql` — SQLite layer
+    (serve path is stdlib-only); `notes.py` — hand-curated per-state metadata.
+  - `common/` — validated fetch (the 200-lie guard) and normalization helpers.
+  - `ingest/` — `seed.py` (coverage matrix + FIPS names), one adapter per state,
+    `build.py` (rebuild the database from snapshots).
+- `data/raw/` — committed source snapshots, the reproducibility backbone.
+  Never edited, only added to.
+- `data/sdo.sqlite` — built artifact, gitignored. Rebuild with
+  `uv run python -m sdo_mcp.ingest.build`; run tests with `uv run pytest`.
 
 ## Related local resources
 

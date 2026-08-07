@@ -1,0 +1,199 @@
+"""Seed the store's lookup tables: geographies (from the committed Census 2020
+county list snapshot) and the hand-curated coverage matrix.
+
+The coverage rows are the machine-readable form of the cross-state synthesis
+in plan/RESEARCH.md (verified 2026-08-07). They are what make "not published"
+answers structural: refusals come from here, never from absence of data.
+"""
+
+from __future__ import annotations
+
+import sqlite3
+
+from ..store import REPO_ROOT
+
+COUNTY_FILE = REPO_ROOT / "data" / "raw" / "census_national_county2020.txt"
+
+PILOT_STATES = {
+    "CO": "Colorado",
+    "TX": "Texas",
+    "CA": "California",
+    "TN": "Tennessee",
+    "GA": "Georgia",
+    "FL": "Florida",
+}
+
+# (state, variable, geo_level, status, detail)
+COVERAGE = [
+    # ---- Colorado: the reference state — pop, HH, and an SDO jobs forecast
+    ("CO", "population", "state", "available",
+     "Estimates 1970-2024 + forecast 2025-2060, annual (DOLA components endpoint)."),
+    ("CO", "population", "county", "available",
+     "Estimates 1970-2024 + forecast 2025-2060, annual, all 64 counties."),
+    ("CO", "population", "place", "not_published",
+     "DOLA publishes municipal population estimates (2010-2024) only — no municipal "
+     "forecast. County is the smallest forecast geography."),
+    ("CO", "households", "state", "available",
+     "2010-2050 annual. Source carries no estimate/projection flag; the boundary "
+     "(2024/2025) is borrowed from the population series."),
+    ("CO", "households", "county", "available",
+     "2010-2050 annual, all 64 counties. Boundary borrowed from the population series."),
+    ("CO", "households", "place", "not_published",
+     "No municipal household forecast."),
+    ("CO", "employment", "state", "available",
+     "DOLA's own total-jobs series: estimates + forecast 2000-2050, annual."),
+    ("CO", "employment", "county", "available",
+     "Total county jobs 2000-2050, annual. Horizon 2050, not 2060 like population."),
+    ("CO", "components", "state", "available",
+     "Births, deaths, net migration 1970-2060, annual."),
+    ("CO", "components", "county", "available",
+     "Births, deaths, net migration 1970-2060, annual, all 64 counties."),
+
+    # ---- Texas
+    ("TX", "population", "state", "available",
+     "Vintage 2024 (released 2025-09-30): annual 2020-2060, Mid/High/Low scenarios."),
+    ("TX", "population", "county", "available",
+     "Vintage 2024: all 254 counties, annual 2020-2060, Mid/High/Low scenarios."),
+    ("TX", "population", "place", "not_published",
+     "TDC publishes place estimates only — no place/city projections. County is the "
+     "smallest projected geography."),
+    ("TX", "households", "state", "not_published",
+     "No current product. The last household projection was a Vintage-2018 special "
+     "(2010-2050), since withdrawn from the site."),
+    ("TX", "households", "county", "not_published",
+     "No current product. The last household projection was a Vintage-2018 special "
+     "(2010-2050), since withdrawn from the site."),
+    ("TX", "employment", "state", "not_published",
+     "TDC publishes no employment forecast. TWC (labor department) occupational "
+     "projections are a different product, out of scope."),
+    ("TX", "employment", "county", "not_published",
+     "TDC publishes no employment forecast. TWC (labor department) occupational "
+     "projections are a different product, out of scope."),
+    ("TX", "components", "county", "not_published",
+     "No components-of-change forecast product verified for TDC."),
+
+    # ---- California
+    ("CA", "population", "state", "available",
+     "P-series Baseline 2024 Vintage 2026: 2020-2070 annual."),
+    ("CA", "population", "county", "available",
+     "P-series Baseline 2024 Vintage 2026: all 58 counties, 2020-2070 annual."),
+    ("CA", "population", "place", "not_published",
+     "DOF publishes no sub-county projections (E-series city figures are estimates)."),
+    ("CA", "households", "county", "available",
+     "P-4 (Vintage 2025, lags the population series): county household totals, "
+     "projections 2026-2040. The LRCF product separately carries county households "
+     "to 2055 — the two disagree and are never merged."),
+    ("CA", "households", "place", "not_published",
+     "E-5 city household figures are estimates, not projections."),
+    ("CA", "employment", "county", "available",
+     "LRCF (DOF Economic Research Unit + Caltrans, Jan 2026): farm + total nonfarm "
+     "jobs to 2055, annual. No industry detail (that is EDD, out of scope)."),
+    ("CA", "components", "county", "available",
+     "PCC components of change file (births, deaths, migration)."),
+
+    # ---- Tennessee
+    ("TN", "population", "state", "available",
+     "2022 vintage (Aug 2024): base 2022 estimate, projections 2023-2070 annual."),
+    ("TN", "population", "county", "available",
+     "2022 vintage: all 95 counties, projections 2023-2070 annual."),
+    ("TN", "population", "place", "not_published",
+     "Municipal certified estimates only — no place projections."),
+    ("TN", "households", "state", "not_published",
+     "The Boyd Center publishes no household projections at any geography."),
+    ("TN", "households", "county", "not_published",
+     "The Boyd Center publishes no household projections at any geography."),
+    ("TN", "employment", "state", "pdf_only",
+     "State jobs forecast exists only inside the Economic Report to the Governor "
+     "(narrative PDF, short horizon) — not a serveable dataset."),
+    ("TN", "employment", "county", "not_published",
+     "No county employment forecast from the Boyd Center. Jobs4TN (labor "
+     "department) is out of scope."),
+    ("TN", "components", "county", "not_published",
+     "No components-of-change product in the published summary files."),
+
+    # ---- Georgia
+    ("GA", "population", "state", "available",
+     "2026 vintage (released 2026-07-21): 2026-2065, single-year steps."),
+    ("GA", "population", "county", "available",
+     "2026 vintage: all 159 counties, 2026-2065, single-year steps."),
+    ("GA", "population", "place", "not_published",
+     "OPB/UGA publish no sub-county projections."),
+    ("GA", "households", "state", "not_published",
+     "OPB/UGA publish population only — no household projections."),
+    ("GA", "households", "county", "not_published",
+     "OPB/UGA publish population only — no household projections."),
+    ("GA", "employment", "state", "not_published",
+     "No employment product from the demography producer. GA DOL projections are "
+     "a different product, out of scope."),
+    ("GA", "employment", "county", "not_published",
+     "No employment product from the demography producer. GA DOL projections are "
+     "a different product, out of scope."),
+    ("GA", "components", "county", "not_published",
+     "No components-of-change product published."),
+
+    # ---- Florida
+    ("FL", "population", "state", "available",
+     "BEBR 2026 edition: base April 1 2025, projections 2030-2050 in 5-year steps, "
+     "Low/Medium/High scenarios."),
+    ("FL", "population", "county", "available",
+     "BEBR 2026 edition: all 67 counties, 2030-2050 in 5-year steps, L/M/H "
+     "scenarios. Values rounded to the nearest 100."),
+    ("FL", "population", "place", "not_published",
+     "BEBR city figures are estimates only — no municipal forecast."),
+    ("FL", "households", "state", "pdf_only",
+     "State household forecast (incl. household size) exists in the FDEC "
+     "conference packet PDF — not yet a serveable dataset."),
+    ("FL", "households", "county", "state_level_only",
+     "No county household projection published (county household *estimates* "
+     "only). A state-level forecast exists in the FDEC conference packet (PDF)."),
+    ("FL", "employment", "state", "pdf_only",
+     "EDR long-run tables (PDF): nonfarm employment total + by industry, horizon "
+     "~FY2036 — not yet a serveable dataset."),
+    ("FL", "employment", "county", "state_level_only",
+     "No county employment forecast from BEBR/EDR (county level belongs to "
+     "FloridaCommerce, the labor department — out of scope). A state-level "
+     "forecast exists in EDR's long-run tables (PDF)."),
+    ("FL", "components", "county", "not_published",
+     "No components-of-change product published."),
+]
+
+
+def load_geographies(conn: sqlite3.Connection) -> int:
+    """State + county rows for the pilot states, Census 2020 spelling."""
+    abbrev_by_name = {}
+    rows = []
+    seen_states = set()
+    for line in COUNTY_FILE.read_text().splitlines()[1:]:
+        parts = line.split("|")
+        if len(parts) < 5:
+            continue
+        st, statefp, countyfp, _ns, name = parts[:5]
+        if st not in PILOT_STATES:
+            continue
+        if st not in seen_states:
+            seen_states.add(st)
+            rows.append((statefp, "state", st, PILOT_STATES[st]))
+            abbrev_by_name[st] = statefp
+        rows.append((statefp + countyfp, "county", st, name))
+    conn.executemany(
+        "INSERT OR REPLACE INTO geographies (geo_id, geo_level, state, name)"
+        " VALUES (?,?,?,?)",
+        rows,
+    )
+    return len(rows)
+
+
+def load_coverage(conn: sqlite3.Connection) -> int:
+    conn.executemany(
+        "INSERT OR REPLACE INTO coverage (state, variable, geo_level, status, detail)"
+        " VALUES (?,?,?,?,?)",
+        COVERAGE,
+    )
+    return len(COVERAGE)
+
+
+def load(conn: sqlite3.Connection) -> None:
+    n_geo = load_geographies(conn)
+    n_cov = load_coverage(conn)
+    conn.commit()
+    print(f"seed: {n_geo} geography rows, {n_cov} coverage rows")
