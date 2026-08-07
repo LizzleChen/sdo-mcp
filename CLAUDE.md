@@ -1,7 +1,8 @@
 # SDO Forecast MCP
 
-An MCP server that serves **state demography office (SDO) population and household
-forecasts** through a single, consistent interface. Long-term goal: cover all 50 states.
+An MCP server that serves **state demography office (SDO) forecasts** — population and
+households, plus **employment where the SDO publishes it** — through a single, consistent
+interface. Long-term goal: cover all 50 states.
 Pilot states: **Texas, Colorado, California, Tennessee, Georgia, Florida**.
 
 ## Why this exists
@@ -20,8 +21,11 @@ This server hides that mess behind uniform MCP tools.
 - **Never fabricate a forecast.** If a state publishes no forecast for a requested
   geography (e.g., no municipal forecast), the correct answer is "not published" — never
   extrapolate, borrow a parent geography, or hold a share constant and present it as data.
-- **Population forecasts ≠ jobs forecasts.** Different agency, different product. This
-  server is the population/household side only.
+- **Population forecasts ≠ jobs forecasts.** Usually different agencies, different
+  products. This server carries an SDO's employment forecast **only where the SDO itself
+  publishes one** (Colorado's DOLA does). It never substitutes the labor department's
+  occupational projections and never presents one product as the other — if the SDO
+  publishes no jobs forecast, the server says so and stops there.
 - **Government endpoints lie with HTTP 200.** Many SDO backends return errors as
   `200 OK` with an HTML or plain-text body. Always validate that a response body parses
   as the expected format; never trust status codes alone.
