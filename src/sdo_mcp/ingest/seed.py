@@ -79,15 +79,24 @@ COVERAGE = [
      "P-series Baseline 2024 Vintage 2026: all 58 counties, 2020-2070 annual."),
     ("CA", "population", "place", "not_published",
      "DOF publishes no sub-county projections (E-series city figures are estimates)."),
+    ("CA", "households", "state", "available",
+     "P-4 (Vintage 2025): state household totals, estimates 2010-2025 + "
+     "projections 2026-2040."),
     ("CA", "households", "county", "available",
      "P-4 (Vintage 2025, lags the population series): county household totals, "
      "projections 2026-2040. The LRCF product separately carries county households "
      "to 2055 — the two disagree and are never merged."),
     ("CA", "households", "place", "not_published",
      "E-5 city household figures are estimates, not projections."),
+    ("CA", "employment", "state", "available",
+     "LRCF (DOF Economic Research Unit + Caltrans, Jan 2026): statewide farm + "
+     "total nonfarm jobs 2000-2055, annual, forecast from 2025."),
     ("CA", "employment", "county", "available",
      "LRCF (DOF Economic Research Unit + Caltrans, Jan 2026): farm + total nonfarm "
      "jobs to 2055, annual. No industry detail (that is EDD, out of scope)."),
+    ("CA", "components", "state", "available",
+     "P-CC components of change (births, deaths, net migration), periods "
+     "2020-21 through 2069-70."),
     ("CA", "components", "county", "available",
      "PCC components of change file (births, deaths, migration)."),
 

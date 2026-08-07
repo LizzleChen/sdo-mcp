@@ -1,0 +1,34 @@
+[
+ {
+  "file": "P2A_County_Total.xlsx",
+  "source": "https://dof.ca.gov/media/docs/forecasting/Demographics/projections/P2A_County_Total.xlsx",
+  "retrieved_at": "2026-08-07",
+  "sha256": "6caa2c639c8fc9571c0cb483848b3d74ec996c41075ebb5ae3fd0a4071574cad",
+  "records": null,
+  "note": ""
+ },
+ {
+  "file": "P4_HHProjections_B2024.xlsx",
+  "source": "https://dof.ca.gov/media/docs/forecasting/Demographics/projections/P4_HHProjections_B2024.xlsx",
+  "retrieved_at": "2026-08-07",
+  "sha256": "6e61fe9f9f0ad2ee33982639412ef921d996513f030757c36bf3beee26300022",
+  "records": null,
+  "note": ""
+ },
+ {
+  "file": "PCC_Components_of_Change.xlsx",
+  "source": "https://dof.ca.gov/media/docs/forecasting/Demographics/projections/PCC_Components_of_Change.xlsx",
+  "retrieved_at": "2026-08-07",
+  "sha256": "3ac720a26dfe39969dc1da6bfc9a496af1b59e5588cc7f2409aa8734b26cea2f",
+  "records": null,
+  "note": ""
+ },
+ {
+  "file": "LRCF_Master-File-Output-Public.xlsx",
+  "source": "https://dof.ca.gov/media/docs/forecasting/economics/economic-forecasts-u-s-california-counties/long-run-county-level-forecasts/Master-File-Output-Public.xlsx",
+  "retrieved_at": "2026-08-07",
+  "sha256": "b90c8b24ad0e4b03054dbca828b3dff9f12027c60d5a37933666c3ddd480945a",
+  "records": null,
+  "note": ""
+ }
+]
