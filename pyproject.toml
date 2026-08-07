@@ -8,8 +8,13 @@ dependencies = [
 ]
 
 [dependency-groups]
+# Ingest-time only — the serve path stays stdlib (sqlite3).
+ingest = [
+    "openpyxl>=3.1",
+]
 dev = [
     "pytest>=8",
+    {include-group = "ingest"},
 ]
 
 [build-system]
