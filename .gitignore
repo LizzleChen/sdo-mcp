@@ -13,6 +13,9 @@ venv/
 # Node
 node_modules/
 
+# Local Codex config — machine-specific MCP wiring, not shared
+.codex/
+
 # Built artifact — rebuild from data/raw/ with: uv run python -m sdo_mcp.ingest.build
 data/sdo.sqlite
 
