@@ -12,11 +12,11 @@ import sys
 from pathlib import Path
 
 from .. import store
-from . import seed
+from . import co, seed
 
 # State adapter modules, each exposing load(conn) and verify(conn).
 # Registered in build order (plan/DESIGN.md): CO -> TN -> GA -> CA -> TX -> FL.
-ADAPTERS: list = []
+ADAPTERS: list = [co]
 
 
 def rebuild(path: Path | str | None = None) -> Path:

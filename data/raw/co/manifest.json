@@ -1,0 +1,26 @@
+[
+ {
+  "file": "components.json",
+  "source": "https://gis.dola.colorado.gov/lookups/components (chunked; counties 0+64; years 1970-2060)",
+  "retrieved_at": "2026-08-07",
+  "sha256": "53ffa9eb7020e5cfd53682c3c342a8d8be978b3e98cc026d7433914a4f64a0f8",
+  "records": 5885,
+  "note": "socrata q5vp-adf3 cross-check: {'points_compared': 140, 'max_abs_diff_persons': 9}"
+ },
+ {
+  "file": "households.json",
+  "source": "https://gis.dola.colorado.gov/lookups/household (age=0, household=0; years 2010-2050)",
+  "retrieved_at": "2026-08-07",
+  "sha256": "92f0b789d82a6bd00608ebd0fbf14642c0cdf5df68615e69cc22f2b98fdf9996",
+  "records": 2665,
+  "note": "no estimate/projection flag in source; boundary borrowed from components"
+ },
+ {
+  "file": "jobs.json",
+  "source": "https://gis.dola.colorado.gov/lookups/jobs-forecast (years 2000-2050)",
+  "retrieved_at": "2026-08-07",
+  "sha256": "bfed2a73a92767c6718e17465dea8ec277d09a84ccb067ebcde8795bfbb7e7c7",
+  "records": 3315,
+  "note": ""
+ }
+]
