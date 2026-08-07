@@ -41,3 +41,25 @@ def test_employment_state_is_pdf_only():
 
 def test_tn_shows_loaded_in_list_states():
     assert server.list_states()["states"]["TN"]["data_loaded"] is True
+
+
+def test_crossed_detail_loaded_and_reconciles():
+    """The crossed age×sex×race county detail (Boyd Center ArcGIS service)
+    is loaded in full and sums back to the served county totals."""
+    from sdo_mcp import store
+
+    conn = store.connect()
+    try:
+        n = conn.execute(
+            "SELECT COUNT(*) n FROM observations WHERE source_id='tn-pop-2022-detail'"
+        ).fetchone()["n"]
+        assert n == 95 * 18 * 2 * 4 * 49  # counties × age × sex × race × years
+
+        crossed = conn.execute(
+            "SELECT SUM(value) s FROM observations"
+            " WHERE source_id='tn-pop-2022-detail' AND geo_id='47037' AND year=2040"
+        ).fetchone()["s"]
+    finally:
+        conn.close()
+    served = server.get_forecast("TN", "county", "Davidson", "population")
+    assert int(crossed) == _point(served, 2040)["value"]

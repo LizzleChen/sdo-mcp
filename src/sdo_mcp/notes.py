@@ -171,6 +171,9 @@ STATES = {
             "Population projections 2023–2070 (state + county; 18 five-year age "
             "groups, sex, 4 race/Hispanic groups — one dimension at a time, "
             "never crossed in the summary files)",
+            "Crossed age × sex × race county detail 2022–2070 (same product, "
+            "from the Boyd Center's own ArcGIS feature service; county only — "
+            "no state-level crossed detail is published)",
         ],
         "methodology": "Cohort-component (Boyd Center).",
         "employment_note": (
@@ -181,13 +184,19 @@ STATES = {
         "license": "CC0 public domain — the cleanest redistribution position of the six.",
         "caveats": [
             "No household projections at any geography.",
-            "The full crossed age×sex×race detail file server (tndata.utk.edu) "
-            "was down at ingest time; this server holds the summary files.",
+            "Crossed age×sex×race detail comes from the Boyd Center's ArcGIS "
+            "service (the flat-file host tndata.utk.edu was down at ingest "
+            "time). County only — no state-level crossed detail is published; "
+            "state figures come from the state summary product.",
             "Archive filenames don't match vintages (TN_CoPopProj_2021.xlsx is "
             "the 2020 vintage).",
         ],
         "links": {
             "agency": "https://tnsdc.utk.edu/",
+            "crossed_detail_service": (
+                "https://services1.arcgis.com/HLC8bAygObK4fhPW/arcgis/rest/"
+                "services/TN_CoPopProj_2022_alldata/FeatureServer/0"
+            ),
         },
     },
     "GA": {

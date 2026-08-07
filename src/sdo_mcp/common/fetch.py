@@ -39,6 +39,28 @@ def get_json(url: str, tries: int = 3, timeout: int = 120):
     raise RuntimeError(f"GET {url} failed after {tries} tries: {last}")
 
 
+def post_json(url: str, form: dict, tries: int = 3, timeout: int = 300):
+    """POST form data and require the body to parse as JSON (same guard as
+    get_json). Needed for ArcGIS /query layers where GET stalls on long
+    query strings (TN's alldata table)."""
+    import urllib.parse
+
+    data = urllib.parse.urlencode(form).encode()
+    last: Exception | None = None
+    for i in range(tries):
+        try:
+            req = urllib.request.Request(url, data=data, headers=UA)
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                body = r.read().decode("utf-8", "replace")
+            if not body.lstrip().startswith(("[", "{")):
+                raise ValueError(f"non-JSON response body: {body[:120]!r}")
+            return json.loads(body)
+        except Exception as e:  # noqa: BLE001
+            last = e
+            time.sleep(0.8 * (i + 1))
+    raise RuntimeError(f"POST {url} failed after {tries} tries: {last}")
+
+
 def get_bytes(url: str, tries: int = 3, timeout: int = 300) -> bytes:
     last: Exception | None = None
     for i in range(tries):

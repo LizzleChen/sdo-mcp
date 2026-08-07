@@ -113,7 +113,8 @@ COVERAGE = [
     ("TN", "population", "state", "available",
      "2022 vintage (Aug 2024): base 2022 estimate, projections 2023-2070 annual."),
     ("TN", "population", "county", "available",
-     "2022 vintage: all 95 counties, projections 2023-2070 annual."),
+     "2022 vintage: all 95 counties, projections 2023-2070 annual; crossed "
+     "age x sex x race detail available (from the Boyd Center ArcGIS service)."),
     ("TN", "population", "place", "not_published",
      "Municipal certified estimates only — no place projections."),
     ("TN", "households", "state", "not_published",
