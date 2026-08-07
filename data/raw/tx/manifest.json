@@ -1,0 +1,26 @@
+[
+ {
+  "file": "Full_Pop_Projections_Mid.zip",
+  "source": "https://demographics.texas.gov/Projections.tpepp?yr=2024&fl=Full_Pop_Projections_Mid.zip",
+  "retrieved_at": "2026-08-07",
+  "sha256": "a3490ddd1bb8d1365e1441e5e128224288ba403dd234bedc0be6f532aa54db71",
+  "records": null,
+  "note": "Projections/Totals API cross-check: {'counties': 254, 'decade_points': 1270, 'max_abs_diff': 0}"
+ },
+ {
+  "file": "Full_Pop_Projections_High.zip",
+  "source": "https://demographics.texas.gov/Projections.tpepp?yr=2024&fl=Full_Pop_Projections_High.zip",
+  "retrieved_at": "2026-08-07",
+  "sha256": "bb38d7d3db11650dd9e4d13d5dc9047b30ffb4f33ddead73d0c4164f6d9fc666",
+  "records": null,
+  "note": ""
+ },
+ {
+  "file": "Full_Pop_Projections_Low.zip",
+  "source": "https://demographics.texas.gov/Projections.tpepp?yr=2024&fl=Full_Pop_Projections_Low.zip",
+  "retrieved_at": "2026-08-07",
+  "sha256": "9ed7bc298f85846fe336f71175311eab21aff4010e68a0db2919860660131ef7",
+  "records": null,
+  "note": ""
+ }
+]

@@ -63,7 +63,6 @@ def test_year_range_off_the_ends_names_published_range():
 def test_co_shows_loaded_in_list_states():
     res = server.list_states()
     assert res["states"]["CO"]["data_loaded"] is True
-    assert res["states"]["TX"]["data_loaded"] is False
 
 
 def test_describe_source_lists_three_loaded_products():

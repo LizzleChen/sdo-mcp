@@ -4,6 +4,7 @@ Everything here runs offline against a db rebuilt from committed snapshots.
 """
 
 from sdo_mcp import server, store
+from sdo_mcp.ingest import seed
 
 
 def test_list_states_covers_all_six_pilots():
@@ -37,9 +38,19 @@ def test_refusal_co_place_points_to_county():
     assert "county" in {p["geo_level"] for p in res["closest_published"]}
 
 
-def test_published_but_not_ingested_is_distinct_from_not_published():
+def test_published_but_not_ingested_is_distinct_from_not_published(tmp_path, monkeypatch):
+    # A seed-only database (coverage + geographies, no adapters): a variable a
+    # state publishes but this server hasn't ingested is "not_loaded" — never
+    # conflated with "not_published".
+    p = tmp_path / "seed_only.sqlite"
+    conn = store.connect(p, create=True)
+    store.init_db(conn)
+    seed.load(conn)
+    conn.close()
+    monkeypatch.setenv("SDO_DB", str(p))
     res = server.get_forecast("TX", "county", "Harris", "population")
     assert res["status"] == "not_loaded"
+    assert "not been ingested" in res["reason"]
 
 
 def test_scenario_validation():
