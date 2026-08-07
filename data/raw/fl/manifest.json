@@ -1,0 +1,10 @@
+[
+ {
+  "file": "projections_2026.xlsx",
+  "source": "https://bebr.ufl.edu/wp-content/uploads/2026/02/projections_2026.xlsx",
+  "retrieved_at": "2026-08-07",
+  "sha256": "18969608c60d0b3ffdf32004c3d0f4160c90f3707fd0efeaf685e69596e4a88c",
+  "records": null,
+  "note": "county L-M-H projections; county scenario values rounded to nearest 100, state estimate unrounded"
+ }
+]
