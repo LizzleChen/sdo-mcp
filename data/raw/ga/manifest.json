@@ -1,0 +1,18 @@
+[
+ {
+  "file": "state_total.xlsx",
+  "source": "https://opb.georgia.gov/document/census-data/state-residential-population-2026-2065/download",
+  "retrieved_at": "2026-08-07",
+  "sha256": "eb34a9da09a9e27f9ce736aba4bc16d4d9d2706b179cefcfbb97bff78a6d432e",
+  "records": null,
+  "note": "vintage-specific URL scraped from the landing page"
+ },
+ {
+  "file": "county_total.xlsx",
+  "source": "https://opb.georgia.gov/document/census-data/county-residential-population-2026-2065/download",
+  "retrieved_at": "2026-08-07",
+  "sha256": "1d4f81382e0e163663f4d96d49b33f69e9fc2cdc0cd1d5dcfbb060e4514e3dd1",
+  "records": null,
+  "note": "vintage-specific URL scraped from the landing page"
+ }
+]
