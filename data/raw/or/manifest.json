@@ -1,0 +1,18 @@
+[
+  {
+    "file": "age_specific_combined_results_2025.xlsx",
+    "source": "https://docs.google.com/spreadsheets/d/1qBDbPJBMz7bRiUksBF7BgIpDnVcmSEEJEYTg23JSUN0/export?format=xlsx",
+    "retrieved_at": "2026-08-10",
+    "sha256": "3a45f2c3adef43e449ded74b9b80e1d62d413f521e8315fc454d4cf9be891d9a",
+    "records": null,
+    "note": "Manual Google Sheets Excel download. Official combined workbook is stale: 35 counties, estimates through 2020, and forecasts through 2045. Retained to document the stale-link warning; not the current regional adapter input."
+  },
+  {
+    "file": "Deschutes.xlsx",
+    "source": "https://docs.google.com/spreadsheets/d/1ksQvrCBDagrTXwhlOO2eGZFboHgkP8yi/export?format=xlsx",
+    "retrieved_at": "2026-08-10",
+    "sha256": "559060ad761189319704223974e241860ea54a6f898101f68507d7673c6c9ea6",
+    "records": null,
+    "note": "Manual Google Sheets Excel download from the 2026 Region 1 release. County total has 2025 as Estimate, 2026-2076 as Forecast; Deschutes fixtures matched exactly."
+  }
+]

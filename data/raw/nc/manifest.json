@@ -1,0 +1,10 @@
+[
+  {
+    "file": "NCprojectionsbyage2025B.csv",
+    "source": "https://www.osbm.nc.gov/population-projections-age-data/download?attachment",
+    "retrieved_at": "2026-08-10",
+    "sha256": "4c20852664f00a71de45ac7d0e68c9a628667bb90f362a87ee9b6a7658b16c4f",
+    "records": 15453,
+    "note": "Manual Chrome download. Vintage 2025B sex-by-single-age file with 2010-2024 estimates and 2025-2060 projections. CSV fixtures matched exactly. The live Opendatasoft API independently matched the 2050 state total and Wake County value and exposed the Projection flag."
+  }
+]

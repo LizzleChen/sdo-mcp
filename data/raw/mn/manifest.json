@@ -1,0 +1,10 @@
+[
+  {
+    "file": "2024-Minnesota-Long-Term-Population-Projections v3_tcm36-626199_tcm36-626199.xlsx",
+    "source": "https://mn.gov/admin/assets/2024-Minnesota-Long-Term-Population-Projections%20v3_tcm36-626199_tcm36-626199.xlsx",
+    "retrieved_at": "2026-08-10",
+    "sha256": "8c6a245380bd85f2bdbbfe67041e88ea37fcadc322de8c7d30598c1fc6d0b99c",
+    "records": null,
+    "note": "Manual Chrome download. May 2024 vintage; state series runs 2024-2075 and county/EDR detail runs 2024-2055. Workbook parsed with openpyxl; state, Hennepin, and Dakota fixtures matched. The 2024 launch value is projected; methods identify Census Vintage 2022 as the underlying base."
+  }
+]

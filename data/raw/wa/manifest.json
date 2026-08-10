@@ -1,0 +1,18 @@
+[
+  {
+    "file": "stfc_2025.xlsx",
+    "source": "https://ofm.wa.gov/wp-content/uploads/stfc_2025.xlsx",
+    "retrieved_at": "2026-08-10",
+    "sha256": "d903c0331ceb850c6d7f78e5561206c816ce061ebfc65ef28299bc2957f0121b",
+    "records": null,
+    "note": "Manual Chrome download from the November 2025 state forecast page. Workbook header identifies 2026-2050 as forecast years and 2021-2025 as postcensal estimates; state 2025 and 2050 fixtures matched exactly."
+  },
+  {
+    "file": "gma_2022_1yr.xlsx",
+    "source": "https://ofm.wa.gov/wp-content/uploads/sites/default/files/public/dataresearch/pop/GMA/projections2022/gma_2022_1yr.xlsx",
+    "retrieved_at": "2026-08-10",
+    "sha256": "a2a2de2e56bcf03c276f4e9e654a37b4fe0ab982b2b5d439d1928f9edc9b1722",
+    "records": null,
+    "note": "Manual Chrome download from the 2022 GMA county projections page. Middle, Low, and High sheets include 39 counties plus a state row; King County fixtures and state scenario spreads matched exactly."
+  }
+]

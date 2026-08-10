@@ -19,6 +19,13 @@ node_modules/
 # Built artifact — rebuild from data/raw/ with: uv run python -m sdo_mcp.ingest.build
 data/sdo.sqlite
 
+# Local expansion duplicates; the canonical Arizona archive is committed
+data/raw/az/All_Series_2025-2060/
+data/raw/az/Arizona_Medium Series.xlsx
+
 # Local env/secrets
 .env
 .env.*
+
+# ignore unzipped raw data files, as zipped files are already tracked in git
+data/raw/az/All_Series_2025-2060/*
