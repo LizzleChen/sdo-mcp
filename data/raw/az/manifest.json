@@ -1,0 +1,10 @@
+[
+  {
+    "file": "All_Series_2025-2060.zip",
+    "source": "https://oeo.az.gov/sites/default/files/data/pop/Projections_2025_SC/All_Series_2025-2060.zip",
+    "retrieved_at": "2026-08-10",
+    "sha256": "6de2cfcee27584110456168ad4435190e0b30eb477e2a5a07fb6fdf3fd28059a",
+    "records": null,
+    "note": "Manual Chrome download. Archive contains 48 workbooks: 16 geographies x Low/Medium/High. Extracted workbooks validated with openpyxl; Arizona Medium 2025/2060, Pima Medium 2025/2060, and all state scenario fixtures matched the research note. The 2025 launch value equals the official estimate."
+  }
+]
