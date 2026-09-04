@@ -499,46 +499,50 @@ STATES = {
         ),
         "producer_type": "university (official state population research center)",
         "current_vintage": (
-            "Common 2020-based combined county workbook through 2045. Newer "
-            "rolling regional releases are separate products and are not mixed in."
+            "Latest county-specific regional releases as of 2026-09-04: 10 counties "
+            "from 2023, 8 from 2024, 6 from 2025, and 11 from 2026."
         ),
         "geography_floor": (
-            "county for the combined product (35 counties; Multnomah is handled "
-            "by Metro). No official statewide OPFP forecast. Regional products "
-            "also use urban growth boundaries, which are not incorporated places."
+            "county (35 counties; Multnomah is handled by Metro). No official "
+            "statewide OPFP forecast. The source workbooks also include urban growth "
+            "boundaries, which are not incorporated places and are not served here."
         ),
         "scenarios": [],
         "default_scenario": None,
         "products": [
-            "Oregon Population Forecast Program combined county age-sex series, "
-            "2020-based through 2045",
+            "Oregon Population Forecast Program rolling regional county forecasts, "
+            "2023-2026 releases with horizons from 2073 through 2076",
         ],
         "methodology": (
-            "County age-sex forecasts from PSU PRC. The common workbook labels "
-            "each row as PSUPRC Estimate or PSUPRC Forecast."
+            "County cohort-component forecasts from PSU PRC. The 2025 and 2026 "
+            "workbooks label estimate and forecast rows. The 2023 and 2024 total "
+            "tables are forecast-only; their methods documents identify the base years."
         ),
         "employment_note": "PSU PRC publishes no employment forecast.",
         "license": (
-            "No separate license statement; official public forecast under Oregon law."
+            "Archived forecast reports are CC BY 4.0; live workbooks carry no "
+            "separate license statement."
         ),
         "caveats": [
             "No statewide official OPFP forecast exists. The OHNA statewide pilot "
             "explicitly says it does not replace OPFP and is not served.",
-            "Multnomah County is absent from the combined workbook because Metro "
+            "Multnomah County is outside PSU PRC's county series because Metro "
             "handles its forecasting; requests receive an explicit refusal.",
-            "The published series jumps from 2020 to 2025. No 2021-2024 values "
-            "are supplied or interpolated.",
-            "Rolling regional workbooks have newer county-specific vintages and "
-            "longer horizons. They are not mixed into the common 35-county series.",
-            "No household, employment, or components forecast is published in the "
-            "combined product.",
+            "Oregon is a rolling-vintage dataset, not a single statewide snapshot. "
+            "County release years, base years, and horizons differ, so county values "
+            "must not be summed as though they came from one common vintage.",
+            "The 2023 and 2024 county tables contain only forecast years. Their "
+            "unpublished base-year values are not filled from another source.",
+            "Workbook model results are stored with decimals and served as the "
+            "nearest whole person, matching PSU's displayed tables.",
+            "No household, employment, or components forecast is served.",
         ],
         "geo_exceptions": {
             ("population", "county", "41051"): {
                 "status": "not_published",
                 "reason": (
-                    "Multnomah County is excluded from PSU PRC's combined county "
-                    "workbook because Metro handles forecasting for the county. "
+                    "Multnomah County is outside PSU PRC's county forecast series "
+                    "because Metro handles forecasting for the county. "
                     "No value is substituted from another source."
                 ),
             },

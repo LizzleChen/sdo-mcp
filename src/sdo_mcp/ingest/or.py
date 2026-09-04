@@ -1,188 +1,395 @@
 """Oregon adapter.
 
 Source: Portland State University Population Research Center (PSU PRC),
-Oregon Population Forecast Program combined county workbook. It contains 35
-counties (Multnomah is handled by Metro), estimates for 1990/2000/2010/2020,
-and forecasts for 2025-2045. Verified 2026-08-10
-(plan/EXPANSION.md).
-
-The combined workbook is the common v1 product. Newer rolling regional files
-are separate vintages with different horizons and are deliberately not mixed
-into it. Oregon publishes no official statewide OPFP forecast.
+Oregon Population Forecast Program county workbooks. PSU refreshes one region
+per year, so Oregon's latest county data is a rolling set of 2023-2026 releases
+rather than one statewide vintage. Multnomah County is handled by Metro, and
+PSU publishes no official statewide OPFP forecast.
 """
 
 from __future__ import annotations
 
+import csv
+import io
 import sys
-from collections import defaultdict
+from dataclasses import dataclass
 from datetime import date
+from pathlib import Path
 
 from ..common import fetch
 from ..store import REPO_ROOT, insert_observations, upsert_source
 
 RAW_DIR = REPO_ROOT / "data" / "raw" / "or"
-FILE = "age_specific_combined_results_2025.xlsx"
-URL = (
-    "https://docs.google.com/spreadsheets/d/"
-    "1qBDbPJBMz7bRiUksBF7BgIpDnVcmSEEJEYTg23JSUN0/export?format=xlsx"
-)
-
-SOURCE_ID = "or-pop-combined-2020"
-BASE_YEAR = 2020
-HORIZON_YEAR = 2045
-ESTIMATE_YEARS = (1990, 2000, 2010, 2020)
-FORECAST_YEARS = tuple(range(2025, 2046))
-ALL_YEARS = (*ESTIMATE_YEARS, *FORECAST_YEARS)
+COMPACT_FILE = "county_population_2023-2026.csv"
 MULTNOMAH_FIPS = "41051"
 
 AGENCY = "Portland State University Population Research Center (PSU PRC)"
-CITATION = (
-    "Portland State University Population Research Center. Oregon Population "
-    "Forecast Program, combined county age-sex results, 2020-based series "
-    "through 2045."
+LICENSE = "CC BY 4.0 for archived reports; no separate statement on live workbooks."
+
+
+@dataclass(frozen=True)
+class CountyRelease:
+    county: str
+    release_year: int
+    file_id: str
+    base_year: int
+    horizon_year: int
+
+    @property
+    def filename(self) -> str:
+        return f"county/{self.release_year}_{self.county.replace(' ', '_')}.xlsx"
+
+    @property
+    def url(self) -> str:
+        return (
+            "https://docs.google.com/spreadsheets/d/"
+            f"{self.file_id}/export?format=xlsx"
+        )
+
+    @property
+    def source_id(self) -> str:
+        return f"or-pop-{self.county.lower().replace(' ', '-')}-{self.release_year}"
+
+
+# Latest published workbook for every county covered by PSU PRC as of 2026-09-04.
+# PSU updates regions on a four-year rotation; these are deliberately separate
+# source records because their base years and horizons differ.
+COUNTY_RELEASES = (
+    # Current cycle, Region 1, final June 2026. Baseline: 2025.
+    CountyRelease("Curry", 2026, "14v4zD2RiVUnBYA04CzXYnvrHnuIon1c_", 2025, 2076),
+    CountyRelease("Coos", 2026, "1sQ91lxfZpCYvHmCK72FsnFKlway5olyO", 2025, 2076),
+    CountyRelease("Douglas", 2026, "1MzqA948JBoYaBSFaE43VjppxILACSw_A", 2025, 2076),
+    CountyRelease("Josephine", 2026, "1uTALQjWeQw5O3pqQJWROB1IMlv42WHzi", 2025, 2076),
+    CountyRelease("Jackson", 2026, "1o1yFfeqsU2kbXNU7r1YN76GoNK2RXfOQ", 2025, 2076),
+    CountyRelease("Klamath", 2026, "1TQzqDAVBMA1-SfvHEGttIk4FLJM9NrvK", 2025, 2076),
+    CountyRelease("Deschutes", 2026, "1ksQvrCBDagrTXwhlOO2eGZFboHgkP8yi", 2025, 2076),
+    CountyRelease("Jefferson", 2026, "1r9JfJyxCpFCd1DdowN2fLnyVU8tMhPFX", 2025, 2076),
+    CountyRelease("Lake", 2026, "1gixAFphjjIQvL_NiiFttm8ieltWC0Dtf", 2025, 2076),
+    CountyRelease("Crook", 2026, "1SZ8Xm5IIb78eNCJpsSU7B8MFY1UPhLm4", 2025, 2076),
+    CountyRelease("Harney", 2026, "1G_XePh8N2j0vVcZcqtVGgrwqF8qKUmKD", 2025, 2076),
+    # Prior cycle, Regions 1/4, final 2025. Baseline: 2024.
+    CountyRelease("Benton", 2025, "1pfc5SFppHml4LM1YPNkvi5DiZ3TTTffv", 2024, 2075),
+    CountyRelease("Lane", 2025, "1v40QrcU_8O8fPWwe-i0lkZv9psW90y8n", 2024, 2075),
+    CountyRelease("Lincoln", 2025, "1aemEtkYW2RtuclSDyYHlr--ZJ6aSoyOW", 2024, 2075),
+    CountyRelease("Linn", 2025, "1arP2OP2WVL3IPBCXf3oObUADEZo7ELro", 2024, 2075),
+    CountyRelease("Marion", 2025, "15YaSD72SYvIlF6jNW94X8og91sKuNX93", 2024, 2075),
+    CountyRelease("Polk", 2025, "1Y7FwYcWyZLE2nX8od_ayuy1vRC9SA3wu", 2024, 2075),
+    # Prior cycle, Region 3, final 2024. Baseline: 2022.
+    CountyRelease("Clackamas", 2024, "1Q26ze9h_srupolHX74LM2n5DuNz5-6NQ", 2022, 2074),
+    CountyRelease("Clatsop", 2024, "1ML4zdOV5nQEw_pT4_Uz3mORfwvljtiLe", 2022, 2074),
+    CountyRelease("Columbia", 2024, "1_3HjqE6fteajSntRKUIZ4dybc7EhTpPF", 2022, 2074),
+    CountyRelease("Hood River", 2024, "1ppbFimgVyVmu1lga6QRwu2_W2zmwrgOv", 2022, 2074),
+    CountyRelease("Tillamook", 2024, "1o3qxmnR9rJpifa8AkSQZMjKJN4gh-7d_", 2022, 2074),
+    CountyRelease("Wasco", 2024, "1ciqjtOrqqr5USwgVqhOZOMiW31JMlCyW", 2022, 2074),
+    CountyRelease("Washington", 2024, "1zec3qdUpI7FmX3rcVBcijefPUStQAzji", 2022, 2074),
+    CountyRelease("Yamhill", 2024, "1xBc-cyMabzSrynFBH2_jGUNDghYtNp03", 2022, 2074),
+    # Prior cycle, Region 2, final June 2023. Baseline: 2020.
+    CountyRelease("Baker", 2023, "17TWMR-bfGgFo6tJ-CPbUO9gkP8y044Mn", 2020, 2073),
+    CountyRelease("Gilliam", 2023, "1Tm1l0ZKojFqnnSP_e--DXE2QTC5EpNwZ", 2020, 2073),
+    CountyRelease("Grant", 2023, "1TCbM2cxJ-2heqKTlfwyaoWCR0bqKvvy8", 2020, 2073),
+    CountyRelease("Malheur", 2023, "1kRvoZ9d26bxvq-p_P9xHm24CzIIKb7ib", 2020, 2073),
+    CountyRelease("Morrow", 2023, "1Z1cCD36hwP-M4cURRuBbmPljbQqTk3GY", 2020, 2073),
+    CountyRelease("Sherman", 2023, "1AkxCv00Sb1QOMkP7gEa_ZJTblAdnqvZ8", 2020, 2073),
+    CountyRelease("Umatilla", 2023, "1OSQAZra1ynY4pEzuGFbisdXOODEX3Z2l", 2020, 2073),
+    CountyRelease("Union", 2023, "135K4ShuyHshv5je79zBO4g5QH3Jbp4n-", 2020, 2073),
+    CountyRelease("Wallowa", 2023, "1qsmJQaT7D-SQEapCb3GlWQK35tIUP_cD", 2020, 2073),
+    CountyRelease("Wheeler", 2023, "1VUKrZlTXaaOW0d3ptxhh4rWZDFHlGsSV", 2020, 2073),
 )
-LICENSE = "No separate license statement; official public forecast under Oregon law."
+
+METHOD_RELEASES = (
+    (2023, "1svaV1LDStsSG5r4N827ZCW_inJaVZgRI"),
+    (2024, "1rJ7mLo43BnfI9IyUrQuyo1S36QYuDPxD"),
+    (2025, "1NHBZxTlpW0Uh5WuKBrbOelDkt15qpFh_"),
+    (2026, "18nKAL5lKsK9DBi53Vc95GDUNSTfeG_qf"),
+)
 
 
-def acquire() -> None:
-    """Download and validate the combined workbook without touching regional files."""
-    import io
+def _find_total_table(workbook, source: str):
+    """Return the sheet and columns for a county-total table."""
+    for ws in workbook.worksheets:
+        for row_number, row in enumerate(
+            ws.iter_rows(min_row=1, max_row=12, values_only=True), start=1
+        ):
+            values = [str(v).strip().upper() if v is not None else "" for v in row]
+            if "YEAR" not in values or "POPULATION" not in values:
+                continue
+            year_col = values.index("YEAR") + 1
+            pop_col = values.index("POPULATION") + 1
+            type_col = values.index("TYPE") + 1 if "TYPE" in values else None
+            return ws, row_number, year_col, pop_col, type_col
+    raise RuntimeError(f"{source}: no YEAR/POPULATION county-total table found")
+
+
+def _read_series(source: Path | io.BytesIO, release: CountyRelease) -> list[dict]:
     import openpyxl
 
-    body = fetch.get_bytes(URL)
-    if not body.startswith(b"PK"):
-        raise RuntimeError(f"{URL}: body is not an xlsx (Google error page?)")
-    wb = openpyxl.load_workbook(io.BytesIO(body), read_only=True, data_only=True)
+    wb = openpyxl.load_workbook(source, read_only=True, data_only=True)
     try:
-        ws = wb[wb.sheetnames[0]]
-        header = tuple(next(ws.iter_rows(values_only=True)))
-        if header[:6] != ("YEAR", "COUNTY", "SEX", "AGE5", "POPULATION", "SOURCE"):
-            raise RuntimeError(f"{URL}: unexpected workbook header {header[:6]!r}")
+        ws, header_row, year_col, pop_col, type_col = _find_total_table(
+            wb, release.filename
+        )
+        rows = []
+        for rec in ws.iter_rows(min_row=header_row + 1, values_only=True):
+            year_value = rec[year_col - 1] if len(rec) >= year_col else None
+            pop_value = rec[pop_col - 1] if len(rec) >= pop_col else None
+            if year_value is None or pop_value is None:
+                continue
+            try:
+                year = int(year_value)
+                value = int(round(float(pop_value)))
+            except (TypeError, ValueError):
+                continue
+            if type_col is None:
+                datatype = "projection"
+            else:
+                label = str(rec[type_col - 1]).strip().lower()
+                if label == "estimate":
+                    datatype = "estimate"
+                elif label == "forecast":
+                    datatype = "projection"
+                else:
+                    raise RuntimeError(
+                        f"{release.filename}: unknown TYPE label {label!r} for {year}"
+                    )
+            rows.append({"year": year, "value": value, "datatype": datatype})
     finally:
         wb.close()
 
-    RAW_DIR.mkdir(parents=True, exist_ok=True)
-    (RAW_DIR / FILE).write_bytes(body)
-    old_entries = []
-    if (RAW_DIR / "manifest.json").exists():
-        old_entries = [e for e in fetch.read_manifest(RAW_DIR) if e["file"] != FILE]
-    old_entries.append({
-        "file": FILE,
-        "source": URL,
-        "retrieved_at": date.today().isoformat(),
-        "sha256": fetch.sha256(body),
-        "records": None,
+    years = [row["year"] for row in rows]
+    if not rows or len(years) != len(set(years)) or years != sorted(years):
+        raise RuntimeError(f"{release.filename}: empty, duplicate, or unordered years")
+    if years[-1] != release.horizon_year:
+        raise RuntimeError(
+            f"{release.filename}: horizon {years[-1]} != {release.horizon_year}"
+        )
+    if any(row["year"] <= release.base_year and row["datatype"] == "projection" for row in rows):
+        raise RuntimeError(f"{release.filename}: projection at or before the base year")
+    if any(row["year"] > release.base_year and row["datatype"] == "estimate" for row in rows):
+        raise RuntimeError(f"{release.filename}: estimate after the base year")
+    if any(row["value"] < 0 for row in rows):
+        raise RuntimeError(f"{release.filename}: negative population")
+    return rows
+
+
+def acquire() -> None:
+    """Download official files and create the compact committed totals snapshot."""
+    old_entries = fetch.read_manifest(RAW_DIR) if (RAW_DIR / "manifest.json").exists() else []
+    entries_by_file = {
+        entry["file"]: entry
+        for entry in old_entries
+        if not entry["file"].lower().endswith((".xlsx", ".pdf"))
+    }
+    today = date.today().isoformat()
+    added = 0
+    compact_rows = []
+
+    for release in COUNTY_RELEASES:
+        path = RAW_DIR / release.filename
+        body = path.read_bytes() if path.exists() else fetch.get_bytes(release.url)
+        if not body.startswith(b"PK"):
+            raise RuntimeError(f"{release.url}: body is not an xlsx (Google error page?)")
+        series = _read_series(io.BytesIO(body), release)
+        if not path.exists():
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(body)
+            added += 1
+        compact_rows.extend(
+            {
+                "county": release.county,
+                "release_year": release.release_year,
+                "base_year": release.base_year,
+                "horizon_year": release.horizon_year,
+                "year": point["year"],
+                "value": point["value"],
+                "datatype": point["datatype"],
+                "source_url": release.url,
+            }
+            for point in series
+        )
+
+    for release_year, file_id in METHOD_RELEASES:
+        filename = f"methodology/PSUPRC_Forecast_Methodology_{release_year}.pdf"
+        url = f"https://drive.google.com/uc?export=download&id={file_id}"
+        path = RAW_DIR / filename
+        body = path.read_bytes() if path.exists() else fetch.get_bytes(url)
+        if not body.startswith(b"%PDF"):
+            raise RuntimeError(f"{url}: body is not a PDF (Google error page?)")
+        if not path.exists():
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(body)
+            added += 1
+
+    fields = (
+        "county", "release_year", "base_year", "horizon_year", "year", "value",
+        "datatype", "source_url",
+    )
+    text = io.StringIO(newline="")
+    writer = csv.DictWriter(text, fieldnames=fields, lineterminator="\n")
+    writer.writeheader()
+    writer.writerows(compact_rows)
+    compact_body = text.getvalue().encode("utf-8")
+    compact_path = RAW_DIR / COMPACT_FILE
+    if compact_path.exists() and compact_path.read_bytes() != compact_body:
+        raise RuntimeError(
+            f"{compact_path}: existing compact snapshot differs; use a new vintage filename"
+        )
+    if not compact_path.exists():
+        compact_path.write_bytes(compact_body)
+    entries_by_file[COMPACT_FILE] = {
+        "file": COMPACT_FILE,
+        "source": "https://www.pdx.edu/population-research/population-forecasts",
+        "retrieved_at": today,
+        "sha256": fetch.sha256(compact_body),
+        "records": len(compact_rows),
         "note": (
-            "Official combined 35-county workbook: sparse estimates through "
-            "2020 and annual forecasts 2025-2045. Rolling regional workbooks "
-            "are separate products and are not mixed into this source."
+            "County totals extracted from the latest official 2023-2026 regional "
+            "workbooks. Each row retains its county release, base year, horizon, "
+            "estimate/projection label, and exact workbook URL."
         ),
-    })
-    fetch.write_manifest(RAW_DIR, old_entries)
-    print(f"OR acquire: {FILE} ({len(body):,} bytes)")
+    }
 
-
-def _retrieved() -> str:
-    return next(
-        e["retrieved_at"] for e in fetch.read_manifest(RAW_DIR) if e["file"] == FILE
+    fetch.write_manifest(RAW_DIR, list(entries_by_file.values()))
+    print(
+        f"OR acquire: {added} downloaded files; {len(COUNTY_RELEASES)} county workbooks "
+        f"and {len(METHOD_RELEASES)} methods documents validated; "
+        f"{len(compact_rows)} compact rows ready"
     )
 
 
-def load(conn) -> None:
-    """Combined age-sex workbook -> 35 county population totals."""
-    import openpyxl
+def _manifest_entry(filename: str) -> dict:
+    return next(e for e in fetch.read_manifest(RAW_DIR) if e["file"] == filename)
 
+
+def _read_compact() -> dict[str, list[dict]]:
+    releases_by_county = {release.county: release for release in COUNTY_RELEASES}
+    series_by_county: dict[str, list[dict]] = {}
+    with (RAW_DIR / COMPACT_FILE).open(newline="") as source:
+        for rec in csv.DictReader(source):
+            county = rec["county"]
+            release = releases_by_county.get(county)
+            if release is None:
+                raise RuntimeError(f"{COMPACT_FILE}: unexpected county {county!r}")
+            metadata = (
+                int(rec["release_year"]), int(rec["base_year"]),
+                int(rec["horizon_year"]), rec["source_url"],
+            )
+            expected = (
+                release.release_year, release.base_year,
+                release.horizon_year, release.url,
+            )
+            if metadata != expected:
+                raise RuntimeError(
+                    f"{COMPACT_FILE}: source metadata mismatch for {county}: "
+                    f"{metadata!r} != {expected!r}"
+                )
+            series_by_county.setdefault(county, []).append({
+                "year": int(rec["year"]),
+                "value": int(rec["value"]),
+                "datatype": rec["datatype"],
+            })
+
+    for release in COUNTY_RELEASES:
+        rows = series_by_county.get(release.county, [])
+        years = [row["year"] for row in rows]
+        if not rows or len(years) != len(set(years)) or years != sorted(years):
+            raise RuntimeError(
+                f"{COMPACT_FILE}: empty, duplicate, or unordered {release.county} years"
+            )
+        if years[-1] != release.horizon_year:
+            raise RuntimeError(
+                f"{COMPACT_FILE}: {release.county} horizon {years[-1]} "
+                f"!= {release.horizon_year}"
+            )
+        if any(
+            row["year"] <= release.base_year and row["datatype"] == "projection"
+            for row in rows
+        ):
+            raise RuntimeError(f"{COMPACT_FILE}: projection at or before a base year")
+        if any(
+            row["year"] > release.base_year and row["datatype"] == "estimate"
+            for row in rows
+        ):
+            raise RuntimeError(f"{COMPACT_FILE}: estimate after a base year")
+    return series_by_county
+
+
+def load(conn) -> None:
+    """Compact extract of latest rolling releases -> 35 county population series."""
     fips_by_name = {
         row["name"].removesuffix(" County"): row["geo_id"]
         for row in conn.execute(
             "SELECT geo_id, name FROM geographies WHERE state='OR' AND geo_level='county'"
         )
     }
-    wb = openpyxl.load_workbook(RAW_DIR / FILE, read_only=True, data_only=True)
-    try:
-        ws = wb[wb.sheetnames[0]]
-        header = tuple(next(ws.iter_rows(values_only=True)))
-        assert header[:6] == ("YEAR", "COUNTY", "SEX", "AGE5", "POPULATION", "SOURCE")
-
-        totals: defaultdict[tuple[str, int], int] = defaultdict(int)
-        cells: defaultdict[tuple[str, int], int] = defaultdict(int)
-        labels: defaultdict[tuple[str, int], set[str]] = defaultdict(set)
-        source_names: set[str] = set()
-        for rec in ws.iter_rows(min_row=2, values_only=True):
-            if rec[0] is None:
-                continue
-            year = int(rec[0])
-            name = str(rec[1]).strip()
-            key = (name, year)
-            totals[key] += int(round(float(rec[4])))
-            cells[key] += 1
-            labels[key].add(str(rec[5]).strip())
-            source_names.add(name)
-    finally:
-        wb.close()
-
     expected_names = set(fips_by_name) - {"Multnomah"}
-    if source_names != expected_names:
+    release_names = {release.county for release in COUNTY_RELEASES}
+    if release_names != expected_names:
         raise RuntimeError(
-            f"OR load: county mismatch; missing {sorted(expected_names - source_names)}, "
-            f"extra {sorted(source_names - expected_names)}"
+            f"OR load: county mismatch; missing {sorted(expected_names - release_names)}, "
+            f"extra {sorted(release_names - expected_names)}"
         )
 
+    series_by_county = _read_compact()
+    manifest = _manifest_entry(COMPACT_FILE)
     rows: list[dict] = []
-    for (name, year), value in totals.items():
-        assert cells[(name, year)] == 36, (
-            f"OR load: {name} {year} has {cells[(name, year)]} age/sex cells, expected 36"
+    for release in COUNTY_RELEASES:
+        series = series_by_county[release.county]
+        upsert_source(
+            conn,
+            source_id=release.source_id,
+            state="OR",
+            agency=AGENCY,
+            product_name=f"Oregon Population Forecast Program: {release.county} County",
+            vintage=f"{release.release_year} regional release",
+            base_year=release.base_year,
+            horizon_year=release.horizon_year,
+            source_url=release.url,
+            retrieved_at=manifest["retrieved_at"],
+            license=LICENSE,
+            citation=(
+                f"Portland State University Population Research Center. "
+                f"{release.county} County coordinated population forecast, "
+                f"{release.release_year} regional release."
+            ),
+            method_notes=(
+                f"This is the latest PSU PRC workbook for {release.county} County as of "
+                f"2026-09-04. Its base year is {release.base_year} and its horizon is "
+                f"{release.horizon_year}. The 2025 and 2026 workbooks label their rows "
+                "Estimate or Forecast directly. The 2023 and 2024 total tables omit that "
+                "column; their methods documents name the base year, and every published "
+                "table year is later than it, so those rows are projections. No years are "
+                "filled or combined across vintages. Model results stored with decimals "
+                "are rounded to the whole-person values displayed by PSU. Oregon has no "
+                "official statewide OPFP forecast, and Multnomah County is handled "
+                "separately by Metro."
+            ),
         )
-        assert len(labels[(name, year)]) == 1, (
-            f"OR load: {name} {year} has mixed source labels {labels[(name, year)]}"
+        rows.extend(
+            {
+                "state": "OR",
+                "geo_level": "county",
+                "geo_id": fips_by_name[release.county],
+                "year": point["year"],
+                "variable": "population",
+                "value": point["value"],
+                "datatype": point["datatype"],
+                "source_id": release.source_id,
+            }
+            for point in series
         )
-        label = next(iter(labels[(name, year)]))
-        if label == "PSUPRC Estimate":
-            datatype = "estimate"
-        elif label == "PSUPRC Forecast":
-            datatype = "projection"
-        else:
-            raise RuntimeError(f"OR load: unknown SOURCE label {label!r}")
-        rows.append(dict(
-            state="OR", geo_level="county", geo_id=fips_by_name[name], year=year,
-            variable="population", value=value, datatype=datatype,
-            source_id=SOURCE_ID,
-        ))
 
-    upsert_source(
-        conn,
-        source_id=SOURCE_ID,
-        state="OR",
-        agency=AGENCY,
-        product_name="Oregon Population Forecast Program combined county series",
-        vintage="2020-based combined workbook (retrieved 2026-08-10)",
-        base_year=BASE_YEAR,
-        horizon_year=HORIZON_YEAR,
-        source_url=URL,
-        retrieved_at=_retrieved(),
-        license=LICENSE,
-        citation=CITATION,
-        method_notes=(
-            "County totals are exact sums of 18 age groups by two sexes. The "
-            "SOURCE field explicitly labels 1990, 2000, 2010, and 2020 as "
-            "PSUPRC Estimate and 2025-2045 as PSUPRC Forecast. No 2021-2024 "
-            "points are published, and none are interpolated. The combined "
-            "workbook covers 35 counties; Multnomah County is handled by Metro. "
-            "Rolling regional releases use different vintages and horizons and "
-            "are not mixed into this common series. No official statewide OPFP "
-            "forecast is published."
-        ),
-    )
     n = insert_observations(conn, rows)
     conn.commit()
-    print(f"OR load: {n} observations")
+    print(f"OR load: {n} observations from {len(COUNTY_RELEASES)} county vintages")
 
 
 FIXTURES = [
-    ("41003", 2020, 95319, "estimate"),    # Benton
-    ("41003", 2045, 112545, "projection"),
-    ("41017", 2020, 199264, "estimate"),  # Deschutes
-    ("41017", 2045, 292440, "projection"),
+    ("41003", 2020, 95184, "estimate"),     # Benton, 2025 release
+    ("41003", 2045, 112546, "projection"),
+    ("41017", 2025, 213886, "estimate"),   # Deschutes, 2026 release
+    ("41017", 2045, 278432, "projection"),
+    ("41001", 2023, 16977, "projection"),  # Baker, 2023 release
+    ("41005", 2023, 434554, "projection"), # Clackamas, 2024 release
 ]
 
 
@@ -197,29 +404,27 @@ def verify(conn) -> None:
         assert (int(row["value"]), row["datatype"]) == (value, datatype)
 
     shape = conn.execute(
-        "SELECT COUNT(*) n, COUNT(DISTINCT geo_id) ng, COUNT(DISTINCT year) ny "
+        "SELECT COUNT(*) n, COUNT(DISTINCT geo_id) ng, COUNT(DISTINCT source_id) ns "
         "FROM observations WHERE state='OR' AND variable='population'"
     ).fetchone()
-    assert tuple(shape) == (875, 35, 25)
+    assert tuple(shape) == (1916, 35, 35)
 
-    years = [
-        r["year"] for r in conn.execute(
-            "SELECT DISTINCT year FROM observations WHERE state='OR' ORDER BY year"
-        )
-    ]
-    assert years == list(ALL_YEARS), f"OR verify: unexpected year set {years}"
-
-    labels = conn.execute(
-        "SELECT datatype, GROUP_CONCAT(DISTINCT year) years FROM observations "
-        "WHERE state='OR' GROUP BY datatype ORDER BY datatype"
+    releases = conn.execute(
+        "SELECT CAST(SUBSTR(s.vintage, 1, 4) AS INTEGER) release_year, "
+        "COUNT(DISTINCT o.geo_id) counties "
+        "FROM observations o JOIN sources s USING (source_id) "
+        "WHERE o.state='OR' GROUP BY release_year ORDER BY release_year"
     ).fetchall()
-    by_type = {
-        r["datatype"]: {int(y) for y in r["years"].split(",")} for r in labels
-    }
-    assert by_type == {
-        "estimate": set(ESTIMATE_YEARS),
-        "projection": set(FORECAST_YEARS),
-    }
+    assert [(r["release_year"], r["counties"]) for r in releases] == [
+        (2023, 10), (2024, 8), (2025, 6), (2026, 11)
+    ]
+
+    bad_boundaries = conn.execute(
+        "SELECT COUNT(*) n FROM observations o JOIN sources s USING (source_id) "
+        "WHERE o.state='OR' AND ((o.year <= s.base_year AND o.datatype='projection') "
+        "OR (o.year > s.base_year AND o.datatype='estimate'))"
+    ).fetchone()["n"]
+    assert bad_boundaries == 0
 
     state_rows = conn.execute(
         "SELECT COUNT(*) n FROM observations WHERE state='OR' AND geo_level='state'"
@@ -229,7 +434,10 @@ def verify(conn) -> None:
         (MULTNOMAH_FIPS,),
     ).fetchone()["n"]
     assert state_rows == 0 and multnomah_rows == 0
-    print(f"OR verify: {len(FIXTURES)} fixtures + exact counties + sparse years + labels ok")
+    print(
+        f"OR verify: {len(FIXTURES)} fixtures + 35 county vintages + "
+        "estimate/projection boundaries ok"
+    )
 
 
 if __name__ == "__main__":

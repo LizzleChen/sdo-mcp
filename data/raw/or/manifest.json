@@ -1,18 +1,10 @@
 [
-  {
-    "file": "age_specific_combined_results_2025.xlsx",
-    "source": "https://docs.google.com/spreadsheets/d/1qBDbPJBMz7bRiUksBF7BgIpDnVcmSEEJEYTg23JSUN0/export?format=xlsx",
-    "retrieved_at": "2026-08-10",
-    "sha256": "3a45f2c3adef43e449ded74b9b80e1d62d413f521e8315fc454d4cf9be891d9a",
-    "records": null,
-    "note": "Manual Google Sheets Excel download. Official combined workbook is stale: 35 counties, estimates through 2020, and forecasts through 2045. Retained to document the stale-link warning; not the current regional adapter input."
-  },
-  {
-    "file": "Deschutes.xlsx",
-    "source": "https://docs.google.com/spreadsheets/d/1ksQvrCBDagrTXwhlOO2eGZFboHgkP8yi/export?format=xlsx",
-    "retrieved_at": "2026-08-10",
-    "sha256": "559060ad761189319704223974e241860ea54a6f898101f68507d7673c6c9ea6",
-    "records": null,
-    "note": "Manual Google Sheets Excel download from the 2026 Region 1 release. County total has 2025 as Estimate, 2026-2076 as Forecast; Deschutes fixtures matched exactly."
-  }
+ {
+  "file": "county_population_2023-2026.csv",
+  "source": "https://www.pdx.edu/population-research/population-forecasts",
+  "retrieved_at": "2026-09-04",
+  "sha256": "91669335e9ba62b33dd64afef89aff4e6d80b693ca69f220a1a7f4e366f608a8",
+  "records": 1916,
+  "note": "County totals extracted from the latest official 2023-2026 regional workbooks. Each row retains its county release, base year, horizon, estimate/projection label, and exact workbook URL."
+ }
 ]

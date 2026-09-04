@@ -302,8 +302,9 @@ COVERAGE = [
      "PSU PRC publishes no official statewide Oregon Population Forecast Program "
      "series. The OHNA statewide pilot explicitly does not replace OPFP."),
     ("OR", "population", "county", "available",
-     "Combined 2020-based workbook: 35 counties, estimates in 1990/2000/2010/2020 "
-     "and forecasts 2025-2045. Multnomah County is excluded and handled by Metro."),
+     "Latest rolling regional releases cover 35 counties: 2023, 2024, 2025, and "
+     "2026 vintages with county-specific base years and horizons. Multnomah County "
+     "is excluded and handled by Metro."),
     ("OR", "population", "place", "not_published",
      "OPFP regional products forecast urban growth boundaries, which are not the "
      "same as incorporated places. No place forecast is served."),
@@ -320,8 +321,7 @@ COVERAGE = [
     ("OR", "components", "state", "not_published",
      "No official statewide components forecast is published."),
     ("OR", "components", "county", "not_published",
-     "The combined county workbook publishes population by age and sex, not "
-     "components of change."),
+     "The regional county workbooks publish population detail, not components of change."),
 ]
 
 
