@@ -491,4 +491,60 @@ STATES = {
             "agency": "https://ofm.wa.gov/washington-data-research/population-demographics/",
         },
     },
+    "OR": {
+        "name": "Oregon",
+        "agency": (
+            "Portland State University Population Research Center, Oregon "
+            "Population Forecast Program"
+        ),
+        "producer_type": "university (official state population research center)",
+        "current_vintage": (
+            "Common 2020-based combined county workbook through 2045. Newer "
+            "rolling regional releases are separate products and are not mixed in."
+        ),
+        "geography_floor": (
+            "county for the combined product (35 counties; Multnomah is handled "
+            "by Metro). No official statewide OPFP forecast. Regional products "
+            "also use urban growth boundaries, which are not incorporated places."
+        ),
+        "scenarios": [],
+        "default_scenario": None,
+        "products": [
+            "Oregon Population Forecast Program combined county age-sex series, "
+            "2020-based through 2045",
+        ],
+        "methodology": (
+            "County age-sex forecasts from PSU PRC. The common workbook labels "
+            "each row as PSUPRC Estimate or PSUPRC Forecast."
+        ),
+        "employment_note": "PSU PRC publishes no employment forecast.",
+        "license": (
+            "No separate license statement; official public forecast under Oregon law."
+        ),
+        "caveats": [
+            "No statewide official OPFP forecast exists. The OHNA statewide pilot "
+            "explicitly says it does not replace OPFP and is not served.",
+            "Multnomah County is absent from the combined workbook because Metro "
+            "handles its forecasting; requests receive an explicit refusal.",
+            "The published series jumps from 2020 to 2025. No 2021-2024 values "
+            "are supplied or interpolated.",
+            "Rolling regional workbooks have newer county-specific vintages and "
+            "longer horizons. They are not mixed into the common 35-county series.",
+            "No household, employment, or components forecast is published in the "
+            "combined product.",
+        ],
+        "geo_exceptions": {
+            ("population", "county", "41051"): {
+                "status": "not_published",
+                "reason": (
+                    "Multnomah County is excluded from PSU PRC's combined county "
+                    "workbook because Metro handles forecasting for the county. "
+                    "No value is substituted from another source."
+                ),
+            },
+        },
+        "links": {
+            "agency": "https://www.pdx.edu/population-research/population-forecasts",
+        },
+    },
 }

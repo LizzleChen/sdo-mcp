@@ -9,14 +9,19 @@ Usage: uv run python -m sdo_mcp.ingest.build [db_path]
 from __future__ import annotations
 
 import sys
+from importlib import import_module
 from pathlib import Path
 
 from .. import store
 from . import az, ca, co, fl, ga, mn, nc, seed, tn, tx, wa
 
+# ``or`` is Oregon's postal code but a reserved Python word, so this one
+# state-code module must be imported by name rather than in the statement above.
+or_adapter = import_module(".or", __package__)
+
 # State adapter modules, each exposing load(conn) and verify(conn).
 # Registered in build order (plan/DESIGN.md §5, then plan/EXPANSION.md).
-ADAPTERS: list = [co, tn, ga, ca, tx, fl, nc, mn, az, wa]
+ADAPTERS: list = [co, tn, ga, ca, tx, fl, nc, mn, az, wa, or_adapter]
 
 
 def rebuild(path: Path | str | None = None) -> Path:

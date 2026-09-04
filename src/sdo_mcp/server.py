@@ -74,6 +74,28 @@ def _error(message: str, **extra) -> dict:
     return {"status": "error", "error": message, **extra}
 
 
+def _geo_exception(state: str, variable: str, geo_level: str, resolved: dict) -> dict | None:
+    """Return an explicit refusal for a known hole inside an otherwise
+    published geography level, such as Oregon's excluded Multnomah County."""
+    exception = notes.STATES[state].get("geo_exceptions", {}).get(
+        (variable, geo_level, resolved["geo_id"])
+    )
+    if exception is None:
+        return None
+    return {
+        "status": exception.get("status", "not_published"),
+        "state": state,
+        "variable": variable,
+        "geo": {
+            "level": geo_level,
+            "id": resolved["geo_id"],
+            "name": resolved["name"],
+        },
+        "reason": exception["reason"],
+        "closest_published": None,
+    }
+
+
 def _resolve_scenario(
     state: str, scenario: str | None, geo_level: str | None = None
 ) -> tuple[str | None, dict]:
@@ -183,6 +205,9 @@ def get_forecast(
         resolved = store.resolve_geo(conn, state, geo_level, geo)
         if "error" in resolved:
             return _error(resolved["error"], candidates=resolved.get("candidates"))
+        exception = _geo_exception(state, variable, geo_level, resolved)
+        if exception is not None:
+            return exception
 
         rows = store.get_series(
             conn, state, geo_level, resolved["geo_id"], variable,

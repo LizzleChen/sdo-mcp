@@ -28,6 +28,7 @@ COVERED_STATES = {
     "MN": "Minnesota",
     "AZ": "Arizona",
     "WA": "Washington",
+    "OR": "Oregon",
 }
 
 # (state, variable, geo_level, status, detail)
@@ -295,6 +296,32 @@ COVERAGE = [
     ("WA", "components", "county", "available",
      "GMA components are published separately from the county totals workbook "
      "and are not included in the current committed snapshots."),
+
+    # ---- Oregon
+    ("OR", "population", "state", "not_published",
+     "PSU PRC publishes no official statewide Oregon Population Forecast Program "
+     "series. The OHNA statewide pilot explicitly does not replace OPFP."),
+    ("OR", "population", "county", "available",
+     "Combined 2020-based workbook: 35 counties, estimates in 1990/2000/2010/2020 "
+     "and forecasts 2025-2045. Multnomah County is excluded and handled by Metro."),
+    ("OR", "population", "place", "not_published",
+     "OPFP regional products forecast urban growth boundaries, which are not the "
+     "same as incorporated places. No place forecast is served."),
+    ("OR", "households", "state", "not_published",
+     "PSU PRC publishes no household forecast; household size and vacancy are "
+     "model inputs, not forecast outputs."),
+    ("OR", "households", "county", "not_published",
+     "PSU PRC publishes no household forecast; household size and vacancy are "
+     "model inputs, not forecast outputs."),
+    ("OR", "employment", "state", "not_published",
+     "PSU PRC publishes no employment forecast."),
+    ("OR", "employment", "county", "not_published",
+     "PSU PRC publishes no employment forecast."),
+    ("OR", "components", "state", "not_published",
+     "No official statewide components forecast is published."),
+    ("OR", "components", "county", "not_published",
+     "The combined county workbook publishes population by age and sex, not "
+     "components of change."),
 ]
 
 
