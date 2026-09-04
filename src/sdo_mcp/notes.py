@@ -347,4 +347,50 @@ STATES = {
             "api_base": "https://demography.osbm.nc.gov/api/explore/v2.1/catalog/datasets",
         },
     },
+    "MN": {
+        "name": "Minnesota",
+        "agency": (
+            "Minnesota State Demographic Center, Minnesota Department of "
+            "Administration"
+        ),
+        "producer_type": "state agency",
+        "current_vintage": (
+            "May 2024 (corrected July 1, 2024): state population and components "
+            "2024-2075; county population 2024-2055."
+        ),
+        "geography_floor": (
+            "county (87 counties + state). City and township figures are estimates "
+            "only; the State Demographic Center does not project them."
+        ),
+        "scenarios": [],
+        "default_scenario": None,
+        "products": [
+            "Long-Term Population Projections for Minnesota (state and county "
+            "totals; age by sex; statewide race; statewide components of change)",
+        ],
+        "methodology": (
+            "Cohort-component projections based on Census Vintage 2022 estimates."
+        ),
+        "employment_note": (
+            "The State Demographic Center publishes no employment forecast. "
+            "Minnesota DEED labor projections are a different product and are "
+            "outside this server's scope."
+        ),
+        "license": (
+            "No separate license statement; public government data under the "
+            "Minnesota Government Data Practices Act."
+        ),
+        "caveats": [
+            "The 2024 launch year is a projection, not an estimate. The last "
+            "underlying estimate year is 2022, and every served point is labeled "
+            "projection.",
+            "County detail stops at 2055; the state series continues to 2075.",
+            "County totals are summed from the workbook's age-by-sex rows because "
+            "there is no county totals sheet.",
+            "No household or employment forecast is published.",
+        ],
+        "links": {
+            "agency": "https://mn.gov/admin/demography/data-by-topic/population-data/our-projections/",
+        },
+    },
 }
