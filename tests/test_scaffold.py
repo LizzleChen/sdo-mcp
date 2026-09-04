@@ -7,9 +7,10 @@ from sdo_mcp import server, store
 from sdo_mcp.ingest import seed
 
 
-def test_list_states_covers_all_six_pilots():
+def test_list_states_covers_the_covered_states():
     res = server.list_states()
-    assert set(res["states"]) == {"CO", "TX", "CA", "TN", "GA", "FL"}
+    # The six pilots plus the expansion states ingested so far.
+    assert {"CO", "TX", "CA", "TN", "GA", "FL", "NC"} <= set(res["states"])
     tx = res["states"]["TX"]
     assert tx["variables"]["households"]["county"]["status"] == "not_published"
     assert tx["scenarios"] == ["mid", "high", "low"]
