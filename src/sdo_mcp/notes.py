@@ -439,4 +439,56 @@ STATES = {
             "agency": "https://oeo.az.gov/population/projections",
         },
     },
+    "WA": {
+        "name": "Washington",
+        "agency": (
+            "Washington State Office of Financial Management, Forecasting and "
+            "Research Division"
+        ),
+        "producer_type": "state agency",
+        "current_vintage": (
+            "November 2025 state forecast (estimates through 2025, projections "
+            "2026-2050) and separate 2022 GMA county Low/Medium/High projections."
+        ),
+        "geography_floor": (
+            "county (39 counties + state). OFM publishes city and town estimates "
+            "but does not develop sub-county projections."
+        ),
+        "scenarios": ["low", "medium", "high"],
+        "default_scenario": "medium",
+        "scenario_geo_levels": ["county"],
+        "products": [
+            "Forecast of the State Population by Age and Sex, November 2025",
+            "2022 Growth Management Act County Population Projections, "
+            "Low/Medium/High",
+            "Long-Term Economic Forecast, state nonfarm employment (PDF only)",
+        ],
+        "methodology": (
+            "OFM publishes separate statewide and GMA county projection products. "
+            "The GMA range is required by state growth-management law."
+        ),
+        "employment_note": (
+            "The same OFM division publishes a state-level Long-Term Economic "
+            "Forecast with nonfarm jobs through 2050, but only in PDF tables. "
+            "No county jobs forecast is published by OFM."
+        ),
+        "license": (
+            "OFM permits use, sharing, and copying with attribution; its liability "
+            "disclaimer applies."
+        ),
+        "caveats": [
+            "The statewide and county series are different products and vintages. "
+            "Their statewide 2050 comparison values disagree by construction, so "
+            "they are never merged.",
+            "Low/Medium/High scenarios apply only to counties. The current state "
+            "forecast is a single series.",
+            "The GMA county series has estimates for 2020-2022, no values for "
+            "2023-2024, and projections for 2025-2050. Missing years are not filled.",
+            "No household forecast is published. Components exist in separate "
+            "workbooks that are not in the current committed snapshots.",
+        ],
+        "links": {
+            "agency": "https://ofm.wa.gov/washington-data-research/population-demographics/",
+        },
+    },
 }

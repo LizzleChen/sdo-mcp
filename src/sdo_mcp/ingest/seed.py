@@ -27,6 +27,7 @@ COVERED_STATES = {
     "NC": "North Carolina",
     "MN": "Minnesota",
     "AZ": "Arizona",
+    "WA": "Washington",
 }
 
 # (state, variable, geo_level, status, detail)
@@ -266,6 +267,34 @@ COVERAGE = [
     ("AZ", "components", "county", "available",
      "Births, deaths, total net migration 2025-2060, per scenario, from the "
      "projection workbooks (domestic/foreign split in source)."),
+
+    # ---- Washington
+    ("WA", "population", "state", "available",
+     "November 2025 state forecast: estimates through 2025 and projections "
+     "2026-2050, annual, single series."),
+    ("WA", "population", "county", "available",
+     "2022 GMA projections: all 39 counties, estimates 2020-2022 and "
+     "projections 2025-2050, annual after 2025, Low/Medium/High scenarios."),
+    ("WA", "population", "place", "not_published",
+     "OFM publishes city and town estimates only and does not develop "
+     "sub-county population projections."),
+    ("WA", "households", "state", "not_published",
+     "OFM publishes no household projection product."),
+    ("WA", "households", "county", "not_published",
+     "OFM publishes no household projection product."),
+    ("WA", "employment", "state", "pdf_only",
+     "OFM's Forecasting and Research Division publishes a state Long-Term "
+     "Economic Forecast with nonfarm jobs through 2050 in PDF tables; it is "
+     "not loaded as a serveable series."),
+    ("WA", "employment", "county", "state_level_only",
+     "OFM publishes no county jobs forecast. A state-level forecast exists in "
+     "the separate Long-Term Economic Forecast PDF."),
+    ("WA", "components", "state", "available",
+     "State components are published in a separate OFM workbook, which is not "
+     "included in the current committed snapshots."),
+    ("WA", "components", "county", "available",
+     "GMA components are published separately from the county totals workbook "
+     "and are not included in the current committed snapshots."),
 ]
 
 

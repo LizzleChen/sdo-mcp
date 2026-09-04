@@ -74,9 +74,14 @@ def _error(message: str, **extra) -> dict:
     return {"status": "error", "error": message, **extra}
 
 
-def _resolve_scenario(state: str, scenario: str | None) -> tuple[str | None, dict]:
+def _resolve_scenario(
+    state: str, scenario: str | None, geo_level: str | None = None
+) -> tuple[str | None, dict]:
     meta = notes.STATES[state]
     published = meta["scenarios"]
+    scenario_levels = meta.get("scenario_geo_levels")
+    if scenario_levels is not None and geo_level not in scenario_levels:
+        published = []
     if scenario:
         s = scenario.strip().lower()
         if s not in published:
@@ -89,7 +94,7 @@ def _resolve_scenario(state: str, scenario: str | None) -> tuple[str | None, dic
                 f"{state} publishes a single series — there are no scenarios to pick"
             )
         return s, {}
-    return meta["default_scenario"] or "", {}
+    return (meta["default_scenario"] if published else "") or "", {}
 
 
 @mcp.tool()
@@ -171,7 +176,7 @@ def get_forecast(
         if cov is None or cov["status"] != "available":
             return _refusal(conn, state, variable, geo_level, cov)
 
-        scen, err = _resolve_scenario(state, scenario)
+        scen, err = _resolve_scenario(state, scenario, geo_level)
         if scen is None:
             return err
 
@@ -210,7 +215,7 @@ def get_forecast(
             "scenario": scen or None,
             "scenario_note": (
                 f"defaulted to the state's recommended scenario ({scen})"
-                if scenario is None and notes.STATES[state]["scenarios"]
+                if scenario is None and scen
                 else None
             ),
             "series": [
@@ -255,7 +260,7 @@ def get_components(
         if cov is None or cov["status"] != "available":
             return _refusal(conn, state, "components", geo_level, cov)
 
-        scen, err = _resolve_scenario(state, scenario)
+        scen, err = _resolve_scenario(state, scenario, geo_level)
         if scen is None:
             return err
 
@@ -292,7 +297,7 @@ def get_components(
             "scenario": scen or None,
             "scenario_note": (
                 f"defaulted to the state's recommended scenario ({scen})"
-                if scenario is None and notes.STATES[state]["scenarios"]
+                if scenario is None and scen
                 else None
             ),
             "series": [series[y] for y in sorted(series)],
