@@ -140,6 +140,13 @@ def list_states() -> dict:
                     "status": r["status"],
                     "detail": r["detail"],
                 }
+            scenario_levels = None
+            if meta["scenarios"]:
+                scenario_levels = meta.get("scenario_geo_levels") or [
+                    r["geo_level"]
+                    for r in cov
+                    if r["variable"] == "population" and r["status"] == "available"
+                ]
             out[state] = {
                 "name": meta["name"],
                 "agency": meta["agency"],
@@ -147,6 +154,7 @@ def list_states() -> dict:
                 "geography_floor": meta["geography_floor"],
                 "scenarios": meta["scenarios"] or None,
                 "default_scenario": meta["default_scenario"],
+                "scenario_geo_levels": scenario_levels,
                 "employment_note": meta["employment_note"],
                 "variables": variables,
                 "data_loaded": store.state_has_data(conn, state),
@@ -174,11 +182,12 @@ def get_forecast(
     accepts a FIPS code, a bare TDC id for TX COG/TxDOT levels ('18'), or a
     name (unknown or ambiguous names return candidates, never a guess);
     `variable` is 'population', 'households', or 'employment'. `scenario`
-    only applies where the state publishes scenarios (TX mid/high/low, FL
-    low/medium/high) and defaults to the state's recommended one. Every point
-    is flagged estimate or projection; if the state publishes nothing for the
-    request, a structured refusal explains why and points to the closest
-    published geography (pointer only, no numbers)."""
+    only applies where the selected product publishes scenarios (TX
+    Mid/High/Low; AZ and FL Low/Medium/High; WA county Low/Medium/High) and
+    defaults to the state's recommended one. Every point is flagged estimate
+    or projection; if the state publishes nothing for the request, a
+    structured refusal explains why and points to the closest published
+    geography (pointer only, no numbers)."""
     state = state.strip().upper()
     variable = variable.strip().lower()
     geo_level = geo_level.strip().lower()

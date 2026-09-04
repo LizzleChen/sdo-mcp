@@ -46,3 +46,9 @@ def test_unloaded_components_and_pdf_employment_are_explicit():
     assert components["status"] == "not_loaded"
     jobs = server.get_forecast("WA", "state", "WA", "employment")
     assert jobs["status"] == "pdf_only"
+
+
+def test_state_catalog_says_scenarios_are_county_only():
+    wa = server.list_states()["states"]["WA"]
+    assert wa["scenarios"] == ["low", "medium", "high"]
+    assert wa["scenario_geo_levels"] == ["county"]
