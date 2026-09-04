@@ -347,4 +347,208 @@ STATES = {
             "api_base": "https://demography.osbm.nc.gov/api/explore/v2.1/catalog/datasets",
         },
     },
+    "MN": {
+        "name": "Minnesota",
+        "agency": (
+            "Minnesota State Demographic Center, Minnesota Department of "
+            "Administration"
+        ),
+        "producer_type": "state agency",
+        "current_vintage": (
+            "May 2024 (corrected July 1, 2024): state population and components "
+            "2024-2075; county population 2024-2055."
+        ),
+        "geography_floor": (
+            "county (87 counties + state). City and township figures are estimates "
+            "only; the State Demographic Center does not project them."
+        ),
+        "scenarios": [],
+        "default_scenario": None,
+        "products": [
+            "Long-Term Population Projections for Minnesota (state and county "
+            "totals; age by sex; statewide race; statewide components of change)",
+        ],
+        "methodology": (
+            "Cohort-component projections based on Census Vintage 2022 estimates."
+        ),
+        "employment_note": (
+            "The State Demographic Center publishes no employment forecast. "
+            "Minnesota DEED labor projections are a different product and are "
+            "outside this server's scope."
+        ),
+        "license": (
+            "No separate license statement; public government data under the "
+            "Minnesota Government Data Practices Act."
+        ),
+        "caveats": [
+            "The 2024 launch year is a projection, not an estimate. The last "
+            "underlying estimate year is 2022, and every served point is labeled "
+            "projection.",
+            "County detail stops at 2055; the state series continues to 2075.",
+            "County totals are summed from the workbook's age-by-sex rows because "
+            "there is no county totals sheet.",
+            "No household or employment forecast is published.",
+        ],
+        "links": {
+            "agency": "https://mn.gov/admin/demography/data-by-topic/population-data/our-projections/",
+        },
+    },
+    "AZ": {
+        "name": "Arizona",
+        "agency": "Arizona Office of Economic Opportunity (OEO), State Demographer",
+        "producer_type": "state agency",
+        "current_vintage": (
+            "2025 edition: annual July 1 population and components, 2025-2060, "
+            "with Low/Medium/High scenarios."
+        ),
+        "geography_floor": (
+            "county (15 counties + state). The available place product uses an "
+            "older, 2022-consistent county vintage and is not mixed into this series."
+        ),
+        "scenarios": ["low", "medium", "high"],
+        "default_scenario": "medium",
+        "products": [
+            "Arizona State and County Population Projections, 2025-2060 "
+            "(population, components, age/sex, and race/origin)",
+        ],
+        "methodology": (
+            "Cohort-component projections with separate low, medium, and high "
+            "assumptions. The 2025 launch population equals OEO's official estimate."
+        ),
+        "employment_note": (
+            "OEO's industry and occupation projections are its labor-market product, "
+            "not a State Demographer jobs forecast, and are outside this server's scope."
+        ),
+        "license": (
+            "No separate license statement; official public statistics under az.gov terms."
+        ),
+        "caveats": [
+            "The download site uses a browser challenge. Saved source files are "
+            "validated as workbooks; an HTML challenge page is never accepted as data.",
+            "Old vintages are removed from the site, so the committed snapshot and "
+            "retrieval date are the reproducibility record.",
+            "Detailed workbooks contain fractional modeled values. Totals and "
+            "components are served as whole persons; the separately rounded-to-100 "
+            "summary sheet is not used.",
+            "Yuma County has one small published scenario crossover in 2026: "
+            "Low is 61 people above Medium. The expected Low-Medium-High order "
+            "holds from 2027 onward.",
+            "No household forecast is published.",
+        ],
+        "links": {
+            "agency": "https://oeo.az.gov/population/projections",
+        },
+    },
+    "WA": {
+        "name": "Washington",
+        "agency": (
+            "Washington State Office of Financial Management, Forecasting and "
+            "Research Division"
+        ),
+        "producer_type": "state agency",
+        "current_vintage": (
+            "November 2025 state forecast (estimates through 2025, projections "
+            "2026-2050) and separate 2022 GMA county Low/Medium/High projections."
+        ),
+        "geography_floor": (
+            "county (39 counties + state). OFM publishes city and town estimates "
+            "but does not develop sub-county projections."
+        ),
+        "scenarios": ["low", "medium", "high"],
+        "default_scenario": "medium",
+        "scenario_geo_levels": ["county"],
+        "products": [
+            "Forecast of the State Population by Age and Sex, November 2025",
+            "2022 Growth Management Act County Population Projections, "
+            "Low/Medium/High",
+            "Long-Term Economic Forecast, state nonfarm employment (PDF only)",
+        ],
+        "methodology": (
+            "OFM publishes separate statewide and GMA county projection products. "
+            "The GMA range is required by state growth-management law."
+        ),
+        "employment_note": (
+            "The same OFM division publishes a state-level Long-Term Economic "
+            "Forecast with nonfarm jobs through 2050, but only in PDF tables. "
+            "No county jobs forecast is published by OFM."
+        ),
+        "license": (
+            "OFM permits use, sharing, and copying with attribution; its liability "
+            "disclaimer applies."
+        ),
+        "caveats": [
+            "The statewide and county series are different products and vintages. "
+            "Their statewide 2050 comparison values disagree by construction, so "
+            "they are never merged.",
+            "Low/Medium/High scenarios apply only to counties. The current state "
+            "forecast is a single series.",
+            "The GMA county series has estimates for 2020-2022, no values for "
+            "2023-2024, and projections for 2025-2050. Missing years are not filled.",
+            "No household forecast is published. Components exist in separate "
+            "workbooks that are not in the current committed snapshots.",
+        ],
+        "links": {
+            "agency": "https://ofm.wa.gov/washington-data-research/population-demographics/",
+        },
+    },
+    "OR": {
+        "name": "Oregon",
+        "agency": (
+            "Portland State University Population Research Center, Oregon "
+            "Population Forecast Program"
+        ),
+        "producer_type": "university (official state population research center)",
+        "current_vintage": (
+            "Latest county-specific regional releases as of 2026-09-04: 10 counties "
+            "from 2023, 8 from 2024, 6 from 2025, and 11 from 2026."
+        ),
+        "geography_floor": (
+            "county (35 counties; Multnomah is handled by Metro). No official "
+            "statewide OPFP forecast. The source workbooks also include urban growth "
+            "boundaries, which are not incorporated places and are not served here."
+        ),
+        "scenarios": [],
+        "default_scenario": None,
+        "products": [
+            "Oregon Population Forecast Program rolling regional county forecasts, "
+            "2023-2026 releases with horizons from 2073 through 2076",
+        ],
+        "methodology": (
+            "County cohort-component forecasts from PSU PRC. The 2025 and 2026 "
+            "workbooks label estimate and forecast rows. The 2023 and 2024 total "
+            "tables are forecast-only; their methods documents identify the base years."
+        ),
+        "employment_note": "PSU PRC publishes no employment forecast.",
+        "license": (
+            "Archived forecast reports are CC BY 4.0; live workbooks carry no "
+            "separate license statement."
+        ),
+        "caveats": [
+            "No statewide official OPFP forecast exists. The OHNA statewide pilot "
+            "explicitly says it does not replace OPFP and is not served.",
+            "Multnomah County is outside PSU PRC's county series because Metro "
+            "handles its forecasting; requests receive an explicit refusal.",
+            "Oregon is a rolling-vintage dataset, not a single statewide snapshot. "
+            "County release years, base years, and horizons differ, so county values "
+            "must not be summed as though they came from one common vintage.",
+            "The 2023 and 2024 county tables contain only forecast years. Their "
+            "unpublished base-year values are not filled from another source.",
+            "Workbook model results are stored with decimals and served as the "
+            "nearest whole person, matching PSU's displayed tables.",
+            "No household, employment, or components forecast is served.",
+        ],
+        "geo_exceptions": {
+            ("population", "county", "41051"): {
+                "status": "not_published",
+                "reason": (
+                    "Multnomah County is outside PSU PRC's county forecast series "
+                    "because Metro handles forecasting for the county. "
+                    "No value is substituted from another source."
+                ),
+            },
+        },
+        "links": {
+            "agency": "https://www.pdx.edu/population-research/population-forecasts",
+        },
+    },
 }

@@ -27,6 +27,8 @@ COVERED_STATES = {
     "NC": "North Carolina",
     "MN": "Minnesota",
     "AZ": "Arizona",
+    "WA": "Washington",
+    "OR": "Oregon",
 }
 
 # (state, variable, geo_level, status, detail)
@@ -266,6 +268,60 @@ COVERAGE = [
     ("AZ", "components", "county", "available",
      "Births, deaths, total net migration 2025-2060, per scenario, from the "
      "projection workbooks (domestic/foreign split in source)."),
+
+    # ---- Washington
+    ("WA", "population", "state", "available",
+     "November 2025 state forecast: estimates through 2025 and projections "
+     "2026-2050, annual, single series."),
+    ("WA", "population", "county", "available",
+     "2022 GMA projections: all 39 counties, estimates 2020-2022 and "
+     "projections 2025-2050, annual after 2025, Low/Medium/High scenarios."),
+    ("WA", "population", "place", "not_published",
+     "OFM publishes city and town estimates only and does not develop "
+     "sub-county population projections."),
+    ("WA", "households", "state", "not_published",
+     "OFM publishes no household projection product."),
+    ("WA", "households", "county", "not_published",
+     "OFM publishes no household projection product."),
+    ("WA", "employment", "state", "pdf_only",
+     "OFM's Forecasting and Research Division publishes a state Long-Term "
+     "Economic Forecast with nonfarm jobs through 2050 in PDF tables; it is "
+     "not loaded as a serveable series."),
+    ("WA", "employment", "county", "state_level_only",
+     "OFM publishes no county jobs forecast. A state-level forecast exists in "
+     "the separate Long-Term Economic Forecast PDF."),
+    ("WA", "components", "state", "available",
+     "State components are published in a separate OFM workbook, which is not "
+     "included in the current committed snapshots."),
+    ("WA", "components", "county", "available",
+     "GMA components are published separately from the county totals workbook "
+     "and are not included in the current committed snapshots."),
+
+    # ---- Oregon
+    ("OR", "population", "state", "not_published",
+     "PSU PRC publishes no official statewide Oregon Population Forecast Program "
+     "series. The OHNA statewide pilot explicitly does not replace OPFP."),
+    ("OR", "population", "county", "available",
+     "Latest rolling regional releases cover 35 counties: 2023, 2024, 2025, and "
+     "2026 vintages with county-specific base years and horizons. Multnomah County "
+     "is excluded and handled by Metro."),
+    ("OR", "population", "place", "not_published",
+     "OPFP regional products forecast urban growth boundaries, which are not the "
+     "same as incorporated places. No place forecast is served."),
+    ("OR", "households", "state", "not_published",
+     "PSU PRC publishes no household forecast; household size and vacancy are "
+     "model inputs, not forecast outputs."),
+    ("OR", "households", "county", "not_published",
+     "PSU PRC publishes no household forecast; household size and vacancy are "
+     "model inputs, not forecast outputs."),
+    ("OR", "employment", "state", "not_published",
+     "PSU PRC publishes no employment forecast."),
+    ("OR", "employment", "county", "not_published",
+     "PSU PRC publishes no employment forecast."),
+    ("OR", "components", "state", "not_published",
+     "No official statewide components forecast is published."),
+    ("OR", "components", "county", "not_published",
+     "The regional county workbooks publish population detail, not components of change."),
 ]
 
 

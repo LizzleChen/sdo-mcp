@@ -74,9 +74,36 @@ def _error(message: str, **extra) -> dict:
     return {"status": "error", "error": message, **extra}
 
 
-def _resolve_scenario(state: str, scenario: str | None) -> tuple[str | None, dict]:
+def _geo_exception(state: str, variable: str, geo_level: str, resolved: dict) -> dict | None:
+    """Return an explicit refusal for a known hole inside an otherwise
+    published geography level, such as Oregon's excluded Multnomah County."""
+    exception = notes.STATES[state].get("geo_exceptions", {}).get(
+        (variable, geo_level, resolved["geo_id"])
+    )
+    if exception is None:
+        return None
+    return {
+        "status": exception.get("status", "not_published"),
+        "state": state,
+        "variable": variable,
+        "geo": {
+            "level": geo_level,
+            "id": resolved["geo_id"],
+            "name": resolved["name"],
+        },
+        "reason": exception["reason"],
+        "closest_published": None,
+    }
+
+
+def _resolve_scenario(
+    state: str, scenario: str | None, geo_level: str | None = None
+) -> tuple[str | None, dict]:
     meta = notes.STATES[state]
     published = meta["scenarios"]
+    scenario_levels = meta.get("scenario_geo_levels")
+    if scenario_levels is not None and geo_level not in scenario_levels:
+        published = []
     if scenario:
         s = scenario.strip().lower()
         if s not in published:
@@ -89,7 +116,7 @@ def _resolve_scenario(state: str, scenario: str | None) -> tuple[str | None, dic
                 f"{state} publishes a single series — there are no scenarios to pick"
             )
         return s, {}
-    return meta["default_scenario"] or "", {}
+    return (meta["default_scenario"] if published else "") or "", {}
 
 
 @mcp.tool()
@@ -113,6 +140,13 @@ def list_states() -> dict:
                     "status": r["status"],
                     "detail": r["detail"],
                 }
+            scenario_levels = None
+            if meta["scenarios"]:
+                scenario_levels = meta.get("scenario_geo_levels") or [
+                    r["geo_level"]
+                    for r in cov
+                    if r["variable"] == "population" and r["status"] == "available"
+                ]
             out[state] = {
                 "name": meta["name"],
                 "agency": meta["agency"],
@@ -120,6 +154,7 @@ def list_states() -> dict:
                 "geography_floor": meta["geography_floor"],
                 "scenarios": meta["scenarios"] or None,
                 "default_scenario": meta["default_scenario"],
+                "scenario_geo_levels": scenario_levels,
                 "employment_note": meta["employment_note"],
                 "variables": variables,
                 "data_loaded": store.state_has_data(conn, state),
@@ -147,11 +182,12 @@ def get_forecast(
     accepts a FIPS code, a bare TDC id for TX COG/TxDOT levels ('18'), or a
     name (unknown or ambiguous names return candidates, never a guess);
     `variable` is 'population', 'households', or 'employment'. `scenario`
-    only applies where the state publishes scenarios (TX mid/high/low, FL
-    low/medium/high) and defaults to the state's recommended one. Every point
-    is flagged estimate or projection; if the state publishes nothing for the
-    request, a structured refusal explains why and points to the closest
-    published geography (pointer only, no numbers)."""
+    only applies where the selected product publishes scenarios (TX
+    Mid/High/Low; AZ and FL Low/Medium/High; WA county Low/Medium/High) and
+    defaults to the state's recommended one. Every point is flagged estimate
+    or projection; if the state publishes nothing for the request, a
+    structured refusal explains why and points to the closest published
+    geography (pointer only, no numbers)."""
     state = state.strip().upper()
     variable = variable.strip().lower()
     geo_level = geo_level.strip().lower()
@@ -171,13 +207,16 @@ def get_forecast(
         if cov is None or cov["status"] != "available":
             return _refusal(conn, state, variable, geo_level, cov)
 
-        scen, err = _resolve_scenario(state, scenario)
+        scen, err = _resolve_scenario(state, scenario, geo_level)
         if scen is None:
             return err
 
         resolved = store.resolve_geo(conn, state, geo_level, geo)
         if "error" in resolved:
             return _error(resolved["error"], candidates=resolved.get("candidates"))
+        exception = _geo_exception(state, variable, geo_level, resolved)
+        if exception is not None:
+            return exception
 
         rows = store.get_series(
             conn, state, geo_level, resolved["geo_id"], variable,
@@ -210,7 +249,7 @@ def get_forecast(
             "scenario": scen or None,
             "scenario_note": (
                 f"defaulted to the state's recommended scenario ({scen})"
-                if scenario is None and notes.STATES[state]["scenarios"]
+                if scenario is None and scen
                 else None
             ),
             "series": [
@@ -229,9 +268,11 @@ def get_components(
     geo: str,
     start_year: int | None = None,
     end_year: int | None = None,
+    scenario: str | None = None,
 ) -> dict:
     """Components of population change — births, deaths, net migration — where
-    the state demography office publishes them (Colorado; California later).
+    the state demography office publishes them. ``scenario`` applies where
+    components accompany scenario forecasts (Arizona Low/Medium/High).
     `geo` accepts a county FIPS/name, or the state code/name for the statewide
     series. States without a components product return a structured refusal."""
     state = state.strip().upper()
@@ -253,6 +294,10 @@ def get_components(
         if cov is None or cov["status"] != "available":
             return _refusal(conn, state, "components", geo_level, cov)
 
+        scen, err = _resolve_scenario(state, scenario, geo_level)
+        if scen is None:
+            return err
+
         resolved = store.resolve_geo(conn, state, geo_level, g)
         if "error" in resolved:
             return _error(resolved["error"], candidates=resolved.get("candidates"))
@@ -261,7 +306,8 @@ def get_components(
         source_id = None
         for var in ("births", "deaths", "net_migration"):
             rows = store.get_series(
-                conn, state, geo_level, resolved["geo_id"], var, start_year, end_year
+                conn, state, geo_level, resolved["geo_id"], var, start_year, end_year,
+                scenario=scen,
             )
             for r in rows:
                 point = series.setdefault(
@@ -282,6 +328,12 @@ def get_components(
             "status": "ok",
             "state": state,
             "geo": {"level": geo_level, "id": resolved["geo_id"], "name": resolved["name"]},
+            "scenario": scen or None,
+            "scenario_note": (
+                f"defaulted to the state's recommended scenario ({scen})"
+                if scenario is None and scen
+                else None
+            ),
             "series": [series[y] for y in sorted(series)],
             "source": _source_block(store.get_source(conn, source_id)),
         }

@@ -23,6 +23,10 @@ data/sdo.sqlite
 data/raw/az/All_Series_2025-2060/
 data/raw/az/Arizona_Medium Series.xlsx
 
+# Downloaded Oregon source workbooks/PDFs; compact county totals are committed
+data/raw/or/**/*.xlsx
+data/raw/or/**/*.pdf
+
 # Local env/secrets
 .env
 .env.*
