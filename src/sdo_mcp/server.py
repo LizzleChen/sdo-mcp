@@ -229,9 +229,11 @@ def get_components(
     geo: str,
     start_year: int | None = None,
     end_year: int | None = None,
+    scenario: str | None = None,
 ) -> dict:
     """Components of population change — births, deaths, net migration — where
-    the state demography office publishes them (Colorado; California later).
+    the state demography office publishes them. ``scenario`` applies where
+    components accompany scenario forecasts (Arizona Low/Medium/High).
     `geo` accepts a county FIPS/name, or the state code/name for the statewide
     series. States without a components product return a structured refusal."""
     state = state.strip().upper()
@@ -253,6 +255,10 @@ def get_components(
         if cov is None or cov["status"] != "available":
             return _refusal(conn, state, "components", geo_level, cov)
 
+        scen, err = _resolve_scenario(state, scenario)
+        if scen is None:
+            return err
+
         resolved = store.resolve_geo(conn, state, geo_level, g)
         if "error" in resolved:
             return _error(resolved["error"], candidates=resolved.get("candidates"))
@@ -261,7 +267,8 @@ def get_components(
         source_id = None
         for var in ("births", "deaths", "net_migration"):
             rows = store.get_series(
-                conn, state, geo_level, resolved["geo_id"], var, start_year, end_year
+                conn, state, geo_level, resolved["geo_id"], var, start_year, end_year,
+                scenario=scen,
             )
             for r in rows:
                 point = series.setdefault(
@@ -282,6 +289,12 @@ def get_components(
             "status": "ok",
             "state": state,
             "geo": {"level": geo_level, "id": resolved["geo_id"], "name": resolved["name"]},
+            "scenario": scen or None,
+            "scenario_note": (
+                f"defaulted to the state's recommended scenario ({scen})"
+                if scenario is None and notes.STATES[state]["scenarios"]
+                else None
+            ),
             "series": [series[y] for y in sorted(series)],
             "source": _source_block(store.get_source(conn, source_id)),
         }

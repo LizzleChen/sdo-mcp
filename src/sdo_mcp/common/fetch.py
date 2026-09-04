@@ -74,6 +74,32 @@ def get_bytes(url: str, tries: int = 3, timeout: int = 300) -> bytes:
     raise RuntimeError(f"GET {url} failed after {tries} tries: {last}")
 
 
+def get_with_js(url: str, tries: int = 3, timeout: int = 300) -> bytes:
+    """GET through a browser-like client for sites guarded by a JavaScript
+    challenge, while still rejecting challenge/error pages as data.
+
+    Arizona OEO's downloads are the current use case. ``cloudscraper`` is an
+    ingest-only dependency; nothing on the MCP serve path imports it.
+    """
+    import cloudscraper
+
+    last: Exception | None = None
+    for i in range(tries):
+        try:
+            scraper = cloudscraper.create_scraper()
+            response = scraper.get(url, headers=UA, timeout=timeout)
+            response.raise_for_status()
+            body = response.content
+            beginning = body[:500].lower()
+            if b"<html" in beginning or b"just a moment" in beginning:
+                raise ValueError("received an HTML challenge/error page instead of data")
+            return body
+        except Exception as e:  # noqa: BLE001
+            last = e
+            time.sleep(0.8 * (i + 1))
+    raise RuntimeError(f"challenge-capable GET {url} failed after {tries} tries: {last}")
+
+
 def sha256(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 

@@ -10,6 +10,7 @@ dependencies = [
 [dependency-groups]
 # Ingest-time only — the serve path stays stdlib (sqlite3).
 ingest = [
+    "cloudscraper>=1.2.71",
     "openpyxl>=3.1",
 ]
 dev = [

@@ -393,4 +393,50 @@ STATES = {
             "agency": "https://mn.gov/admin/demography/data-by-topic/population-data/our-projections/",
         },
     },
+    "AZ": {
+        "name": "Arizona",
+        "agency": "Arizona Office of Economic Opportunity (OEO), State Demographer",
+        "producer_type": "state agency",
+        "current_vintage": (
+            "2025 edition: annual July 1 population and components, 2025-2060, "
+            "with Low/Medium/High scenarios."
+        ),
+        "geography_floor": (
+            "county (15 counties + state). The available place product uses an "
+            "older, 2022-consistent county vintage and is not mixed into this series."
+        ),
+        "scenarios": ["low", "medium", "high"],
+        "default_scenario": "medium",
+        "products": [
+            "Arizona State and County Population Projections, 2025-2060 "
+            "(population, components, age/sex, and race/origin)",
+        ],
+        "methodology": (
+            "Cohort-component projections with separate low, medium, and high "
+            "assumptions. The 2025 launch population equals OEO's official estimate."
+        ),
+        "employment_note": (
+            "OEO's industry and occupation projections are its labor-market product, "
+            "not a State Demographer jobs forecast, and are outside this server's scope."
+        ),
+        "license": (
+            "No separate license statement; official public statistics under az.gov terms."
+        ),
+        "caveats": [
+            "The download site uses a browser challenge. Saved source files are "
+            "validated as workbooks; an HTML challenge page is never accepted as data.",
+            "Old vintages are removed from the site, so the committed snapshot and "
+            "retrieval date are the reproducibility record.",
+            "Detailed workbooks contain fractional modeled values. Totals and "
+            "components are served as whole persons; the separately rounded-to-100 "
+            "summary sheet is not used.",
+            "Yuma County has one small published scenario crossover in 2026: "
+            "Low is 61 people above Medium. The expected Low-Medium-High order "
+            "holds from 2027 onward.",
+            "No household forecast is published.",
+        ],
+        "links": {
+            "agency": "https://oeo.az.gov/population/projections",
+        },
+    },
 }
