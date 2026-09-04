@@ -2,7 +2,8 @@
 county list snapshot) and the hand-curated coverage matrix.
 
 The coverage rows are the machine-readable form of the cross-state synthesis
-in plan/RESEARCH.md (verified 2026-08-07). They are what make "not published"
+in plan/RESEARCH.md (pilot states, verified 2026-08-07) and plan/EXPANSION.md
+(expansion states, verified 2026-08-10). They are what make "not published"
 answers structural: refusals come from here, never from absence of data.
 """
 
@@ -14,13 +15,18 @@ from ..store import REPO_ROOT
 
 COUNTY_FILE = REPO_ROOT / "data" / "raw" / "census_national_county2020.txt"
 
-PILOT_STATES = {
+# Renamed from PILOT_STATES when coverage grew past the six pilots
+# (Phase 3.1, 2026-08): this is the list of states the server covers.
+COVERED_STATES = {
     "CO": "Colorado",
     "TX": "Texas",
     "CA": "California",
     "TN": "Tennessee",
     "GA": "Georgia",
     "FL": "Florida",
+    "NC": "North Carolina",
+    "MN": "Minnesota",
+    "AZ": "Arizona",
 }
 
 # (state, variable, geo_level, status, detail)
@@ -174,11 +180,97 @@ COVERAGE = [
      "forecast exists in EDR's long-run tables (PDF)."),
     ("FL", "components", "county", "not_published",
      "No components-of-change product published."),
+
+    # ---- North Carolina
+    ("NC", "population", "state", "available",
+     "Vintage 2025B (errata release): estimates 2010-2024 + projections "
+     "2025-2060, annual, July 1."),
+    ("NC", "population", "county", "available",
+     "Vintage 2025B: all 100 counties, estimates 2010-2024 + projections "
+     "2025-2060, annual."),
+    ("NC", "population", "place", "not_published",
+     "OSBM publishes municipal estimates only (certified 2024) — no municipal "
+     "projections. County is the smallest projected geography."),
+    ("NC", "households", "state", "not_published",
+     "OSBM publishes no household forecast; household population is an "
+     "internal model step only."),
+    ("NC", "households", "county", "not_published",
+     "OSBM publishes no household forecast; household population is an "
+     "internal model step only."),
+    ("NC", "employment", "state", "not_published",
+     "The State Demographer's Office publishes no employment forecast. NC "
+     "Commerce labor projections are a different product, out of scope."),
+    ("NC", "employment", "county", "not_published",
+     "The State Demographer's Office publishes no employment forecast. NC "
+     "Commerce labor projections are a different product, out of scope."),
+    ("NC", "components", "state", "not_published",
+     "No components-of-change product published."),
+    ("NC", "components", "county", "not_published",
+     "No components-of-change product published."),
+
+    # ---- Minnesota
+    ("MN", "population", "state", "available",
+     "May 2024 vintage: 2024-2075 annual. Every point is a projection — the "
+     "2024 launch value itself is projected (last underlying estimate is "
+     "Census Vintage 2022)."),
+    ("MN", "population", "county", "available",
+     "May 2024 vintage: all 87 counties, 2024-2055 annual (county detail ends "
+     "20 years before the state series). All projection, incl. 2024."),
+    ("MN", "population", "place", "not_published",
+     "SDC publishes city/township estimates only (PopFinder) — no municipal "
+     "projections."),
+    ("MN", "households", "state", "not_published",
+     "No household projections — the methodology is only 'being drafted' per "
+     "the Dec 2024 projections plan."),
+    ("MN", "households", "county", "not_published",
+     "No household projections — the methodology is only 'being drafted' per "
+     "the Dec 2024 projections plan."),
+    ("MN", "employment", "state", "not_published",
+     "The SDC publishes no employment forecast. DEED (labor department) "
+     "projections are a different product, out of scope."),
+    ("MN", "employment", "county", "not_published",
+     "The SDC publishes no employment forecast. DEED (labor department) "
+     "projections are a different product, out of scope."),
+    ("MN", "components", "state", "available",
+     "Births, deaths, net migration 2024-2075, annual, from the same workbook "
+     "(all projection)."),
+    ("MN", "components", "county", "not_published",
+     "Components of change are published statewide only."),
+
+    # ---- Arizona
+    ("AZ", "population", "state", "available",
+     "2025 edition: July 1 2025 launch (equals the official estimate) + "
+     "projections 2026-2060, annual, Low/Medium/High scenarios."),
+    ("AZ", "population", "county", "available",
+     "2025 edition: all 15 counties, 2025-2060 annual, Low/Medium/High "
+     "scenarios."),
+    ("AZ", "population", "place", "not_published",
+     "OEO's only place-level product sits on a stale 2022-consistent vintage "
+     "(Maricopa/Pinal places from MAG, Pima from PAG) and is deliberately not "
+     "served; the 2025-series place projections are due Sept 2026."),
+    ("AZ", "households", "state", "not_published",
+     "OEO publishes no household forecast (MAG is the household source for "
+     "metro Phoenix)."),
+    ("AZ", "households", "county", "not_published",
+     "OEO publishes no household forecast (MAG is the household source for "
+     "metro Phoenix)."),
+    ("AZ", "employment", "state", "not_published",
+     "No SDO jobs forecast. OEO's industry/occupation projections are the "
+     "labor-market product (labor-department equivalent), out of scope."),
+    ("AZ", "employment", "county", "not_published",
+     "No SDO jobs forecast. OEO's industry/occupation projections are the "
+     "labor-market product (labor-department equivalent), out of scope."),
+    ("AZ", "components", "state", "available",
+     "Births, deaths, total net migration 2025-2060, per scenario, from the "
+     "projection workbooks (domestic/foreign split in source)."),
+    ("AZ", "components", "county", "available",
+     "Births, deaths, total net migration 2025-2060, per scenario, from the "
+     "projection workbooks (domestic/foreign split in source)."),
 ]
 
 
 def load_geographies(conn: sqlite3.Connection) -> int:
-    """State + county rows for the pilot states, Census 2020 spelling."""
+    """State + county rows for the covered states, Census 2020 spelling."""
     abbrev_by_name = {}
     rows = []
     seen_states = set()
@@ -187,11 +279,11 @@ def load_geographies(conn: sqlite3.Connection) -> int:
         if len(parts) < 5:
             continue
         st, statefp, countyfp, _ns, name = parts[:5]
-        if st not in PILOT_STATES:
+        if st not in COVERED_STATES:
             continue
         if st not in seen_states:
             seen_states.add(st)
-            rows.append((statefp, "state", st, PILOT_STATES[st]))
+            rows.append((statefp, "state", st, COVERED_STATES[st]))
             abbrev_by_name[st] = statefp
         rows.append((statefp + countyfp, "county", st, name))
     conn.executemany(

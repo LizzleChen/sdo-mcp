@@ -1,5 +1,6 @@
 """Hand-curated per-state metadata, from the verified findings in plan/RESEARCH.md
-(all six pilot states verified 2026-08-07).
+(all six pilot states verified 2026-08-07) and plan/EXPANSION.md (expansion
+states, verified 2026-08-10).
 
 This is the prose side of the server: agency stories, product names, caveats,
 links. The machine-readable availability matrix lives in the `coverage` table;
@@ -296,6 +297,54 @@ STATES = {
         "links": {
             "bebr": "https://bebr.ufl.edu/population/",
             "edr": "http://edr.state.fl.us/Content/population-demographics/",
+        },
+    },
+    "NC": {
+        "name": "North Carolina",
+        "agency": (
+            "North Carolina Office of State Budget and Management (OSBM), "
+            "State Demographer's Office (Demographic and Economic Analysis Section)"
+        ),
+        "producer_type": "state agency",
+        "current_vintage": (
+            "Vintage 2025B (2025 released 2026-01-15; the 2025B errata updated "
+            "Brunswick, Columbus, Jackson, Orange + the state row): estimates "
+            "2010-2024, projections 2025-2060, annual, July 1."
+        ),
+        "geography_floor": (
+            "county (100 counties + state). Municipal figures are certified "
+            "estimates only — no municipal projections."
+        ),
+        "scenarios": [],
+        "default_scenario": None,
+        "products": [
+            "County/State Population Projections 2010-2060 (total; sex x single "
+            "year of age; sex x race x age groups; Hispanic origin x race x sex x "
+            "5-year age groups — totals served in v1)",
+        ],
+        "methodology": (
+            "Cohort-component, July 1 reference, derived from Vintage 2024 "
+            "estimates (2020-rebased)."
+        ),
+        "employment_note": (
+            "The State Demographer's Office publishes no employment forecast. NC "
+            "Commerce (labor department) projections are a different product, "
+            "out of scope."
+        ),
+        "license": "Public Domain (per the OSBM data catalog); nc.gov terms apply.",
+        "caveats": [
+            "Files are overwritten in place with no vintage in the filename — "
+            "the same URLs served Vintage 2024 in Sept 2025 (Wayback-verified) "
+            "and 2025B now. Figures are tied to the recorded retrieval date; "
+            "the keyless Opendatasoft API serves as the live vintage-change probe.",
+            "The state row carries a pseudo-FIPS 37000 in the CSV, not 37.",
+            "No household forecast at any level; no components-of-change product.",
+            "v1 serves totals only — the sex x single-age detail sits in the "
+            "committed snapshot, not yet loaded.",
+        ],
+        "links": {
+            "agency": "https://www.osbm.nc.gov/demog/population-projections",
+            "api_base": "https://demography.osbm.nc.gov/api/explore/v2.1/catalog/datasets",
         },
     },
 }
