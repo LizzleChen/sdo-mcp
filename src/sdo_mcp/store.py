@@ -43,8 +43,11 @@ def connect(path: Path | str | None = None, create: bool = False) -> sqlite3.Con
             f"database not found at {p} — install one with: "
             "sdo-mcp-install-data PATH_TO_SDO_SQLITE"
         )
-    p.parent.mkdir(parents=True, exist_ok=True)
-    conn = sqlite3.connect(p)
+    if create:
+        p.parent.mkdir(parents=True, exist_ok=True)
+        conn = sqlite3.connect(p)
+    else:
+        conn = sqlite3.connect(f"{p.resolve().as_uri()}?mode=ro", uri=True)
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON")
     return conn
