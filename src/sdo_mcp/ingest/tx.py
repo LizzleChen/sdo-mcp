@@ -111,7 +111,7 @@ def _snapshot_raw(name: str, body: bytes, source: str, records: int) -> dict:
     """Manifest entry for a snapshot written byte-identical to the API body
     (fetch.snapshot_json re-serializes; these files are the raw response)."""
     RAW_DIR.mkdir(parents=True, exist_ok=True)
-    (RAW_DIR / name).write_bytes(body)
+    fetch.write_snapshot(RAW_DIR / name, body)
     return {
         "file": name,
         "source": source,
@@ -285,7 +285,7 @@ def acquire() -> None:
             body = r.read()
         if not body.startswith(b"PK"):
             raise RuntimeError(f"{url}: body is not a zip (soft-200/redirect trap)")
-        (RAW_DIR / _zip_name(scenario)).write_bytes(body)
+        fetch.write_snapshot(RAW_DIR / _zip_name(scenario), body)
         entries.append({
             "file": _zip_name(scenario), "source": url,
             "retrieved_at": date.today().isoformat(),

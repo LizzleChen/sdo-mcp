@@ -68,7 +68,7 @@ def acquire() -> None:
         raise RuntimeError(f"{URL}: body is not the expected zip archive: {exc}") from exc
 
     RAW_DIR.mkdir(parents=True, exist_ok=True)
-    (RAW_DIR / FILE).write_bytes(body)
+    fetch.write_snapshot(RAW_DIR / FILE, body)
     fetch.write_manifest(RAW_DIR, [{
         "file": FILE,
         "source": URL,

@@ -63,7 +63,7 @@ def acquire() -> None:
         finally:
             wb.close()
         RAW_DIR.mkdir(parents=True, exist_ok=True)
-        (RAW_DIR / name).write_bytes(body)
+        fetch.write_snapshot(RAW_DIR / name, body)
         entries.append({
             "file": name,
             "source": url,

@@ -79,7 +79,7 @@ def acquire() -> None:
         body = fetch.get_bytes(url)
         if not body.startswith(b"PK"):
             raise RuntimeError(f"{url}: body is not an xlsx (200-with-HTML trap)")
-        (RAW_DIR / name).write_bytes(body)
+        fetch.write_snapshot(RAW_DIR / name, body)
         entries.append({
             "file": name, "source": url,
             "retrieved_at": date.today().isoformat(),

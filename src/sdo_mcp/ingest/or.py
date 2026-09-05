@@ -191,7 +191,7 @@ def acquire() -> None:
         series = _read_series(io.BytesIO(body), release)
         if not path.exists():
             path.parent.mkdir(parents=True, exist_ok=True)
-            path.write_bytes(body)
+            fetch.write_snapshot(path, body)
             added += 1
         compact_rows.extend(
             {
@@ -216,7 +216,7 @@ def acquire() -> None:
             raise RuntimeError(f"{url}: body is not a PDF (Google error page?)")
         if not path.exists():
             path.parent.mkdir(parents=True, exist_ok=True)
-            path.write_bytes(body)
+            fetch.write_snapshot(path, body)
             added += 1
 
     fields = (
@@ -234,7 +234,7 @@ def acquire() -> None:
             f"{compact_path}: existing compact snapshot differs; use a new vintage filename"
         )
     if not compact_path.exists():
-        compact_path.write_bytes(compact_body)
+        fetch.write_snapshot(compact_path, compact_body)
     entries_by_file[COMPACT_FILE] = {
         "file": COMPACT_FILE,
         "source": "https://www.pdx.edu/population-research/population-forecasts",

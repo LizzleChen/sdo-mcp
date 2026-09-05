@@ -69,6 +69,14 @@ sdo-mcp-install-data /path/to/sdo-mcp/data/sdo.sqlite
 ```
 
 The build reads `data/raw/` and is offline with respect to the state agencies.
+It verifies the fingerprints of every registered input before and after loading.
+A failed load or changed fingerprint leaves the existing database untouched.
+Successful replacement keeps the old file beside it as
+`sdo.sqlite.previous-<unique-id>`; retain or remove these recovery copies as needed.
+To recover, install a copy using `sdo-mcp-install-data PATH_TO_RECOVERY_COPY`.
+Saved source files cannot be overwritten with different contents. New editions
+need new filenames, manifest entries, and an updated `ingest/inputs.json` list.
+Reusing a saved file preserves its recorded retrieval date.
 With no path, the build command writes the repository artifact at
 `data/sdo.sqlite`. It does not use the installed serving location. A different
 serving database can always be selected with `SDO_DB`.

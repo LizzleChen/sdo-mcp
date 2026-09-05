@@ -73,7 +73,7 @@ def acquire() -> None:
         if not body.startswith(b"PK"):
             raise RuntimeError(f"{url}: body is not an xlsx (soft-200 trap)")
         RAW_DIR.mkdir(parents=True, exist_ok=True)
-        (RAW_DIR / name).write_bytes(body)
+        fetch.write_snapshot(RAW_DIR / name, body)
         entries.append({
             "file": name, "source": url,
             "retrieved_at": date.today().isoformat(),
