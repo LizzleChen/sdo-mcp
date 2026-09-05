@@ -80,7 +80,13 @@ def test_installed_tools_over_mcp(installed_server, protocol):
                             assert data["status"] == status
                         return data
 
-                    assert (await call("list_states", {}))["database_release"] == "mcp-test"
+                    summary = await call("list_states", {})
+                    assert summary["database_release"] == "mcp-test"
+                    wa_status = summary["states"]["WA"]
+                    assert wa_status["review"]["status"] == "never_reviewed"
+                    assert wa_status["variables"]["components"]["county"]["load_status"] == "loaded"
+                    wa_source = await call("describe_source", {"state": "WA"})
+                    assert wa_source["variables"] == wa_status["variables"]
                     assert (await call("describe_source", {"state": "CO"}))["sources_loaded"]
                     base = dict(state="CO", geo_level="county", geo="Douglas", variable="population")
                     forecast = await call("get_forecast", dict(base, start_year=2024, end_year=2025), "ok")

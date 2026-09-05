@@ -16,7 +16,7 @@ from mcp.server.mcpserver.exceptions import ToolError, UnexpectedToolError
 from mcp.shared.exceptions import MCPError
 from mcp.types import INVALID_PARAMS, CallToolResult, ToolAnnotations
 
-from . import notes, store
+from . import monitoring, notes, store
 from .results import ComponentsResult, ForecastResult, SourceResult, StatesResult
 
 
@@ -173,7 +173,8 @@ def list_states() -> StatesResult:
     """What each covered state's demography office publishes: agency, current
     vintage, horizon, geography floor, scenarios, and per-variable availability
     (population / households / employment), including explicit "not published"
-    entries. Start here to see what can be asked for."""
+    entries. Loading status and review reminders are separate from publication
+    status; loaded means totals exist, not complete coverage. Start here."""
     conn = store.connect()
     try:
         out = {}
@@ -183,12 +184,7 @@ def list_states() -> StatesResult:
                 " WHERE state=? ORDER BY variable, geo_level",
                 (state,),
             ).fetchall()
-            variables: dict = {}
-            for r in cov:
-                variables.setdefault(r["variable"], {})[r["geo_level"]] = {
-                    "status": r["status"],
-                    "detail": r["detail"],
-                }
+            variables = monitoring.coverage_inventory(conn, state)
             scenario_levels = None
             if meta["scenarios"]:
                 scenario_levels = meta.get("scenario_geo_levels") or [
@@ -207,6 +203,7 @@ def list_states() -> StatesResult:
                 "employment_note": meta["employment_note"],
                 "variables": variables,
                 "data_loaded": store.state_has_data(conn, state),
+                "review": monitoring.review_status(state),
             }
         has_release = conn.execute(
             "SELECT 1 FROM sqlite_master WHERE type='table' AND name='release_metadata'"
@@ -432,6 +429,7 @@ def describe_source(state: str) -> SourceResult:
     conn = store.connect()
     try:
         loaded = [_source_block(r) for r in store.sources_for_state(conn, state)]
+        variables = monitoring.coverage_inventory(conn, state)
     finally:
         conn.close()
     return {
@@ -448,6 +446,8 @@ def describe_source(state: str) -> SourceResult:
         "caveats": meta["caveats"],
         "links": meta["links"],
         "sources_loaded": loaded or None,
+        "variables": variables,
+        "review": monitoring.review_status(state),
     }
 
 
