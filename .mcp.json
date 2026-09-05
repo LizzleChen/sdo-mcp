@@ -1,9 +1,7 @@
 {
   "mcpServers": {
     "sdo-forecast": {
-      "command": "uv",
-      "args": ["run", "python", "-m", "sdo_mcp.server"],
-      "cwd": "/Users/lc/Documents/sdo-mcp"
+      "command": "sdo-mcp"
     }
   }
 }
