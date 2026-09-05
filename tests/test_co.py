@@ -56,8 +56,8 @@ def test_components_round_trip():
 
 def test_year_range_off_the_ends_names_published_range():
     res = server.get_forecast("CO", "county", "Douglas", "population", 2100, 2110)
-    assert res["status"] == "error"
-    assert "1970-2060" in res["error"]
+    assert res["status"] == "empty_range"
+    assert (res["available_start_year"], res["available_end_year"]) == (1970, 2060)
 
 
 def test_co_shows_loaded_in_list_states():

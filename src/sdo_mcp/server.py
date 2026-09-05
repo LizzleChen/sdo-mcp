@@ -8,12 +8,40 @@ never an extrapolation, never a borrowed geography.
 
 from __future__ import annotations
 
+import json
+from importlib.metadata import version
+
 from mcp.server.mcpserver import MCPServer
+from mcp.server.mcpserver.exceptions import ToolError, UnexpectedToolError
+from mcp.shared.exceptions import MCPError
+from mcp.types import INVALID_PARAMS, CallToolResult, ToolAnnotations
 
 from . import notes, store
+from .results import ComponentsResult, ForecastResult, SourceResult, StatesResult
 
-mcp = MCPServer(
+
+class ForecastServer(MCPServer):
+    async def call_tool(self, name, arguments, context=None):
+        # Unknown names are request errors, distinct from a known tool failing.
+        if name not in {tool.name for tool in await self.list_tools()}:
+            raise MCPError(code=INVALID_PARAMS, message=f"Unknown tool: {name}")
+        try:
+            result = await super().call_tool(name, arguments, context)
+        except UnexpectedToolError as exc:
+            if isinstance(exc.__cause__, FileNotFoundError):
+                raise ToolError(
+                    "Forecast database is missing. Install it with "
+                    "sdo-mcp-install-data PATH_TO_SDO_SQLITE or check SDO_DB."
+                ) from exc
+            raise
+        if isinstance(result, CallToolResult) and result.structured_content:
+            result.is_error = result.structured_content.get("status") == "error"
+        return result
+
+
+mcp = ForecastServer(
     "sdo-forecast",
+    version=version("sdo-mcp"),
     instructions=(
         "State demography office (SDO) forecasts — population, households, and "
         "(where the SDO itself publishes one) employment. Figures are flagged "
@@ -24,6 +52,11 @@ mcp = MCPServer(
 )
 
 FORECAST_VARIABLES = ("population", "households", "employment")
+GEO_LEVELS = ("state", "county", "place", "msa", "cog", "txdot_district")
+READ_ONLY = ToolAnnotations(
+    read_only_hint=True, destructive_hint=False,
+    idempotent_hint=True, open_world_hint=False,
+)
 
 
 def _num(v: float):
@@ -49,9 +82,10 @@ def _source_block(row) -> dict | None:
 
 
 def _refusal(conn, state: str, variable: str, geo_level: str, cov) -> dict:
-    status = cov["status"] if cov else "not_published"
+    status = cov["status"] if cov else "coverage_unknown"
     reason = (cov["detail"] if cov else None) or (
-        f"{state} publishes no {variable} forecast at the {geo_level} level."
+        f"This server has no coverage record for {state} {variable} at the "
+        f"{geo_level} level; publication status is unknown."
     )
     pointers = [
         p
@@ -72,6 +106,21 @@ def _refusal(conn, state: str, variable: str, geo_level: str, cov) -> dict:
 
 def _error(message: str, **extra) -> dict:
     return {"status": "error", "error": message, **extra}
+
+
+def _year_error(start_year, end_year):
+    if start_year is not None and end_year is not None and start_year > end_year:
+        return _error("start_year must be less than or equal to end_year")
+    return None
+
+
+def _empty_range(state, variable, rows):
+    years = [r["year"] for r in rows]
+    return {
+        "status": "empty_range", "state": state, "variable": variable,
+        "reason": "No observations fall in the requested year range.",
+        "available_start_year": min(years), "available_end_year": max(years),
+    }
 
 
 def _geo_exception(state: str, variable: str, geo_level: str, resolved: dict) -> dict | None:
@@ -119,8 +168,8 @@ def _resolve_scenario(
     return (meta["default_scenario"] if published else "") or "", {}
 
 
-@mcp.tool()
-def list_states() -> dict:
+@mcp.tool(annotations=READ_ONLY)
+def list_states() -> StatesResult:
     """What each covered state's demography office publishes: agency, current
     vintage, horizon, geography floor, scenarios, and per-variable availability
     (population / households / employment), including explicit "not published"
@@ -159,12 +208,18 @@ def list_states() -> dict:
                 "variables": variables,
                 "data_loaded": store.state_has_data(conn, state),
             }
-        return {"states": out}
+        has_release = conn.execute(
+            "SELECT 1 FROM sqlite_master WHERE type='table' AND name='release_metadata'"
+        ).fetchone()
+        release = conn.execute("SELECT metadata FROM release_metadata").fetchone() if has_release else None
+        return {"states": out, "database_release": (
+            json.loads(release[0])["release_version"] if release else None
+        )}
     finally:
         conn.close()
 
 
-@mcp.tool()
+@mcp.tool(annotations=READ_ONLY)
 def get_forecast(
     state: str,
     geo_level: str,
@@ -173,7 +228,7 @@ def get_forecast(
     start_year: int | None = None,
     end_year: int | None = None,
     scenario: str | None = None,
-) -> dict:
+) -> ForecastResult:
     """Population, household, or employment forecast series from a state
     demography office.
 
@@ -201,6 +256,10 @@ def get_forecast(
             f"unknown variable {variable!r}; one of: {', '.join(FORECAST_VARIABLES)}. "
             "Births/deaths/migration are served by get_components."
         )
+    if geo_level not in GEO_LEVELS:
+        return _error(f"unknown geography level {geo_level!r}; one of: {', '.join(GEO_LEVELS)}")
+    if err := _year_error(start_year, end_year):
+        return err
     conn = store.connect()
     try:
         cov = store.coverage_row(conn, state, variable, geo_level)
@@ -227,17 +286,14 @@ def get_forecast(
             # adapter hasn't been ingested (or the year range is off the ends).
             full = store.get_series(conn, state, geo_level, resolved["geo_id"], variable, scenario=scen)
             if full:
-                return _error(
-                    f"no data in {start_year}-{end_year}; published years run "
-                    f"{full[0]['year']}-{full[-1]['year']}"
-                )
+                return _empty_range(state, variable, full)
             return {
                 "status": "not_loaded",
                 "state": state,
                 "variable": variable,
                 "reason": (
                     f"{state} publishes this series ({cov['detail']}) but its "
-                    "adapter has not been ingested into this server yet."
+                    "requested series has not been ingested into this server yet."
                 ),
             }
 
@@ -262,20 +318,22 @@ def get_forecast(
         conn.close()
 
 
-@mcp.tool()
+@mcp.tool(annotations=READ_ONLY)
 def get_components(
     state: str,
     geo: str,
     start_year: int | None = None,
     end_year: int | None = None,
     scenario: str | None = None,
-) -> dict:
+) -> ComponentsResult:
     """Components of population change — births, deaths, net migration — where
     the state demography office publishes them. ``scenario`` applies where
     components accompany scenario forecasts (Arizona Low/Medium/High).
     `geo` accepts a county FIPS/name, or the state code/name for the statewide
     series. States without a components product return a structured refusal."""
     state = state.strip().upper()
+    if err := _year_error(start_year, end_year):
+        return err
     if state not in notes.STATES:
         return _error(
             f"unknown or unsupported state {state!r}; covered states: "
@@ -316,12 +374,22 @@ def get_components(
                 point[var] = _num(r["value"])
                 source_id = source_id or r["source_id"]
         if not series:
+            full = [
+                row
+                for var in ("births", "deaths", "net_migration")
+                for row in store.get_series(
+                    conn, state, geo_level, resolved["geo_id"], var, scenario=scen,
+                )
+            ]
+            if full:
+                return _empty_range(state, "components", full)
             return {
                 "status": "not_loaded",
                 "state": state,
+                "variable": "components",
                 "reason": (
                     f"{state} publishes components ({cov['detail']}) but its "
-                    "adapter has not been ingested into this server yet."
+                    "requested series has not been ingested into this server yet."
                 ),
             }
         return {
@@ -341,8 +409,8 @@ def get_components(
         conn.close()
 
 
-@mcp.tool()
-def describe_source(state: str) -> dict:
+@mcp.tool(annotations=READ_ONLY)
+def describe_source(state: str) -> SourceResult:
     """The full sourcing story for one state: agency (including two-agency
     arrangements), products, methodology, licensing, known caveats, links, and
     the vintages actually loaded in this server."""

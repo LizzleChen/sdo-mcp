@@ -128,6 +128,41 @@ after building `data/sdo.sqlite`, or set `SDO_DB` to an installed database.
 uv run pytest
 ```
 
+The checks rebuild from saved sources, confirm failed builds and changed file
+fingerprints preserve the previous database, and compare the compact release
+with the full data. They also build a wheel, install it in a fresh environment
+outside the checkout, install a verified compressed database, and exercise all
+four tools over MCP 2026-07-28 and 2025-11-25 connections. The installation check
+needs `uv` and access to its package cache or the package index; state agency
+downloads are never needed. GitHub runs the same checks on pushes and pull
+requests through `.github/workflows/checks.yml`.
+
+## Tool results
+
+All four tools describe their returned fields and provide both structured data
+and a matching JSON text copy. They advertise that they only read local data;
+the serving database connection also prevents writes. MCP reports the package
+version, while `list_states.database_release` identifies the installed compact
+release (`null` for a full build without release metadata).
+
+Forecast and component requests distinguish these outcomes:
+
+| Status | Meaning |
+| --- | --- |
+| `ok` | The requested observations are returned with their source and estimate/projection labels. |
+| `error` | An argument is invalid, such as a misspelled geography level, unknown county, or reversed year range. MCP also marks the result as an error. |
+| `empty_range` | The series is loaded, but no observations fall in these years. The answer includes the first and last available years. |
+| `not_loaded` | Coverage records say the product is published, but the requested series is absent from this database. |
+| `not_published` | The coverage record explicitly says no product is published for this request. |
+| `pdf_only` / `state_level_only` | The coverage record describes a publication or geography limitation. |
+| `coverage_unknown` | This server has no coverage record for the requested combination and cannot establish publication status. |
+
+Missing-data outcomes are normal answers, not MCP errors. Execution failures
+are MCP errors; missing databases include installation guidance without exposing
+local file paths. Unknown tool names are protocol errors, separate from tool
+results. These distinctions follow the
+[MCP tool error rules](https://modelcontextprotocol.io/specification/2026-07-28/server/tools).
+
 ## Prepare a database release
 
 After rebuilding the full database, run:
