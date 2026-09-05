@@ -181,3 +181,8 @@ file sizes, creation time, and record counts. Source retrieval dates stay intact
 These files are local and excluded from Git. Share both files through your
 chosen trusted distribution channel when ready; the command does not publish
 or upload them.
+
+Source review schedules and publication-versus-loading status are available
+through `list_states`, `describe_source`, and the local report command:
+`uv run python -m sdo_mcp.monitoring --database data/sdo.sqlite`.
+See [source review instructions](docs/source-reviews.md) for all 11 states.

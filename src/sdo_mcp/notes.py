@@ -461,6 +461,8 @@ STATES = {
             "Forecast of the State Population by Age and Sex, November 2025",
             "2022 Growth Management Act County Population Projections, "
             "Low/Medium/High",
+            "November 2025 State Components of April 1 Population Change, annual",
+            "2022 GMA County Components of Population Change, medium five-year totals",
             "Long-Term Economic Forecast, state nonfarm employment (PDF only)",
         ],
         "methodology": (
@@ -484,8 +486,11 @@ STATES = {
             "forecast is a single series.",
             "The GMA county series has estimates for 2020-2022, no values for "
             "2023-2024, and projections for 2025-2050. Missing years are not filled.",
-            "No household forecast is published. Components exist in separate "
-            "workbooks that are not in the current committed snapshots.",
+            "No household forecast is published. State components are annual "
+            "April-to-April totals ending 2011-2050. County components are medium-only "
+            "five-year totals ending 1965-2050, not annual values; year filters use "
+            "the period end. County component estimates end in 2020; the period "
+            "2020-2025 is labeled projection in its separate 2022 GMA workbook.",
         ],
         "links": {
             "agency": "https://ofm.wa.gov/washington-data-research/population-demographics/",

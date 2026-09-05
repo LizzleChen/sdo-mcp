@@ -80,7 +80,13 @@ def test_installed_tools_over_mcp(installed_server, protocol):
                             assert data["status"] == status
                         return data
 
-                    assert (await call("list_states", {}))["database_release"] == "mcp-test"
+                    summary = await call("list_states", {})
+                    assert summary["database_release"] == "mcp-test"
+                    wa_status = summary["states"]["WA"]
+                    assert wa_status["review"]["status"] == "never_reviewed"
+                    assert wa_status["variables"]["components"]["county"]["load_status"] == "loaded"
+                    wa_source = await call("describe_source", {"state": "WA"})
+                    assert wa_source["variables"] == wa_status["variables"]
                     assert (await call("describe_source", {"state": "CO"}))["sources_loaded"]
                     base = dict(state="CO", geo_level="county", geo="Douglas", variable="population")
                     forecast = await call("get_forecast", dict(base, start_year=2024, end_year=2025), "ok")
@@ -100,7 +106,14 @@ def test_installed_tools_over_mcp(installed_server, protocol):
                     await call("get_forecast", dict(base, geo_level="place"), "not_published")
                     await call("get_forecast", dict(base, geo_level="cog"), "coverage_unknown")
                     await call("get_forecast", dict(base, state="TX", geo="Harris", variable="households"), "not_published")
-                    await call("get_components", dict(state="WA", geo="King"), "not_loaded")
+                    wa = await call("get_components", dict(state="WA", geo="King", start_year=2025, end_year=2025), "ok")
+                    assert wa["series"][0]["births"] == 113170
+                    assert wa["series"][0]["period_start_year"] == 2020
+                    assert wa["source"]["base_year"] == 2020
+                    statewide = await call("get_components", dict(state="WA", geo="WA", start_year=2026, end_year=2026), "ok")
+                    assert statewide["series"][0]["births"] == 81966
+                    assert statewide["series"][0]["datatype"] == "projection"
+                    await call("get_components", dict(state="WA", geo="King", scenario="high"), "error", True)
                     await call("describe_source", {"state": "ZZ"}, "error", True)
                     ambiguous = await call("get_forecast", dict(base, geo="ar"), "error", True)
                     assert len(ambiguous["candidates"]) > 1

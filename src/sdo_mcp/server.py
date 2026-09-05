@@ -16,7 +16,7 @@ from mcp.server.mcpserver.exceptions import ToolError, UnexpectedToolError
 from mcp.shared.exceptions import MCPError
 from mcp.types import INVALID_PARAMS, CallToolResult, ToolAnnotations
 
-from . import notes, store
+from . import monitoring, notes, store
 from .results import ComponentsResult, ForecastResult, SourceResult, StatesResult
 
 
@@ -173,7 +173,8 @@ def list_states() -> StatesResult:
     """What each covered state's demography office publishes: agency, current
     vintage, horizon, geography floor, scenarios, and per-variable availability
     (population / households / employment), including explicit "not published"
-    entries. Start here to see what can be asked for."""
+    entries. Loading status and review reminders are separate from publication
+    status; loaded means totals exist, not complete coverage. Start here."""
     conn = store.connect()
     try:
         out = {}
@@ -183,12 +184,7 @@ def list_states() -> StatesResult:
                 " WHERE state=? ORDER BY variable, geo_level",
                 (state,),
             ).fetchall()
-            variables: dict = {}
-            for r in cov:
-                variables.setdefault(r["variable"], {})[r["geo_level"]] = {
-                    "status": r["status"],
-                    "detail": r["detail"],
-                }
+            variables = monitoring.coverage_inventory(conn, state)
             scenario_levels = None
             if meta["scenarios"]:
                 scenario_levels = meta.get("scenario_geo_levels") or [
@@ -207,6 +203,7 @@ def list_states() -> StatesResult:
                 "employment_note": meta["employment_note"],
                 "variables": variables,
                 "data_loaded": store.state_has_data(conn, state),
+                "review": monitoring.review_status(state),
             }
         has_release = conn.execute(
             "SELECT 1 FROM sqlite_master WHERE type='table' AND name='release_metadata'"
@@ -330,7 +327,10 @@ def get_components(
     the state demography office publishes them. ``scenario`` applies where
     components accompany scenario forecasts (Arizona Low/Medium/High).
     `geo` accepts a county FIPS/name, or the state code/name for the statewide
-    series. States without a components product return a structured refusal."""
+    series. Washington county components are medium-only five-year totals;
+    their year is the period end, with explicit period start/end fields.
+    Year filters select ending years. States without a components product
+    return a structured refusal."""
     state = state.strip().upper()
     if err := _year_error(start_year, end_year):
         return err
@@ -361,6 +361,8 @@ def get_components(
             return _error(resolved["error"], candidates=resolved.get("candidates"))
 
         series: dict[int, dict] = {}
+        if state == "WA" and geo_level == "county" and scen != "medium":
+            return _error("Washington publishes county components only for the medium scenario; request medium.")
         source_id = None
         for var in ("births", "deaths", "net_migration"):
             rows = store.get_series(
@@ -372,6 +374,9 @@ def get_components(
                     r["year"], {"year": r["year"], "datatype": r["datatype"]}
                 )
                 point[var] = _num(r["value"])
+                if state == "WA":
+                    point["period_start_year"] = r["year"] - (5 if geo_level == "county" else 1)
+                    point["period_end_year"] = r["year"]
                 source_id = source_id or r["source_id"]
         if not series:
             full = [
@@ -424,6 +429,7 @@ def describe_source(state: str) -> SourceResult:
     conn = store.connect()
     try:
         loaded = [_source_block(r) for r in store.sources_for_state(conn, state)]
+        variables = monitoring.coverage_inventory(conn, state)
     finally:
         conn.close()
     return {
@@ -440,6 +446,8 @@ def describe_source(state: str) -> SourceResult:
         "caveats": meta["caveats"],
         "links": meta["links"],
         "sources_loaded": loaded or None,
+        "variables": variables,
+        "review": monitoring.review_status(state),
     }
 
 

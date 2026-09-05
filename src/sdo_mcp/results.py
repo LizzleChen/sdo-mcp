@@ -46,6 +46,8 @@ class ForecastPoint(Point):
 
 
 class ComponentPoint(Point):
+    period_start_year: NotRequired[int]
+    period_end_year: NotRequired[int]
     births: NotRequired[int | float]
     deaths: NotRequired[int | float]
     net_migration: NotRequired[int | float]
@@ -77,6 +79,32 @@ class ComponentsResult(SeriesResult):
     series: NotRequired[list[ComponentPoint]]
 
 
+class LoadedSeries(TypedDict):
+    variable: str
+    geo_level: str
+    source_id: str
+    row_count: int
+    start_year: int
+    end_year: int
+
+
+class CoverageInventory(Coverage):
+    load_status: Literal['loaded', 'partially_loaded', 'not_loaded']
+    loaded_series: list[LoadedSeries]
+
+
+class ReviewStatus(TypedDict):
+    interval_days: int
+    focus: str
+    last_reviewed_on: str | None
+    next_review_due: str | None
+    status: Literal['never_reviewed', 'due', 'not_due']
+    as_of: str
+    findings: str | None
+    evidence: list[str]
+    review_links: dict[str, str]
+
+
 class StateSummary(TypedDict):
     name: str
     agency: str
@@ -86,7 +114,8 @@ class StateSummary(TypedDict):
     default_scenario: str | None
     scenario_geo_levels: list[str] | None
     employment_note: str
-    variables: dict[str, dict[str, Coverage]]
+    variables: dict[str, dict[str, CoverageInventory]]
+    review: ReviewStatus
     data_loaded: bool
 
 
@@ -111,3 +140,5 @@ class SourceResult(TypedDict, total=False):
     caveats: list[str]
     links: dict[str, str]
     sources_loaded: list[Source] | None
+    variables: dict[str, dict[str, CoverageInventory]]
+    review: ReviewStatus
