@@ -375,5 +375,9 @@ def describe_source(state: str) -> dict:
     }
 
 
-if __name__ == "__main__":
+def main() -> None:
     mcp.run()
+
+
+if __name__ == "__main__":
+    main()

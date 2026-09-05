@@ -4,6 +4,10 @@ The database is a built artifact: if it's ever wrong, fix the ingest and
 rebuild — never patch it by hand.
 
 Usage: uv run python -m sdo_mcp.ingest.build [db_path]
+
+With no path, this rebuilds the repository artifact at ``data/sdo.sqlite``.
+The installed server uses a separate per-user database path; pass an explicit
+path when a build should go somewhere else.
 """
 
 from __future__ import annotations
@@ -25,7 +29,10 @@ ADAPTERS: list = [co, tn, ga, ca, tx, fl, nc, mn, az, wa, or_adapter]
 
 
 def rebuild(path: Path | str | None = None) -> Path:
-    p = Path(path) if path else store.db_path()
+    # Keep source-repository rebuilds separate from the installed serving copy.
+    # In particular, SDO_DB is a serving override and must not silently point a
+    # destructive rebuild at a user's installed database.
+    p = Path(path) if path else store.REPOSITORY_DB
     if p.exists():
         p.unlink()
     conn = store.connect(p, create=True)
