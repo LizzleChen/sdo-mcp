@@ -1,0 +1,37 @@
+[
+ {
+  "file": "CA_P2D_County_Race_Ethnicity.xlsx",
+  "source": "https://dof.ca.gov/media/docs/forecasting/Demographics/projections/P2D_County_Race_Ethnicity.xlsx",
+  "retrieved_at": "2026-08-07",
+  "sha256": "3a8d664cc011f8ae8be3583ea72c90a613df3635d1b5c75944a51ae5dd6d556b",
+  "note": "Historical snapshot; date from original project acquisition/commit record. Fingerprint recorded 2026-09-05."
+ },
+ {
+  "file": "CA_P3_Complete.zip",
+  "source": "https://dof.ca.gov/media/docs/forecasting/Demographics/projections/P3_Complete.zip",
+  "retrieved_at": "2026-08-07",
+  "sha256": "409d1fea99f5ec8ac2dce7b895491fe84a77c088ac8db65b21faa8c90294214c",
+  "note": "Historical snapshot; date from original project acquisition/commit record. Fingerprint recorded 2026-09-05."
+ },
+ {
+  "file": "TN_CoPopProj_2022.xlsx",
+  "source": "https://tnsdc.utk.edu/wp-content/uploads/sites/94/2024/06/TN_CoPopProj_2022.xlsx",
+  "retrieved_at": "2026-08-07",
+  "sha256": "b4996c1894c29b5fc9e9db666b88180a4472fa5c9e9713f36b811a3da7a42d98",
+  "note": "Historical snapshot; date from original project acquisition/commit record. Fingerprint recorded 2026-09-05."
+ },
+ {
+  "file": "TN_PopProj_2022.xlsx",
+  "source": "https://tnsdc.utk.edu/wp-content/uploads/sites/94/2024/06/TN_PopProj_2022.xlsx",
+  "retrieved_at": "2026-08-07",
+  "sha256": "213c12159af2f2d2c4190a7ff10844b36609975086a26035a7032b94f9f4760c",
+  "note": "Historical snapshot; date from original project acquisition/commit record. Fingerprint recorded 2026-09-05."
+ },
+ {
+  "file": "census_national_county2020.txt",
+  "source": "https://www2.census.gov/geo/docs/reference/codes2020/national_county2020.txt",
+  "retrieved_at": "2026-08-07",
+  "sha256": "9f6e5f6eb6ac2f5e9a36d5fd01dec77991bddc75118f748a069441a4782970d6",
+  "note": "Historical snapshot; date from original project acquisition/commit record. Fingerprint recorded 2026-09-05."
+ }
+]

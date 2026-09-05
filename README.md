@@ -5,10 +5,9 @@ households, and employment where the state office publishes it. The server
 reads a local SQLite database and does not download data while answering a
 question.
 
-There is no public package release or hosted database download yet. The setup
-below builds a wheel from this checkout and uses either an existing database
-from a trusted checkout or a fresh database rebuilt from the saved source
-files.
+There is no public package release or hosted database download yet. You can
+install a checked compressed database release shared by the maintainer, or
+build from the saved source files in this checkout.
 
 Before starting, install [`uv`](https://docs.astral.sh/uv/getting-started/installation/)
 and use Python 3.12 or newer. The checked development setup uses Python
@@ -38,7 +37,27 @@ keeps the portable command name.
 The wheel contains the server code and database schema. It does not contain
 the large research database or source snapshots.
 
-## Install the database
+## Install a compressed database release
+
+Obtain the versioned `.sqlite.gz` file and its `manifest.json` from a trusted
+maintainer. Read `sha256` from that manifest and use it in this command:
+
+```sh
+sdo-mcp-install-data /path/to/sdo-2026-09-05.sqlite.gz --sha256 PASTE_THE_64_CHARACTER_SHA256_HERE
+```
+
+The fingerprint must come from a trusted source. A fingerprint bundled with
+an untrusted download does not establish who published it. Installation checks
+the compressed file before opening it, limits the expanded size, validates the
+database, and replaces the installed copy only after all checks pass. No source
+checkout or state workbooks are needed to install this release.
+
+The release contains every observation the current tools can serve, every
+source record, and all geography and coverage information. Age, sex, and race
+detail remains in the full research database. The release version is retained
+in the database's `release_metadata` table and in the accompanying manifest.
+
+## Install the full database
 
 If you already have a working database, install a copy of it with the command
 created by the wheel:
@@ -69,6 +88,14 @@ sdo-mcp-install-data /path/to/sdo-mcp/data/sdo.sqlite
 ```
 
 The build reads `data/raw/` and is offline with respect to the state agencies.
+It verifies the fingerprints of every registered input before and after loading.
+A failed load or changed fingerprint leaves the existing database untouched.
+Successful replacement keeps the old file beside it as
+`sdo.sqlite.previous-<unique-id>`; retain or remove these recovery copies as needed.
+To recover, install a copy using `sdo-mcp-install-data PATH_TO_RECOVERY_COPY`.
+Saved source files cannot be overwritten with different contents. New editions
+need new filenames, manifest entries, and an updated `ingest/inputs.json` list.
+Reusing a saved file preserves its recorded retrieval date.
 With no path, the build command writes the repository artifact at
 `data/sdo.sqlite`. It does not use the installed serving location. A different
 serving database can always be selected with `SDO_DB`.
@@ -100,3 +127,22 @@ after building `data/sdo.sqlite`, or set `SDO_DB` to an installed database.
 ```sh
 uv run pytest
 ```
+
+## Prepare a database release
+
+After rebuilding the full database, run:
+
+```sh
+uv run python -m sdo_mcp.release data/sdo.sqlite --version 2026-09-05
+```
+
+This writes `data/releases/2026-09-05/sdo-2026-09-05.sqlite.gz` and
+`manifest.json`. An existing release folder is never replaced. The command
+compares all served observations and all source, geography, and coverage records
+in both directions before creating the archive. The manifest records the
+release version, full database fingerprint, compressed and expanded fingerprints,
+file sizes, creation time, and record counts. Source retrieval dates stay intact.
+
+These files are local and excluded from Git. Share both files through your
+chosen trusted distribution channel when ready; the command does not publish
+or upload them.

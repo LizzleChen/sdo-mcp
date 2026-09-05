@@ -75,7 +75,7 @@ def acquire() -> None:
     if n_rows < 15_000:
         raise RuntimeError(f"{CSV_URL}: only {n_rows} data rows — truncated download?")
     RAW_DIR.mkdir(parents=True, exist_ok=True)
-    (RAW_DIR / CSV_FILE).write_bytes(body)
+    fetch.write_snapshot(RAW_DIR / CSV_FILE, body)
     fetch.write_manifest(RAW_DIR, [{
         "file": CSV_FILE, "source": CSV_URL,
         "retrieved_at": date.today().isoformat(),

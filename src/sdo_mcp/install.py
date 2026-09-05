@@ -12,6 +12,9 @@ Usage::
 from __future__ import annotations
 
 import argparse
+import gzip
+import hashlib
+import re
 import os
 import shutil
 import sqlite3
@@ -159,6 +162,43 @@ def install_database(
     return destination_path
 
 
+MAX_ARCHIVE_BYTES = 128 * 1024 * 1024
+MAX_DATABASE_BYTES = 512 * 1024 * 1024
+
+
+def install_release(source: Path | str, expected_sha256: str,
+                    destination: Path | str | None = None) -> Path:
+    """Verify the trusted archive fingerprint before bounded decompression."""
+    if not re.fullmatch(r"[0-9a-fA-F]{64}", expected_sha256):
+        raise DatabaseValidationError("expected SHA-256 must contain 64 hexadecimal characters")
+    source = Path(source)
+    with tempfile.TemporaryDirectory(prefix="sdo-install-") as folder:
+        archive = Path(folder) / "release.gz"
+        digest = hashlib.sha256()
+        size = 0
+        with source.open("rb") as incoming, archive.open("wb") as outgoing:
+            while chunk := incoming.read(1024 * 1024):
+                size += len(chunk)
+                if size > MAX_ARCHIVE_BYTES:
+                    raise DatabaseValidationError("compressed release exceeds size limit")
+                digest.update(chunk)
+                outgoing.write(chunk)
+        if digest.hexdigest() != expected_sha256.lower():
+            raise DatabaseValidationError("release fingerprint mismatch")
+        database = Path(folder) / "sdo.sqlite"
+        size = 0
+        try:
+            with gzip.open(archive, "rb") as incoming, database.open("wb") as outgoing:
+                while chunk := incoming.read(1024 * 1024):
+                    size += len(chunk)
+                    if size > MAX_DATABASE_BYTES:
+                        raise DatabaseValidationError("expanded release exceeds size limit")
+                    outgoing.write(chunk)
+        except (OSError, EOFError) as exc:
+            raise DatabaseValidationError("invalid compressed database release") from exc
+        return install_database(database, destination)
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         description="Validate and install an SDO Forecast SQLite database."
@@ -169,9 +209,15 @@ def main(argv: list[str] | None = None) -> int:
         type=Path,
         help="override the per-user destination (normally platform-specific)",
     )
+    parser.add_argument("--sha256", help="trusted SHA-256 fingerprint of a compressed release")
     args = parser.parse_args(argv)
     try:
-        installed = install_database(args.source, args.destination)
+        if args.sha256:
+            installed = install_release(args.source, args.sha256, args.destination)
+        elif args.source.suffix == ".gz":
+            raise DatabaseValidationError("compressed releases require --sha256 from a trusted publisher")
+        else:
+            installed = install_database(args.source, args.destination)
     except (DatabaseValidationError, OSError) as exc:
         parser.error(str(exc))
     print(f"installed {installed}")

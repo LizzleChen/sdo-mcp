@@ -9,6 +9,8 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
+import tempfile
 import time
 import urllib.request
 from datetime import date
@@ -104,14 +106,36 @@ def sha256(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
+def write_snapshot(path: Path, body: bytes) -> None:
+    """Publish a complete new file; existing bytes may never be replaced."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.NamedTemporaryFile(dir=path.parent, delete=False) as output:
+        temporary = Path(output.name)
+        try:
+            output.write(body)
+            output.flush()
+            os.fsync(output.fileno())
+        except BaseException:
+            temporary.unlink()
+            raise
+    try:
+        try:
+            os.link(temporary, path)
+        except FileExistsError:
+            if path.read_bytes() != body:
+                raise ValueError(f"{path}: snapshot differs; use a new edition filename")
+    finally:
+        temporary.unlink()
+
+
 def snapshot_json(raw_dir: Path, name: str, data, source: str, note: str = "") -> dict:
     """Write `data` as a snapshot file in data/raw/<...> and return its manifest
     entry (recorded vintage/retrieval metadata is a domain rule, not a nicety)."""
     raw_dir.mkdir(parents=True, exist_ok=True)
     path = raw_dir / name
     body = json.dumps(data, indent=1).encode()
-    path.write_bytes(body)
-    return {
+    write_snapshot(path, body)
+    entry = {
         "file": name,
         "source": source,
         "retrieved_at": date.today().isoformat(),
@@ -119,11 +143,44 @@ def snapshot_json(raw_dir: Path, name: str, data, source: str, note: str = "") -
         "records": len(data) if isinstance(data, list) else None,
         "note": note,
     }
+    if (raw_dir / "manifest.json").exists():
+        previous = next((e for e in read_manifest(raw_dir) if e["file"] == name), None)
+        if previous is not None:
+            return previous
+    return entry
 
 
 def write_manifest(raw_dir: Path, entries: list[dict]) -> None:
-    (raw_dir / "manifest.json").write_text(json.dumps(entries, indent=1) + "\n")
+    raw_dir.mkdir(parents=True, exist_ok=True)
+    path = raw_dir / "manifest.json"
+    previous = read_manifest(raw_dir) if path.exists() else []
+    merged = {entry["file"]: entry for entry in previous}
+    for entry in entries:
+        source = raw_dir / entry["file"]
+        if sha256(source.read_bytes()) != entry["sha256"]:
+            raise ValueError(f"{source}: fingerprint mismatch")
+        old = merged.get(entry["file"])
+        if old is not None:
+            if old["sha256"] != entry["sha256"]:
+                raise ValueError(f"{source}: existing manifest fingerprint differs")
+            # Reusing an existing file is not a new retrieval.
+            continue
+        merged[entry["file"]] = entry
+    if list(merged.values()) == previous:
+        return
+    with tempfile.NamedTemporaryFile(dir=raw_dir, delete=False) as output:
+        temporary = Path(output.name)
+        output.write((json.dumps(list(merged.values()), indent=1) + "\n").encode())
+    try:
+        os.replace(temporary, path)
+    finally:
+        temporary.unlink(missing_ok=True)
 
 
 def read_manifest(raw_dir: Path) -> list[dict]:
-    return json.loads((raw_dir / "manifest.json").read_text())
+    entries = json.loads((raw_dir / "manifest.json").read_text())
+    for entry in entries:
+        path = raw_dir / entry["file"]
+        if sha256(path.read_bytes()) != entry["sha256"]:
+            raise ValueError(f"{path}: fingerprint mismatch")
+    return entries

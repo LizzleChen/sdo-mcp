@@ -33,3 +33,7 @@ data/raw/or/**/*.pdf
 
 # ignore unzipped raw data files, as zipped files are already tracked in git
 data/raw/az/All_Series_2025-2060/*
+
+# Rebuild recovery copies and locally prepared releases
+data/*.sqlite.previous-*
+data/releases/

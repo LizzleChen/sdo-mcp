@@ -100,7 +100,7 @@ def acquire() -> None:
         body = fetch.get_bytes(url)
         if not body.startswith(b"PK"):
             raise RuntimeError(f"{url}: body is not an xlsx (soft-200 trap)")
-        (RAW_DIR / name).write_bytes(body)
+        fetch.write_snapshot(RAW_DIR / name, body)
         print(f"TN acquire: {name} ({len(body):,} bytes, sha256 {fetch.sha256(body)[:12]}…)")
 
 
@@ -187,7 +187,7 @@ def acquire_detail() -> None:
     with gzip.GzipFile(fileobj=out, mode="wb", filename="", mtime=0) as gz:
         gz.write(buf.getvalue().encode())
     body = out.getvalue()
-    DETAIL_CSV.write_bytes(body)
+    fetch.write_snapshot(DETAIL_CSV, body)
     fetch.write_manifest(DETAIL_DIR, [{
         "file": DETAIL_CSV.name,
         "source": f"{DETAIL_LAYER}/query (POST; SOURCE='Projection' "
