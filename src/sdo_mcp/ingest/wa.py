@@ -42,6 +42,142 @@ SCENARIO_SHEETS = {"Low": "low", "Middle": "medium", "High": "high"}
 AGENCY = "Washington State Office of Financial Management, Forecasting and Research Division"
 LICENSE = "OFM permits use, sharing, and copying with attribution; liability disclaimer applies."
 
+STATE_COMPONENT_FILE = "stfc_2025_components.xlsx"
+COUNTY_COMPONENT_FILE = "gma_2022_components_med.xlsx"
+COMPONENT_FILES = (
+    (STATE_COMPONENT_FILE, "https://ofm.wa.gov/wp-content/uploads/" + STATE_COMPONENT_FILE,
+     {"Components of Change"}),
+    (COUNTY_COMPONENT_FILE, GMA_URL.rsplit("/", 1)[0] + "/" + COUNTY_COMPONENT_FILE,
+     {"Population Change", "Births", "Deaths", "Residual Net Migration"}),
+)
+
+
+def acquire_components() -> None:
+    """Archive the two component workbooks without replacing existing snapshots."""
+    import io
+    import openpyxl
+
+    for name, url, sheets in COMPONENT_FILES:
+        body = fetch.get_bytes(url)
+        wb = openpyxl.load_workbook(io.BytesIO(body), read_only=True, data_only=True)
+        try:
+            if set(wb.sheetnames) != sheets:
+                raise ValueError(f"WA components: unexpected sheets in {name}")
+        finally:
+            wb.close()
+        fetch.write_snapshot(RAW_DIR / name, body)
+        fetch.write_manifest(RAW_DIR, [dict(
+            file=name, source=url, retrieved_at=date.today().isoformat(),
+            sha256=fetch.sha256(body), records=None,
+            note="Original OFM components workbook; annual state / five-year medium county totals.",
+        )])
+
+
+def _whole(value, context: str) -> int:
+    if isinstance(value, bool) or not isinstance(value, (int, float)) or int(value) != value:
+        raise ValueError(f"WA components: invalid count at {context}: {value!r}")
+    return int(value)
+
+
+def load_components(conn, counties: dict[str, str]) -> None:
+    """Store period totals by ending year; never divide county totals into years."""
+    import openpyxl
+
+    fetch.read_manifest(RAW_DIR)
+    rows = []
+    for name, url, sheets in COMPONENT_FILES:
+        state = name == STATE_COMPONENT_FILE
+        source_id = "wa-components-2025-stfc" if state else "wa-components-2022-gma"
+        wb = openpyxl.load_workbook(RAW_DIR / name, read_only=True, data_only=True)
+        try:
+            if set(wb.sheetnames) != sheets:
+                raise ValueError(f"WA components: unexpected sheets in {name}")
+            if state:
+                values = list(wb["Components of Change"].values)
+                if values[2][0] != "November 2025" or "2026-2050" not in str(values[4][0]):
+                    raise ValueError("WA state components: unexpected edition or forecast boundary")
+                if tuple(values[8][i] for i in (0, 4, 6, 9)) != ("Period", "Births", "Deaths", "Net Migration"):
+                    raise ValueError("WA state components: unexpected columns")
+                years = []
+                for rec in values[9:]:
+                    match = re.fullmatch(r"(\d{4})-(\d{4})", str(rec[0]))
+                    if not match:
+                        continue
+                    start, end = map(int, match.groups())
+                    if end - start != 1:
+                        continue  # Published multi-year subtotals overlap the annual rows.
+                    years.append(end)
+                    births, deaths, migration = [_whole(rec[i], str(rec[0])) for i in (4, 6, 9)]
+                    if min(births, deaths) < 0:
+                        raise ValueError("WA state components: negative births/deaths")
+                    if births - deaths + migration != rec[2]:
+                        raise ValueError(f"WA state component balance differs in {end}")
+                    pop = conn.execute(
+                        "SELECT value FROM observations WHERE source_id=? AND variable='population' AND year=?",
+                        (STATE_SOURCE_ID, end),
+                    ).fetchone()
+                    if pop is None or pop[0] != rec[1]:
+                        raise ValueError(f"WA state component population differs in {end}")
+                    for variable, value in zip(("births", "deaths", "net_migration"), (births, deaths, migration)):
+                        rows.append(dict(state="WA", geo_level="state", geo_id=STATE_FIPS,
+                                         year=end, variable=variable, value=value, source_id=source_id,
+                                         datatype="estimate" if end <= 2025 else "projection"))
+                if years != list(range(2011, 2051)):
+                    raise ValueError("WA state components: unexpected annual periods")
+            else:
+                tables = {}
+                for sheet in sheets:
+                    values = list(wb[sheet].values)
+                    if values[1][0] != "2022 GMA Projections - Medium Series" or values[2][14] != "Projection":
+                        raise ValueError("WA county components: unexpected edition/scenario/boundary")
+                    columns = [(i, y) for i, y in enumerate(range(1965, 2025, 5), 1)]
+                    columns += [(i, y) for i, y in enumerate(range(2025, 2055, 5), 14)]
+                    for i, year in columns:
+                        if values[3][i] != f"{year-5}-{year % 100:02d}":
+                            raise ValueError("WA county components: unexpected five-year periods")
+                    table = {}
+                    for rec in values[4:]:
+                        if rec[0] in counties:
+                            if rec[0] in table:
+                                raise ValueError("WA county components: duplicate county")
+                            table[rec[0]] = {year: _whole(rec[i], f"{sheet}/{rec[0]}/{year}") for i, year in columns}
+                    if set(table) != set(counties):
+                        raise ValueError("WA county components: missing counties")
+                    tables[sheet] = table
+                for county, gid in counties.items():
+                    for year in range(1965, 2055, 5):
+                        b, d, m, change = [tables[s][county][year] for s in
+                                          ("Births", "Deaths", "Residual Net Migration", "Population Change")]
+                        if min(b, d) < 0:
+                            raise ValueError("WA county components: negative births/deaths")
+                        if b - d + m != change:
+                            raise ValueError(f"WA county component balance differs: {county}/{year}")
+                        for variable, value in zip(("births", "deaths", "net_migration"), (b, d, m)):
+                            rows.append(dict(state="WA", geo_level="county", geo_id=gid,
+                                             year=year, variable=variable, value=value, source_id=source_id,
+                                             scenario="medium", datatype="estimate" if year <= 2020 else "projection"))
+        finally:
+            wb.close()
+        upsert_source(conn, source_id=source_id, state="WA", agency=AGENCY,
+                      product_name="Components of April 1 Population Change" if state else
+                      "2022 GMA County Components of Population Change, Medium Series",
+                      vintage="November 2025" if state else "2022 GMA projections (March 2023 component tables)",
+                      base_year=2025 if state else 2020, horizon_year=2050,
+                      source_url=url, retrieved_at=_retrieved(name), license=LICENSE,
+                      citation=f"{AGENCY}. {name}.",
+                      method_notes=(
+                          "Whole-person totals for April 1 to April 1 periods, indexed by ending year. "
+                          + ("Annual periods 2010-2011 through 2049-2050; estimates through 2025. "
+                             "Overlapping multi-year subtotals are excluded." if state else
+                             "Five-year totals, not annual values: 1960-1965 through 2045-2050. "
+                             "Medium scenario only. Residual net migration is population change minus "
+                             "births plus deaths. OFM cautions against treating the last digit as precise. "
+                             "The workbook labels periods ending through 2020 as estimates and 2020-2025 "
+                             "onward as projections; base_year=2020 describes this component table, "
+                             "not the separate county population product's 2022 base. "
+                             "The statewide comparison row is excluded.")))
+    insert_observations(conn, rows)
+
 
 def acquire() -> None:
     """Download and validate both official population workbooks."""
@@ -215,6 +351,7 @@ def load(conn) -> None:
         ),
     )
     n = insert_observations(conn, rows)
+    load_components(conn, fips_by_name)
     conn.commit()
     print(f"WA load: {n} observations")
 
@@ -274,7 +411,10 @@ def verify(conn) -> None:
 
 
 if __name__ == "__main__":
-    if "--acquire" in sys.argv:
+    if "--acquire-components" in sys.argv:
+        acquire_components()
+    elif "--acquire" in sys.argv:
         acquire()
+        acquire_components()
     else:
-        print("usage: python -m sdo_mcp.ingest.wa --acquire")
+        print("usage: python -m sdo_mcp.ingest.wa [--acquire | --acquire-components]")

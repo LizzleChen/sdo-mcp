@@ -46,6 +46,8 @@ class ForecastPoint(Point):
 
 
 class ComponentPoint(Point):
+    period_start_year: NotRequired[int]
+    period_end_year: NotRequired[int]
     births: NotRequired[int | float]
     deaths: NotRequired[int | float]
     net_migration: NotRequired[int | float]

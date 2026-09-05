@@ -291,11 +291,12 @@ COVERAGE = [
      "OFM publishes no county jobs forecast. A state-level forecast exists in "
      "the separate Long-Term Economic Forecast PDF."),
     ("WA", "components", "state", "available",
-     "State components are published in a separate OFM workbook, which is not "
-     "included in the current committed snapshots."),
+     "November 2025 OFM components: annual April-to-April totals ending "
+     "2011-2050; estimates through 2025, projections from 2026. Loaded."),
     ("WA", "components", "county", "available",
-     "GMA components are published separately from the county totals workbook "
-     "and are not included in the current committed snapshots."),
+     "2022 GMA components: medium scenario only, all 39 counties, five-year "
+     "April-to-April totals ending 1965-2050. Estimates through ending year "
+     "2020; projections from period 2020-2025. Loaded; no annual interpolation."),
 
     # ---- Oregon
     ("OR", "population", "state", "not_published",

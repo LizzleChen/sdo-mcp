@@ -330,7 +330,10 @@ def get_components(
     the state demography office publishes them. ``scenario`` applies where
     components accompany scenario forecasts (Arizona Low/Medium/High).
     `geo` accepts a county FIPS/name, or the state code/name for the statewide
-    series. States without a components product return a structured refusal."""
+    series. Washington county components are medium-only five-year totals;
+    their year is the period end, with explicit period start/end fields.
+    Year filters select ending years. States without a components product
+    return a structured refusal."""
     state = state.strip().upper()
     if err := _year_error(start_year, end_year):
         return err
@@ -361,6 +364,8 @@ def get_components(
             return _error(resolved["error"], candidates=resolved.get("candidates"))
 
         series: dict[int, dict] = {}
+        if state == "WA" and geo_level == "county" and scen != "medium":
+            return _error("Washington publishes county components only for the medium scenario; request medium.")
         source_id = None
         for var in ("births", "deaths", "net_migration"):
             rows = store.get_series(
@@ -372,6 +377,9 @@ def get_components(
                     r["year"], {"year": r["year"], "datatype": r["datatype"]}
                 )
                 point[var] = _num(r["value"])
+                if state == "WA":
+                    point["period_start_year"] = r["year"] - (5 if geo_level == "county" else 1)
+                    point["period_end_year"] = r["year"]
                 source_id = source_id or r["source_id"]
         if not series:
             full = [
