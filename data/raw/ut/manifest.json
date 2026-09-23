@@ -1,0 +1,18 @@
+[
+ {
+  "file": "Gardner-Policy-Institute-State-and-County-Projections-2025-2065-Data.xlsx",
+  "source": "https://d36oiwf74r1rap.cloudfront.net/wp-content/uploads/2026/08/Gardner-Policy-Institute-State-and-County-Projections-2025-2065-Data.xlsx",
+  "retrieved_at": "2026-09-22",
+  "sha256": "4da11ded2dbb5d4ef70be0f6dffb74b4eaa8cfff766413932ec84909af633530",
+  "records": 1230,
+  "note": "Gardner 2025-2065 state/county population, household, jobs and components workbook."
+ },
+ {
+  "file": "ProjectionsSummary-Mar2026.pdf",
+  "source": "https://d36oiwf74r1rap.cloudfront.net/wp-content/uploads/2026/03/ProjectionsSummary-Mar2026.pdf",
+  "retrieved_at": "2026-09-22",
+  "sha256": "c8143e788e8e3417dc72c6c6b451c78d1e917de35b1cdf229c2c318a3e18af66",
+  "records": null,
+  "note": "Gardner official March 2026 report."
+ }
+]

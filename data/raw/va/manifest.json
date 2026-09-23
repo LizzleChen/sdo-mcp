@@ -1,0 +1,18 @@
+[
+ {
+  "file": "VAPopProjections_Total_2030-2050_1July2025.xlsx",
+  "source": "https://www.coopercenter.org/sites/default/files/2025-07/VAPopProjections_Total_2030-2050_1July2025.xlsx",
+  "retrieved_at": "2026-09-22",
+  "sha256": "4b8adfa14f128872f3c935e5f3107de6edfb687cd04c0384ea974bb67b79be03",
+  "records": 804,
+  "note": "July 2025 Cooper Center total population workbook; six publisher-provided values."
+ },
+ {
+  "file": "VAPopProjMethodology_2025_FINAL_accessible_protected.docx",
+  "source": "https://www.coopercenter.org/sites/default/files/2025-07/VAPopProjMethodology_2025_FINAL_accessible_protected.docx",
+  "retrieved_at": "2026-09-22",
+  "sha256": "c6827a898ce3179fbfd19ca627bf613372948ed40734cbd637fc0987149d89aa",
+  "records": null,
+  "note": "Official July 2025 methodology."
+ }
+]

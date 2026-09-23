@@ -82,6 +82,30 @@ def test_installed_tools_over_mcp(installed_server, protocol):
 
                     summary = await call("list_states", {})
                     assert summary["database_release"] == "mcp-test"
+                    assert {"VA", "WI", "UT"} <= set(summary["states"])
+                    va = await call("get_forecast", {
+                        "state": "VA", "geo_level": "state", "geo": "VA", "variable": "population",
+                        "start_year": 2030, "end_year": 2030,
+                    }, "ok")
+                    assert va["series"][0]["value"] == 9060432.76370604
+                    wi = await call("get_forecast", {
+                        "state": "WI", "geo_level": "state", "geo": "WI", "variable": "population",
+                        "start_year": 2020, "end_year": 2020,
+                    }, "ok")
+                    assert wi["series"] == [{"year": 2020, "value": 5893718, "datatype": "estimate"}]
+                    ut = await call("get_forecast", {
+                        "state": "UT", "geo_level": "state", "geo": "UT", "variable": "population",
+                        "start_year": 2025, "end_year": 2025,
+                    }, "ok")
+                    assert ut["scenario"] == "baseline"
+                    high = await call("get_forecast", {
+                        "state": "UT", "geo_level": "state", "geo": "UT", "variable": "population",
+                        "scenario": "high",
+                    }, "not_loaded")
+                    assert high["scenario"] == "high"
+                    await call("get_components", {
+                        "state": "UT", "geo": "UT", "scenario": "high",
+                    }, "error", True)
                     wa_status = summary["states"]["WA"]
                     assert wa_status["review"]["status"] == "never_reviewed"
                     assert wa_status["variables"]["components"]["county"]["load_status"] == "loaded"

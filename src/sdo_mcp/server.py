@@ -235,7 +235,8 @@ def get_forecast(
     name (unknown or ambiguous names return candidates, never a guess);
     `variable` is 'population', 'households', or 'employment'. `scenario`
     only applies where the selected product publishes scenarios (TX
-    Mid/High/Low; AZ and FL Low/Medium/High; WA county Low/Medium/High) and
+    Mid/High/Low; AZ and FL Low/Medium/High; WA county Low/Medium/High;
+    UT Baseline/High/Low, with High/Low published but not loaded) and
     defaults to the state's recommended one. Every point is flagged estimate
     or projection; if the state publishes nothing for the request, a
     structured refusal explains why and points to the closest published
@@ -267,6 +268,27 @@ def get_forecast(
         if scen is None:
             return err
 
+        # A source can publish a geography product that this adapter has not
+        # loaded yet (for example Wisconsin municipal projections or Virginia
+        # large-town projections). Preserve that distinction from an invalid
+        # name: with no geography list at all, return not_loaded and the
+        # coverage detail; once a list exists, resolve_geo still reports
+        # unknown/ambiguous names as an error.
+        if conn.execute(
+            "SELECT 1 FROM geographies WHERE state=? AND geo_level=? LIMIT 1",
+            (state, geo_level),
+        ).fetchone() is None:
+            return {
+                "status": "not_loaded",
+                "state": state,
+                "variable": variable,
+                "geo_level": geo_level,
+                "reason": (
+                    f"{state} publishes this geography product ({cov['detail']}) "
+                    "but its geography list and observations have not been ingested into this server yet."
+                ),
+            }
+
         resolved = store.resolve_geo(conn, state, geo_level, geo)
         if "error" in resolved:
             return _error(resolved["error"], candidates=resolved.get("candidates"))
@@ -288,9 +310,11 @@ def get_forecast(
                 "status": "not_loaded",
                 "state": state,
                 "variable": variable,
+                "geo": {"level": geo_level, "id": resolved["geo_id"], "name": resolved["name"]},
+                "scenario": scen or None,
                 "reason": (
-                    f"{state} publishes this series ({cov['detail']}) but its "
-                    "requested series has not been ingested into this server yet."
+                    f"{state} publishes this product ({cov['detail']}) but the requested "
+                    f"series{f' for scenario {scen}' if scen else ''} has not been ingested into this server yet."
                 ),
             }
 
@@ -326,6 +350,8 @@ def get_components(
     """Components of population change — births, deaths, net migration — where
     the state demography office publishes them. ``scenario`` applies where
     components accompany scenario forecasts (Arizona Low/Medium/High).
+    Utah components are baseline-only; its separate High/Low workbook
+    publishes population, household, and employment totals, not components.
     `geo` accepts a county FIPS/name, or the state code/name for the statewide
     series. Washington county components are medium-only five-year totals;
     their year is the period end, with explicit period start/end fields.
@@ -363,6 +389,12 @@ def get_components(
         series: dict[int, dict] = {}
         if state == "WA" and geo_level == "county" and scen != "medium":
             return _error("Washington publishes county components only for the medium scenario; request medium.")
+        if state == "UT" and scen != "baseline":
+            return _error(
+                "Utah publishes components in the baseline workbook only; request baseline. "
+                "The separate High/Low scenario workbook contains population, household, "
+                "and employment totals, not components."
+            )
         source_id = None
         for var in ("births", "deaths", "net_migration"):
             rows = store.get_series(

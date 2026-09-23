@@ -16,6 +16,7 @@ sdo-mcp-install-data = "sdo_mcp.install:main"
 ingest = [
     "cloudscraper>=1.2.71",
     "openpyxl>=3.1",
+    "pypdf>=6",
 ]
 dev = [
     "pytest>=8",

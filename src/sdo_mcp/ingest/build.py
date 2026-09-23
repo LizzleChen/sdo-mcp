@@ -24,7 +24,7 @@ from pathlib import Path
 from .. import store
 from ..common import fetch
 from ..install import validate_database
-from . import az, ca, co, fl, ga, mn, nc, seed, tn, tx, wa
+from . import az, ca, co, fl, ga, mn, nc, seed, tn, tx, ut, va, wa, wi
 
 # ``or`` is Oregon's postal code but a reserved Python word, so this one
 # state-code module must be imported by name rather than in the statement above.
@@ -32,7 +32,7 @@ or_adapter = import_module(".or", __package__)
 
 # State adapter modules, each exposing load(conn) and verify(conn).
 # Registered in build order (plan/DESIGN.md §5, then plan/EXPANSION.md).
-ADAPTERS: list = [co, tn, ga, ca, tx, fl, nc, mn, az, wa, or_adapter]
+ADAPTERS: list = [co, tn, ga, ca, tx, fl, nc, mn, az, wa, or_adapter, va, wi, ut]
 
 
 def verify_inputs(raw_dir: Path | None = None) -> dict[str, str]:
