@@ -8,6 +8,7 @@ Government endpoints lie with HTTP 200: many SDO backends return errors as
 from __future__ import annotations
 
 import hashlib
+import io
 import json
 import os
 import tempfile
@@ -104,6 +105,24 @@ def get_with_js(url: str, tries: int = 3, timeout: int = 300) -> bytes:
 
 def sha256(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
+
+
+def validate_pdf(body: bytes, source: str) -> None:
+    """Parse a downloaded reference PDF before archiving it as evidence."""
+    from pypdf import PdfReader
+
+    try:
+        reader = PdfReader(io.BytesIO(body))
+        if not reader.pages:
+            raise ValueError("PDF has no pages")
+        # Parse page content streams as PDF operations without requiring
+        # optional font-decoding packages just to validate the file format.
+        for page in reader.pages:
+            content = page.get_contents()
+            if content is not None:
+                _ = content.operations
+    except Exception as exc:
+        raise ValueError(f"{source}: response is not a readable PDF") from exc
 
 
 def write_snapshot(path: Path, body: bytes) -> None:

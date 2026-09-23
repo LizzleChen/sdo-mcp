@@ -1,0 +1,34 @@
+[
+ {
+  "file": "Pop_Proj_Co_State_2020_2050.xlsx",
+  "source": "https://doa.wi.gov/DIR/Pop_Proj_Co_State_2020_2050.xlsx",
+  "retrieved_at": "2026-09-22",
+  "sha256": "3b50232886eaa0b537d0635ae6fd22ca8f1df868838370293b0c0d6d5df2dc97",
+  "records": 292,
+  "note": "WI DOA Vintage 2024 population totals."
+ },
+ {
+  "file": "HH_Proj_Co_State_2020-2050.xlsx",
+  "source": "https://doa.wi.gov/DIR/HH_Proj_Co_State_2020-2050.xlsx",
+  "retrieved_at": "2026-09-22",
+  "sha256": "540eb4471bae33c7c21f17bbe37fb2277d53681aea571fc0c07b067196d74d6c",
+  "records": 292,
+  "note": "WI DOA state/county household projections 2020-2050."
+ },
+ {
+  "file": "Method_Pop_Proj_2020_2050.pdf",
+  "source": "https://doa.wi.gov/DIR/Method_Pop_Proj_2020_2050.pdf",
+  "retrieved_at": "2026-09-22",
+  "sha256": "8deb647d28e4a377f8fb551f2af7064f3ca4a4f2346267f912c4e29475fb0fda",
+  "records": null,
+  "note": "WI DOA population method."
+ },
+ {
+  "file": "Method_HH_Proj_Co_2020-2050.pdf",
+  "source": "https://doa.wi.gov/DIR/Method_HH_Proj_Co_2020-2050.pdf",
+  "retrieved_at": "2026-09-22",
+  "sha256": "a43608ccc536178c089635973598951ca344cf1ac2362a0910b05dc49170d339",
+  "records": null,
+  "note": "WI DOA household method."
+ }
+]

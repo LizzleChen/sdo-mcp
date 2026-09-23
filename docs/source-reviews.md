@@ -1,7 +1,7 @@
 # Source reviews and loading status
 
 Run `uv run python -m sdo_mcp.monitoring --database data/sdo.sqlite`
-for a JSON report of all 11 states. Omit `--database` to inspect the installed
+for a JSON report of all 14 states. Omit `--database` to inspect the installed
 copy (or the file selected by `SDO_DB`). The command reads local files only.
 It neither checks websites nor changes the database. Save its output when
 preparing a data release. `list_states` and `describe_source` expose the same
@@ -24,7 +24,25 @@ Check sooner when an agency announces a revision or a source check fails.
 | Oregon | 30 days | Every regional/county edition and exclusions |
 | Tennessee | 90 days | Boyd Center releases and county detail service |
 | Texas | 90 days | Edition, scenarios, and regional products |
+| Utah | 90 days | Gardner baseline and separate High/Low scenario workbooks; no base year stated |
+| Virginia | 90 days | Cooper Center population workbook, methodology, independent-city rows, and separate town product |
 | Washington | 90 days | State, GMA population, GMA components, economic PDF |
+| Wisconsin | 90 days | DOA population and household workbooks; separate subcounty products and household edition date |
+
+The expansion snapshot checks below describe what is loaded and what remains
+uncertain. They are evidence about the saved files, not completed review dates;
+the manifests retain each file's retrieval date and fingerprint.
+
+| State and agency evidence | Loaded coverage in this checkout | Known limits and uncertainty |
+| --- | --- | --- |
+| [Virginia — Cooper Center](https://www.coopercenter.org/virginia-population-projections) | Population for the state and 133 county-equivalent localities (95 counties + 38 independent cities), six publisher-provided points in 2030–2055; base year 2024 | Large-town and age/sex products are published but not loaded; household, employment, and components publication status is unknown |
+| [Wisconsin — DOA](https://doa.wi.gov/Pages/LocalGovtsGrants/Population_Projections.aspx) | Population and households for the state and 72 counties at 2020, 2030, 2040, and 2050; base year 2020 | Minor-civil-division and municipal products are published but not loaded; household workbook has no edition date; employment/components status is unknown |
+| [Utah — Gardner Policy Institute](https://gardner.utah.edu/utah-demographics/population-projections/utah-2065-long-term-vintage-2025/) | Baseline population, households, total jobs, births, deaths, and net migration for the state and 29 counties annually from 2025–2065; base year is not stated | High/Low scenario workbook contains totals for 2030–2065 but is not loaded and contains no components; subcounty estimates are a separate product, not forecasts |
+
+The three expansion-state snapshots were checked for format, workbook shape,
+and adapter fixture values during the September 22, 2026 build. That check did
+not cover every product on each agency landing page, so it is not recorded as a
+completed source review in `src/sdo_mcp/source_reviews.json`.
 
 The report supplies each state's existing agency links and the exact source
 editions and retrieval dates in the selected database. `current_vintage` in
@@ -34,9 +52,9 @@ live claim about the agency's newest release.
 ## Recording a review
 
 `src/sdo_mcp/source_reviews.json` is a committed review log with one latest
-review per state. It starts empty: earlier downloads and the Washington
-component validation do not establish that all of a state's products are
-current. Missing reviews show `never_reviewed` and need an initial review;
+review per state. It currently remains empty: a snapshot download, adapter
+validation, or a check of only one product does not establish that all of a
+state's products are current. Missing reviews show `never_reviewed` and need an initial review;
 they do not acquire a fabricated date. Once recorded, a review is `due` on
 its review date plus the interval above. `not_due` means only that the next
 scheduled check has not arrived, not that an edition is guaranteed current.
@@ -93,6 +111,9 @@ Demographic detail rows that the tools cannot serve do not count as totals.
 Use individual forecast requests and source caveats to assess specific coverage.
 
 Washington components now have loaded state and county totals. Washington
-state employment remains a published PDF without loaded numbers. Other
-published gaps, including Florida PDF products, remain visible in the report;
-this monitoring step does not fill them or select the next expansion states.
+state employment remains a published PDF without loaded numbers. Virginia's
+large-town product and Wisconsin's subcounty products are published but not
+loaded. Utah's baseline components are loaded, while its separate High/Low
+workbook contains totals only and remains not loaded. Other published gaps,
+including Florida PDF products, remain visible in the report; this monitoring
+step does not fill them or select the next expansion states.

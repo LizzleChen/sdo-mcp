@@ -22,6 +22,9 @@ POLICIES = {
     "TN": (90, "Check Boyd Center releases and its hosted county detail service."),
     "TX": (90, "Check TDC's edition, all scenarios, and regional products; archive replaced files."),
     "WA": (90, "Review the state forecast, GMA county population, county components, and economic PDF separately."),
+    "VA": (90, "Review the Cooper Center population workbook, methodology, and the separate age/sex and large-town products."),
+    "WI": (90, "Review DOA state/county population and household workbooks and monitor the un-ingested subcounty products."),
+    "UT": (90, "Review Gardner baseline population, household, employment, and components workbook; check the separate scenario release."),
 }
 REVIEWS_PATH = Path(__file__).with_name("source_reviews.json")
 

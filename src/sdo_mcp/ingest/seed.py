@@ -29,6 +29,9 @@ COVERED_STATES = {
     "AZ": "Arizona",
     "WA": "Washington",
     "OR": "Oregon",
+    "VA": "Virginia",
+    "WI": "Wisconsin",
+    "UT": "Utah",
 }
 
 # (state, variable, geo_level, status, detail)
@@ -323,6 +326,48 @@ COVERAGE = [
      "No official statewide components forecast is published."),
     ("OR", "components", "county", "not_published",
      "The regional county workbooks publish population detail, not components of change."),
+
+    # ---- Virginia
+    ("VA", "population", "state", "available",
+     "Cooper Center July 2025 baseline projections: 2030, 2035, 2040, 2045, 2050, and 2055. "
+     "All points are projections from a 2024 estimate base."),
+    ("VA", "population", "county", "available",
+     "Cooper Center July 2025 totals for all 133 county-equivalent localities (95 counties + 38 independent cities), "
+     "six published years 2030-2055. The separate age/sex and large-town products are not ingested."),
+    ("VA", "population", "place", "available",
+     "Cooper Center publishes a separate large-town projection product; it is available from the source page but not ingested in this pass."),
+
+    # ---- Wisconsin
+    ("WI", "population", "state", "available",
+     "Wisconsin DOA Vintage 2024 totals: 2020 estimate plus 2030, 2040, and 2050 projections."),
+    ("WI", "population", "county", "available",
+     "Wisconsin DOA Vintage 2024 totals for all 72 counties: 2020 estimate plus 2030, 2040, and 2050 projections."),
+    ("WI", "population", "place", "available",
+     "DOA publishes minor-civil-division and municipal population projections 2020-2050; those subcounty tables are available but not ingested in this pass."),
+    ("WI", "households", "state", "available",
+     "DOA publishes state household totals for 2020, 2030, 2040, and 2050; 2020 is the estimate/base and later points are projections."),
+    ("WI", "households", "county", "available",
+     "DOA publishes all 72 county household totals for 2020, 2030, 2040, and 2050; county sums can differ from the state by rounding."),
+    ("WI", "households", "place", "available",
+     "DOA publishes minor-civil-division and municipal household projections 2020-2050; those subcounty tables are available but not ingested in this pass."),
+
+    # ---- Utah
+    ("UT", "population", "state", "available",
+     "Gardner Policy Institute 2025-2065 baseline: annual July 1 state projections, all points projection-labelled."),
+    ("UT", "population", "county", "available",
+     "Gardner Policy Institute 2025-2065 baseline: annual July 1 projections for all 29 counties."),
+    ("UT", "households", "state", "available",
+     "Gardner Policy Institute workbook: annual state household projections 2025-2065."),
+    ("UT", "households", "county", "available",
+     "Gardner Policy Institute workbook: annual household projections 2025-2065 for all 29 counties."),
+    ("UT", "employment", "state", "available",
+     "Gardner Policy Institute workbook: annual state total-jobs projections 2025-2065 (wage/salary plus self-employment)."),
+    ("UT", "employment", "county", "available",
+     "Gardner Policy Institute workbook: annual county total-jobs projections 2025-2065 for all 29 counties."),
+    ("UT", "components", "state", "available",
+     "Gardner Policy Institute workbook publishes annual births, deaths, and net migration 2025-2065; loaded."),
+    ("UT", "components", "county", "available",
+     "Gardner Policy Institute workbook publishes annual births, deaths, and net migration 2025-2065 for all 29 counties; loaded."),
 ]
 
 
