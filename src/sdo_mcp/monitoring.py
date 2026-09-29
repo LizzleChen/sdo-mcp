@@ -21,6 +21,7 @@ POLICIES = {
     "MN": (90, "Check the state and county files, including the projected launch year."),
     "NC": (90, "Check OSBM's edition and base year, including component files."),
     "OR": (30, "Check every regional release and county edition; preserve the Multnomah exclusion."),
+    "PA": (90, "Review PaSDC population edition, estimate labels and methodology; check the state components PDF and separate place, household and eligible employment coverage."),
     "TN": (90, "Check Boyd Center releases and its hosted county detail service."),
     "TX": (90, "Check TDC's edition, all scenarios, and regional products; archive replaced files."),
     "WA": (90, "Review the state forecast, GMA county population, county components, and economic PDF separately."),

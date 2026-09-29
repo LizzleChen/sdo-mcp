@@ -34,6 +34,7 @@ COVERED_STATES = {
     "UT": "Utah",
     "IN": "Indiana",
     "MI": "Michigan",
+    "PA": "Pennsylvania",
 }
 
 # (state, variable, geo_level, status, detail)
@@ -379,6 +380,18 @@ COVERAGE = [
      "all projections. Fractional model totals are preserved. County methodology "
      "does not explicitly identify the population base year; it remains unknown. "
      "Prosperity-region and age/sex detail is archived but not served."),
+
+    # ---- Pennsylvania: 2023 PaSDC edition, checked 2026-09-29
+    ("PA", "population", "state", "available",
+     "PaSDC 2023 edition: July 1, 2020 estimate (Census Vintage 2022) plus "
+     "five-year projections 2025-2050. Population base year is 2020."),
+    ("PA", "population", "county", "available",
+     "PaSDC 2023 edition: all 67 counties, 2020 estimates plus five-year "
+     "projections 2025-2050. Age/sex detail is archived but not served."),
+    ("PA", "components", "state", "pdf_only",
+     "The December 2023 methodology report, Table 3, publishes statewide births, "
+     "deaths, domestic and overseas migration for five-year periods 2020-2025 "
+     "through 2045-2050. These period totals are not loaded."),
 
     # ---- Utah
     ("UT", "population", "state", "available",

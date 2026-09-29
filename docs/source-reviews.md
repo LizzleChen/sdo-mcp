@@ -1,7 +1,7 @@
 # Source reviews and loading status
 
 Run `uv run python -m sdo_mcp.monitoring --database data/sdo.sqlite`
-for a JSON report of all 16 states. Omit `--database` to inspect the installed
+for a JSON report of all 17 states. Omit `--database` to inspect the installed
 copy (or the file selected by `SDO_DB`). The command reads local files only.
 It neither checks websites nor changes the database. Save its output when
 preparing a data release. `list_states` and `describe_source` expose the same
@@ -24,6 +24,7 @@ Check sooner when an agency announces a revision or a source check fails.
 | Minnesota | 90 days | State/county files and projected launch year |
 | North Carolina | 90 days | Edition, base year, and components |
 | Oregon | 30 days | Every regional/county edition and exclusions |
+| Pennsylvania | 90 days | PaSDC edition, estimate labels, state components PDF; place, household and eligible jobs coverage |
 | Tennessee | 90 days | Boyd Center releases and county detail service |
 | Texas | 90 days | Edition, scenarios, and regional products |
 | Utah | 90 days | Gardner baseline and separate High/Low scenario workbooks; no base year stated |
@@ -37,6 +38,7 @@ the manifests retain each file's retrieval date and fingerprint.
 
 | State and agency evidence | Loaded coverage in this checkout | Known limits and uncertainty |
 | --- | --- | --- |
+| [Pennsylvania — PaSDC / Center for Rural Pennsylvania](https://www.rural.pa.gov/data/population-projections) | 2023 population edition: 2020 estimates and five-year projections 2025–2050 for the state and all 67 counties (476 totals); base year 2020, from Census Vintage 2022 | Age/sex detail is archived but not served. State components appear as five-year period totals in methodology Table 3 and are not loaded. Place, household, eligible jobs and county components coverage is unverified |
 | [Michigan — MCDA](https://www.michigan.gov/mcda/population) | Vintage 2024 population totals: six five-year points 2025–2050 for the state and all 83 counties (504 totals), all projections, retaining source decimals. State estimate base is 2022 | County base year is not explicitly identified and remains null. State main net-positive-migration scenario is loaded; illustrative zero-migration scenario is not loaded. Ten prosperity regions and age/sex detail are archived but not served. Place, household, eligible jobs and complete components coverage is unverified |
 | [Indiana — IBRC/STATS Indiana](https://www.stats.indiana.edu/topic/projections.asp) | July 2024 population edition: 2020 estimates and five-year projections from 2025, state through 2060 and all 92 counties through 2050 (653 totals); last underlying estimate year 2023 | State population anchor 2020 with estimates/components through 2023; county model starts from 2023 estimates. Neither table contains a 2023 row. County sums differ from state by 55–130 in projection years. Cities have no projections; metro/age/sex products are not loaded; household, jobs and components status is unknown |
 | [Virginia — Cooper Center](https://www.coopercenter.org/virginia-population-projections) | Population for the state and 133 county-equivalent localities (95 counties + 38 independent cities), six publisher-provided points in 2030–2055; base year 2024 | Large-town and age/sex products are published but not loaded; household, employment, and components publication status is unknown |
@@ -70,6 +72,18 @@ but the county methodology does not explicitly name a county population base.
 No completed source-review date is recorded because the other products have
 not been fully audited. Reacquisition reuses validated originals; new editions
 require new filenames and metadata.
+
+Pennsylvania's original workbook, methodology report, release notice, and
+download catalog were checked on September 29, 2026, and saved with fingerprints
+in `data/raw/pa/`. The workbook is dated September 5, 2023; the release notice is
+October 4, 2023, and the methodology is December 2023. The adapter checks the
+edition date, 2020 estimate base note, year/type headers, Census codes and names,
+complete geography/age grid, and nonnegative integer values. It serves published
+totals directly, and county sums match the state at all seven dates. Fixtures
+were cross-checked against the report's Table 4. No annual values are generated.
+Philadelphia remains a county geography. Other products have not been fully
+audited, so no completed source-review date is recorded. Reacquisition reuses
+validated originals; a new edition requires new filenames and metadata.
 
 The report supplies each state's existing agency links and the exact source
 editions and retrieval dates in the selected database. `current_vintage` in
