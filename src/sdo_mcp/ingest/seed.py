@@ -33,6 +33,7 @@ COVERED_STATES = {
     "WI": "Wisconsin",
     "UT": "Utah",
     "IN": "Indiana",
+    "MI": "Michigan",
 }
 
 # (state, variable, geo_level, status, detail)
@@ -367,6 +368,17 @@ COVERAGE = [
     ("IN", "population", "msa", "available",
      "The IBRC query tool publishes metro-area aggregations, including only Indiana "
      "counties in interstate metros. These region totals are not ingested."),
+
+    # ---- Michigan: MCDA Vintage 2024, checked 2026-09-29
+    ("MI", "population", "state", "available",
+     "MCDA Vintage 2024 main net-positive-migration scenario: five-year points "
+     "2025-2050, all projections, from the documented 2022 estimate base. "
+     "The report's illustrative zero-migration scenario is not loaded."),
+    ("MI", "population", "county", "available",
+     "MCDA Vintage 2024: all 83 counties, six published points 2025-2050, "
+     "all projections. Fractional model totals are preserved. County methodology "
+     "does not explicitly identify the population base year; it remains unknown. "
+     "Prosperity-region and age/sex detail is archived but not served."),
 
     # ---- Utah
     ("UT", "population", "state", "available",

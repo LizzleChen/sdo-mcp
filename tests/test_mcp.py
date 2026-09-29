@@ -82,7 +82,14 @@ def test_installed_tools_over_mcp(installed_server, protocol):
 
                     summary = await call("list_states", {})
                     assert summary["database_release"] == "mcp-test"
-                    assert {"VA", "WI", "UT", "IN"} <= set(summary["states"])
+                    assert {"VA", "WI", "UT", "IN", "MI"} <= set(summary["states"])
+                    michigan = await call("get_forecast", {
+                        "state": "MI", "geo_level": "county", "geo": "Wayne", "variable": "population",
+                        "start_year": 2050, "end_year": 2050,
+                    }, "ok")
+                    assert michigan["series"] == [{"year": 2050, "value": 1565187.79, "datatype": "projection"}]
+                    assert michigan["source"]["vintage"] == "2024"
+                    assert michigan["source"]["base_year"] is None
                     indiana = await call("get_forecast", {
                         "state": "IN", "geo_level": "county", "geo": "Hamilton", "variable": "population",
                         "start_year": 2050, "end_year": 2050,
