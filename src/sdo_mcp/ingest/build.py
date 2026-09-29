@@ -26,13 +26,13 @@ from ..common import fetch
 from ..install import validate_database
 from . import az, ca, co, fl, ga, mn, nc, seed, tn, tx, ut, va, wa, wi
 
-# ``or`` is Oregon's postal code but a reserved Python word, so this one
-# state-code module must be imported by name rather than in the statement above.
+# Oregon and Indiana have postal codes that are reserved Python words.
 or_adapter = import_module(".or", __package__)
+in_adapter = import_module(".in", __package__)
 
 # State adapter modules, each exposing load(conn) and verify(conn).
 # Registered in build order (plan/DESIGN.md §5, then plan/EXPANSION.md).
-ADAPTERS: list = [co, tn, ga, ca, tx, fl, nc, mn, az, wa, or_adapter, va, wi, ut]
+ADAPTERS: list = [co, tn, ga, ca, tx, fl, nc, mn, az, wa, or_adapter, va, wi, ut, in_adapter]
 
 
 def verify_inputs(raw_dir: Path | None = None) -> dict[str, str]:

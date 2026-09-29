@@ -32,6 +32,7 @@ COVERED_STATES = {
     "VA": "Virginia",
     "WI": "Wisconsin",
     "UT": "Utah",
+    "IN": "Indiana",
 }
 
 # (state, variable, geo_level, status, detail)
@@ -350,6 +351,22 @@ COVERAGE = [
      "DOA publishes all 72 county household totals for 2020, 2030, 2040, and 2050; county sums can differ from the state by rounding."),
     ("WI", "households", "place", "available",
      "DOA publishes minor-civil-division and municipal household projections 2020-2050; those subcounty tables are available but not ingested in this pass."),
+
+    # ---- Indiana: July 2024 IBRC edition, verified 2026-09-28
+    ("IN", "population", "state", "available",
+     "IBRC July 2024: 2020 estimate plus projections 2025-2060 in five-year steps. "
+     "State methodology uses a 2020 population anchor with estimates and components through 2023; "
+     "the last underlying estimate year is 2023."),
+    ("IN", "population", "county", "available",
+     "IBRC July 2024: all 92 counties, 2020 estimates plus projections 2025-2050 "
+     "in five-year steps. County methodology uses 2023 estimates as its projection base; "
+     "2023 values are not included in the published table."),
+    ("IN", "population", "place", "not_published",
+     "STATS Indiana's population catalog marks city/town projections unavailable; "
+     "place figures are Census counts and estimates only."),
+    ("IN", "population", "msa", "available",
+     "The IBRC query tool publishes metro-area aggregations, including only Indiana "
+     "counties in interstate metros. These region totals are not ingested."),
 
     # ---- Utah
     ("UT", "population", "state", "available",

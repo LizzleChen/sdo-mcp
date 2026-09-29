@@ -1,0 +1,42 @@
+[
+ {
+  "file": "population_2024.html",
+  "source": "https://www.stats.indiana.edu/pop_proj/pop_proj.asp",
+  "retrieved_at": "2026-09-28",
+  "sha256": "d98e3e1c7e2a3f358501c23c4c51010696fb5e7b66615b8304aeaf2bb1909d0d",
+  "records": 653,
+  "note": "Original STATS Indiana HTML response; July 2024 population edition and supporting evidence.",
+  "request_method": "POST",
+  "request_form": {
+   "geotype": "a",
+   "geo": "S18;CL___",
+   "year": "All",
+   "datacode": "tb",
+   "geo_label": "All IN Counties"
+  }
+ },
+ {
+  "file": "methodology_2024.html",
+  "source": "https://www.stats.indiana.edu/about/pop-projections-2025-60.asp",
+  "retrieved_at": "2026-09-28",
+  "sha256": "62c0b7d485efd496c5d32e52ba8ec6ccd4b7aa91568362dde4f9efc37b4add0f",
+  "records": null,
+  "note": "Original STATS Indiana HTML response; July 2024 population edition and supporting evidence."
+ },
+ {
+  "file": "projection_edition_2024.html",
+  "source": "https://www.stats.indiana.edu/topic/projections.asp",
+  "retrieved_at": "2026-09-28",
+  "sha256": "59f49b44b39dd6f07db73106944504bdbfb4a88f2075ddcf4d3a23d09522ebcc",
+  "records": null,
+  "note": "Original STATS Indiana HTML response; July 2024 population edition and supporting evidence."
+ },
+ {
+  "file": "population_coverage_2026-09-28.html",
+  "source": "https://www.stats.indiana.edu/topic/population.asp",
+  "retrieved_at": "2026-09-28",
+  "sha256": "50b0aaa56e01d3f0e6db873dcb67a93d9cffd6be0178b4514b8592cc341def2a",
+  "records": null,
+  "note": "Original STATS Indiana HTML response; July 2024 population edition and supporting evidence."
+ }
+]
