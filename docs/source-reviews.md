@@ -1,7 +1,7 @@
 # Source reviews and loading status
 
 Run `uv run python -m sdo_mcp.monitoring --database data/sdo.sqlite`
-for a JSON report of all 15 states. Omit `--database` to inspect the installed
+for a JSON report of all 16 states. Omit `--database` to inspect the installed
 copy (or the file selected by `SDO_DB`). The command reads local files only.
 It neither checks websites nor changes the database. Save its output when
 preparing a data release. `list_states` and `describe_source` expose the same
@@ -20,6 +20,7 @@ Check sooner when an agency announces a revision or a source check fails.
 | Florida | 90 days | Population workbook and household/jobs PDFs |
 | Georgia | 90 days | OPB edition and county workbook |
 | Indiana | 90 days | IBRC edition, POST query, state/county bases and horizons; separate regional, labor-force, household and economic products |
+| Michigan | 90 days | MCDA state/county editions, workbook codes, base years and scenarios; regional, place, household, components and eligible jobs coverage |
 | Minnesota | 90 days | State/county files and projected launch year |
 | North Carolina | 90 days | Edition, base year, and components |
 | Oregon | 30 days | Every regional/county edition and exclusions |
@@ -36,6 +37,7 @@ the manifests retain each file's retrieval date and fingerprint.
 
 | State and agency evidence | Loaded coverage in this checkout | Known limits and uncertainty |
 | --- | --- | --- |
+| [Michigan — MCDA](https://www.michigan.gov/mcda/population) | Vintage 2024 population totals: six five-year points 2025–2050 for the state and all 83 counties (504 totals), all projections, retaining source decimals. State estimate base is 2022 | County base year is not explicitly identified and remains null. State main net-positive-migration scenario is loaded; illustrative zero-migration scenario is not loaded. Ten prosperity regions and age/sex detail are archived but not served. Place, household, eligible jobs and complete components coverage is unverified |
 | [Indiana — IBRC/STATS Indiana](https://www.stats.indiana.edu/topic/projections.asp) | July 2024 population edition: 2020 estimates and five-year projections from 2025, state through 2060 and all 92 counties through 2050 (653 totals); last underlying estimate year 2023 | State population anchor 2020 with estimates/components through 2023; county model starts from 2023 estimates. Neither table contains a 2023 row. County sums differ from state by 55–130 in projection years. Cities have no projections; metro/age/sex products are not loaded; household, jobs and components status is unknown |
 | [Virginia — Cooper Center](https://www.coopercenter.org/virginia-population-projections) | Population for the state and 133 county-equivalent localities (95 counties + 38 independent cities), six publisher-provided points in 2030–2055; base year 2024 | Large-town and age/sex products are published but not loaded; household, employment, and components publication status is unknown |
 | [Wisconsin — DOA](https://doa.wi.gov/Pages/LocalGovtsGrants/Population_Projections.aspx) | Population and households for the state and 72 counties at 2020, 2030, 2040, and 2050; base year 2020 | Minor-civil-division and municipal products are published but not loaded; household workbook has no edition date; employment/components status is unknown |
@@ -54,6 +56,20 @@ HTTP success or an arbitrary HTML body does not pass validation. Its acquire
 command reuses validated saved responses because live pages contain generation
 timestamps; new editions require new filenames. Other products were not fully
 audited, so Indiana also has no completed source-review date.
+
+Michigan's workbook, state report, county methodology, county release page,
+and download catalog were checked on September 29, 2026. Originals and their
+fingerprints are saved in `data/raw/mi/`. The adapter validates the sheet,
+column names, geography codes and names, complete geography/year grid, and
+finite nonnegative numbers before accepting the source. The file contains
+564 rows: 504 state/county totals are loaded and 60 prosperity-region rows are
+retained only in the original. These regions are not Census metro areas.
+Published county totals differ from the state by at most 0.03 persons;
+the adapter preserves both. The state report explicitly names its 2022 base,
+but the county methodology does not explicitly name a county population base.
+No completed source-review date is recorded because the other products have
+not been fully audited. Reacquisition reuses validated originals; new editions
+require new filenames and metadata.
 
 The report supplies each state's existing agency links and the exact source
 editions and retrieval dates in the selected database. `current_vintage` in

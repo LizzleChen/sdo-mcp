@@ -5,15 +5,17 @@ households, and employment where the state office publishes it. The server
 reads a local SQLite database and does not download data while answering a
 question.
 
-Coverage now includes 15 states. The newest addition is **Indiana**, using
-the [official IBRC July 2024 population projections](https://www.stats.indiana.edu/topic/projections.asp):
-all 92 counties through 2050 and the state through 2060, in five-year steps
-from 2025, plus the published 2020 estimates. State and county source records
-record the last underlying estimate year (2023), population methodology, and
-different horizons. For example:
-`get_forecast(state="IN", geo_level="county", geo="Hamilton", variable="population")`.
-City projections are not published; metro aggregations are published but not
-loaded. Household, jobs, and components publication status remains unverified.
+Coverage now includes 16 states. The newest addition is **Michigan**, using
+the [official MCDA Vintage 2024 population projections](https://www.michigan.gov/mcda/population):
+504 totals for the state and all 83 counties, in five-year steps from 2025
+through 2050. Every loaded point is a projection; decimal model outputs are
+preserved. For example:
+`get_forecast(state="MI", geo_level="county", geo="Wayne", variable="population")`.
+The state uses a documented 2022 estimate base and defaults to the main
+`net_positive_migration` scenario; the illustrative `zero_migration` scenario
+is not loaded. County base year is not explicitly documented and remains null.
+Regional and age/sex detail is archived but not served. Place, household,
+eligible jobs, and complete components coverage remains unverified.
 
 There is no public package release or hosted database download yet. You can
 install a checked compressed database release shared by the maintainer, or
@@ -195,4 +197,4 @@ or upload them.
 Source review schedules and publication-versus-loading status are available
 through `list_states`, `describe_source`, and the local report command:
 `uv run python -m sdo_mcp.monitoring --database data/sdo.sqlite`.
-See [source review instructions](docs/source-reviews.md) for all 15 states.
+See [source review instructions](docs/source-reviews.md) for all 16 states.

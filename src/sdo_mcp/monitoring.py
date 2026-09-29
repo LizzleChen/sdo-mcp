@@ -17,6 +17,7 @@ POLICIES = {
     "FL": (90, "Check BEBR population tables and the separate household/jobs PDF products."),
     "GA": (90, "Check OPB's projection edition and county workbook."),
     "IN": (90, "Review IBRC's population edition, POST query, state/county bases and horizons; check separate regional, labor-force, household, and economic products."),
+    "MI": (90, "Review MCDA state/county population editions, workbook codes, base years and scenarios; separately check regions, places, households, components and eligible SDO employment products."),
     "MN": (90, "Check the state and county files, including the projected launch year."),
     "NC": (90, "Check OSBM's edition and base year, including component files."),
     "OR": (30, "Check every regional release and county edition; preserve the Multnomah exclusion."),

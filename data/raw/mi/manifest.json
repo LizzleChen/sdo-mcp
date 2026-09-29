@@ -1,0 +1,42 @@
+[
+ {
+  "file": "population_v2024.xlsx",
+  "source": "https://milmi.org/_docs/publications/projectionsdata/County_Population_Projections_2050.xlsx",
+  "retrieved_at": "2026-09-29",
+  "sha256": "e773dea366ff92a44dfe09bb538e11cc90ceb9cbbcd1f6b5a24f13ffdd476a07",
+  "records": 504,
+  "note": "Original MCDA Vintage 2024 workbook or supporting reference. Workbook: 564 source rows; 504 state/county totals served, 60 prosperity-region rows retained only in the original."
+ },
+ {
+  "file": "state_report_v2024.pdf",
+  "source": "https://www.michigan.gov/-/media/Project/Websites/mcda/reports/2024/Michigan-Statewide-Population-Projections-through-2050.pdf?rev=bf065eb658824929b65255e0e8b9a93c",
+  "retrieved_at": "2026-09-29",
+  "sha256": "553c8e7e679ae64ff00d853526439d62f1175ae9047f012a540ad0057537f13f",
+  "records": null,
+  "note": "Original MCDA Vintage 2024 workbook or supporting reference. Workbook: 564 source rows; 504 state/county totals served, 60 prosperity-region rows retained only in the original."
+ },
+ {
+  "file": "county_methodology_v2024.pdf",
+  "source": "https://www.michigan.gov/-/media/Project/Websites/mcda/assets/Insight-Media-Files/Mi-County-Proj/Methodology---MiCtyPopProj.pdf?hash=396E088A6297591C3644528592AA07AA&rev=d93f987a0828444eade6640080b280e4",
+  "retrieved_at": "2026-09-29",
+  "sha256": "67dcfb6e0d0490a54966965f03cd1eee6b2191b111077421b3bd12c669388dc3",
+  "records": null,
+  "note": "Original MCDA Vintage 2024 workbook or supporting reference. Workbook: 564 source rows; 504 state/county totals served, 60 prosperity-region rows retained only in the original."
+ },
+ {
+  "file": "county_release_2025-03-06.html",
+  "source": "https://www.michigan.gov/mcda/insights/2025/03/06/mich-county-popproj-2050",
+  "retrieved_at": "2026-09-29",
+  "sha256": "1025c322fb3099fe89be218ffac104b5f5364928f68f0b5ab272598781e5b9e3",
+  "records": null,
+  "note": "Original MCDA Vintage 2024 workbook or supporting reference. Workbook: 564 source rows; 504 state/county totals served, 60 prosperity-region rows retained only in the original."
+ },
+ {
+  "file": "data_catalog_2026-09-29.html",
+  "source": "https://milmi.org/DataSearch/POPPROJ",
+  "retrieved_at": "2026-09-29",
+  "sha256": "646aac3525a16eb823c0d1fb8117e9a756535f4bcc713215cffc390aaf46cbfe",
+  "records": null,
+  "note": "Original MCDA Vintage 2024 workbook or supporting reference. Workbook: 564 source rows; 504 state/county totals served, 60 prosperity-region rows retained only in the original."
+ }
+]
