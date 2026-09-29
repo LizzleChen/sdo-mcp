@@ -5,17 +5,16 @@ households, and employment where the state office publishes it. The server
 reads a local SQLite database and does not download data while answering a
 question.
 
-Coverage now includes 16 states. The newest addition is **Michigan**, using
-the [official MCDA Vintage 2024 population projections](https://www.michigan.gov/mcda/population):
-504 totals for the state and all 83 counties, in five-year steps from 2025
-through 2050. Every loaded point is a projection; decimal model outputs are
-preserved. For example:
-`get_forecast(state="MI", geo_level="county", geo="Wayne", variable="population")`.
-The state uses a documented 2022 estimate base and defaults to the main
-`net_positive_migration` scenario; the illustrative `zero_migration` scenario
-is not loaded. County base year is not explicitly documented and remains null.
-Regional and age/sex detail is archived but not served. Place, household,
-eligible jobs, and complete components coverage remains unverified.
+Coverage now includes 17 states. The newest addition is **Pennsylvania**, using
+the [PaSDC 2023 population projections](https://www.rural.pa.gov/data/population-projections):
+476 totals for the state and all 67 counties. The 2020 values are estimates;
+2025–2050 values are projections at five-year intervals. The population base
+year is 2020, using Census Vintage 2022 estimates. For example:
+`get_forecast(state="PA", geo_level="county", geo="Philadelphia", variable="population")`.
+Original workbooks and supporting documents are archived with retrieval dates
+and fingerprints. Age/sex detail is archived but not served. State components
+are published in a PDF and are not loaded; place, household, eligible jobs,
+and county components coverage remains unverified.
 
 There is no public package release or hosted database download yet. You can
 install a checked compressed database release shared by the maintainer, or
@@ -197,4 +196,4 @@ or upload them.
 Source review schedules and publication-versus-loading status are available
 through `list_states`, `describe_source`, and the local report command:
 `uv run python -m sdo_mcp.monitoring --database data/sdo.sqlite`.
-See [source review instructions](docs/source-reviews.md) for all 16 states.
+See [source review instructions](docs/source-reviews.md) for all 17 states.

@@ -1,0 +1,811 @@
+
+                <!DOCTYPE html>
+					<html lang="en">
+						<head>
+
+							<!-- Basic -->
+							<meta charset="utf-8">
+							<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+							<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+							<meta name="ROBOTS" content="INDEX, FOLLOW">
+							
+								<title>Population Projections - Center for Rural PA</title>
+							
+
+							<meta name="keywords" content="HTML5 Template" />
+							<meta name="description" content="Canva - Responsive HTML5 Template">
+							<meta name="author" content="SemiColonWeb" />
+
+							<!-- Stylesheets
+							============================================= -->
+							<link rel="preconnect" href="https://fonts.googleapis.com">
+                            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+							<link href="https://fonts.googleapis.com/css2?family=Alegreya&display=swap" rel="stylesheet">
+							<link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;700&display=swap" rel="stylesheet">
+							<link rel="preconnect" href="https://fonts.googleapis.com">
+                            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                            <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+							<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-rqn26AG5Pj86AF4SO72RK5fyefcQ/x32DNQfChxWvbXIyXFePlEktwD18fEz+kQU" crossorigin="anonymous">
+							<link rel="stylesheet" href="/css/bootstrap.css?t=20211027" type="text/css" />
+							<link rel="stylesheet" href="/css/style.css?t=20211027" type="text/css" />
+							<link rel="stylesheet" href="/css/swiper.css" type="text/css" />
+							<link rel="stylesheet" href="/css/dark.css" type="text/css" />
+							<link rel="stylesheet" href="/css/font-icons.css" type="text/css" />
+							<link rel="stylesheet" href="/css/animate.css" type="text/css" />
+							<link rel="stylesheet" href="/css/magnific-popup.css" type="text/css" />
+
+							<link rel="stylesheet" href="/css/custom.css?t=20211203" type="text/css" />
+							<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+							<!--<link rel="stylesheet" href="css/colors.php?color=e7272d" type="text/css" />-->
+
+							<!-- SLIDER REVOLUTION 5.x CSS SETTINGS -->
+							<link rel="stylesheet" type="text/css" href="/css/settings.css" media="screen" />
+							<link rel="stylesheet" type="text/css" href="/css/layers.css" />
+							<link rel="stylesheet" type="text/css" href="/css/navigation.css" />
+
+							<!-- Vendor -->
+							<script type="text/javascript" src="/Layout/RuralPA2021/vendor/jquery/jquery.min.js"></script>
+							<script type="text/javascript" src="/Layout/RuralPA2021/vendor/jquery.appear/jquery.appear.min.js"></script>
+							<script type="text/javascript" src="/Layout/RuralPA2021/vendor/jquery.easing/jquery.easing.min.js"></script>
+							<script type="text/javascript" src="/Layout/RuralPA2021/vendor/jquery.cookie/jquery.cookie.min.js"></script>
+							<script type="text/javascript" src="/Layout/RuralPA2021/vendor/jquery.validation/jquery.validate.min.js"></script>
+							<script type="text/javascript" src="/Layout/RuralPA2021/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+							<script type="text/javascript" src="/Layout/RuralPA2021/vendor/jquery.gmap/jquery.gmap.min.js"></script>
+
+                            
+                            <script language="javascript">
+                                $(document).ready(function() {
+                                    jQuery('.subscribe-form').validate({
+                                        rules : {
+                                            emailConfirm : {
+                                                minlength : 5,
+                                                equalTo : "#email"
+                                            }
+                                        }
+                                    });
+                                    $(".subscribe-form").submit(() => {
+                                        if ($(".subscribe-form").valid()) {
+                                            $.post('include/subscribe.cfm', $(".subscribe-form").serialize(), response => {
+                                                if (response) {
+                                                    var responseJSON = $.parseJSON(response);
+                                                    $('.subscribe-form-result').append(responseJSON.pageMessage.TEXT);
+                                                    $('.form-process').hide();
+                                                }
+                                            });
+                                        } else {
+                                            $('.subscribe-form-result').append(
+                                                "<i class='fa fa-lg fa-warning'></i> An error occurred. Please make sure your info was correct and try again."
+                                            );
+                                        }
+
+                                        return false
+                                    });
+									setTimeout(function() {$('#gsc-i-id1').attr('placeholder','search here')},3000);
+                                });
+                            </script>
+
+							
+								<!-- accessibility library -->
+								<script src="https://cdn.userway.org/widget.js" data-account="J6OxeZAThZ"></script>
+							
+
+<style>
+	p{
+		color: #000;
+	}
+
+	.btn-shadow,
+		.btn-shadow.reverse:hover {
+			--bg-color: #FFF;
+			--border-color: #666;
+			--position: -5px -5px;
+			box-shadow: var(--position) 0px 0px var(--bg-color),
+				var(--position) 0px 1px var(--border-color);
+			transition: all .3s ease-out !important;
+		}
+
+		.btn-shadow:hover,
+		.btn-shadow.reverse:not(:hover) {
+			box-shadow: 0px 0px 0px 0px var(--bg-color),
+				0px 0px 0px 1px var(--bg-color);
+		}
+
+		.btn-shadow.top-right { --position: 5px -5px !important; }
+		.btn-shadow.bottom-right { --position: 5px 5px !important; }
+		.btn-shadow.bottom-left { --position: -5px 5px !important; }
+
+		.btn-scale i {
+			--width: 30px;
+			position: relative;
+			margin-left: 6px;
+			transition: padding .3s linear;
+		}
+
+		.btn-scale i::after {
+			content: "";
+			opacity: 0;
+			position: absolute;
+			right: 1px;
+			top: 50%;
+			width: 2px;
+			height: 1px;
+			background-color: #444;
+			transition: all .3s linear;
+		}
+
+		.btn-scale:hover i::after {
+			opacity: 1;
+			width: var(--width);
+		}
+
+		.btn-scale:hover i { padding-left: var(--width); }
+
+		.circular-text {
+			position: relative;
+		}
+
+	.button{
+		background-color: #76bc43;
+	}
+
+	.button:hover{
+		background-color: #004c46;
+	}
+
+	a {
+		--border-color: transparent !important;
+		--bg-color: #76bc4373 !important;
+	}
+</style>
+
+
+<script type="text/javascript">
+</script>
+
+
+
+                </head>
+                <body class="stretched block-sticky-section" data-bs-spy="scroll" data-bs-target="#nav-spy" data-bs-offset="0" tabindex="0">
+					
+
+                    <div id="" class="body">
+                        <header id="header" class="header sticky-header" data-menu-padding="10" data-logo-height="150">
+                            <div id="header-wrap">
+                                <div class="container">
+                                    <div class="header-row justify-content-lg-center">
+
+                                        <div id="logo" class="col-auto me-lg-0 order-lg-2">
+                                            <a href=" /home"
+												class="standard-logo p-2"
+												data-dark-logo="/Resources/images/CFRP_Logo_RGB_All_Book.png"
+											>
+												<img src="/Resources/images/CFRP_Logo_RGB_All_Book.png" alt="Rural Logo" style="width:auto!important;max-height:200px;">
+											</a>
+                                        </div><!-- logo end -->
+
+                                        <div id="primary-menu-trigger">
+                                            <svg class="svg-trigger" viewBox="0 0 100 100">
+												<path d="m 30,33 h 40 c 3.722839,0 7.5,3.126468 7.5,8.578427 0,5.451959 -2.727029,8.421573 -7.5,8.421573 h -20"></path>
+												<path d="m 30,50 h 40"></path>
+												<path d="m 70,67 h -40 c 0,0 -7.5,-0.802118 -7.5,-8.365747 0,-7.563629 7.5,-8.634253 7.5,-8.634253 h 20"></path>
+											</svg>
+                                        </div>
+
+									</div>
+                                    <div class="header-row">
+
+                                        <!-- Primary Navigation
+                                        ============================================= -->
+                                        <div class="primary-menu style-4 menu-spacing-margin col-lg-12">
+                                            <div class="menu-container justify-content-between overflow-auto" style="z-index:3;">
+                                                <div class="menu-item"> 
+                                                    <a class="menu-link text-center" href=" /home">
+														<div>Home</div>
+													</a>
+                                                </div>
+
+                                                <div class="menu-item"> 
+                                                    <a class="menu-link text-center" href="javascript:void(0);" style="text-wrap:balance;">
+														<div>About the Center</div>
+													</a>
+                                                    <ul class="sub-menu-container" style="margin-top: -15px;">
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href=" /about">
+																<div>Mission Statement/ Enabling Legislation</div>
+															</a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href=" /about-center/board-of-directors">
+																<div>Board of Directors</div>
+															</a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href=" /about-center/staff">
+																<div>Staff</div>
+															</a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href="\about-center\internship">
+																<div>Rural Research Fellowship</div>
+															</a>
+                                                        </li>
+
+														<li class="menu-item">
+															<a class="menu-link" href="javascript:void(0);" onClick="document.getElementById('contactUs').submit();">
+																<div>Contact Us</div>
+															</a>
+														</li>
+
+													</ul>
+
+													<form id="contactUs" class="d-none" method="post" action=" /contact">
+														<input type="hidden" name="emailKey" value="0" />
+													</form>
+                                                </div>
+
+                                                <div class="menu-item"> 
+                                                    <a class="menu-link text-center" href="javascript:void(0);">
+														<div>Data</div>
+													</a>
+
+                                                    <ul class="sub-menu-container" style="margin-top: -15px;">
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href=" /data/rural-urban-definitions">
+																<div>Rural Urban Definitions</div>
+															</a>
+                                                        </li>
+
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href=" /data/data-dashboards">
+																<div>Data Dashboards</div>
+															</a>
+                                                        </li>
+
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href=" /data/county-profiles">
+																<div>County Profiles</div>
+															</a>
+                                                        </li>
+
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href=" /data/municipality-profiles">
+																<div>Municipal Profiles</div>
+															</a>
+                                                        </li>
+
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href=" /data/school-district-profiles">
+																<div>School District Profiles</div>
+															</a>
+                                                        </li>
+
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href=" /data/datagram-archive">
+																<div>DataGram</div>
+															</a>
+                                                        </li>
+
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href=" /data/rural-quick-facts">
+																<div>Rural Quick Facts</div>
+															</a>
+                                                        </li>
+
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href=" /data/population-projections">
+																<div>Population Projections</div>
+															</a>
+                                                        </li>
+
+														<li class="menu-item">
+															<a class="menu-link" href=" /data/wealth-transfer">
+																<div>Transfer of Wealth in Pennsylvania</div>
+															</a>
+														</li>
+
+														<li class="menu-item">
+															<a class="menu-link" href=" /data/broadband">
+																<div>Broadband Availability and Access in Rural Pennsylvania</div>
+															</a>
+														</li>
+
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href="/Resources/PDFs/data/2025 Senate Legislative District Profiles.pdf" target="_blank" title="2025 Senate Legislative District Profiles (opens in a new tab)">
+																<div>2025 Senate Legislative District Profiles</div>
+															</a>
+                                                        </li>
+
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href="/Resources/PDFs/data/2025 House Legislative District Profiles.pdf" target="_blank" title="2025 House Legislative District Profiles (opens in a new tab)">
+																<div>2025 House Legislative District Profiles</div>
+															</a>
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+
+												<div class="menu-item"> 
+													<a class="menu-link text-center" href="javascript:void(0);" style="text-wrap:balance;">
+														<div>Research Grants</div>
+													</a>
+
+													<ul class="sub-menu-container" style="margin-top: -15px;">
+														<li class="menu-item">
+															<a class="menu-link" href=" /research-grants/grant-information">
+																<div>Grant Information</div>
+															</a>
+														</li>
+
+														<li class="menu-item">
+															<a class="menu-link" href=" /research-grants/request-for-proposals">
+																<div>Request for Proposals</div>
+															</a>
+														</li>
+
+														<li class="menu-item">
+															<a class="menu-link" href=" /research-grants/student-micro-grant-program">
+																<div>Student Micro Grant Program</div>
+															</a>
+														</li>
+
+														<li class="menu-item">
+															<a class="menu-link" href=" /research-grants/current-grant-projects">
+																<div>Current Grant Projects</div>
+															</a>
+														</li>
+
+														<li class="menu-item">
+															<a class="menu-link" href=" /research-grants/project-webinars">
+																<div>Grant Project Webinars</div>
+															</a>
+														</li>
+													</ul>
+												</div>
+
+												<div class="menu-item"> 
+													<a class="menu-link text-center" href="javascript:void(0);">
+														<div>Publications</div>
+													</a>
+													<ul class="sub-menu-container" style="margin-top: -15px;">
+														<li class="menu-item">
+															<a class="menu-link" href=" /publications/research-reports">
+																<div>Research Reports</div>
+															</a>
+														</li>
+														<li class="menu-item">
+															<a class="menu-link" href=" /publications/newsletters">
+																<div>Newsletters</div>
+															</a>
+														</li>
+														<li class="menu-item">
+															<a class="menu-link" href=" /publications/fact-sheets">
+																<div>Fact Sheets</div>
+															</a>
+														</li>
+														<li class="menu-item">
+															<a class="menu-link" href=" /publications/summaries">
+																<div>Summaries</div>
+															</a>
+														</li>
+														<li class="menu-item">
+															<a class="menu-link" href=" /publications/community-planning">
+																<div>Community Planning Handbook</div>
+															</a>
+														</li>
+													</ul>
+												</div>
+
+                                                <div class="menu-item"> 
+                                                    <a class="menu-link text-center" href="javascript:void(0);">
+														<div>News</div>
+													</a>
+                                                    <ul class="sub-menu-container" style="margin-top: -15px;">
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href=" /latest-news/news">
+																<div>News</div>
+															</a>
+                                                        </li>
+
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href="\Resources\PDFs\news\2022-2024 In Review Web.pdf" target="_blank" aria-label="Years In Review (opens in a new tab)">
+																<div>Years In Review</div>
+															</a>
+                                                        </li>
+
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href=" /news-events/rural-policy-symposium">
+																<div>Rural Policy Symposium</div>
+															</a>
+                                                        </li>
+
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href=" /news-events/rural-policy-summit">
+																<div>Rural Policy Summit</div>
+															</a>
+                                                        </li>
+
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href=" /news-events/public-hearings">
+																<div>Public Hearings</div>
+															</a>
+                                                        </li>
+
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href=" /news-events/calendar-events">
+																<div>Calendar</div>
+															</a>
+                                                        </li>
+
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href=" /news-events/resources">
+																<div>Resources</div>
+															</a>
+                                                        </li>
+														<li class="menu-item">
+                                                            <a class="menu-link" href="/news-events/impactVideo.cfm" aria-label="Impact Video">
+																<div>Impact Video</div>
+															</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+
+                                                <div class="menu-item"> 
+                                                    <a class="menu-link text-center me-5" href="javascript:void(0);" style="background-color:#004C46;color:white;border-radius:0.3rem;text-wrap:balance;">
+														<div class="d-xl-block d-none">
+															PA Rural Population
+														</div>
+
+														<div>
+															Revitalization Commission
+														</div>
+													</a>
+                                                    <ul class="sub-menu-container overflow-visible">
+														<li class="menu-item">
+															<a class="menu-link" href=" /commission">
+																<div>About/Enabling Legislation</div>
+															</a>
+														</li>
+
+														<li class="menu-item">
+															<a class="menu-link" href=" /commission/members">
+																<div>Commissioners</div>
+															</a>
+														</li>
+
+														<li class="menu-item">
+															<a class="menu-link" href=" /commission/publications">
+																<div>Publications</div>
+															</a>
+														</li>
+
+														<li class="menu-item">
+															<a class="menu-link" href=" /commission/recommendations">
+																<div>Recommendations</div>
+															</a>
+														</li>
+
+														<li class="menu-item">
+															<a class="menu-link" href=" /commission/news">
+																<div>News</div>
+															</a>
+														</li>
+
+														<li class="menu-item">
+															<a class="menu-link" href=" /commission/public-hearings">
+																<div>Public Hearings</div>
+															</a>
+														</li>
+
+														<li class="menu-item">
+															<a class="menu-link" href="javascript:void(0);" onClick="document.getElementById('contactCommission').submit();">
+																<div>Contact the Commission</div>
+															</a>
+														</li>
+
+													</ul>
+
+													<form id="contactCommission" class="d-none" method="post" action=" /contact">
+														<input type="hidden" name="emailKey" value="8" />
+													</form>
+                                                </div>
+                                            </div>
+                                        </div><!-- primary-menu end -->
+
+                                    </div>
+                                </div>
+                                <div class="header-bar">
+                                    <div class="col-xl-4 col-md-6 mx-0 my-auto float-end" style="margin-top:-2.5px;padding:0!important;">
+										<style>
+											@media (min-width: 992px) {
+												.gstl_50.gsc-input {
+													margin-bottom: 0 !important;
+												}
+
+												.gsc-search-button.gsc-search-button-v2 {
+													vertical-align: baseline !important;
+												}
+
+												.gsc-control-cse.gsc-control-cse-en {
+													padding: 0 !important;
+												}
+											}
+										</style>
+
+                                        <script async src="https://cse.google.com/cse.js?cx=ad0513233eb228cba"></script>
+
+										<!-- This search is provided by Google, they use a table element -->
+										
+                                        <div class="gcse-search"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </header><!-- header end -->
+
+                        <div role="main" class="main" style="margin-top: -10px;">
+                            
+                                <section id="page-title">
+
+                                    <div class="container clearfix">
+
+                                        <h1>Population Projections</h1>
+
+                                         
+
+				<ul class="breadcrumb">
+					
+						<li class="breadcrumb-item active">
+							
+								<a href="/" target="">Home</a>
+							
+						</li>
+					
+						<li class="breadcrumb-item active">
+							
+								<a href="javascript:void(0);" target="">Data</a>
+							
+						</li>
+					
+						<li class="breadcrumb-item active">
+							Population Projections 
+						</li>
+					
+				</ul>
+
+			
+                                    </div>
+
+                                </section>
+                            
+
+
+<section id="content">
+	<div class="content-wrap">
+		<div class="container clearfix">
+			<p>
+				In 2020, the Center partnered with Penn State Harrisburg's Institute of State and Regional Affairs to conduct population projections for the Commonwealth and its 67 counties for 2020 to 2050.
+			</p>
+			<p>
+				Population projection data, used in conjunction with other population data, are useful to public and private agencies for policy development, project planning, and program evaluation.
+			</p>
+			<p>
+				The Pennsylvania population projections completed for the Center are for the years 2020, 2025, 2030, 2035, 2040, 2045, and 2050, and were developed by 5-year age and gender cohorts.
+			</p>
+			<p>
+				Provided below are links to the fact sheet, Pennsylvania Population Projections 2050: A First Look, which provides a rural/urban analysis of the population projections, and the population projections Excel file, which includes the data for the commonwealth and all 67 counties.
+			</p>
+			<p>
+				The methodology report is now available.
+			</p>
+			<br />
+		</div>
+
+		<div class="text-center">
+			<a href="/Resources/PDFs/Access PASS Final Population Projections Fact Sheet_.pdf" target="_blank" class="button btn btn-primary button-xlarge btn-shadow">
+				<i class="icon-file-pdf1"></i> Read the fact sheet
+			</a>
+
+			<a href="https://www.rural.pa.gov/download.cfm?file=Resources/reports/assets/260/Pennsylvania Population Projections for the Next 30 Years Web.pdf" target="_blank" class="button btn btn-primary button-xlarge btn-shadow">
+				<i class="icon-file-pdf1"></i> Read the Report
+			</a>
+
+			<a href="/Resources/excel/Population Projections by Gender and Age 2020 to 2050.xlsx" target="_blank" class="button btn btn-primary button-xlarge btn-shadow">
+				<i class="icon-file-excel1"></i> Get the projections
+			</a>
+
+			<a href="/Resources/PDFs/Pennsylvania Population Projections Press Release.pdf" target="_blank" class="button btn btn-primary button-xlarge btn-shadow">
+				<i class="icon-file-pdf1"></i> Read the Press Release
+			</a>
+
+			<a href="https://vimeo.com/pasenategop/100423-centerforruralpa-presser" target="_blank" class="button btn btn-primary button-xlarge btn-shadow">
+				<i class="far fa-video"></i> Watch the Press Conference
+			</a>
+		</div>
+	</div>
+</section>
+<br /><br />
+
+
+
+
+                    </div>
+                        <footer id="footer" class="dark" style="margin-bottom: -80px;">
+                            <div class="container">
+
+                                <!-- Footer Widgets
+                                ============================================= -->
+                                <div class="footer-widgets-wrap">
+                                    <div class="row col-mb-50">
+                                        <div class="col-lg-6">
+
+                                            <div class="widget clearfix">
+
+                                                <img src="/Resources/images/CFRP_Logo_White.png" alt="logo" class="footer-logo" style="height: 100px;">
+
+                                                <div class="py-2">
+                                                    <div class="row col-mb-30">
+                                                        <div class="col-5">
+                                                            <address class="mb-0">
+                                                                <i class="fad fa-building"></i> <b>Address:</b><br>
+                                                                625 Forster St, Room 902<br>
+                                                                Harrisburg, PA 17120<br>
+                                                            </address>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <abbr title="Phone Number"><i class="fad fa-phone"></i> <b>Phone:</b></abbr> 717.787.9555<br>
+                                                            <abbr title="Fax Number"><i class="fad fa-fax"></i> <b>Fax:</b></abbr> 717.298.0161<br>
+                                                            <abbr title="Email Number"><i class="fad fa-address-card"></i> <a href=" /contact" style="font-size: large;"><b>Contact Us</b></a><br>
+                                                        </div>
+                                                    </div>
+                                                </div><br>
+
+                                                <a href=" /right-to-know" style="font-size: larger;"><b>Right to Know</b></a>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-sm-6 col-lg-6">
+
+                                            <div class="widget quick-contact-widget form-widget clearfix">
+
+                                                
+                                                    <div class="h5" style="font-size: larger; font-weight: 300;">Subscribe to Our Newsletter and Center Updates.</div>
+                                                    <div class="subscribe-form-result"></div>
+
+                                                    <form method="post" class="subscribe-form needs-validation mb-0">
+
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-5">
+                                                                <input type="text"
+                                                                    class="form-control"
+                                                                    id="nameFirst"
+                                                                    name="nameFirst"
+                                                                    placeholder="First Name"
+                                                                    maxlength="50"
+                                                                    required
+                                                                    aria-required="true"
+                                                                />
+                                                            </div>
+                                                            <div class="col-sm-5">
+                                                                <input type="text"
+                                                                    class="form-control"
+                                                                    id="nameLast"
+                                                                    name="nameLast"
+                                                                    placeholder="Last Name"
+                                                                    maxlength="100"
+                                                                    required
+                                                                    aria-required="true"
+                                                                />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="input-group mx-auto">
+                                                            <div class="input-group-text"><i class="icon-email2"></i></div>
+                                                            <input type="email"
+                                                                id="subscribe-form-email"
+                                                                name="email"
+                                                                class="form-control required email"
+                                                                placeholder="Enter your Email"
+                                                                required
+                                                            />
+
+                                                            <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                                                            <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                                                                <input type="text" name="b0tProtection" tabindex="-1" value="" />
+                                                            </div>
+
+                                                            <button type="submit"
+                                                                class="btn btn-success"
+                                                                style="background-color: #004C46; border-color: #004C46;"
+                                                                onClick="$('.subscribe-form-result').empty();"
+                                                            >
+                                                                Subscribe
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                                                
+                                                <br>
+
+                                                <a aria-label="Facebook (opens in a new tab)"
+													class="social-icon si-dark si-colored si-large si-facebook mb-0"
+													style="margin-right:10px;"
+													href="https://www.facebook.com/pages/The-Center-for-Rural-Pennsylvania/301599979868233"
+													target="_blank"
+												>
+                                                    <i class="icon-facebook"></i>
+                                                    <i class="icon-facebook"></i>
+                                                </a>
+                                                <a aria-label="LinkedIn (opens in a new tab)"
+													class="social-icon si-dark si-colored si-large si-linkedin mb-0"
+													style="margin-right:10px;"
+													href="https://www.addtoany.com/add_to/linkedin?linkurl=https%3A%2F%2Fwww.rural.palegislature.us%2Findex.html&amp;linkname=The%20Center%20for%20Rural%20Pennsylvania&amp;linknote="
+													target="_blank"
+												>
+                                                    <i class="icon-linkedin"></i>
+                                                    <i class="icon-linkedin"></i>
+                                                </a>
+                                                <a aria-label="Twitter (opens in a new tab)"
+													class="social-icon si-dark si-colored si-large si-twitter mb-0"
+													style="margin-right:10px;background-color:black!important;"
+													href="https://www.addtoany.com/add_to/twitter?linkurl=https%3A%2F%2Fwww.rural.palegislature.us%2Findex.html&amp;linkname=The%20Center%20for%20Rural%20Pennsylvania&amp;linknote="
+													target="_blank"
+												>
+													<i class="x-twitter-icon-white">&nbsp;</i>
+													<i class="x-twitter-icon-white">&nbsp;</i>
+                                                </a>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div><!-- .footer-widgets-wrap end -->
+
+                            </div>
+                        </footer>
+                    </div><!--! //.body -->
+                        <!-- Go To Top
+                        ============================================= -->
+                        <div id="gotoTop" class="icon-angle-up"></div>
+
+                        <!-- JavaScripts
+                        ============================================= -->
+                        <script src="/js/jquery.js"></script>
+                        <script src="/js/plugins.min.js"></script>
+
+                        <!-- Footer Scripts
+                        ============================================= -->
+                        <script src="/js/functions.js"></script>
+                        <script src="/js/plugins.infinitescroll.js"></script>
+
+                        <!-- SLIDER REVOLUTION 5.x SCRIPTS  -->
+                        <script src="/include/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+                        <script src="/include/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+
+                        <script src="/include/rs-plugin/js/extensions/revolution.extension.actions.min.js"></script>
+                        <script src="/include/rs-plugin/js/extensions/revolution.extension.carousel.min.js"></script>
+                        <script src="/include/rs-plugin/js/extensions/revolution.extension.kenburn.min.js"></script>
+                        <script src="/include/rs-plugin/js/extensions/revolution.extension.layeranimation.min.js"></script>
+                        <script src="/include/rs-plugin/js/extensions/revolution.extension.migration.min.js"></script>
+                        <script src="/include/rs-plugin/js/extensions/revolution.extension.navigation.min.js"></script>
+                        <script src="/include/rs-plugin/js/extensions/revolution.extension.parallax.min.js"></script>
+                        <script src="/include/rs-plugin/js/extensions/revolution.extension.slideanims.min.js"></script>
+                        <script src="/include/rs-plugin/js/extensions/revolution.extension.video.min.js"></script>
+
+						<!-- Global site tag (gtag.js) - Google Analytics -->
+						
+							<script async src="https://www.googletagmanager.com/gtag/js?id=G-WWDJKZ7NEZ"></script>
+
+							<script>
+								window.dataLayer = window.dataLayer || [];
+								function gtag() { dataLayer.push(arguments); }
+								gtag('js', new Date());
+								gtag('config', 'G-WWDJKZ7NEZ');
+							</script>
+						
+
+                    </body>
+                    </html>
+            
