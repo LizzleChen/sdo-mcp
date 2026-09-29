@@ -1,7 +1,7 @@
 # Source reviews and loading status
 
 Run `uv run python -m sdo_mcp.monitoring --database data/sdo.sqlite`
-for a JSON report of all 14 states. Omit `--database` to inspect the installed
+for a JSON report of all 15 states. Omit `--database` to inspect the installed
 copy (or the file selected by `SDO_DB`). The command reads local files only.
 It neither checks websites nor changes the database. Save its output when
 preparing a data release. `list_states` and `describe_source` expose the same
@@ -19,6 +19,7 @@ Check sooner when an agency announces a revision or a source check fails.
 | Colorado | 30 days | Population, households, jobs; autumn updates |
 | Florida | 90 days | Population workbook and household/jobs PDFs |
 | Georgia | 90 days | OPB edition and county workbook |
+| Indiana | 90 days | IBRC edition, POST query, state/county bases and horizons; separate regional, labor-force, household and economic products |
 | Minnesota | 90 days | State/county files and projected launch year |
 | North Carolina | 90 days | Edition, base year, and components |
 | Oregon | 30 days | Every regional/county edition and exclusions |
@@ -35,6 +36,7 @@ the manifests retain each file's retrieval date and fingerprint.
 
 | State and agency evidence | Loaded coverage in this checkout | Known limits and uncertainty |
 | --- | --- | --- |
+| [Indiana — IBRC/STATS Indiana](https://www.stats.indiana.edu/topic/projections.asp) | July 2024 population edition: 2020 estimates and five-year projections from 2025, state through 2060 and all 92 counties through 2050 (653 totals); last underlying estimate year 2023 | State population anchor 2020 with estimates/components through 2023; county model starts from 2023 estimates. Neither table contains a 2023 row. County sums differ from state by 55–130 in projection years. Cities have no projections; metro/age/sex products are not loaded; household, jobs and components status is unknown |
 | [Virginia — Cooper Center](https://www.coopercenter.org/virginia-population-projections) | Population for the state and 133 county-equivalent localities (95 counties + 38 independent cities), six publisher-provided points in 2030–2055; base year 2024 | Large-town and age/sex products are published but not loaded; household, employment, and components publication status is unknown |
 | [Wisconsin — DOA](https://doa.wi.gov/Pages/LocalGovtsGrants/Population_Projections.aspx) | Population and households for the state and 72 counties at 2020, 2030, 2040, and 2050; base year 2020 | Minor-civil-division and municipal products are published but not loaded; household workbook has no edition date; employment/components status is unknown |
 | [Utah — Gardner Policy Institute](https://gardner.utah.edu/utah-demographics/population-projections/utah-2065-long-term-vintage-2025/) | Baseline population, households, total jobs, births, deaths, and net migration for the state and 29 counties annually from 2025–2065; base year is not stated | High/Low scenario workbook contains totals for 2030–2065 but is not loaded and contains no components; subcounty estimates are a separate product, not forecasts |
@@ -43,6 +45,15 @@ The three expansion-state snapshots were checked for format, workbook shape,
 and adapter fixture values during the September 22, 2026 build. That check did
 not cover every product on each agency landing page, so it is not recorded as a
 completed source review in `src/sdo_mcp/source_reviews.json`.
+
+Indiana's population tables and supporting pages were checked on September 28,
+2026. The original HTML, exact POST form, retrieval dates, and fingerprints are
+saved in `data/raw/in/`. The adapter validates the table header, Census county
+names, every geography/year pair, numeric values, and the estimate footnote.
+HTTP success or an arbitrary HTML body does not pass validation. Its acquire
+command reuses validated saved responses because live pages contain generation
+timestamps; new editions require new filenames. Other products were not fully
+audited, so Indiana also has no completed source-review date.
 
 The report supplies each state's existing agency links and the exact source
 editions and retrieval dates in the selected database. `current_vintage` in
