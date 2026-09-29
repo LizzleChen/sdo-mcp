@@ -5,16 +5,19 @@ households, and employment where the state office publishes it. The server
 reads a local SQLite database and does not download data while answering a
 question.
 
-Coverage now includes 17 states. The newest addition is **Pennsylvania**, using
-the [PaSDC 2023 population projections](https://www.rural.pa.gov/data/population-projections):
-476 totals for the state and all 67 counties. The 2020 values are estimates;
-2025–2050 values are projections at five-year intervals. The population base
-year is 2020, using Census Vintage 2022 estimates. For example:
-`get_forecast(state="PA", geo_level="county", geo="Philadelphia", variable="population")`.
-Original workbooks and supporting documents are archived with retrieval dates
-and fingerprints. Age/sex detail is archived but not served. State components
-are published in a PDF and are not loaded; place, household, eligible jobs,
-and county components coverage remains unverified.
+Coverage now includes 18 states. The newest addition is **Kentucky**, using
+the [KSDC Vintage 2022 projections](https://centers.louisville.edu/kentucky-state-data-center/data-downloads):
+1,694 population and household totals for the state and all 120 counties.
+Historical 2020 Census-based values use the `estimate` label; 2025–2050 values
+are projections at five-year intervals. The model anchor is 2020; `base_year`
+records 2021, the last underlying population estimate input named by the
+catalog, including for the household projections. No 2021 row is generated.
+For example:
+`get_forecast(state="KY", geo_level="county", geo="Jefferson", variable="households")`.
+Original workbooks, the codebook and catalog are archived with retrieval dates
+and fingerprints. Age/sex and Area Development District detail are archived
+but not served. This edition has no city/place forecasts; eligible jobs and
+projected components coverage remains unverified.
 
 There is no public package release or hosted database download yet. You can
 install a checked compressed database release shared by the maintainer, or
@@ -196,4 +199,4 @@ or upload them.
 Source review schedules and publication-versus-loading status are available
 through `list_states`, `describe_source`, and the local report command:
 `uv run python -m sdo_mcp.monitoring --database data/sdo.sqlite`.
-See [source review instructions](docs/source-reviews.md) for all 17 states.
+See [source review instructions](docs/source-reviews.md) for all 18 states.

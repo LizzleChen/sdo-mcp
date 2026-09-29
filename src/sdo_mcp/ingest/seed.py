@@ -33,6 +33,7 @@ COVERED_STATES = {
     "WI": "Wisconsin",
     "UT": "Utah",
     "IN": "Indiana",
+    "KY": "Kentucky",
     "MI": "Michigan",
     "PA": "Pennsylvania",
 }
@@ -369,6 +370,28 @@ COVERAGE = [
     ("IN", "population", "msa", "available",
      "The IBRC query tool publishes metro-area aggregations, including only Indiana "
      "counties in interstate metros. These region totals are not ingested."),
+
+    # ---- Kentucky: KSDC Vintage 2022, retrieved 2026-09-29
+    ("KY", "population", "state", "available",
+     "KSDC Vintage 2022: 2020 historical total and five-year projections 2025-2050; "
+     "last underlying estimate input 2021, Census anchor 2020."),
+    ("KY", "population", "county", "available",
+     "KSDC Vintage 2022: all 120 counties, 2020 historical totals and five-year "
+     "projections 2025-2050. Population totals are aggregated from published "
+     "age-by-sex rows; Area Development District totals are published but not served."),
+    ("KY", "population", "place", "not_published",
+     "The Vintage 2022 product publishes state, county, and Area Development "
+     "District projections; it has no city/place projection series."),
+    ("KY", "households", "state", "available",
+     "KSDC Vintage 2022: 2020 historical total and five-year household projections 2025-2050; "
+     "household-count anchor 2020, last underlying population estimate input 2021."),
+    ("KY", "households", "county", "available",
+     "KSDC Vintage 2022: all 120 counties, 2020 historical totals and five-year "
+     "household projections 2025-2050. Area Development District totals are "
+     "published but not served."),
+    ("KY", "households", "place", "not_published",
+     "The Vintage 2022 product publishes state, county, and Area Development "
+     "District projections; it has no city/place household projection series."),
 
     # ---- Michigan: MCDA Vintage 2024, checked 2026-09-29
     ("MI", "population", "state", "available",
