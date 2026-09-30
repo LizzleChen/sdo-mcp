@@ -1,7 +1,7 @@
 # Source reviews and loading status
 
 Run `uv run python -m sdo_mcp.monitoring --database data/sdo.sqlite`
-for a JSON report of all 18 states. Omit `--database` to inspect the installed
+for a JSON report of all 19 states. Omit `--database` to inspect the installed
 copy (or the file selected by `SDO_DB`). The command reads local files only.
 It neither checks websites nor changes the database. Save its output when
 preparing a data release. `list_states` and `describe_source` expose the same
@@ -19,6 +19,7 @@ Check sooner when an agency announces a revision or a source check fails.
 | Colorado | 30 days | Population, households, jobs; autumn updates |
 | Florida | 90 days | Population workbook and household/jobs PDFs |
 | Georgia | 90 days | OPB edition and county workbook |
+| Illinois | 90 days | IDPH edition/release, April/July base columns and Table 1/Table 3 differences; Chicago, five-year components, households and eligible jobs |
 | Indiana | 90 days | IBRC edition, POST query, state/county bases and horizons; separate regional, labor-force, household and economic products |
 | Kentucky | 90 days | KSDC population/household editions, Census anchor and estimate inputs, age/sex codebook and county codes; regional, place, projected components and eligible jobs coverage |
 | Michigan | 90 days | MCDA state/county editions, workbook codes, base years and scenarios; regional, place, household, components and eligible jobs coverage |
@@ -39,6 +40,7 @@ the manifests retain each file's retrieval date and fingerprint.
 
 | State and agency evidence | Loaded coverage in this checkout | Known limits and uncertainty |
 | --- | --- | --- |
+| [Illinois — IDPH](https://dph.illinois.gov/data-statistics/public-data-assets/illinois-population-projections.html) | 2023 edition, released May 2024: Table 3 July 2020 estimates and July 2025/2030/2035 projections for the state and all 102 counties (412 totals); base year 2020 | April 2020 Census column excluded. Table 3 state totals exceed Table 1 by 11 in 2025 and 3 in 2030. Chicago, age/sex and five-year components are archived but not loaded. Household and eligible jobs coverage is unknown |
 | [Kentucky — KSDC / University of Louisville](https://centers.louisville.edu/kentucky-state-data-center/data-downloads) | Vintage 2022 population and households: 2020 historical totals and five-year projections 2025–2050 for the state and all 120 counties (1,694 totals). Model anchor 2020; last underlying population estimate input 2021 | Age/sex and 15 Area Development Districts are archived but not served; no city/place projections in this edition. Eligible jobs and projected components coverage is unverified |
 | [Pennsylvania — PaSDC / Center for Rural Pennsylvania](https://www.rural.pa.gov/data/population-projections) | 2023 population edition: 2020 estimates and five-year projections 2025–2050 for the state and all 67 counties (476 totals); base year 2020, from Census Vintage 2022 | Age/sex detail is archived but not served. State components appear as five-year period totals in methodology Table 3 and are not loaded. Place, household, eligible jobs and county components coverage is unverified |
 | [Michigan — MCDA](https://www.michigan.gov/mcda/population) | Vintage 2024 population totals: six five-year points 2025–2050 for the state and all 83 counties (504 totals), all projections, retaining source decimals. State estimate base is 2022 | County base year is not explicitly identified and remains null. State main net-positive-migration scenario is loaded; illustrative zero-migration scenario is not loaded. Ten prosperity regions and age/sex detail are archived but not served. Place, household, eligible jobs and complete components coverage is unverified |
@@ -106,6 +108,40 @@ label, while all 2025–2050 points remain projections. Regional and city
 geographies are never substituted. Other products were not fully audited, so
 no completed source-review date is recorded. Reacquisition reuses validated
 originals; a new edition requires new filenames and metadata.
+
+Illinois's original 132-page IDPH report and two catalogs were checked on
+September 29, 2026, and archived in `data/raw/il/`. The report cover establishes
+the 2023 edition and May 2024 release; methods page 1 establishes IDPH authorship
+for the state's Certificate of Need program and the July 2020 estimate base.
+The catalogs link this edition and older products; no successor was identified.
+No explicit data license or redistribution restriction was identified in these
+reviewed products; attribution to IDPH is retained.
+
+The adapter extracts Table 3 directly from the original PDF: printed pages
+8–10, PDF pages 11–13. All three pages were rendered and inspected, including
+state, Cook, Hardin, DeWitt, Jo Daviess, St. Clair and Woodford fixtures. It
+checks the title, reference dates, estimate/projection headers, 102-county
+roster, integer values, source footnote and complete four-year grid. Source
+DeWitt is explicitly mapped to Census De Witt County (17039); the saved
+Census-2020 reference remains unchanged. April 1, 2020 Census counts are
+excluded in favor of the July 1 estimate column. Table 3 county sums equal
+its own published state totals. Table 1's state totals are 11 lower in 2025
+and 3 lower in 2030; the adapter uses Table 3 consistently and preserves this
+documented discrepancy instead of adjusting published values.
+
+Chicago is separately published in Table 2 and returns `not_loaded`; Cook
+County is never substituted. Tables A-2, A-4 and A-5 contain five-year births,
+deaths and net migration, recorded as `pdf_only` pending checked component
+extraction. Household and eligible IDPH jobs coverage remains unknown.
+The separate [IDES industry and occupational projections](https://ides.illinois.gov/resources/labor-market-information/employment-projections)
+are outside this project's employment scope. No completed source-review date
+is recorded because the broader household/jobs audit remains open. Repeat
+acquisition validates and reuses saved files without changing retrieval dates.
+
+Database validation rejects a population, household or employment series
+that mixes source IDs across years. Different geographies, variables and
+scenarios may still use separate products. This prevents a returned series
+from attributing mixed editions to its first observation's source.
 
 The report supplies each state's existing agency links and the exact source
 editions and retrieval dates in the selected database. `current_vintage` in

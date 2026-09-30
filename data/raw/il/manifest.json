@@ -1,0 +1,26 @@
+[
+ {
+  "file": "population_2023.pdf",
+  "source": "https://dph.illinois.gov/content/dam/soi/en/web/idph/publications/idph/data-and-statistics/vital-statistics/illinois-population-data/population-projections_202035.pdf",
+  "retrieved_at": "2026-09-29",
+  "sha256": "9d9718204e6578496958f73a00d332f8f99a3b1e9cad56863a61fdd0049f1bba",
+  "records": 412,
+  "note": "Original IDPH 2023 edition (released May 2024) or supporting catalog. Table 3, printed pages 8-10 (PDF pages 11-13), supplies 412 state/county totals. July 2020 estimates selected; April Census, Chicago, age/sex and five-year components retained only in the PDF."
+ },
+ {
+  "file": "projection_catalog_2026-09-29.html",
+  "source": "https://dph.illinois.gov/data-statistics/public-data-assets/illinois-population-projections.html",
+  "retrieved_at": "2026-09-29",
+  "sha256": "fb0cd00bd7dd31d88967fac9cb9fba84e1f47e68f57a3b86d6adc80831e11cec",
+  "records": null,
+  "note": "Original IDPH 2023 edition (released May 2024) or supporting catalog. Table 3, printed pages 8-10 (PDF pages 11-13), supplies 412 state/county totals. July 2020 estimates selected; April Census, Chicago, age/sex and five-year components retained only in the PDF."
+ },
+ {
+  "file": "population_catalog_2026-09-29.html",
+  "source": "https://dph.illinois.gov/data-statistics/vital-statistics/illinois-population-data.html",
+  "retrieved_at": "2026-09-29",
+  "sha256": "8761f883c0c482e5cf20c3475af3122c2b167af554ead33bf5bd1ff1ad857b57",
+  "records": null,
+  "note": "Original IDPH 2023 edition (released May 2024) or supporting catalog. Table 3, printed pages 8-10 (PDF pages 11-13), supplies 412 state/county totals. July 2020 estimates selected; April Census, Chicago, age/sex and five-year components retained only in the PDF."
+ }
+]

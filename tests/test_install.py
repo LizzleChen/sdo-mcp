@@ -67,6 +67,30 @@ def test_validate_database_rejects_empty_schema(tmp_path):
         install.validate_database(path)
 
 
+@pytest.mark.parametrize("variable", ["population", "households", "employment"])
+def test_validate_database_rejects_mixed_sources_within_forecast_series(tmp_path, variable):
+    path = tmp_path / "mixed.sqlite"
+    _usable_database(path)
+    with sqlite3.connect(path) as conn:
+        conn.execute("UPDATE observations SET variable=?", (variable,))
+        conn.execute("UPDATE coverage SET variable=?", (variable,))
+        conn.execute(
+            "INSERT INTO sources (source_id, state, agency, product_name, vintage) "
+            "VALUES ('other', 'CO', 'Test', 'Test', '2027')"
+        )
+        conn.execute(
+            "INSERT INTO observations (state, geo_level, geo_id, year, variable, value, datatype, source_id) "
+            "VALUES ('CO', 'state', '08', 2027, ?, 2, 'projection', 'other')", (variable,)
+        )
+    with pytest.raises(install.DatabaseValidationError, match="mixes sources within one forecast series"):
+        install.validate_database(path)
+
+    # Separate scenario products may legitimately have different sources.
+    with sqlite3.connect(path) as conn:
+        conn.execute("UPDATE observations SET scenario='high' WHERE source_id='other'")
+    assert install.validate_database(path) == path
+
+
 def test_validate_database_rejects_unserved_observation(tmp_path):
     path = tmp_path / "unserved.sqlite"
     conn = store.connect(path, create=True)

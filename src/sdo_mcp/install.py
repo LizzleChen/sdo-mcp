@@ -90,6 +90,17 @@ def validate_database(path: Path | str) -> Path:
                 raise DatabaseValidationError(
                     f"database {p} table {table!r} is missing column(s): {', '.join(missing)}"
                 )
+        mixed_source = conn.execute(
+            "SELECT state, geo_level, geo_id, variable, scenario FROM observations "
+            "WHERE variable IN ('population', 'households', 'employment') "
+            "AND age_group='all' AND sex='all' AND race='all' "
+            "GROUP BY state, geo_level, geo_id, variable, scenario "
+            "HAVING COUNT(DISTINCT source_id) > 1 LIMIT 1"
+        ).fetchone()
+        if mixed_source:
+            raise DatabaseValidationError(
+                f"database {p} mixes sources within one forecast series: {mixed_source}"
+            )
         sources = conn.execute("SELECT COUNT(*) FROM sources").fetchone()[0]
         observations = conn.execute("SELECT COUNT(*) FROM observations").fetchone()[0]
         geographies = conn.execute("SELECT COUNT(*) FROM geographies").fetchone()[0]
