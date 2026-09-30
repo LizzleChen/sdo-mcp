@@ -33,6 +33,7 @@ COVERED_STATES = {
     "WI": "Wisconsin",
     "UT": "Utah",
     "IN": "Indiana",
+    "IL": "Illinois",
     "KY": "Kentucky",
     "MI": "Michigan",
     "PA": "Pennsylvania",
@@ -370,6 +371,23 @@ COVERAGE = [
     ("IN", "population", "msa", "available",
      "The IBRC query tool publishes metro-area aggregations, including only Indiana "
      "counties in interstate metros. These region totals are not ingested."),
+
+    # ---- Illinois: IDPH 2023 edition, released May 2024
+    ("IL", "population", "state", "available",
+     "IDPH 2023 edition, Table 3: July 2020 estimate and July 2025, 2030, 2035 "
+     "projections. The separate April 2020 Census column is not served."),
+    ("IL", "population", "county", "available",
+     "IDPH Table 3: all 102 counties, July 2020 estimates and five-year "
+     "projections 2025-2035. Source DeWitt maps to Census De Witt County."),
+    ("IL", "population", "place", "available",
+     "IDPH Table 2 publishes Chicago population projections through 2035. "
+     "Chicago is archived but not loaded; this does not establish coverage for other cities."),
+    ("IL", "components", "state", "pdf_only",
+     "IDPH Tables A-2, A-4 and A-5 publish births, deaths and net migration "
+     "for five-year periods 2020-2025, 2025-2030 and 2030-2035. Not loaded."),
+    ("IL", "components", "county", "pdf_only",
+     "IDPH Tables A-2, A-4 and A-5 publish county births, deaths and net "
+     "migration as five-year period totals through 2035. Not loaded."),
 
     # ---- Kentucky: KSDC Vintage 2022, retrieved 2026-09-29
     ("KY", "population", "state", "available",

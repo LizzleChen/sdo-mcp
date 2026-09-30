@@ -11,6 +11,7 @@ from . import notes, store
 
 # Maintenance choices, not promises about agency release dates.
 POLICIES = {
+    "IL": (90, "Review IDPH edition, release date, April/July 2020 columns and Table 1/Table 3 differences; check Chicago, five-year components, households and eligible SDO jobs separately."),
     "AZ": (90, "Check all three scenarios and component workbooks."),
     "CA": (30, "Check population, households, and employment separately; files may be replaced in place."),
     "CO": (30, "Check population, households, and jobs separately, especially around the autumn update."),

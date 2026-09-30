@@ -82,7 +82,23 @@ def test_installed_tools_over_mcp(installed_server, protocol):
 
                     summary = await call("list_states", {})
                     assert summary["database_release"] == "mcp-test"
-                    assert {"VA", "WI", "UT", "IN", "MI", "PA", "KY"} <= set(summary["states"])
+                    assert {"VA", "WI", "UT", "IN", "MI", "PA", "KY", "IL"} <= set(summary["states"])
+                    illinois = await call("get_forecast", {
+                        "state": "IL", "geo_level": "county", "geo": "Cook", "variable": "population",
+                        "start_year": 2020, "end_year": 2025,
+                    }, "ok")
+                    assert illinois["series"] == [
+                        {"year": 2020, "value": 5262741, "datatype": "estimate"},
+                        {"year": 2025, "value": 5148792, "datatype": "projection"},
+                    ]
+                    assert illinois["source"]["base_year"] == 2020
+                    await call("get_forecast", {
+                        "state": "IL", "geo_level": "place", "geo": "Chicago", "variable": "population",
+                    }, "not_loaded")
+                    await call("get_components", {"state": "IL", "geo": "Cook"}, "pdf_only")
+                    il_description = await call("describe_source", {"state": "IL"})
+                    assert il_description["review"]["status"] == "never_reviewed"
+                    assert "Table 3" in il_description["sources_loaded"][0]["citation"]
                     for variable, value in (("population", 4785233), ("households", 1944624)):
                         kentucky = await call("get_forecast", {
                             "state": "KY", "geo_level": "state", "geo": "KY", "variable": variable,

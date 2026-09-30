@@ -5,19 +5,20 @@ households, and employment where the state office publishes it. The server
 reads a local SQLite database and does not download data while answering a
 question.
 
-Coverage now includes 18 states. The newest addition is **Kentucky**, using
-the [KSDC Vintage 2022 projections](https://centers.louisville.edu/kentucky-state-data-center/data-downloads):
-1,694 population and household totals for the state and all 120 counties.
-Historical 2020 Census-based values use the `estimate` label; 2025–2050 values
-are projections at five-year intervals. The model anchor is 2020; `base_year`
-records 2021, the last underlying population estimate input named by the
-catalog, including for the household projections. No 2021 row is generated.
+Coverage now includes **19 recognized states, all with loaded population
+forecasts**. The newest addition is **Illinois**, using the
+[IDPH 2023 edition, released May 2024](https://dph.illinois.gov/data-statistics/public-data-assets/illinois-population-projections.html):
+412 population totals for the state and all 102 counties. July 2020 values
+are estimates; July 2025, 2030 and 2035 values are projections. The base year
+is 2020. The PDF's separate April 2020 Census counts are archived but excluded
+so each series has one point per year. No annual values are generated.
 For example:
-`get_forecast(state="KY", geo_level="county", geo="Jefferson", variable="households")`.
-Original workbooks, the codebook and catalog are archived with retrieval dates
-and fingerprints. Age/sex and Area Development District detail are archived
-but not served. This edition has no city/place forecasts; eligible jobs and
-projected components coverage remains unverified.
+`get_forecast(state="IL", geo_level="county", geo="Cook", variable="population")`.
+The original PDF and catalogs are archived with retrieval dates and fingerprints.
+Table 3 is used consistently: its state totals exceed Table 1 by 11 people in
+2025 and 3 in 2030; published values are preserved. Chicago, age/sex detail
+and five-year components are archived but not loaded. Household and eligible
+SDO jobs coverage remains unknown.
 
 There is no public package release or hosted database download yet. You can
 install a checked compressed database release shared by the maintainer, or
@@ -199,4 +200,4 @@ or upload them.
 Source review schedules and publication-versus-loading status are available
 through `list_states`, `describe_source`, and the local report command:
 `uv run python -m sdo_mcp.monitoring --database data/sdo.sqlite`.
-See [source review instructions](docs/source-reviews.md) for all 18 states.
+See [source review instructions](docs/source-reviews.md) for all 19 states.

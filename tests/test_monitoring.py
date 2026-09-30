@@ -7,10 +7,12 @@ import sqlite3
 import pytest
 
 from sdo_mcp import monitoring, notes, server, store
+from sdo_mcp.ingest import seed
 
 
 def test_review_schedule():
-    assert set(monitoring.POLICIES) == set(notes.STATES)
+    assert set(monitoring.POLICIES) == set(notes.STATES) == set(seed.COVERED_STATES)
+    assert {row[0] for row in seed.COVERAGE} <= set(notes.STATES)
     for state in notes.STATES:
         assert monitoring.review_status(state, reviews={})['status'] == 'never_reviewed'
     reviews = {'WA': {'reviewed_on': '2026-09-05', 'findings': 'State and county products checked separately.',
