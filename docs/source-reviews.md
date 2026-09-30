@@ -1,7 +1,7 @@
 # Source reviews and loading status
 
 Run `uv run python -m sdo_mcp.monitoring --database data/sdo.sqlite`
-for a JSON report of all 19 states. Omit `--database` to inspect the installed
+for a JSON report of all 20 states. Omit `--database` to inspect the installed
 copy (or the file selected by `SDO_DB`). The command reads local files only.
 It neither checks websites nor changes the database. Save its output when
 preparing a data release. `list_states` and `describe_source` expose the same
@@ -22,6 +22,7 @@ Check sooner when an agency announces a revision or a source check fails.
 | Illinois | 90 days | IDPH edition/release, April/July base columns and Table 1/Table 3 differences; Chicago, five-year components, households and eligible jobs |
 | Indiana | 90 days | IBRC edition, POST query, state/county bases and horizons; separate regional, labor-force, household and economic products |
 | Kentucky | 90 days | KSDC population/household editions, Census anchor and estimate inputs, age/sex codebook and county codes; regional, place, projected components and eligible jobs coverage |
+| Maryland | 90 days | Workbook/catalog date mismatch; Census anchor and auxiliary inputs; separate preliminary jobs vintage; Baltimore City/county codes, regions, municipalities and projected components |
 | Michigan | 90 days | MCDA state/county editions, workbook codes, base years and scenarios; regional, place, household, components and eligible jobs coverage |
 | Minnesota | 90 days | State/county files and projected launch year |
 | North Carolina | 90 days | Edition, base year, and components |
@@ -40,6 +41,7 @@ the manifests retain each file's retrieval date and fingerprint.
 
 | State and agency evidence | Loaded coverage in this checkout | Known limits and uncertainty |
 | --- | --- | --- |
+| [Maryland — Department of Planning](https://planning.maryland.gov/MSDC/Pages/s3_projection.aspx) | November 2025 population/households through 2055; preliminary October 2022 jobs through 2050. State and all 24 county equivalents, 2020 history plus five-year projections (575 totals) | Catalog population/household date lags the files. Baltimore City is separate from Baltimore County. Regional totals are archived only; municipalities and projected components remain unverified |
 | [Illinois — IDPH](https://dph.illinois.gov/data-statistics/public-data-assets/illinois-population-projections.html) | 2023 edition, released May 2024: Table 3 July 2020 estimates and July 2025/2030/2035 projections for the state and all 102 counties (412 totals); base year 2020 | April 2020 Census column excluded. Table 3 state totals exceed Table 1 by 11 in 2025 and 3 in 2030. Chicago, age/sex and five-year components are archived but not loaded. Household and eligible jobs coverage is unknown |
 | [Kentucky — KSDC / University of Louisville](https://centers.louisville.edu/kentucky-state-data-center/data-downloads) | Vintage 2022 population and households: 2020 historical totals and five-year projections 2025–2050 for the state and all 120 counties (1,694 totals). Model anchor 2020; last underlying population estimate input 2021 | Age/sex and 15 Area Development Districts are archived but not served; no city/place projections in this edition. Eligible jobs and projected components coverage is unverified |
 | [Pennsylvania — PaSDC / Center for Rural Pennsylvania](https://www.rural.pa.gov/data/population-projections) | 2023 population edition: 2020 estimates and five-year projections 2025–2050 for the state and all 67 counties (476 totals); base year 2020, from Census Vintage 2022 | Age/sex detail is archived but not served. State components appear as five-year period totals in methodology Table 3 and are not loaded. Place, household, eligible jobs and county components coverage is unverified |
@@ -137,6 +139,38 @@ The separate [IDES industry and occupational projections](https://ides.illinois.
 are outside this project's employment scope. No completed source-review date
 is recorded because the broader household/jobs audit remains open. Repeat
 acquisition validates and reuses saved files without changing retrieval dates.
+
+Maryland's three original workbooks, projection catalog and population
+methodology were checked on September 29, 2026, and archived in `data/raw/md/`.
+Population and households are dated November 2025 in the files and their
+preparation footnotes, although the catalog still says October 2025. The
+separate total jobs by place of work workbook is revised October 2022; the
+catalog labels it preliminary. It explicitly credits MDP for 2025–2050
+projections and BEA CA25/CA25N for historical data. It qualifies as an SDO jobs
+product and is not a labor-force or occupational projection series.
+
+The adapter serves 2020 history and five-year points from 2025, through 2055
+for population/households and 2050 for jobs: 575 observations in total. The
+2020 Census counts use the MCP `estimate` label. `base_year=2020` is the last
+historical observation in each table; the population methodology describes
+a 2020–2055 model span but does not date the latest auxiliary rate inputs.
+All later points retain the `projection` label regardless of retrieval date.
+Households come from the household-count workbook, not household population.
+
+It validates workbook identity, edition, year headers, source footnotes,
+the full Census county roster, finite nonnegative integer values and exact
+county/state reconciliation. The first table supplies levels; subsequent
+change and growth-rate tables are excluded. State and Baltimore City/county
+fixtures were cross-checked against the matching publisher PDFs, page 1:
+[population](https://planning.maryland.gov/MSDC/Documents/popproj/TotalPopProj.pdf),
+[households](https://planning.maryland.gov/MSDC/Documents/popproj/HouseholdProj.pdf),
+and [jobs](https://planning.maryland.gov/MSDC/Documents/projection/Jobs/Summary_TotalJobs.pdf).
+Baltimore City is county equivalent 24510, separate from Baltimore County
+24005. Six regional totals and history before 2020 remain archived only.
+Municipal and projected components publication coverage has not been fully
+audited and remains unknown. No completed statewide review date is recorded.
+Repeat acquisition validates and reuses saved originals without changing
+their retrieval dates; new editions require new filenames and metadata.
 
 Database validation rejects a population, household or employment series
 that mixes source IDs across years. Different geographies, variables and

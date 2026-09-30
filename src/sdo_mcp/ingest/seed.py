@@ -35,6 +35,7 @@ COVERED_STATES = {
     "IN": "Indiana",
     "IL": "Illinois",
     "KY": "Kentucky",
+    "MD": "Maryland",
     "MI": "Michigan",
     "PA": "Pennsylvania",
 }
@@ -410,6 +411,24 @@ COVERAGE = [
     ("KY", "households", "place", "not_published",
      "The Vintage 2022 product publishes state, county, and Area Development "
      "District projections; it has no city/place household projection series."),
+
+    # ---- Maryland: separate population/household and preliminary jobs editions
+    ("MD", "population", "state", "available",
+     "November 2025: 2020 Census anchor and five-year projections 2025-2055."),
+    ("MD", "population", "county", "available",
+     "November 2025: 2020 Census anchor and five-year projections 2025-2055 for "
+     "23 counties and Baltimore City (24510), distinct from Baltimore County (24005)."),
+    ("MD", "households", "state", "available",
+     "November 2025: 2020 Census household counts and five-year projections 2025-2055."),
+    ("MD", "households", "county", "available",
+     "November 2025: household counts for all 24 county equivalents, 2020-2055. "
+     "These are households, not household population or housing units."),
+    ("MD", "employment", "state", "available",
+     "Preliminary October 2022 MDP total jobs by place of work: BEA 2020 history "
+     "and five-year projections 2025-2050. Separate vintage from population/households."),
+    ("MD", "employment", "county", "available",
+     "Preliminary October 2022 MDP total jobs for all 24 county equivalents, "
+     "2020-2050 in five-year steps; not labor force or occupational projections."),
 
     # ---- Michigan: MCDA Vintage 2024, checked 2026-09-29
     ("MI", "population", "state", "available",

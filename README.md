@@ -5,20 +5,21 @@ households, and employment where the state office publishes it. The server
 reads a local SQLite database and does not download data while answering a
 question.
 
-Coverage now includes **19 recognized states, all with loaded population
-forecasts**. The newest addition is **Illinois**, using the
-[IDPH 2023 edition, released May 2024](https://dph.illinois.gov/data-statistics/public-data-assets/illinois-population-projections.html):
-412 population totals for the state and all 102 counties. July 2020 values
-are estimates; July 2025, 2030 and 2035 values are projections. The base year
-is 2020. The PDF's separate April 2020 Census counts are archived but excluded
-so each series has one point per year. No annual values are generated.
+Coverage now includes **20 recognized states, all with loaded population
+forecasts**. The newest addition is **Maryland**, using
+[Maryland Department of Planning projections](https://planning.maryland.gov/MSDC/Pages/s3_projection.aspx):
+575 population, household and employment totals for the state and all 24
+county equivalents (23 counties and Baltimore City). Population and households
+use the November 2025 edition through 2055. Preliminary jobs by place of work
+use a separate October 2022 edition through 2050. Each series starts with 2020
+history, labelled estimate, followed by five-year projections from 2025.
+The base year is 2020; no annual values are generated.
 For example:
-`get_forecast(state="IL", geo_level="county", geo="Cook", variable="population")`.
-The original PDF and catalogs are archived with retrieval dates and fingerprints.
-Table 3 is used consistently: its state totals exceed Table 1 by 11 people in
-2025 and 3 in 2030; published values are preserved. Chicago, age/sex detail
-and five-year components are archived but not loaded. Household and eligible
-SDO jobs coverage remains unknown.
+`get_forecast(state="MD", geo_level="county", geo="Baltimore City", variable="population")`.
+Baltimore City (24510) is distinct from Baltimore County (24005). Original
+workbooks, catalog and methodology are archived with retrieval dates and
+fingerprints. Municipal and projected components publication coverage remains
+unverified; those requests return `coverage_unknown`.
 
 There is no public package release or hosted database download yet. You can
 install a checked compressed database release shared by the maintainer, or
@@ -200,4 +201,4 @@ or upload them.
 Source review schedules and publication-versus-loading status are available
 through `list_states`, `describe_source`, and the local report command:
 `uv run python -m sdo_mcp.monitoring --database data/sdo.sqlite`.
-See [source review instructions](docs/source-reviews.md) for all 19 states.
+See [source review instructions](docs/source-reviews.md) for all 20 states.
