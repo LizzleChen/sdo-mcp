@@ -227,6 +227,26 @@ Keep earlier reviews in Git history. Review findings describe the database
 examined at that time; the live inventory always describes the selected copy.
 No automatic website checker or background scheduler is installed by this step.
 
+## Delaware batch-one source check
+
+The [Delaware Population Consortium catalog](https://stateplanning.delaware.gov/demography/dpc-projection-data.shtml)
+links the original October 14, 2024 `.xls` report. The
+[edition page](https://stateplanning.delaware.gov/demography/dpc-projection-info.shtml)
+says the Consortium readopted that edition in 2025 without new projections.
+Both pages and the workbook were retrieved September 30, 2026, and archived
+with SHA-256 fingerprints in `data/raw/de/`.
+
+The report's top-line state and three county tables publish 2020 history and
+2025-2050 five-year forecasts for resident population, household counts, and
+jobs by place of work. All three variables are loaded; the county rows add to
+each state row exactly. The last historical point **in these summary tables**
+is 2020, recorded as `base_year=2020`. Later known inputs may inform the model,
+so that field does not claim all model inputs stopped in 2020. The jobs row is
+the DPC's own place-of-work series, distinct from labor force and employed
+residents. Municipal and seasonal products are published separately and are
+not loaded. Other product coverage remains unknown; this is not a completed
+statewide review.
+
 ## Reading the status
 
 `status` retains the publication facts: `available`, `pdf_only`,

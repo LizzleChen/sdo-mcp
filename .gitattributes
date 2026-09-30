@@ -1,0 +1,2 @@
+# Publisher snapshots retain their original CRLF and whitespace bytes.
+data/raw/de/*.html -diff

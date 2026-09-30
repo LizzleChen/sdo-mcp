@@ -36,6 +36,7 @@ COVERED_STATES = {
     "IL": "Illinois",
     "KY": "Kentucky",
     "MD": "Maryland",
+    "DE": "Delaware",
     "MI": "Michigan",
     "PA": "Pennsylvania",
 }
@@ -429,6 +430,22 @@ COVERAGE = [
     ("MD", "employment", "county", "available",
      "Preliminary October 2022 MDP total jobs for all 24 county equivalents, "
      "2020-2050 in five-year steps; not labor force or occupational projections."),
+
+    # ---- Delaware: DPC 2024 edition, readopted for 2025
+    ("DE", "population", "state", "available",
+     "DPC October 2024 resident population: 2020 history and 2025-2050 five-year projections; readopted December 2025."),
+    ("DE", "population", "county", "available",
+     "DPC October 2024 resident population for all three counties, 2020-2050."),
+    ("DE", "population", "place", "available",
+     "DPC publishes separate municipal projections; not loaded. Seasonal population is a distinct product."),
+    ("DE", "households", "state", "available",
+     "DPC 2024 household counts, 2020 history and 2025-2050 projections."),
+    ("DE", "households", "county", "available",
+     "DPC 2024 household counts for all three counties, 2020-2050."),
+    ("DE", "employment", "state", "available",
+     "DPC 2024 jobs by place of work, 2020 history and 2025-2050 projections; not resident employment."),
+    ("DE", "employment", "county", "available",
+     "DPC 2024 jobs by place of work for all three counties, 2020-2050."),
 
     # ---- Michigan: MCDA Vintage 2024, checked 2026-09-29
     ("MI", "population", "state", "available",

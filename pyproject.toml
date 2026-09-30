@@ -17,6 +17,7 @@ ingest = [
     "cloudscraper>=1.2.71",
     "openpyxl>=3.1",
     "pypdf>=6",
+    "xlrd>=2,<3",
 ]
 dev = [
     "pytest>=8",

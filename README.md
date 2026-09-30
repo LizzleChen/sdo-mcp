@@ -5,8 +5,16 @@ households, and employment where the state office publishes it. The server
 reads a local SQLite database and does not download data while answering a
 question.
 
-Coverage now includes **20 recognized states, all with loaded population
-forecasts**. The newest addition is **Maryland**, using
+Coverage now includes **21 recognized states, all with loaded population
+forecasts**. The newest addition is **Delaware**, using the
+[Delaware Population Consortium's 2024 tables](https://stateplanning.delaware.gov/demography/dpc-projection-data.shtml),
+which were readopted in December 2025. The state and all three counties have
+five-year population, household-count, and jobs-by-place-of-work totals from
+2020 through 2050. The 2020 historical rows are labelled estimates; 2025 onward
+are projections. Municipal and seasonal population products are published but
+not loaded. The original `.xls` workbook and adoption pages are archived.
+
+The preceding addition was **Maryland**, using
 [Maryland Department of Planning projections](https://planning.maryland.gov/MSDC/Pages/s3_projection.aspx):
 575 population, household and employment totals for the state and all 24
 county equivalents (23 counties and Baltimore City). Population and households
@@ -201,4 +209,4 @@ or upload them.
 Source review schedules and publication-versus-loading status are available
 through `list_states`, `describe_source`, and the local report command:
 `uv run python -m sdo_mcp.monitoring --database data/sdo.sqlite`.
-See [source review instructions](docs/source-reviews.md) for all 20 states.
+See [source review instructions](docs/source-reviews.md) for all 21 states.

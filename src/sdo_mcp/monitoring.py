@@ -11,6 +11,7 @@ from . import notes, store
 
 # Maintenance choices, not promises about agency release dates.
 POLICIES = {
+    "DE": (90, "Review the DPC 2024 edition and its 2025 readoption separately; check population, households, jobs by place of work, municipal and seasonal products."),
     "MD": (90, "Review population/household workbook dates against the catalog, Census base and auxiliary inputs; check preliminary jobs separately, Baltimore City/county codes, regional and municipal products, and projected components."),
     "IL": (90, "Review IDPH edition, release date, April/July 2020 columns and Table 1/Table 3 differences; check Chicago, five-year components, households and eligible SDO jobs separately."),
     "AZ": (90, "Check all three scenarios and component workbooks."),
