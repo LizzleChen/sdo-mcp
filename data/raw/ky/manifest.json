@@ -1,0 +1,34 @@
+[
+ {
+  "file": "population_projections_2022.xlsx",
+  "source": "https://louisville.widen.net/s/rzn2jnhjph/population-projections-by-sex-and-five-year-age-group",
+  "retrieved_at": "2026-09-29",
+  "sha256": "ab7de71c90bef0ff857ceda295da6cfc7fc5a3610161f95e82971c82c4771f84",
+  "records": 847,
+  "note": "Original Kentucky State Data Center Vintage 2022 population workbook. State and county totals are aggregated from its published five-year age-by-sex rows; Area Development District rows remain archived but are not served."
+ },
+ {
+  "file": "household_projections_2022.xlsx",
+  "source": "https://louisville.widen.net/s/hbwbqlghqh/household-projections",
+  "retrieved_at": "2026-09-29",
+  "sha256": "6becb9437c85aa0a5be7945b7bfb27b08068bbfae0bb1c7dcf7f9f5aef700398",
+  "records": 847,
+  "note": "Original Kentucky State Data Center Vintage 2022 household workbook. State and county totals are served; Area Development District rows remain archived but are not served."
+ },
+ {
+  "file": "data_catalog_2026-09-29.html",
+  "source": "https://centers.louisville.edu/kentucky-state-data-center/data-downloads",
+  "retrieved_at": "2026-09-29",
+  "sha256": "22bb350247c2f27247a48240d24a6d69839efabdc081340af94dfab24e9f8297",
+  "records": null,
+  "note": "Kentucky State Data Center data catalog saved as source-page evidence for the Vintage 2022 files."
+ },
+ {
+  "file": "population_codebook_2022.pdf",
+  "source": "https://louisville.widen.net/content/mwcdfskvwf/original/Population-Projections-by-Sex-and-Five-Year-Age-Group.pdf?download=true&u=kwgjzs",
+  "retrieved_at": "2026-09-29",
+  "sha256": "93d37bda19b4f6e47c5d8a6f6337b7724d02ac9dd0d5d0ae6add380ccd43f7b8",
+  "records": null,
+  "note": "Original KSDC population codebook defining geography, sex, age-group and total-population columns."
+ }
+]

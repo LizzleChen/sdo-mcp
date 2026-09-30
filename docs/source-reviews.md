@@ -1,7 +1,7 @@
 # Source reviews and loading status
 
 Run `uv run python -m sdo_mcp.monitoring --database data/sdo.sqlite`
-for a JSON report of all 17 states. Omit `--database` to inspect the installed
+for a JSON report of all 18 states. Omit `--database` to inspect the installed
 copy (or the file selected by `SDO_DB`). The command reads local files only.
 It neither checks websites nor changes the database. Save its output when
 preparing a data release. `list_states` and `describe_source` expose the same
@@ -20,6 +20,7 @@ Check sooner when an agency announces a revision or a source check fails.
 | Florida | 90 days | Population workbook and household/jobs PDFs |
 | Georgia | 90 days | OPB edition and county workbook |
 | Indiana | 90 days | IBRC edition, POST query, state/county bases and horizons; separate regional, labor-force, household and economic products |
+| Kentucky | 90 days | KSDC population/household editions, Census anchor and estimate inputs, age/sex codebook and county codes; regional, place, projected components and eligible jobs coverage |
 | Michigan | 90 days | MCDA state/county editions, workbook codes, base years and scenarios; regional, place, household, components and eligible jobs coverage |
 | Minnesota | 90 days | State/county files and projected launch year |
 | North Carolina | 90 days | Edition, base year, and components |
@@ -38,6 +39,7 @@ the manifests retain each file's retrieval date and fingerprint.
 
 | State and agency evidence | Loaded coverage in this checkout | Known limits and uncertainty |
 | --- | --- | --- |
+| [Kentucky — KSDC / University of Louisville](https://centers.louisville.edu/kentucky-state-data-center/data-downloads) | Vintage 2022 population and households: 2020 historical totals and five-year projections 2025–2050 for the state and all 120 counties (1,694 totals). Model anchor 2020; last underlying population estimate input 2021 | Age/sex and 15 Area Development Districts are archived but not served; no city/place projections in this edition. Eligible jobs and projected components coverage is unverified |
 | [Pennsylvania — PaSDC / Center for Rural Pennsylvania](https://www.rural.pa.gov/data/population-projections) | 2023 population edition: 2020 estimates and five-year projections 2025–2050 for the state and all 67 counties (476 totals); base year 2020, from Census Vintage 2022 | Age/sex detail is archived but not served. State components appear as five-year period totals in methodology Table 3 and are not loaded. Place, household, eligible jobs and county components coverage is unverified |
 | [Michigan — MCDA](https://www.michigan.gov/mcda/population) | Vintage 2024 population totals: six five-year points 2025–2050 for the state and all 83 counties (504 totals), all projections, retaining source decimals. State estimate base is 2022 | County base year is not explicitly identified and remains null. State main net-positive-migration scenario is loaded; illustrative zero-migration scenario is not loaded. Ten prosperity regions and age/sex detail are archived but not served. Place, household, eligible jobs and complete components coverage is unverified |
 | [Indiana — IBRC/STATS Indiana](https://www.stats.indiana.edu/topic/projections.asp) | July 2024 population edition: 2020 estimates and five-year projections from 2025, state through 2060 and all 92 counties through 2050 (653 totals); last underlying estimate year 2023 | State population anchor 2020 with estimates/components through 2023; county model starts from 2023 estimates. Neither table contains a 2023 row. County sums differ from state by 55–130 in projection years. Cities have no projections; metro/age/sex products are not loaded; household, jobs and components status is unknown |
@@ -84,6 +86,26 @@ were cross-checked against the report's Table 4. No annual values are generated.
 Philadelphia remains a county geography. Other products have not been fully
 audited, so no completed source-review date is recorded. Reacquisition reuses
 validated originals; a new edition requires new filenames and metadata.
+
+Kentucky's two original workbooks, codebook and catalog were checked on
+September 29, 2026, and archived in `data/raw/ky/`. The adapter validates
+headers, county codes and names, complete age/sex and geography grids, numeric
+totals, and supporting evidence. It aggregates population across the 36
+published age/sex rows and reads household totals directly from the separate
+workbook. Household county codes need the Kentucky prefix; population county
+codes already include it. County sums match the state for both products.
+The [August 2022 report](https://louisville.widen.net/s/qlgpqnkcdd/projection-report-2022)
+was also reviewed: pages 9–11 identify the 2020 Census anchor and household
+method, and page 13 confirms state totals. That 140 MiB report is linked,
+not archived in Git. The catalog additionally identifies 2021 Population
+Estimates as base inputs. `base_year=2021` records this last underlying
+population estimate year for the edition, including the population inputs
+used to project households; it does not replace the 2020 Census or household
+anchor or create a 2021 row. Historical 2020 totals use the MCP `estimate`
+label, while all 2025–2050 points remain projections. Regional and city
+geographies are never substituted. Other products were not fully audited, so
+no completed source-review date is recorded. Reacquisition reuses validated
+originals; a new edition requires new filenames and metadata.
 
 The report supplies each state's existing agency links and the exact source
 editions and retrieval dates in the selected database. `current_vintage` in
