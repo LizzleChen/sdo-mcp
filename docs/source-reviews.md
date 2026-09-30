@@ -1,7 +1,7 @@
 # Source reviews and loading status
 
 Run `uv run python -m sdo_mcp.monitoring --database data/sdo.sqlite`
-for a JSON report of all 25 states. Omit `--database` to inspect the installed
+for a JSON report of all 32 states. Omit `--database` to inspect the installed
 copy (or the file selected by `SDO_DB`). The command reads local files only.
 It neither checks websites nor changes the database. Save its output when
 preparing a data release. `list_states` and `describe_source` expose the same
@@ -15,20 +15,27 @@ Check sooner when an agency announces a revision or a source check fails.
 | State | Review every | What needs separate attention |
 | --- | --- | --- |
 | Alabama | 90 days | CBER file edition, displayed rounding, households and eligible jobs |
+| Alaska | 90 days | September 2026 state scenarios, county series, 2025 estimate boundary, borough/census-area identifiers, components and eligible jobs/households |
 | Arizona | 90 days | Three scenarios and components |
 | California | 30 days | Population, households, jobs; replaced files |
 | Colorado | 30 days | Population, households, jobs; autumn updates |
 | Delaware | 90 days | DPC edition and readoption, population, households, jobs, municipal and seasonal products |
 | Florida | 90 days | Population workbook and household/jobs PDFs |
 | Georgia | 90 days | OPB edition and county workbook |
+| Hawaii | 90 days | Resident/de facto population, civilian jobs, separate 2020/2022 bases, combined Maui/Kalawao and workbook/PDF discrepancy |
 | Illinois | 90 days | IDPH edition/release, April/July base columns and Table 1/Table 3 differences; Chicago, five-year components, households and eligible jobs |
 | Indiana | 90 days | IBRC edition, POST query, state/county bases and horizons; separate regional, labor-force, household and economic products |
 | Kentucky | 90 days | KSDC population/household editions, Census anchor and estimate inputs, age/sex codebook and county codes; regional, place, projected components and eligible jobs coverage |
+| Maine | 90 days | April 2025 edition, 2022 base, unusual year grid, long-horizon caution, municipal suppression and eligible OSE jobs |
 | Maryland | 90 days | Workbook/catalog date mismatch; Census anchor and auxiliary inputs; separate preliminary jobs vintage; Baltimore City/county codes, regions, municipalities and projected components |
 | Michigan | 90 days | MCDA state/county editions, workbook codes, base years and scenarios; regional, place, household, components and eligible jobs coverage |
 | Minnesota | 90 days | State/county files and projected launch year |
+| Nebraska | 90 days | CPAR adopted Hauer/SEDAC product, August 2022 edition, historical base, source download and successor search |
+| Nevada | 90 days | Long-range and near-term editions separately, certified base, Carson City, PDF rounding and eligible jobs |
+| New Hampshire | 90 days | Table 1/appendix discrepancies, Census-based boundary, municipal identifiers and five-year components |
 | New Mexico | 90 days | UNM-GPS edition, 2022 model launch, age/sex and annual exports |
 | North Carolina | 90 days | Edition, base year, and components |
+| Ohio | 90 days | Report 2023 edition versus overview's 2022 credit, 2020 estimate base, county controls, Ottawa discrepancy and conditional revisions |
 | Oregon | 30 days | Every regional/county edition and exclusions |
 | Pennsylvania | 90 days | PaSDC edition, estimate labels, state components PDF; place, household and eligible jobs coverage |
 | South Carolina | 90 days | RFA vintage, totals and age-group agreement, components and eligible jobs |
@@ -46,6 +53,13 @@ the manifests retain each file's retrieval date and fingerprint.
 
 | State and agency evidence | Loaded coverage in this checkout | Known limits and uncertainty |
 | --- | --- | --- |
+| [Alaska — DOLWD Research and Analysis](https://live.laborstats.alaska.gov/article/alaska-population-projections) | September 2026: 2025 estimate and annual state Low/Middle/High projections through 2055; all 30 boroughs/census areas at seven five-year points (303 population totals) | County series follows Middle only. Every loaded total agrees with report Tables 1.4/3.1. Components, regions and demographic detail are archived but not served; eligible demographer jobs, households and places remain unverified |
+| [Hawaii — DBEDT](https://dbedt.hawaii.gov/economic/economic-forecast/long-range-projections/) | April 2024: 2020 resident population estimate and 2030/2040/2050 projections; 2022 civilian total jobs estimate and the same projection years. State and four county groups (40 totals) | Maui/Kalawao is combined as `hi-maui-kalawao`; separate county requests are refused. Resident population includes military but excludes visitors; jobs exclude military and include proprietors. Workbook population decimals are retained; combined 2030 population differs from the PDF. No household forecast is established |
+| [Maine — Office of the State Economist](https://www11.maine.gov/dafs/economist/demographic-projections) | April 2025: state and all 16 counties at 2022/2027/2032/2037/2042, with 2022 estimates (85 population totals) | Fractional workbook values agree with the rounded PDF. Publisher discourages use beyond 2032. Municipal forecasts are archived but not loaded; suppressed small places and county-subdivision identifiers need further work. Other products remain unverified |
+| [Nebraska — UNO CPAR / State Data Center](https://www.unomaha.edu/college-of-public-affairs-and-community-service/center-for-public-affairs-research/programs/data-for-policy-and-decision-makers.php) | August 2022 adopted product: state and all 93 counties at 2020/2030/2040/2050 (376 population totals) | CPAR adopted Hauer/SEDAC's regional-rivalry model after comparing six models. The 2020 base identifies paired Census history, not a new model launch. Rounded state/county forecast discrepancies are retained. Original PDF acquired through publisher's public SharePoint download; other products remain unverified |
+| [New Hampshire — OPD](https://www.nheconomy.com/office-of-planning-and-development/what-we-do/state-data-center-(census-data)/population-projections) | September 2022: state and all 10 counties, 2020 history plus five-year projections 2025–2050 (77 population totals) | Table 1 agrees with Appendix A. The 2030 state/county one-person difference and Carroll 2020 municipal-appendix discrepancy are disclosed. Municipal forecasts and five-year components are published but not loaded; households/jobs remain unverified |
+| [Ohio — Development Research Office](https://development.ohio.gov/about-us/research/population) | Report 2023 edition: state and all 88 counties, 2020 estimates plus five-year projections 2025–2050 (623 population totals) | All county sums equal state totals. State endpoints and ages match independent report/overview tables; selected workbook Ottawa 2050 is 31,371 versus map 31,374. The overview credits 2022; PDF modification is not a new model edition. Browser catalog excerpt and publisher DAM workbook are archived. Other products remain unverified |
+| [Nevada — State Demographer](https://tax.nv.gov/news-publications/demographics/) | October 2025 long-range edition: 2024 estimate and annual 2025–2044 projections for the state and all 17 county equivalents (378 population totals) | Summary and detailed PDF tables agree. Carson City is a county equivalent; rounded state/county differences are retained. The March 2026 near-term product is separate and not merged. Jobs mentioned in methods are model inputs, not a loaded jobs series |
 | [Maryland — Department of Planning](https://planning.maryland.gov/MSDC/Pages/s3_projection.aspx) | November 2025 population/households through 2055; preliminary October 2022 jobs through 2050. State and all 24 county equivalents, 2020 history plus five-year projections (575 totals) | Catalog population/household date lags the files. Baltimore City is separate from Baltimore County. Regional totals are archived only; municipalities and projected components remain unverified |
 | [Wyoming — EAD](https://ai.wyo.gov/divisions/economic-analysis/demographic-information/projections) | February 2025 state and all 23 counties, annual 2020–2050 population (744 totals); final estimate year 2023 | Workbook and PDF agree at every loaded value. Municipal forecasts are published but not served; household and eligible jobs coverage is unverified |
 | [Illinois — IDPH](https://dph.illinois.gov/data-statistics/public-data-assets/illinois-population-projections.html) | 2023 edition, released May 2024: Table 3 July 2020 estimates and July 2025/2030/2035 projections for the state and all 102 counties (412 totals); base year 2020 | April 2020 Census column excluded. Table 3 state totals exceed Table 1 by 11 in 2025 and 3 in 2030. Chicago, age/sex and five-year components are archived but not loaded. Household and eligible jobs coverage is unknown |

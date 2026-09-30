@@ -1,0 +1,42 @@
+[
+ {
+  "file": "projection_catalog_2026-09-30.html",
+  "source": "https://dbedt.hawaii.gov/economic/economic-forecast/long-range-projections/",
+  "retrieved_at": "2026-09-30",
+  "sha256": "d9c35122b71eeafe5dc87d90b3691d444daa5ca5b34a1278f55f10d5b8e29b67",
+  "records": null,
+  "note": "Original DBEDT April 2024 workbook and report; DBEDT/BEA evidence confirms combined Maui/Kalawao geography. Workbook model precision retained; Maui 2030 differs from report by about 100 people."
+ },
+ {
+  "file": "population_economic_2050_appendices_apr2024.xlsx",
+  "source": "https://files.hawaii.gov/dbedt/economic/data_reports/LRF/2050-long-range-projections-appendices.xlsx",
+  "retrieved_at": "2026-09-30",
+  "sha256": "250b5d21a81eac3e7e49eaf7dd916bfd7ff2c19276dafec6e2c66bb26de0ccd1",
+  "records": 40,
+  "note": "Original DBEDT April 2024 workbook and report; DBEDT/BEA evidence confirms combined Maui/Kalawao geography. Workbook model precision retained; Maui 2030 differs from report by about 100 people."
+ },
+ {
+  "file": "population_economic_2050_report_apr2024.pdf",
+  "source": "https://files.hawaii.gov/dbedt/economic/data_reports/LRF/2050-long-range-projections.pdf",
+  "retrieved_at": "2026-09-30",
+  "sha256": "29bedad45d0835fef60c4cd12b4eb7c445cffa5a4794c7b4590621143d02a0f5",
+  "records": null,
+  "note": "Original DBEDT April 2024 workbook and report; DBEDT/BEA evidence confirms combined Maui/Kalawao geography. Workbook model precision retained; Maui 2030 differs from report by about 100 people."
+ },
+ {
+  "file": "dbedt_population_geography_table_1-23_2024.pdf",
+  "source": "https://files.hawaii.gov/dbedt/economic/databook/2024-individual/01/012324.pdf",
+  "retrieved_at": "2026-09-30",
+  "sha256": "838943a1d1168938c243ffd8e8d774325f32f940e3f6dd6ef0368d754edd8f53",
+  "records": null,
+  "note": "Original DBEDT April 2024 workbook and report; DBEDT/BEA evidence confirms combined Maui/Kalawao geography. Workbook model precision retained; Maui 2030 differs from report by about 100 people."
+ },
+ {
+  "file": "bea_local_income_employment_methods_2026-09-30.pdf",
+  "source": "https://www.bea.gov/sites/default/files/methodologies/BEA-Local-Area-Personal-Income-and-Employment-Concepts-and-Methods.pdf",
+  "retrieved_at": "2026-09-30",
+  "sha256": "2bba7bb157bb1f067a5418c26b43b318f0482a839635f6f699f7217a4cba81ee",
+  "records": null,
+  "note": "Original DBEDT April 2024 workbook and report; DBEDT/BEA evidence confirms combined Maui/Kalawao geography. Workbook model precision retained; Maui 2030 differs from report by about 100 people."
+ }
+]

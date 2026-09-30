@@ -36,6 +36,13 @@ POLICIES = {
     "VA": (90, "Review the Cooper Center population workbook, methodology, and the separate age/sex and large-town products."),
     "WI": (90, "Review DOA state/county population and household workbooks and monitor the un-ingested subcounty products."),
     "UT": (90, "Review Gardner baseline population, household, employment, and components workbook; check the separate scenario release."),
+    "AK": (90, "Review September 2026 state scenarios and county workbook, 2025 estimate boundary, current borough/census-area FIPS, components and eligible jobs/households."),
+    "HI": (90, "Review DBEDT population/economic 2050 Series, 2020 population/2022 jobs bases, resident/de facto definitions, combined Maui/Kalawao geography and workbook/PDF 2030 discrepancy; check households/subcounty products."),
+    "ME": (90, "Review the OSE April 2025 population edition, 2022 estimate base, unusual five-year grid, long-horizon caution, municipal suppression and identifier support; confirm household, future component and eligible jobs products."),
+    "NE": (90, "Review CPAR's August 2022 legislature-requested adopted Hauer/SEDAC regional-rivalry product, 2020 history and published state total, current SharePoint download and possible successor; confirm household, component, subcounty and eligible jobs products."),
+    "NH": (90, "Review OPD publication and Census-based boundary, Table 1/Appendix A/Appendix B discrepancies, municipal forecasts, five-year components, households and eligible OPD jobs separately."),
+    "NV": (90, "Review long-range and March near-term editions separately, certified base estimates, Carson City, rounded PDF totals, demographic detail, and household/eligible jobs/components coverage."),
+    "OH": (90, "Review the Research Office catalog and Report 2023 workbook, 2020 estimate base, county/state controls, Ottawa overview discrepancy, conditional revisions and any household, subcounty, components or eligible jobs product."),
 }
 REVIEWS_PATH = Path(__file__).with_name("source_reviews.json")
 
