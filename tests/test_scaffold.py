@@ -10,7 +10,7 @@ from sdo_mcp.ingest import seed
 def test_list_states_covers_the_covered_states():
     res = server.list_states()
     # The six pilots plus the expansion states ingested so far.
-    assert {"CO", "TX", "CA", "TN", "GA", "FL", "NC", "MN", "AZ", "WA", "OR", "VA", "WI", "UT", "IN", "MI", "PA", "KY"} <= set(res["states"])
+    assert {"CO", "TX", "CA", "TN", "GA", "FL", "NC", "MN", "AZ", "WA", "OR", "VA", "WI", "UT", "IN", "MI", "PA", "KY", "IL", "MD"} <= set(res["states"])
     tx = res["states"]["TX"]
     assert tx["variables"]["households"]["county"]["status"] == "not_published"
     assert tx["scenarios"] == ["mid", "high", "low"]
@@ -81,7 +81,7 @@ def test_describe_source():
     res = server.describe_source("co")
     assert "Department of Local Affairs" in res["agency"]
     assert res["sources_loaded"] is None or isinstance(res["sources_loaded"], list)
-    assert server.describe_source("WY")["status"] == "error"
+    assert server.describe_source("AK")["status"] == "error"
 
 
 def test_unknown_variable_names_the_right_tool():

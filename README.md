@@ -5,20 +5,59 @@ households, and employment where the state office publishes it. The server
 reads a local SQLite database and does not download data while answering a
 question.
 
-Coverage now includes **19 recognized states, all with loaded population
-forecasts**. The newest addition is **Illinois**, using the
-[IDPH 2023 edition, released May 2024](https://dph.illinois.gov/data-statistics/public-data-assets/illinois-population-projections.html):
-412 population totals for the state and all 102 counties. July 2020 values
-are estimates; July 2025, 2030 and 2035 values are projections. The base year
-is 2020. The PDF's separate April 2020 Census counts are archived but excluded
-so each series has one point per year. No annual values are generated.
+Coverage now includes **25 recognized states, all with loaded population
+forecasts**. The newest addition is **Wyoming**, using the
+[Economic Analysis Division's February 2025 population publication](https://ai.wyo.gov/divisions/economic-analysis/demographic-information/projections).
+The state and all 23 counties have annual 2020–2050 totals: 2020 Census
+history, 2021–2023 estimates, and 2024–2050 forecasts. All 744 loaded values
+match the separate publisher PDF. The three abbreviated county names are
+matched to Census FIPS. Municipal forecasts are archived but not yet served.
+
+**Alabama** uses the
+[CBER/State Data Center county workbook](https://cber.culverhouse.ua.edu/resources/alabama-demographics/).
+The state and all 67 counties have a 2025 estimate and five-year projections
+from 2030 through 2050. The workbook displays whole-person counts, which are
+served without forcing rounded county totals to match the state row. Its Box
+filename says Fall 2026 and its file metadata was modified that September;
+the older October 2024 footer credit is documented in the source notes.
+
+**South Carolina** uses
+[RFA's Vintage 2023 population projections](https://www.rfa.sc.gov/programs/census-state-liaison-and-data-center/search-and-download-population-data/rfa-population-projections).
+The 2023 estimate and annual 2024-2043 projections cover the state and all 46
+counties. Every displayed forecast total matches the publisher's separate
+age-group workbook. County sums differ from state totals by up to five people
+because of rounding, so both published values are preserved.
+
+**New Mexico** uses
+[UNM Geospatial and Population Studies' Spring 2024 projections](https://gps.unm.edu/pop/population-projections.html).
+The state and all 33 counties have a 2020 Census historical total and
+five-year projections from 2025 through 2050. The model's last stated estimate
+input is 2022. The archived workbook and companion PDF agree on the loaded
+values; the HTML page has a Santa Fe 2030 typo. Publisher state and county
+values are retained even where independent rounding makes their sums differ.
+
+**Delaware** uses the
+[Delaware Population Consortium's 2024 tables](https://stateplanning.delaware.gov/demography/dpc-projection-data.shtml),
+which were readopted in December 2025. The state and all three counties have
+five-year population, household-count, and jobs-by-place-of-work totals from
+2020 through 2050. The 2020 historical rows are labelled estimates; 2025 onward
+are projections. Municipal and seasonal population products are published but
+not loaded. The original `.xls` workbook and adoption pages are archived.
+
+The preceding addition was **Maryland**, using
+[Maryland Department of Planning projections](https://planning.maryland.gov/MSDC/Pages/s3_projection.aspx):
+575 population, household and employment totals for the state and all 24
+county equivalents (23 counties and Baltimore City). Population and households
+use the November 2025 edition through 2055. Preliminary jobs by place of work
+use a separate October 2022 edition through 2050. Each series starts with 2020
+history, labelled estimate, followed by five-year projections from 2025.
+The base year is 2020; no annual values are generated.
 For example:
-`get_forecast(state="IL", geo_level="county", geo="Cook", variable="population")`.
-The original PDF and catalogs are archived with retrieval dates and fingerprints.
-Table 3 is used consistently: its state totals exceed Table 1 by 11 people in
-2025 and 3 in 2030; published values are preserved. Chicago, age/sex detail
-and five-year components are archived but not loaded. Household and eligible
-SDO jobs coverage remains unknown.
+`get_forecast(state="MD", geo_level="county", geo="Baltimore City", variable="population")`.
+Baltimore City (24510) is distinct from Baltimore County (24005). Original
+workbooks, catalog and methodology are archived with retrieval dates and
+fingerprints. Municipal and projected components publication coverage remains
+unverified; those requests return `coverage_unknown`.
 
 There is no public package release or hosted database download yet. You can
 install a checked compressed database release shared by the maintainer, or
@@ -200,4 +239,4 @@ or upload them.
 Source review schedules and publication-versus-loading status are available
 through `list_states`, `describe_source`, and the local report command:
 `uv run python -m sdo_mcp.monitoring --database data/sdo.sqlite`.
-See [source review instructions](docs/source-reviews.md) for all 19 states.
+See [source review instructions](docs/source-reviews.md) for all 25 states.

@@ -11,6 +11,12 @@ from . import notes, store
 
 # Maintenance choices, not promises about agency release dates.
 POLICIES = {
+    "AL": (90, "Review CBER's county workbook and Box filename/metadata, 2025 estimate base, rounded display values, and any household or eligible jobs products."),
+    "DE": (90, "Review the DPC 2024 edition and its 2025 readoption separately; check population, households, jobs by place of work, municipal and seasonal products."),
+    "NM": (90, "Review UNM-GPS state and county projection editions, the 2022 model launch, age/sex and annual exports, and any household, components or eligible jobs products."),
+    "SC": (90, "Review RFA publication vintage independently of its storage URL; compare total and age-group workbooks and audit components, households and eligible jobs products."),
+    "WY": (90, "Review EAD's February 2025 workbook and PDF, 2023 estimate base, municipal ratio-based forecasts, and any household or eligible jobs product."),
+    "MD": (90, "Review population/household workbook dates against the catalog, Census base and auxiliary inputs; check preliminary jobs separately, Baltimore City/county codes, regional and municipal products, and projected components."),
     "IL": (90, "Review IDPH edition, release date, April/July 2020 columns and Table 1/Table 3 differences; check Chicago, five-year components, households and eligible SDO jobs separately."),
     "AZ": (90, "Check all three scenarios and component workbooks."),
     "CA": (30, "Check population, households, and employment separately; files may be replaced in place."),

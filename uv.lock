@@ -854,11 +854,13 @@ dev = [
     { name = "openpyxl" },
     { name = "pypdf" },
     { name = "pytest" },
+    { name = "xlrd" },
 ]
 ingest = [
     { name = "cloudscraper" },
     { name = "openpyxl" },
     { name = "pypdf" },
+    { name = "xlrd" },
 ]
 
 [package.metadata]
@@ -870,11 +872,13 @@ dev = [
     { name = "openpyxl", specifier = ">=3.1" },
     { name = "pypdf", specifier = ">=6" },
     { name = "pytest", specifier = ">=8" },
+    { name = "xlrd", specifier = ">=2,<3" },
 ]
 ingest = [
     { name = "cloudscraper", specifier = ">=1.2.71" },
     { name = "openpyxl", specifier = ">=3.1" },
     { name = "pypdf", specifier = ">=6" },
+    { name = "xlrd", specifier = ">=2,<3" },
 ]
 
 [[package]]
@@ -953,4 +957,13 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/03/18/ccce41535dee1be77735592bd19965f3972c82e07ee703d324709496b716/uvicorn-0.52.1.tar.gz", hash = "sha256:112ec661814189acbccd3f7b86460147cc065fc92c0821afa78918780e4354dd", size = 100571, upload-time = "2026-08-01T18:19:30.732Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/c7/d5/68e6e9bca63c0badf67002890a46d3784c958de45b65e1275ec583ca1f06/uvicorn-0.52.1-py3-none-any.whl", hash = "sha256:e4403f9d93188cf9d1088e9f40e3acd12630e2df8675316704379a7fc20fff6a", size = 79859, upload-time = "2026-08-01T18:19:29.294Z" },
+]
+
+[[package]]
+name = "xlrd"
+version = "2.0.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/07/5a/377161c2d3538d1990d7af382c79f3b2372e880b65de21b01b1a2b78691e/xlrd-2.0.2.tar.gz", hash = "sha256:08b5e25de58f21ce71dc7db3b3b8106c1fa776f3024c54e45b45b374e89234c9", size = 100167, upload-time = "2025-06-14T08:46:39.039Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/1a/62/c8d562e7766786ba6587d09c5a8ba9f718ed3fa8af7f4553e8f91c36f302/xlrd-2.0.2-py2.py3-none-any.whl", hash = "sha256:ea762c3d29f4cca48d82df517b6d89fbce4db3107f9d78713e48cd321d5c9aa9", size = 96555, upload-time = "2025-06-14T08:46:37.766Z" },
 ]

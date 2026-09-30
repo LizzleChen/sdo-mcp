@@ -35,6 +35,12 @@ COVERED_STATES = {
     "IN": "Indiana",
     "IL": "Illinois",
     "KY": "Kentucky",
+    "MD": "Maryland",
+    "DE": "Delaware",
+    "NM": "New Mexico",
+    "SC": "South Carolina",
+    "AL": "Alabama",
+    "WY": "Wyoming",
     "MI": "Michigan",
     "PA": "Pennsylvania",
 }
@@ -410,6 +416,66 @@ COVERAGE = [
     ("KY", "households", "place", "not_published",
      "The Vintage 2022 product publishes state, county, and Area Development "
      "District projections; it has no city/place household projection series."),
+
+    # ---- Maryland: separate population/household and preliminary jobs editions
+    ("MD", "population", "state", "available",
+     "November 2025: 2020 Census anchor and five-year projections 2025-2055."),
+    ("MD", "population", "county", "available",
+     "November 2025: 2020 Census anchor and five-year projections 2025-2055 for "
+     "23 counties and Baltimore City (24510), distinct from Baltimore County (24005)."),
+    ("MD", "households", "state", "available",
+     "November 2025: 2020 Census household counts and five-year projections 2025-2055."),
+    ("MD", "households", "county", "available",
+     "November 2025: household counts for all 24 county equivalents, 2020-2055. "
+     "These are households, not household population or housing units."),
+    ("MD", "employment", "state", "available",
+     "Preliminary October 2022 MDP total jobs by place of work: BEA 2020 history "
+     "and five-year projections 2025-2050. Separate vintage from population/households."),
+    ("MD", "employment", "county", "available",
+     "Preliminary October 2022 MDP total jobs for all 24 county equivalents, "
+     "2020-2050 in five-year steps; not labor force or occupational projections."),
+
+    # ---- Delaware: DPC 2024 edition, readopted for 2025
+    ("DE", "population", "state", "available",
+     "DPC October 2024 resident population: 2020 history and 2025-2050 five-year projections; readopted December 2025."),
+    ("DE", "population", "county", "available",
+     "DPC October 2024 resident population for all three counties, 2020-2050."),
+    ("DE", "population", "place", "available",
+     "DPC publishes separate municipal projections; not loaded. Seasonal population is a distinct product."),
+    ("DE", "households", "state", "available",
+     "DPC 2024 household counts, 2020 history and 2025-2050 projections."),
+    ("DE", "households", "county", "available",
+     "DPC 2024 household counts for all three counties, 2020-2050."),
+    ("DE", "employment", "state", "available",
+     "DPC 2024 jobs by place of work, 2020 history and 2025-2050 projections; not resident employment."),
+    ("DE", "employment", "county", "available",
+     "DPC 2024 jobs by place of work for all three counties, 2020-2050."),
+
+    # ---- New Mexico: UNM-GPS spring 2024 edition
+    ("NM", "population", "state", "available",
+     "UNM-GPS Spring 2024: 2020 Census history and five-year projections 2025-2050, with a 2022 estimate model launch."),
+    ("NM", "population", "county", "available",
+     "UNM-GPS Spring 2024: all 33 counties, 2020 Census history and 2025-2050 five-year projections."),
+
+    # ---- South Carolina: RFA Vintage 2023, 2019-2023 estimate base
+    ("SC", "population", "state", "available",
+     "RFA Vintage 2023: July 2023 estimate and annual projections 2024-2043."),
+    ("SC", "population", "county", "available",
+     "RFA Vintage 2023: 2023 estimate and annual projections 2024-2043 for all 46 counties."),
+
+    # ---- Alabama: CBER/ASDC 2025 estimates and 2030-2050 projections
+    ("AL", "population", "state", "available",
+     "CBER 2025-based Fall 2026 file: 2025 estimate and five-year projections 2030-2050."),
+    ("AL", "population", "county", "available",
+     "CBER 2025-based file: all 67 counties, 2025 estimate and five-year projections 2030-2050."),
+
+    # ---- Wyoming: EAD February 2025 population, 2023 estimate boundary
+    ("WY", "population", "state", "available",
+     "EAD February 2025: 2020 Census and 2021-2023 estimates, then annual forecasts 2024-2050."),
+    ("WY", "population", "county", "available",
+     "EAD February 2025: all 23 counties, 2020-2023 history and annual forecasts 2024-2050."),
+    ("WY", "population", "place", "available",
+     "EAD publishes municipal forecasts based on place/county ratios; archived but not loaded."),
 
     # ---- Michigan: MCDA Vintage 2024, checked 2026-09-29
     ("MI", "population", "state", "available",

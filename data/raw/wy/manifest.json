@@ -1,0 +1,26 @@
+[
+ {
+  "file": "projection_catalog_2026-09-30.html",
+  "source": "https://ai.wyo.gov/divisions/economic-analysis/demographic-information/projections",
+  "retrieved_at": "2026-09-30",
+  "sha256": "6687be7bd1961d3b9595cf3bcef6c0fefcf88838571f420fd8cd66351bb98cd9",
+  "records": null,
+  "note": "Original Wyoming EAD February 2025 population publication; workbook and PDF include municipal rows not served by this adapter."
+ },
+ {
+  "file": "population_2020-2050_feb2025.xlsx",
+  "source": "https://docs.google.com/spreadsheets/d/19ooDLwh4bIXnGUcaVr95CQ_cCXvypcFa/export?format=xlsx",
+  "retrieved_at": "2026-09-30",
+  "sha256": "65caf439d26f823e42848431fe51ac26106a61044796340f74aa101f57529dbd",
+  "records": 744,
+  "note": "Original Wyoming EAD February 2025 population publication; workbook and PDF include municipal rows not served by this adapter."
+ },
+ {
+  "file": "population_2020-2050_feb2025.pdf",
+  "source": "https://drive.google.com/uc?export=download&id=1w7y6YRfgZ3k9voPjqw0dlJkUiwwiYlEd",
+  "retrieved_at": "2026-09-30",
+  "sha256": "fa6eae0b0ef3623aa5422862c9dffc823c153cec7c642218cddca1e180a36e95",
+  "records": null,
+  "note": "Original Wyoming EAD February 2025 population publication; workbook and PDF include municipal rows not served by this adapter."
+ }
+]

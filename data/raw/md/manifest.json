@@ -1,0 +1,42 @@
+[
+ {
+  "file": "population_2025-11.xlsx",
+  "source": "https://planning.maryland.gov/MSDC/Documents/popproj/TotalPopProj.xlsx",
+  "retrieved_at": "2026-09-29",
+  "sha256": "992d0c0e0422b671ab209b4dc12f9227c91ab98ea902ba2582460b50e539a81c",
+  "records": 200,
+  "note": "Original Maryland Planning source; workbook edition retained separately from catalog and retrieval dates."
+ },
+ {
+  "file": "households_2025-11.xlsx",
+  "source": "https://planning.maryland.gov/MSDC/Documents/popproj/HouseholdProj.xlsx",
+  "retrieved_at": "2026-09-29",
+  "sha256": "5463f320d45267b50c4932116f7b77fd067ef99b60a5507c49e6bb8feaa99755",
+  "records": 200,
+  "note": "Original Maryland Planning source; workbook edition retained separately from catalog and retrieval dates."
+ },
+ {
+  "file": "jobs_2022-10.xlsx",
+  "source": "https://planning.maryland.gov/MSDC/Documents/projection/Jobs/Summary_TotalJobs.xlsx",
+  "retrieved_at": "2026-09-29",
+  "sha256": "dce234332c65b667cfef3f88ff981bb42ed84a30ff1289473f09ffd3026c03d0",
+  "records": 175,
+  "note": "Original Maryland Planning source; workbook edition retained separately from catalog and retrieval dates."
+ },
+ {
+  "file": "projection_catalog_2026-09-29.html",
+  "source": "https://planning.maryland.gov/MSDC/Pages/s3_projection.aspx",
+  "retrieved_at": "2026-09-29",
+  "sha256": "d38593643feb7b37439290a89898de432edf76d13fe802b37f9ced1b06ece43e",
+  "records": null,
+  "note": "Original Maryland Planning source; workbook edition retained separately from catalog and retrieval dates."
+ },
+ {
+  "file": "population_methodology_2026-09-29.pdf",
+  "source": "https://planning.maryland.gov/MSDC/Documents/popproj/PopProjMethod-text.pdf",
+  "retrieved_at": "2026-09-29",
+  "sha256": "3cab0fce4275cfa5f622b8cf8c68e42abc565d778795e10e75bd034fabfdf9e8",
+  "records": null,
+  "note": "Original Maryland Planning source; workbook edition retained separately from catalog and retrieval dates."
+ }
+]

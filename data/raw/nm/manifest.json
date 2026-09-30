@@ -1,0 +1,34 @@
+[
+ {
+  "file": "projection_catalog_2026-09-30.html",
+  "source": "https://gps.unm.edu/pop/population-projections.html",
+  "retrieved_at": "2026-09-30",
+  "sha256": "c54c11585d9396cb467600171e69d41acadec1e91f753b574537fafc10fd1d79",
+  "records": null,
+  "note": "Original UNM-GPS spring-2024 publication; workbook and PDF totals were cross-checked."
+ },
+ {
+  "file": "county_totals_spring2024.xlsx",
+  "source": "https://gps.unm.edu/assets/documents/census/new-mexico-county-projections-total-and-by-agesex-xlsx.xlsx",
+  "retrieved_at": "2026-09-30",
+  "sha256": "e906fabea05aaaf4a0a79e03aaa505a5e6df518ed0c9030db342ef15932e78fa",
+  "records": 238,
+  "note": "Original UNM-GPS spring-2024 publication; workbook and PDF totals were cross-checked."
+ },
+ {
+  "file": "county_projections_spring2024.pdf",
+  "source": "https://gps.unm.edu/assets/documents/census/nmcountyprojections_v2024.pdf",
+  "retrieved_at": "2026-09-30",
+  "sha256": "12891ea535e80beb748391338694299d85070a61c42abd6ebd252260883a574e",
+  "records": null,
+  "note": "Original UNM-GPS spring-2024 publication; workbook and PDF totals were cross-checked."
+ },
+ {
+  "file": "methodology_spring2024.pdf",
+  "source": "https://gps.unm.edu/assets/documents/census/2024-gps-projections-methodology.pdf",
+  "retrieved_at": "2026-09-30",
+  "sha256": "111458a6ea1c885c2f02b31307ce2abb11791ad0be3b4059a646331f14504bc3",
+  "records": null,
+  "note": "Original UNM-GPS spring-2024 publication; workbook and PDF totals were cross-checked."
+ }
+]

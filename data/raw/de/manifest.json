@@ -1,0 +1,26 @@
+[
+ {
+  "file": "projection_catalog_2026-09-30.html",
+  "source": "https://stateplanning.delaware.gov/demography/dpc-projection-data.shtml",
+  "retrieved_at": "2026-09-30",
+  "sha256": "a8e40f793ea551bb0f857c6c571aec2254078a7879ca92bbc839b3320081099a",
+  "records": null,
+  "note": "Original DPC 2024 table or current catalog; 2025 readoption is not a new model edition."
+ },
+ {
+  "file": "edition_catalog_2026-09-30.html",
+  "source": "https://stateplanning.delaware.gov/demography/dpc-projection-info.shtml",
+  "retrieved_at": "2026-09-30",
+  "sha256": "fad7665001173e81c2ee9219dbd44dbe839cb706d4da0b4b5c9371567e8a74e8",
+  "records": null,
+  "note": "Original DPC 2024 table or current catalog; 2025 readoption is not a new model edition."
+ },
+ {
+  "file": "DPC-2024v0-report.xls",
+  "source": "https://stateplanning.delaware.gov/demography/documents/dpc/DPC-2024v0-report.xls",
+  "retrieved_at": "2026-09-30",
+  "sha256": "a591c558e9807776ec7d1a34dea0bb745326ee8d4a8e9d835063934f4171adaf",
+  "records": 84,
+  "note": "Original DPC 2024 table or current catalog; 2025 readoption is not a new model edition."
+ }
+]

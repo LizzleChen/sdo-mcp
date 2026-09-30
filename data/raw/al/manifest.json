@@ -1,0 +1,18 @@
+[
+ {
+  "file": "demographics_catalog_2026-09-30.html",
+  "source": "https://cber.culverhouse.ua.edu/resources/alabama-demographics/",
+  "retrieved_at": "2026-09-30",
+  "sha256": "a033c225e9ebf73f567019e8ac59c4ba8eda439344477086071040e148fc7249",
+  "records": null,
+  "note": "Original CBER catalog or Box workbook; the workbook footer's October 2024 credit conflicts with its September 2026 modification date and Fall 2026 filename."
+ },
+ {
+  "file": "county_population_2025-2050_fall2026.xlsx",
+  "source": "https://alabama.app.box.com/index.php?rm=box_download_shared_file&shared_name=991v89cfqpkukoa2o7c6eh2wr57elo1t&file_id=f_1667589139124",
+  "retrieved_at": "2026-09-30",
+  "sha256": "4df42b7b8fff91c735051e4b00acc65d81cc9c1c98a6a17447ded96c273137b5",
+  "records": 408,
+  "note": "Original CBER catalog or Box workbook; the workbook footer's October 2024 credit conflicts with its September 2026 modification date and Fall 2026 filename."
+ }
+]
