@@ -5,8 +5,15 @@ households, and employment where the state office publishes it. The server
 reads a local SQLite database and does not download data while answering a
 question.
 
-Coverage now includes **24 recognized states, all with loaded population
-forecasts**. The newest addition is **Alabama**, using the
+Coverage now includes **25 recognized states, all with loaded population
+forecasts**. The newest addition is **Wyoming**, using the
+[Economic Analysis Division's February 2025 population publication](https://ai.wyo.gov/divisions/economic-analysis/demographic-information/projections).
+The state and all 23 counties have annual 2020–2050 totals: 2020 Census
+history, 2021–2023 estimates, and 2024–2050 forecasts. All 744 loaded values
+match the separate publisher PDF. The three abbreviated county names are
+matched to Census FIPS. Municipal forecasts are archived but not yet served.
+
+**Alabama** uses the
 [CBER/State Data Center county workbook](https://cber.culverhouse.ua.edu/resources/alabama-demographics/).
 The state and all 67 counties have a 2025 estimate and five-year projections
 from 2030 through 2050. The workbook displays whole-person counts, which are
@@ -232,4 +239,4 @@ or upload them.
 Source review schedules and publication-versus-loading status are available
 through `list_states`, `describe_source`, and the local report command:
 `uv run python -m sdo_mcp.monitoring --database data/sdo.sqlite`.
-See [source review instructions](docs/source-reviews.md) for all 24 states.
+See [source review instructions](docs/source-reviews.md) for all 25 states.

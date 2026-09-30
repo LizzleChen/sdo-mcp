@@ -81,7 +81,7 @@ def test_describe_source():
     res = server.describe_source("co")
     assert "Department of Local Affairs" in res["agency"]
     assert res["sources_loaded"] is None or isinstance(res["sources_loaded"], list)
-    assert server.describe_source("WY")["status"] == "error"
+    assert server.describe_source("AK")["status"] == "error"
 
 
 def test_unknown_variable_names_the_right_tool():

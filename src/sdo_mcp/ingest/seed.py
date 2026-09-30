@@ -40,6 +40,7 @@ COVERED_STATES = {
     "NM": "New Mexico",
     "SC": "South Carolina",
     "AL": "Alabama",
+    "WY": "Wyoming",
     "MI": "Michigan",
     "PA": "Pennsylvania",
 }
@@ -467,6 +468,14 @@ COVERAGE = [
      "CBER 2025-based Fall 2026 file: 2025 estimate and five-year projections 2030-2050."),
     ("AL", "population", "county", "available",
      "CBER 2025-based file: all 67 counties, 2025 estimate and five-year projections 2030-2050."),
+
+    # ---- Wyoming: EAD February 2025 population, 2023 estimate boundary
+    ("WY", "population", "state", "available",
+     "EAD February 2025: 2020 Census and 2021-2023 estimates, then annual forecasts 2024-2050."),
+    ("WY", "population", "county", "available",
+     "EAD February 2025: all 23 counties, 2020-2023 history and annual forecasts 2024-2050."),
+    ("WY", "population", "place", "available",
+     "EAD publishes municipal forecasts based on place/county ratios; archived but not loaded."),
 
     # ---- Michigan: MCDA Vintage 2024, checked 2026-09-29
     ("MI", "population", "state", "available",

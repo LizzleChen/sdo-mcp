@@ -1,7 +1,7 @@
 # Source reviews and loading status
 
 Run `uv run python -m sdo_mcp.monitoring --database data/sdo.sqlite`
-for a JSON report of all 20 states. Omit `--database` to inspect the installed
+for a JSON report of all 25 states. Omit `--database` to inspect the installed
 copy (or the file selected by `SDO_DB`). The command reads local files only.
 It neither checks websites nor changes the database. Save its output when
 preparing a data release. `list_states` and `describe_source` expose the same
@@ -14,9 +14,11 @@ Check sooner when an agency announces a revision or a source check fails.
 
 | State | Review every | What needs separate attention |
 | --- | --- | --- |
+| Alabama | 90 days | CBER file edition, displayed rounding, households and eligible jobs |
 | Arizona | 90 days | Three scenarios and components |
 | California | 30 days | Population, households, jobs; replaced files |
 | Colorado | 30 days | Population, households, jobs; autumn updates |
+| Delaware | 90 days | DPC edition and readoption, population, households, jobs, municipal and seasonal products |
 | Florida | 90 days | Population workbook and household/jobs PDFs |
 | Georgia | 90 days | OPB edition and county workbook |
 | Illinois | 90 days | IDPH edition/release, April/July base columns and Table 1/Table 3 differences; Chicago, five-year components, households and eligible jobs |
@@ -25,15 +27,18 @@ Check sooner when an agency announces a revision or a source check fails.
 | Maryland | 90 days | Workbook/catalog date mismatch; Census anchor and auxiliary inputs; separate preliminary jobs vintage; Baltimore City/county codes, regions, municipalities and projected components |
 | Michigan | 90 days | MCDA state/county editions, workbook codes, base years and scenarios; regional, place, household, components and eligible jobs coverage |
 | Minnesota | 90 days | State/county files and projected launch year |
+| New Mexico | 90 days | UNM-GPS edition, 2022 model launch, age/sex and annual exports |
 | North Carolina | 90 days | Edition, base year, and components |
 | Oregon | 30 days | Every regional/county edition and exclusions |
 | Pennsylvania | 90 days | PaSDC edition, estimate labels, state components PDF; place, household and eligible jobs coverage |
+| South Carolina | 90 days | RFA vintage, totals and age-group agreement, components and eligible jobs |
 | Tennessee | 90 days | Boyd Center releases and county detail service |
 | Texas | 90 days | Edition, scenarios, and regional products |
 | Utah | 90 days | Gardner baseline and separate High/Low scenario workbooks; no base year stated |
 | Virginia | 90 days | Cooper Center population workbook, methodology, independent-city rows, and separate town product |
 | Washington | 90 days | State, GMA population, GMA components, economic PDF |
 | Wisconsin | 90 days | DOA population and household workbooks; separate subcounty products and household edition date |
+| Wyoming | 90 days | EAD edition, 2023 estimate boundary, municipal ratio method, household and eligible jobs coverage |
 
 The expansion snapshot checks below describe what is loaded and what remains
 uncertain. They are evidence about the saved files, not completed review dates;
@@ -42,6 +47,7 @@ the manifests retain each file's retrieval date and fingerprint.
 | State and agency evidence | Loaded coverage in this checkout | Known limits and uncertainty |
 | --- | --- | --- |
 | [Maryland — Department of Planning](https://planning.maryland.gov/MSDC/Pages/s3_projection.aspx) | November 2025 population/households through 2055; preliminary October 2022 jobs through 2050. State and all 24 county equivalents, 2020 history plus five-year projections (575 totals) | Catalog population/household date lags the files. Baltimore City is separate from Baltimore County. Regional totals are archived only; municipalities and projected components remain unverified |
+| [Wyoming — EAD](https://ai.wyo.gov/divisions/economic-analysis/demographic-information/projections) | February 2025 state and all 23 counties, annual 2020–2050 population (744 totals); final estimate year 2023 | Workbook and PDF agree at every loaded value. Municipal forecasts are published but not served; household and eligible jobs coverage is unverified |
 | [Illinois — IDPH](https://dph.illinois.gov/data-statistics/public-data-assets/illinois-population-projections.html) | 2023 edition, released May 2024: Table 3 July 2020 estimates and July 2025/2030/2035 projections for the state and all 102 counties (412 totals); base year 2020 | April 2020 Census column excluded. Table 3 state totals exceed Table 1 by 11 in 2025 and 3 in 2030. Chicago, age/sex and five-year components are archived but not loaded. Household and eligible jobs coverage is unknown |
 | [Kentucky — KSDC / University of Louisville](https://centers.louisville.edu/kentucky-state-data-center/data-downloads) | Vintage 2022 population and households: 2020 historical totals and five-year projections 2025–2050 for the state and all 120 counties (1,694 totals). Model anchor 2020; last underlying population estimate input 2021 | Age/sex and 15 Area Development Districts are archived but not served; no city/place projections in this edition. Eligible jobs and projected components coverage is unverified |
 | [Pennsylvania — PaSDC / Center for Rural Pennsylvania](https://www.rural.pa.gov/data/population-projections) | 2023 population edition: 2020 estimates and five-year projections 2025–2050 for the state and all 67 counties (476 totals); base year 2020, from Census Vintage 2022 | Age/sex detail is archived but not served. State components appear as five-year period totals in methodology Table 3 and are not loaded. Place, household, eligible jobs and county components coverage is unverified |
@@ -303,6 +309,29 @@ the adapter serves that displayed rounding. Rounded county sums can differ
 from the rounded state total by up to three people. Earlier history and
 percentage-change columns are not served. Household, place, components and
 eligible jobs coverage requires further source review; no completed statewide
+review date is recorded.
+
+## Wyoming batch-one source check
+
+The [Wyoming Economic Analysis Division catalog](https://ai.wyo.gov/divisions/economic-analysis/demographic-information/projections)
+links the same 2020–2050 population table as a Google spreadsheet and a
+[publisher PDF](https://drive.google.com/file/d/1w7y6YRfgZ3k9voPjqw0dlJkUiwwiYlEd/view).
+Both originals and the catalog were archived September 30, 2026, with
+fingerprints. The workbook footer names EAD and February 2025; its last
+modification timestamp is February 3, 2025. The source explicitly labels 2020
+as Census, 2021–2023 as Census Bureau estimates, and 2024–2050 as EAD forecasts.
+The last estimate year is recorded as `base_year=2023`.
+
+The adapter loads the source's state row and all 23 county rows, 744 annual
+values in total. The publisher abbreviates Johnson, Laramie, and Lincoln as
+`Cnty`; these names are matched to the Census county list and FIPS codes.
+County totals add exactly to the published state total in every year. All 744
+loaded values were independently compared against the PDF, including the 2023
+estimate and 2024 forecast boundary. The original files also contain municipal
+forecasts derived by applying place/county ratios. They are archived but not
+served until place identifiers and geography support are checked. No county
+values are substituted for those places. Household, components, and eligible
+EAD jobs publication status remains unverified, so no completed statewide
 review date is recorded.
 
 ## Reading the status

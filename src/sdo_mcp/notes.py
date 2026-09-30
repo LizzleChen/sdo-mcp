@@ -735,6 +735,33 @@ STATES = {
             "estimate_context": "https://cber.culverhouse.ua.edu/2026/04/24/migration-is-the-primary-driver-of-alabamas-uneven-growth-findings-from-u-s-census-vintage-2020-2025-estimates/",
         },
     },
+    "WY": {
+        "name": "Wyoming",
+        "agency": "Wyoming Department of Administration & Information, Economic Analysis Division",
+        "producer_type": "state agency",
+        "current_vintage": "February 2025 edition: 2020 Census history, 2021-2023 estimates, and annual forecasts for 2024-2050.",
+        "geography_floor": "The state and all 23 counties are loaded. Municipal forecasts are published and archived but not served.",
+        "scenarios": [],
+        "default_scenario": None,
+        "products": [
+            "State and county population, 2020-2050 (loaded)",
+            "Cities and towns, 2020-2050 (published and archived but not served)",
+        ],
+        "methodology": "The February 2025 source says EAD forecast state and county population from demographic and economic trends. It calculates municipal forecasts by applying place/county ratios to the appropriate county forecasts. The workbook and separate PDF agree at every state and county point.",
+        "employment_note": "An eligible EAD jobs forecast was not established during this population-source check. Labor-department occupational projections are not substituted.",
+        "license": "No explicit data license identified; cite the Wyoming Economic Analysis Division.",
+        "caveats": [
+            "The 2020 Census counts use the MCP estimate label, as do 2021-2023 Census Bureau estimates. All 2024-2050 values remain projections regardless of retrieval date; base_year=2023 identifies the last estimate year.",
+            "Johnson, Laramie, and Lincoln appear as 'Cnty' in the workbook and are matched to their Census county FIPS identifiers. All 23 county totals add exactly to the separately published state row in every year.",
+            "Municipal forecasts are published, but the current place geography and identifier support has not been checked for these rows. They are not substituted with county values. Household, components, and eligible jobs publication coverage requires further review; no completed statewide review date is recorded.",
+        ],
+        "links": {
+            "agency": "https://ai.wyo.gov/divisions/economic-analysis",
+            "catalog": "https://ai.wyo.gov/divisions/economic-analysis/demographic-information/projections",
+            "workbook": "https://docs.google.com/spreadsheets/d/19ooDLwh4bIXnGUcaVr95CQ_cCXvypcFa/edit",
+            "pdf": "https://drive.google.com/file/d/1w7y6YRfgZ3k9voPjqw0dlJkUiwwiYlEd/view",
+        },
+    },
     "KY": {
         "name": "Kentucky",
         "agency": "Kentucky State Data Center, University of Louisville",
