@@ -5,8 +5,16 @@ households, and employment where the state office publishes it. The server
 reads a local SQLite database and does not download data while answering a
 question.
 
-Coverage now includes **23 recognized states, all with loaded population
-forecasts**. The newest addition is **South Carolina**, using
+Coverage now includes **24 recognized states, all with loaded population
+forecasts**. The newest addition is **Alabama**, using the
+[CBER/State Data Center county workbook](https://cber.culverhouse.ua.edu/resources/alabama-demographics/).
+The state and all 67 counties have a 2025 estimate and five-year projections
+from 2030 through 2050. The workbook displays whole-person counts, which are
+served without forcing rounded county totals to match the state row. Its Box
+filename says Fall 2026 and its file metadata was modified that September;
+the older October 2024 footer credit is documented in the source notes.
+
+**South Carolina** uses
 [RFA's Vintage 2023 population projections](https://www.rfa.sc.gov/programs/census-state-liaison-and-data-center/search-and-download-population-data/rfa-population-projections).
 The 2023 estimate and annual 2024-2043 projections cover the state and all 46
 counties. Every displayed forecast total matches the publisher's separate
@@ -224,4 +232,4 @@ or upload them.
 Source review schedules and publication-versus-loading status are available
 through `list_states`, `describe_source`, and the local report command:
 `uv run python -m sdo_mcp.monitoring --database data/sdo.sqlite`.
-See [source review instructions](docs/source-reviews.md) for all 23 states.
+See [source review instructions](docs/source-reviews.md) for all 24 states.

@@ -285,6 +285,26 @@ births and deaths totals and their period treatment have not been verified for
 the MCP components tool. They are not served. Other products need their own
 review, and no completed statewide review date is recorded.
 
+## Alabama batch-one source check
+
+The [University of Alabama CBER/State Data Center catalog](https://cber.culverhouse.ua.edu/resources/alabama-demographics/)
+links a county projection workbook through 2050. The downloaded Box filename
+includes `ReleasedFall2026`; its internal modified timestamp is September 24,
+2026, and its 2025 estimate column separates history from the 2030-2050
+five-year projections. The workbook footer still credits October 2024, so the
+formal release date is not established solely from that footer. The original
+workbook and catalog were archived September 30, 2026, with fingerprints.
+
+CBER's [separate estimate report](https://cber.culverhouse.ua.edu/2026/04/24/migration-is-the-primary-driver-of-alabamas-uneven-growth-findings-from-u-s-census-vintage-2020-2025-estimates/)
+confirms the 2025 state value of 5,193,088 and Baldwin County's 267,761.
+The workbook contains an explicit state row and all 67 counties. Its 2030-2050
+model cells contain fractions but display whole persons with `#,##0` formatting;
+the adapter serves that displayed rounding. Rounded county sums can differ
+from the rounded state total by up to three people. Earlier history and
+percentage-change columns are not served. Household, place, components and
+eligible jobs coverage requires further source review; no completed statewide
+review date is recorded.
+
 ## Reading the status
 
 `status` retains the publication facts: `available`, `pdf_only`,

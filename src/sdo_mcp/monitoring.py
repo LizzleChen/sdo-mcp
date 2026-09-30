@@ -11,6 +11,7 @@ from . import notes, store
 
 # Maintenance choices, not promises about agency release dates.
 POLICIES = {
+    "AL": (90, "Review CBER's county workbook and Box filename/metadata, 2025 estimate base, rounded display values, and any household or eligible jobs products."),
     "DE": (90, "Review the DPC 2024 edition and its 2025 readoption separately; check population, households, jobs by place of work, municipal and seasonal products."),
     "NM": (90, "Review UNM-GPS state and county projection editions, the 2022 model launch, age/sex and annual exports, and any household, components or eligible jobs products."),
     "SC": (90, "Review RFA publication vintage independently of its storage URL; compare total and age-group workbooks and audit components, households and eligible jobs products."),

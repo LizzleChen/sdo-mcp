@@ -39,6 +39,7 @@ COVERED_STATES = {
     "DE": "Delaware",
     "NM": "New Mexico",
     "SC": "South Carolina",
+    "AL": "Alabama",
     "MI": "Michigan",
     "PA": "Pennsylvania",
 }
@@ -460,6 +461,12 @@ COVERAGE = [
      "RFA Vintage 2023: July 2023 estimate and annual projections 2024-2043."),
     ("SC", "population", "county", "available",
      "RFA Vintage 2023: 2023 estimate and annual projections 2024-2043 for all 46 counties."),
+
+    # ---- Alabama: CBER/ASDC 2025 estimates and 2030-2050 projections
+    ("AL", "population", "state", "available",
+     "CBER 2025-based Fall 2026 file: 2025 estimate and five-year projections 2030-2050."),
+    ("AL", "population", "county", "available",
+     "CBER 2025-based file: all 67 counties, 2025 estimate and five-year projections 2030-2050."),
 
     # ---- Michigan: MCDA Vintage 2024, checked 2026-09-29
     ("MI", "population", "state", "available",
