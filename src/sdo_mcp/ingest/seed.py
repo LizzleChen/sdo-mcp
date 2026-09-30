@@ -37,6 +37,7 @@ COVERED_STATES = {
     "KY": "Kentucky",
     "MD": "Maryland",
     "DE": "Delaware",
+    "NM": "New Mexico",
     "MI": "Michigan",
     "PA": "Pennsylvania",
 }
@@ -446,6 +447,12 @@ COVERAGE = [
      "DPC 2024 jobs by place of work, 2020 history and 2025-2050 projections; not resident employment."),
     ("DE", "employment", "county", "available",
      "DPC 2024 jobs by place of work for all three counties, 2020-2050."),
+
+    # ---- New Mexico: UNM-GPS spring 2024 edition
+    ("NM", "population", "state", "available",
+     "UNM-GPS Spring 2024: 2020 Census history and five-year projections 2025-2050, with a 2022 estimate model launch."),
+    ("NM", "population", "county", "available",
+     "UNM-GPS Spring 2024: all 33 counties, 2020 Census history and 2025-2050 five-year projections."),
 
     # ---- Michigan: MCDA Vintage 2024, checked 2026-09-29
     ("MI", "population", "state", "available",

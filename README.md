@@ -5,8 +5,16 @@ households, and employment where the state office publishes it. The server
 reads a local SQLite database and does not download data while answering a
 question.
 
-Coverage now includes **21 recognized states, all with loaded population
-forecasts**. The newest addition is **Delaware**, using the
+Coverage now includes **22 recognized states, all with loaded population
+forecasts**. The newest addition is **New Mexico**, using
+[UNM Geospatial and Population Studies' Spring 2024 projections](https://gps.unm.edu/pop/population-projections.html).
+The state and all 33 counties have a 2020 Census historical total and
+five-year projections from 2025 through 2050. The model's last stated estimate
+input is 2022. The archived workbook and companion PDF agree on the loaded
+values; the HTML page has a Santa Fe 2030 typo. Publisher state and county
+values are retained even where independent rounding makes their sums differ.
+
+**Delaware** uses the
 [Delaware Population Consortium's 2024 tables](https://stateplanning.delaware.gov/demography/dpc-projection-data.shtml),
 which were readopted in December 2025. The state and all three counties have
 five-year population, household-count, and jobs-by-place-of-work totals from
@@ -209,4 +217,4 @@ or upload them.
 Source review schedules and publication-versus-loading status are available
 through `list_states`, `describe_source`, and the local report command:
 `uv run python -m sdo_mcp.monitoring --database data/sdo.sqlite`.
-See [source review instructions](docs/source-reviews.md) for all 21 states.
+See [source review instructions](docs/source-reviews.md) for all 22 states.

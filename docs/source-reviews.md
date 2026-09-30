@@ -247,6 +247,24 @@ residents. Municipal and seasonal products are published separately and are
 not loaded. Other product coverage remains unknown; this is not a completed
 statewide review.
 
+## New Mexico batch-one source check
+
+The [UNM-GPS projection page](https://gps.unm.edu/pop/population-projections.html),
+its [county workbook](https://gps.unm.edu/assets/documents/census/new-mexico-county-projections-total-and-by-agesex-xlsx.xlsx),
+[publisher PDF](https://gps.unm.edu/assets/documents/census/nmcountyprojections_v2024.pdf),
+and [Spring 2024 method statement](https://gps.unm.edu/assets/documents/census/2024-gps-projections-methodology.pdf)
+were archived September 30, 2026, with fingerprints. The method identifies
+2022 estimates as the model launch and calls the product 2023-2050. The county
+summary publishes 2020 Census history and forecasts only at 2025, 2030, and
+five-year points through 2050; no annual values are supplied by that table.
+
+The 33 counties and a separate `NM Total` state row are loaded. The county
+and state sums differ by at most five people because published totals are
+rounded separately. The companion PDF matches the workbook, including Santa
+Fe's 2030 value of 164,745; the HTML page says 164,754. The workbook is the
+selected numeric source. Other products remain outside this population check,
+so no completed statewide review date is recorded.
+
 ## Reading the status
 
 `status` retains the publication facts: `available`, `pdf_only`,
