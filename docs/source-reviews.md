@@ -265,6 +265,26 @@ Fe's 2030 value of 164,745; the HTML page says 164,754. The workbook is the
 selected numeric source. Other products remain outside this population check,
 so no completed statewide review date is recorded.
 
+## South Carolina batch-one source check
+
+The [RFA overview](https://www.rfa.sc.gov/programs/census-state-liaison-and-data-center/population-projections)
+and [download catalog](https://www.rfa.sc.gov/programs/census-state-liaison-and-data-center/search-and-download-population-data/rfa-population-projections)
+identify a Vintage 2023 product for 2024-2043. Its totals workbook states a
+2019-2023 population base period and Vintage 2023 postcensal estimates through
+2023. The 2023 state/county totals are estimates; all 2024-2043 totals are
+projections. The files' `2026-08` URL folder is a storage path, not the model
+vintage. Both source workbooks and the two publisher pages were archived on
+September 30, 2026, with fingerprints.
+
+The totals workbook and separate five-year age-group workbook agree at every
+state and county all-ages point after rounding as displayed: 47 geographies by
+20 projected years. The state and county totals in the primary workbook can
+differ by up to five people because each is rounded; both are kept. Natural
+change and net migration are published in the totals workbook, but separate
+births and deaths totals and their period treatment have not been verified for
+the MCP components tool. They are not served. Other products need their own
+review, and no completed statewide review date is recorded.
+
 ## Reading the status
 
 `status` retains the publication facts: `available`, `pdf_only`,

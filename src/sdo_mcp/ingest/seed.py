@@ -38,6 +38,7 @@ COVERED_STATES = {
     "MD": "Maryland",
     "DE": "Delaware",
     "NM": "New Mexico",
+    "SC": "South Carolina",
     "MI": "Michigan",
     "PA": "Pennsylvania",
 }
@@ -453,6 +454,12 @@ COVERAGE = [
      "UNM-GPS Spring 2024: 2020 Census history and five-year projections 2025-2050, with a 2022 estimate model launch."),
     ("NM", "population", "county", "available",
      "UNM-GPS Spring 2024: all 33 counties, 2020 Census history and 2025-2050 five-year projections."),
+
+    # ---- South Carolina: RFA Vintage 2023, 2019-2023 estimate base
+    ("SC", "population", "state", "available",
+     "RFA Vintage 2023: July 2023 estimate and annual projections 2024-2043."),
+    ("SC", "population", "county", "available",
+     "RFA Vintage 2023: 2023 estimate and annual projections 2024-2043 for all 46 counties."),
 
     # ---- Michigan: MCDA Vintage 2024, checked 2026-09-29
     ("MI", "population", "state", "available",

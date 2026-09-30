@@ -1,0 +1,34 @@
+[
+ {
+  "file": "projection_catalog_2026-09-30.html",
+  "source": "https://www.rfa.sc.gov/programs/census-state-liaison-and-data-center/search-and-download-population-data/rfa-population-projections",
+  "retrieved_at": "2026-09-30",
+  "sha256": "b94ac7790e09159878da18ea3c73be0ac3f72bc8cbe7253349f115a40d7b1d87",
+  "records": null,
+  "note": "Original RFA Vintage 2023 publication; the 2026-08 URL folder is not the model vintage."
+ },
+ {
+  "file": "projection_overview_2026-09-30.html",
+  "source": "https://www.rfa.sc.gov/programs/census-state-liaison-and-data-center/population-projections",
+  "retrieved_at": "2026-09-30",
+  "sha256": "c80facbd8de0d82946e4af8273f6a18196d7117643a46b9964354c77338bc497",
+  "records": null,
+  "note": "Original RFA Vintage 2023 publication; the 2026-08 URL folder is not the model vintage."
+ },
+ {
+  "file": "population_components_v2023.xlsx",
+  "source": "https://www.rfa.sc.gov/sites/rfa/files/2026-08/Vintage%202023%20RFA%20Population%20Projections%20-%20Total%20Population%2C%20Population%20Change%2C%20and%20Components%20of%20Change%20by%20Sex%20and%20County%202024-2043.xlsx",
+  "retrieved_at": "2026-09-30",
+  "sha256": "1a0cf3d28b448473a2c826bc66ae3ec78783107419f254ee6dc37951420fca27",
+  "records": 987,
+  "note": "Original RFA Vintage 2023 publication; the 2026-08 URL folder is not the model vintage."
+ },
+ {
+  "file": "age5_v2023.xlsx",
+  "source": "https://www.rfa.sc.gov/sites/rfa/files/2026-08/Vintage%202023%20RFA%20Population%20Projections%20by%205-Year%20Age%20Group%20and%20County%202024-2043.xlsx",
+  "retrieved_at": "2026-09-30",
+  "sha256": "a57518da176ecea1106a844755fd5fcf4c0988bc6898885952cc6d7b5c76f139",
+  "records": null,
+  "note": "Original RFA Vintage 2023 publication; the 2026-08 URL folder is not the model vintage."
+ }
+]

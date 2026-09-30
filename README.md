@@ -5,8 +5,15 @@ households, and employment where the state office publishes it. The server
 reads a local SQLite database and does not download data while answering a
 question.
 
-Coverage now includes **22 recognized states, all with loaded population
-forecasts**. The newest addition is **New Mexico**, using
+Coverage now includes **23 recognized states, all with loaded population
+forecasts**. The newest addition is **South Carolina**, using
+[RFA's Vintage 2023 population projections](https://www.rfa.sc.gov/programs/census-state-liaison-and-data-center/search-and-download-population-data/rfa-population-projections).
+The 2023 estimate and annual 2024-2043 projections cover the state and all 46
+counties. Every displayed forecast total matches the publisher's separate
+age-group workbook. County sums differ from state totals by up to five people
+because of rounding, so both published values are preserved.
+
+**New Mexico** uses
 [UNM Geospatial and Population Studies' Spring 2024 projections](https://gps.unm.edu/pop/population-projections.html).
 The state and all 33 counties have a 2020 Census historical total and
 five-year projections from 2025 through 2050. The model's last stated estimate
@@ -217,4 +224,4 @@ or upload them.
 Source review schedules and publication-versus-loading status are available
 through `list_states`, `describe_source`, and the local report command:
 `uv run python -m sdo_mcp.monitoring --database data/sdo.sqlite`.
-See [source review instructions](docs/source-reviews.md) for all 22 states.
+See [source review instructions](docs/source-reviews.md) for all 23 states.
