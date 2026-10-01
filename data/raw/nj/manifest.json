@@ -1,0 +1,50 @@
+[
+ {
+  "file": "state_population_models_2014-2034_may2017.xlsx",
+  "source": "https://www.nj.gov/labor/labormarketinformation/assets/PDFs/dmograph/lfproj/sptab1.xlsx",
+  "retrieved_at": "2026-10-01",
+  "sha256": "3dc22cd94e3d9f76f76118e526cb4318538ca4feff56f749ab0a9f910b8e49ef",
+  "records": 20,
+  "note": "Original NJDOL 2014\u20132034 source. XLSX modified May 11, 2017; methodology/introduction saved November 2016. Source series/vintage is distinct from the 2026 catalog retrieval. State/county table 2029 discrepancy and rounding retained. Labor force is not served as employment."
+ },
+ {
+  "file": "county_population_2014-2034_may2017.xlsx",
+  "source": "https://www.nj.gov/labor/labormarketinformation/assets/PDFs/dmograph/lfproj/table1.xlsx",
+  "retrieved_at": "2026-10-01",
+  "sha256": "36e9aa1bfea014f1728876a395cd885fbd360e88651ffa655bdbb2e0bafc0dbc",
+  "records": 105,
+  "note": "Original NJDOL 2014\u20132034 source. XLSX modified May 11, 2017; methodology/introduction saved November 2016. Source series/vintage is distinct from the 2026 catalog retrieval. State/county table 2029 discrepancy and rounding retained. Labor force is not served as employment."
+ },
+ {
+  "file": "population_methodology_2014-2034.doc",
+  "source": "https://www.nj.gov/labor/labormarketinformation/assets/PDFs/dmograph/lfproj/method24.doc",
+  "retrieved_at": "2026-10-01",
+  "sha256": "76f97141722dece0af0235d4b56c7537c4fb7b032073d1fb6250dec30a9c3b39",
+  "records": null,
+  "note": "Original NJDOL 2014\u20132034 source. XLSX modified May 11, 2017; methodology/introduction saved November 2016. Source series/vintage is distinct from the 2026 catalog retrieval. State/county table 2029 discrepancy and rounding retained. Labor force is not served as employment."
+ },
+ {
+  "file": "county_introduction_2014-2034.doc",
+  "source": "https://www.nj.gov/labor/labormarketinformation/assets/PDFs/dmograph/lfproj/county_intro2034.doc",
+  "retrieved_at": "2026-10-01",
+  "sha256": "dc4851700ab537e87ac4db20edbfb07510170e403a521360b9ee092129c46b67",
+  "records": null,
+  "note": "Original NJDOL 2014\u20132034 source. XLSX modified May 11, 2017; methodology/introduction saved November 2016. Source series/vintage is distinct from the 2026 catalog retrieval. State/county table 2029 discrepancy and rounding retained. Labor force is not served as employment."
+ },
+ {
+  "file": "population_labor_force_summary_2014-2034.pptx",
+  "source": "https://www.nj.gov/labor/labormarketinformation/assets/PDFs/dmograph/lfproj/PopLFProj.pptx",
+  "retrieved_at": "2026-10-01",
+  "sha256": "3871e3d0678930a92691f40ad6cd44b1e06d44e0764214878c9b38c56cc499de",
+  "records": null,
+  "note": "Original NJDOL 2014\u20132034 source. XLSX modified May 11, 2017; methodology/introduction saved November 2016. Source series/vintage is distinct from the 2026 catalog retrieval. State/county table 2029 discrepancy and rounding retained. Labor force is not served as employment."
+ },
+ {
+  "file": "projection_catalog_2026-10-01.html",
+  "source": "https://www.nj.gov/labor/labormarketinformation/demographics/population-labor-projections/",
+  "retrieved_at": "2026-10-01",
+  "sha256": "eb2410fed7613c7f41ceceb12a6c59b624bb8dcdae7e2f4b368236ad8818c261",
+  "records": null,
+  "note": "Original NJDOL 2014\u20132034 source. XLSX modified May 11, 2017; methodology/introduction saved November 2016. Source series/vintage is distinct from the 2026 catalog retrieval. State/county table 2029 discrepancy and rounding retained. Labor force is not served as employment."
+ }
+]

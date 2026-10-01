@@ -84,6 +84,40 @@ def test_installed_tools_over_mcp(installed_server, protocol):
                     assert summary["database_release"] == "mcp-test"
                     assert {"VA", "WI", "UT", "IN", "MI", "PA", "KY", "IL", "MD"} <= set(summary["states"])
                     assert {"AK", "HI", "ME", "NE", "NH", "OH", "NV"} <= set(summary["states"])
+                    assert {"CT", "MA", "NJ", "NY", "RI"} <= set(summary["states"])
+                    for state, level, geo, year, value, base, datatype in (
+                        ("CT", "county", "Fairfield", 2040, 905219, 2010, "projection"),
+                        ("CT", "cog", "Southeastern CT", 2040, 303785, 2010, "projection"),
+                        ("MA", "state", "MA", 2020, 7039146.791183238, 2020, "estimate"),
+                        ("NJ", "county", "Bergen", 2034, 1065500, 2014, "projection"),
+                        ("NY", "county", "Albany", 2040, 328968, 2015, "projection"),
+                        ("RI", "county_subdivision", "Providence", 2050, 201447, None, "projection"),
+                    ):
+                        forecast = await call("get_forecast", {
+                            "state": state, "geo_level": level, "geo": geo,
+                            "variable": "population", "start_year": year, "end_year": year,
+                        }, "ok")
+                        assert forecast["series"] == [{"year": year, "value": value, "datatype": datatype}]
+                        assert forecast["source"]["base_year"] == base
+                    ny = await call("get_forecast", {
+                        "state": "NY", "geo_level": "state", "geo": "NY", "variable": "population",
+                        "start_year": 2022, "end_year": 2022,
+                    }, "ok")
+                    assert ny["series"] == [{"year": 2022, "value": 19673203, "datatype": "estimate"}]
+                    assert ny["scenario"] == "middle" and "server" in ny["scenario_note"]
+                    await call("get_forecast", {
+                        "state": "NY", "geo_level": "economic_region", "geo": "Capital District", "variable": "population",
+                    }, "not_loaded")
+                    await call("get_forecast", {
+                        "state": "RI", "geo_level": "county_subdivision", "geo": "Kingstown", "variable": "population",
+                    }, "error", True)
+                    await call("get_forecast", {
+                        "state": "RI", "geo_level": "county", "geo": "Providence", "variable": "population",
+                    }, "coverage_unknown")
+                    for state in ("CT", "MA", "NJ", "NY", "RI"):
+                        described = await call("describe_source", {"state": state})
+                        assert described["sources_loaded"]
+                        assert described["review"]["status"] == "never_reviewed"
                     for state, geo, year, value, base_year in (
                         ("AK", "Chugach", 2055, 5623, 2025),
                         ("HI", "hi-maui-kalawao", 2030, 173620.30660481827, 2020),

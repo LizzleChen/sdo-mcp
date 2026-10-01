@@ -1,0 +1,30 @@
+[
+ {
+  "file": "municipal_population_revised2026-02-27.pdf",
+  "source": "https://planning.ri.gov/sites/g/files/xkgbur826/files/2026-02/Municipal%20Projections%20%2002272026.pdf",
+  "retrieved_at": "2026-10-01",
+  "sha256": "6aa193c680033c75c1c42ff7ff7d453d900ddffb7fec081a878908e5a700d73e",
+  "records": 240
+ },
+ {
+  "file": "projection_catalog_2026-10-01.html",
+  "source": "https://planning.ri.gov/",
+  "retrieved_at": "2026-10-01",
+  "sha256": "f9e849e886e35dccb5427c7d6f58055f973e612c251b4e66684604c65093ffbe",
+  "records": null
+ },
+ {
+  "file": "census_cousubs_2025.txt",
+  "source": "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2025_Gazetteer/2025_gaz_cousubs_44.txt",
+  "retrieved_at": "2026-10-01",
+  "sha256": "f920ad820352be5621b94a0d876193d2e7c6343eca0e548730497110513db93d",
+  "records": 40
+ },
+ {
+  "file": "planning_work_program_fy2026.pdf",
+  "source": "https://planning.ri.gov/sites/g/files/xkgbur826/files/2025-09/FY26_UPWP_FINAL_06.12.2025%20%285%29.pdf",
+  "retrieved_at": "2026-10-01",
+  "sha256": "21680199da67f1d5701d36c7a0884baccbd2d602a82b6a2bd12fdd520b1c8b46",
+  "records": null
+ }
+]

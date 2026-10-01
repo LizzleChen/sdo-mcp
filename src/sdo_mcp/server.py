@@ -52,7 +52,10 @@ mcp = ForecastServer(
 )
 
 FORECAST_VARIABLES = ("population", "households", "employment")
-GEO_LEVELS = ("state", "county", "place", "msa", "cog", "txdot_district")
+GEO_LEVELS = (
+    "state", "county", "county_subdivision", "place", "msa", "cog",
+    "economic_region", "txdot_district",
+)
 READ_ONLY = ToolAnnotations(
     read_only_hint=True, destructive_hint=False,
     idempotent_hint=True, open_world_hint=False,
@@ -229,14 +232,19 @@ def get_forecast(
     """Population, household, or employment forecast series from a state
     demography office.
 
-    `state` is a 2-letter code; `geo_level` is 'state' or 'county' everywhere,
-    plus TX's 'msa', 'cog', and 'txdot_district' (decade totals). `geo`
+    `state` is a 2-letter code; `geo_level` uses each product's published
+    geography: 'state', 'county', RI's 'county_subdivision' (cities/towns),
+    CT's historical 'county' or separate 'cog', and TX's 'msa', 'cog', and
+    'txdot_district' (decade totals). NY's 'economic_region' data is published
+    but remains unloaded. County subdivisions use ten-digit Census
+    GEOIDs, distinct from Census places. `geo`
     accepts a FIPS code, a bare TDC id for TX COG/TxDOT levels ('18'), or a
     name (unknown or ambiguous names return candidates, never a guess);
     `variable` is 'population', 'households', or 'employment'. `scenario`
     only applies where the selected product publishes scenarios (TX
     Mid/High/Low; AZ and FL Low/Medium/High; WA county Low/Medium/High;
-    UT Baseline/High/Low, with High/Low published but not loaded) and
+    UT Baseline/High/Low, with High/Low published but not loaded;
+    NY state Middle/High/Low; NJ state projection models) and
     defaults to the state's recommended one. Every point is flagged estimate
     or projection; if the state publishes nothing for the request, a
     structured refusal explains why and points to the closest published
@@ -325,7 +333,10 @@ def get_forecast(
             "geo": {"level": geo_level, "id": resolved["geo_id"], "name": resolved["name"]},
             "scenario": scen or None,
             "scenario_note": (
-                f"defaulted to the state's recommended scenario ({scen})"
+                notes.STATES[state].get(
+                    "default_scenario_note",
+                    f"defaulted to the state's recommended scenario ({scen})",
+                )
                 if scenario is None and scen
                 else None
             ),
@@ -435,7 +446,10 @@ def get_components(
             "geo": {"level": geo_level, "id": resolved["geo_id"], "name": resolved["name"]},
             "scenario": scen or None,
             "scenario_note": (
-                f"defaulted to the state's recommended scenario ({scen})"
+                notes.STATES[state].get(
+                    "default_scenario_note",
+                    f"defaulted to the state's recommended scenario ({scen})",
+                )
                 if scenario is None and scen
                 else None
             ),

@@ -22,7 +22,7 @@ CREATE TABLE sources (
 -- The numbers.
 CREATE TABLE observations (
     state     TEXT NOT NULL,
-    geo_level TEXT NOT NULL,               -- state / county / msa / cog / txdot_district / ...
+    geo_level TEXT NOT NULL,               -- state / county / county_subdivision / msa / cog / ...
     geo_id    TEXT NOT NULL,               -- FIPS ('08', '08035'); non-FIPS levels use the
                                            -- source's own id prefixed (e.g. 'tx-cog-1')
     year      INTEGER NOT NULL,

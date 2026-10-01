@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html xmlns="https://www.w3.org/1999/xhtml" dir="ltr" lang="en-US" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+	
+    	<title>NY State Projections</title>
+	
+	    <meta name="description" content="" />
+    
+	<link rel="stylesheet" type="text/css" href="../cugray/styles/main.css" />
+	<link rel="stylesheet" type="text/css" href="../style/PADstyle.css" />
+    <!--[if lt IE 8]><link rel="stylesheet" href="/style/PADie.css" type="text/css" media="screen" /><![endif]-->
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-2306726-2']);
+		_gaq.push(['_trackPageview']);
+		(function() {
+			var ga = document.createElement('script');
+			ga.type = 'text/javascript';
+			ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  
+			})();
+    </script>
+
+
+
+        <style>
+	.button {
+    background: transparent url('/images/bg_button_a.gif') no-repeat scroll top right;
+    color: #444;
+/*    display: block;
+    float: left; */
+    font: normal 12px arial, sans-serif;
+    height: 24px;
+    margin-right: 6px;
+    padding-right: 18px; /* sliding doors padding */
+    text-decoration: none;
+	cursor:pointer;
+}
+
+.button span {
+    background: transparent url('/images/bg_button_span.gif') no-repeat;
+    display: block;
+    line-height: 14px;
+    padding: 5px 0 5px 18px;
+} 
+
+.button:hover {
+    background-position: bottom right;
+    color: #000;
+    outline: none; /* hide dotted outline in Firefox */
+}
+
+.button:hover span {
+    background-position: bottom left;
+    padding: 6px 0 4px 18px; /* push text down 1px */
+}
+</style>
+
+
+<link rel="stylesheet" type="text/css" href="../style/anylinkcssmenu.css" />
+<script type="text/javascript" src="../scripts/anylinkcssmenu.js">
+/***********************************************
+* AnyLink CSS Menu script v2.0- © Dynamic Drive DHTML code library (www.dynamicdrive.com)
+* This notice MUST stay intact for legal use
+* Visit Project Page at http://www.dynamicdrive.com/dynamicindex1/anylinkcss.htm for full source code
+***********************************************/
+</script>
+<script type="text/javascript">anylinkcssmenu.init("anchorclass")</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/1.4.5/numeral.min.js"></script>
+
+</head>
+<body>
+<div id="skipnav">
+	<a href="#content">Skip to main content</a>
+</div>
+
+<hr class="banner-separator" />
+
+<div id="cu-identity">
+	<div id="cu-logo">
+		<a href="http://www.cornell.edu/"><img src="../cugray/images/cu_logo_unstyled.gif" alt="Cornell University" width="180" height="45" border="0" /></a>
+	</div>
+	<div id="cu-search">
+		<a href="http://www.cornell.edu/search/">Search Cornell</a>
+	</div>
+</div>
+
+
+<hr class="banner-separator" />
+
+<div class="PAD_maindiv"><a name="PADtop"></a>
+	<div class="PAD_TopBar">
+    	<span class="PADname">Cornell Program on Applied Demographics
+			
+
+        </span>
+		<ul id="PADnav">
+			<li><a href="../index.cfm">Home</a></li>
+			<li><a id="menu_up" href="./index.cfm">Up</a></li>
+			<li id="r"><a href="Mailto:padInfo@cornell.edu">Email</a></li>
+			<li><a href="https://bsky.app/profile/PADCornell.bsky.social">Bluesky</a></li>
+		</ul>
+	</div> <!--PAD_TopBar-->
+    <div class="PAD_Content">
+    <table class="PAD_2column">
+    	<tr>
+        
+		<td class="PAD_MainContent">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+	
+<style>
+	.resources {
+		float: right;
+		width: 40%;
+		border-radius: 5px 5px 5px;
+		border: 1px solid #68645b;
+		padding: 5px;
+		margin: 5px;
+	}
+	h2 {text-align: center;}
+	body {font-size: inherit}
+	
+	dt {font-weight: bold}
+	
+	.PAD_maindiv {max-width: 1400px}
+	.PAD_Content {line-height: 1.5em; font-size: 100%; font-family: Ubuntu, Roboto, arial,helvetica,sans-serif; color:black; box-sizing: border-box}
+	.apptable {max-width: 80%; 
+				border-collapse:collapse;
+	margin: 1.5em auto;
+		}
+		.apptable tr {height: 2em}
+	.apptable td {
+	vertical-align:middle;
+		text-align: center;
+	border: 1px solid #cccccc;
+		word-wrap: break-word;
+		padding: 2px;
+	}
+	.apptable th {vertical-align:middle;
+		text-align: center;
+				font-weight: bold;
+	border: 1px solid #cccccc;}
+	.apptable tr td:first-child {text-align: left;}
+
+
+	
+	
+/*
+*	------------------------------------------------------------
+*	Author:  J. L. Doty, http://www.jldoty.com
+*	License: http://www.gnu.org/licenses/gpl-3.0.html
+*
+*	Copyright (c) 2012 J. L. Doty
+*
+*	This program is free software: you can redistribute it and/or modify
+*	it under the terms of the GNU General Public License as published by
+*	the Free Software Foundation, either version 3 of the License, or
+*	(at your option) any later version.
+*	------------------------------------------------------------
+*/
+#navHd {margin:0; padding:0; border:0;}
+#navHd.navH, #navHd.navH ul {    
+	padding: 0; margin: 0;    
+	list-style: none;
+	background-color: #77d; /* required for IE 5 & 6 */
+}
+#navHd.navH ul {
+	z-index:500;
+}
+#navHd.navH a {    
+	display: block;    
+	width: auto;
+	white-space:nowrap;
+}
+#navHd.navH li {   
+	float: left;    
+	width: auto;
+}
+#navHd.navH li li {
+	float:none;
+	position:relative;
+}
+#navHd.navH li ul {    
+	position: absolute;    
+	width: auto;   
+	display: none;
+}
+#navHd.navH li li ul
+{
+	top:0;
+	left:100%;
+}
+#navHd.navH li:hover li ul,
+#navHd.navH li:hover li li ul,
+#navHd.navH li:hover li li li ul
+{
+	display:none;
+}
+#navHd.navHshow li:hover ul,
+#navHd.navHshow li li:hover ul,
+#navHd.navHshow li li li:hover ul,
+#navHd.navHshow li li li li:hover ul
+{
+	display:block;
+}
+/* styles added for formatting */https://www.jldoty.com/code/menus/images/menu_d_hov.png
+#navHd.navH, #navHd.navH ul 
+{
+	font-family: Arial, Helvetica, "Ludica Grand", sans-serif;
+	font-size:small;
+	background:#77d url('https://www.jldoty.com/code/menus/images/menu_n_norm.png') repeat left top;
+}
+#navHd.navH li {
+	line-height:26px; /* height = background image height - border-top - border bottom */
+	background:#77d url('https://www.jldoty.com/code/menus/images/menu_n_norm.png') no-repeat left top;
+	/*Border properties must be set in the proper order: width, color, style, as in the following:*/
+	border-top: 1px solid #8080ff; 
+	border-right: 1px solid #000000; 
+	border-bottom: 1px solid #181830; 
+	border-left: 1px solid #ddd;
+	padding:0 0 0 12px;
+	color: #fff;
+}
+#navHd.navH a {
+	padding:0px 10px 0px 0px;
+	border:0;
+	font-style:normal;
+	font-weight:bold;
+	text-decoration: none;
+	background:#77d url('https://www.jldoty.com/code/menus/images/menu_n_norm.png') no-repeat right top;
+}
+#navHd.navH a:link {
+	color: #fff; 
+}
+#navHd.navH a:visited {
+	color: #ff6;
+	text-decoration: none; /* needed for IE6 */
+}
+#navHd.navH a:hover {
+	background:#55b url('https://www.jldoty.com/code/menus/images/menu_n_hov.png') no-repeat right top;
+}
+#navHd.navH a.dropdown {
+	padding-right: 30px;
+	background:#77d url('https://www.jldoty.com/code/menus/images/menu_d_norm.png') no-repeat right top;
+}
+#navHd.navH a:hover.dropdown {
+	background:#55b url('https://www.jldoty.com/code/menus/images/menu_d_hov.png') no-repeat right top;
+}
+#navHd.navH a.flyright {
+	padding-right: 30px;
+	background:#77d url('https://www.jldoty.com/code/menus/images/menu_r_norm.png') no-repeat right top;
+}
+#navHd.navH a:hover.flyright {
+	background:#55b url('https://www.jldoty.com/code/menus/images/menu_r_hov.png') no-repeat right top;
+}
+#navHd.navH li:hover {
+	background:#77d url('https://www.jldoty.com/code/menus/images/menu_n_hov.png') no-repeat left top;
+}
+#navHd.navH li:hover > a {
+	background:#55b url('https://www.jldoty.com/code/menus/images/menu_n_hov.png') no-repeat right top;
+}
+#navHd.navH li:hover > a.dropdown {
+	background:#55b url('https://www.jldoty.com/code/menus/images/menu_d_hov.png') no-repeat right top;
+}
+#navHd.navH li:hover > a.flyright {
+	background:#55b url('https://www.jldoty.com/code/menus/images/menu_r_hov.png') no-repeat right top;
+}
+/* margin-left = -(li.padding-left + li.border-left) widths.    */
+#navHd.navH li ul {margin-left: -13px;}
+/* to remove above rule in sub-sub menus */
+#navHd.navH li li ul {margin-left: 0;}
+/* Hack to correct for IE6 incorrect and problematic box model. */
+/* Padding and borders in the <a> tag do not create problems.   */
+* html #navHd.navH li li ul {margin-left: -13px;}   
+	
+	</style>
+	
+<h2>New York State projections 2022 - 2050</h2>
+                <div id="navHd" class="navH navHshow clearfix">
+                    <ul>
+                        <li>
+                            <a href="index.cfm">Introduction</a>
+                        </li>
+                        <li>
+                            <a href="datatools.cfm">Projection data tools</a>
+                        </li>
+                        <li>
+                            <a class="dropdown" href="#top">Analyses of trends</a>
+                            <ul>
+                                <li>
+                                    <a href="poptrends.cfm">Total population by age and sex</a>
+                                    
+                                </li>
+								<li>
+                                    <a class="flyright" href="coc_trends.cfm">Components of change</a>
+                                    <ul>
+                                        <li>
+                                            <a href="vs_trends.cfm">Births and deaths</a>
+                                        </li>
+                                        <li>
+                                            <a href="dommigr_trends.cfm">Domestic migration</a>
+                                        </li>
+                                        <li>
+                                            <a href="intmigr_trends.cfm">International migration</a>
+                                        </li>
+                                    </ul>
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="dropdown"  href="#top">Methodology</a>
+                                    <ul>
+                                        <li>
+                                            <a href="meth_overview.cfm">Overview</a>
+                                        </li>
+                                        <li>
+                                            <a href="meth_base.cfm">Base population</a>
+                                        </li>
+                                        <li>
+                                            <a href="meth_fert.cfm">Fertility</a>
+                                        </li>
+                                        <li>
+                                            <a href="meth_mort.cfm">Mortality</a>
+                                        </li>
+                                        <li>
+                                            <a href="meth_dommigr.cfm">Domestic migration</a>
+                                        </li>
+                                        <li>
+                                            <a href="meth_intmigr.cfm">International migration</a>
+                                        </li>
+                                        <li>
+                                            <a href="meth_scenarios.cfm">Scenarios</a>
+                                        </li>
+                                    </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+<div class="cleared" style="height: 10px"></div>
+
+<h3>Scenarios</h3>
+	<p>Assumptions about the future is an integral part of population projection models. The other sections in the methodology section describe how we derived demographic changes based on recent observations. Our model allows for year to year change in all assumed rates, but also contains a number of high level levers that allow us to easier build what-if scenarios without adjusting the age specific rates.</p>
+	<p>Each of the components has one or two of those levers:</p>
+	<ul>
+		<li><em>Births</em></li>
+		<ul>
+			<li><strong>TFR</strong><br>The Total Fertility Rate (TFR) is an important indicator of fertility and can be see as an average of the number of births per woman over her child bearing ages. It is the sum of all Age Specific Fertility Rates (ASFR). This lever multiplies each of the ASFRs with a constant factor such that they add up to the TFR in the scenario description.</li>
+		</ul>
+		<li><em>Deaths</em></li>
+		<ul>
+			<li><strong>MortMultiplier</strong><br>This lever multiplies each of the age specific mortality rates with a constant factor.</li>
+		</ul>
+		<li><em>Domestic migration</em></li>
+		<ul>
+			<li><strong>DomTurnOverMult</strong><br>Turn over is defined as the total number of people moving in and out of the state. This lever multiplies each of the age specific domestic migration with a constant factor to account for assumptions on a change in the willingness to move.</li>
+			<li><strong>DomEffAdj</strong><br>Migration efficiency is defined as the net migration (IN minus OUT) divided by the turn over (IN plus OUT) and is an indicator of an average direction of the migration flows. This lever multiplies defines two multipliers, one for the inflows and one for the outflows, but in a way that doesn't impact the total number of people moving.</li>
+		</ul>
+		<li><em>International migration</em></li>
+		<ul>
+			<li><strong><strong>IntMigInTotal</strong></strong><br>This is the total number of people moving into the state from abroad. In combination with the age specific shares defined separately this lever defines the counts of the immigrants by age.</li>
+			<li><strong>EmigrTotal</strong><br>his is the total number of people moving out of the state to a different country. In combination with the age specific shares defined separately this lever defines the counts of the emigrants by age.</li>
+		</ul>
+	</li>
+	<p>Results presented in this set of projections are based on three scenarios:<br><strong>Middle</strong> is a scenario where we assume that demographic change from 2025 forward is similar to the demographic change last decade.<br><strong>High</strong> is a scenario where we assumed that after 2025 demographic change in each of the components slowly changes to be slightly more in favor of population growth.<br><strong>Low</strong> is a scenario where we assumed that demographic change in the state doesn't recover to pre-pandemic levels and the components are slightly more in favor of population decline compared to the middle scenario.</p>
+<table width="100%"><tr>
+	<th>Scenario setting for Middle</th>
+	<th>Scenario setting for High</th>
+	<th>Scenario setting for Low</th>
+	</tr><tr>
+		<td><table class="datatable" style="font-size: 1em">
+		<tr>
+			<th>Variable</th>
+			<th>yr2023</th>
+			<th>yr2025</th>
+			<th>yr2050</th>
+		</tr>
+		<tr>
+			<td>TFR</td>
+			<td>1.55</td>
+			<td>1.6</td>
+			<td>1.6</td>
+		</tr>
+		<tr>
+			<td>MortMultiplier</td>
+			<td>1.05</td>
+			<td>1</td>
+			<td>1</td>
+		</tr>
+		<tr>
+			<td>DomTurnOverMult</td>
+			<td>1</td>
+			<td>1</td>
+			<td>1</td>
+		</tr>
+		<tr>
+			<td>DomEffAdj</td>
+			<td>-0.1</td>
+			<td>0</td>
+			<td>0</td>
+		</tr>
+		<tr>
+			<td>IntMigInTotal</td>
+			<td>100,000</td>
+			<td>90,000</td>
+			<td>90,000</td>
+		</tr>
+		<tr>
+			<td>EmigrTotal</td>
+			<td>22,500</td>
+			<td>22,500</td>
+			<td>22,500</td>
+		</tr>
+	</table></td>
+		<td><table class="datatable" style="font-size: 1em">
+		<tr>
+			<th>Variable</th>
+			<th>yr2023</th>
+			<th>yr2025</th>
+			<th>yr2050</th>
+		</tr>
+		<tr>
+			<td>TFR</td>
+			<td>1.55</td>
+			<td>1.6</td>
+			<td>1.65</td>
+		</tr>
+		<tr>
+			<td>MortMultiplier</td>
+			<td>1.05</td>
+			<td>1</td>
+			<td>0.95</td>
+		</tr>
+		<tr>
+			<td>DomTurnOverMult</td>
+			<td>1</td>
+			<td>1</td>
+			<td>0.9</td>
+		</tr>
+		<tr>
+			<td>DomEffAdj</td>
+			<td>-0.1</td>
+			<td>0</td>
+			<td>0.05</td>
+		</tr>
+		<tr>
+			<td>IntMigInTotal</td>
+			<td>100,000</td>
+			<td>100,000</td>
+			<td>100,000</td>
+		</tr>
+		<tr>
+			<td>EmigrTotal</td>
+			<td>25,000</td>
+			<td>25,000</td>
+			<td>25,000</td>
+		</tr>
+	</table></td>
+	<td>
+		<table class="datatable" style="font-size: 1em">
+		<tr>
+			<th>Variable</th>
+			<th>yr2023</th>
+			<th>yr2025</th>
+			<th>yr2050</th>
+		</tr>
+		<tr>
+			<td>TFR</td>
+			<td>1.55</td>
+			<td>1.55</td>
+			<td>1.55</td>
+		</tr>
+		<tr>
+			<td>MortMultiplier</td>
+			<td>1.05</td>
+			<td>1.05</td>
+			<td>1.05</td>
+		</tr>
+		<tr>
+			<td>DomTurnOverMult</td>
+			<td>1</td>
+			<td>1</td>
+			<td>1.1</td>
+		</tr>
+		<tr>
+			<td>DomEffAdj</td>
+			<td>-0.1</td>
+			<td>-0.05</td>
+			<td>-0.05</td>
+		</tr>
+		<tr>
+			<td>IntMigInTotal</td>
+			<td>100,000</td>
+			<td>90,000</td>
+			<td>80,000</td>
+		</tr>
+		<tr>
+			<td>EmigrTotal</td>
+			<td>22,500</td>
+			<td>22,500</td>
+			<td>22,500</td>
+		</tr>
+	</table></td>
+</tr></table>
+		</td>
+        </tr>
+    </table>
+    </div>
+</div><!--PAD_maindiv-->
+
+</body>
+</html>

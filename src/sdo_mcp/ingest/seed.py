@@ -50,6 +50,11 @@ COVERED_STATES = {
     "NH": "New Hampshire",
     "NV": "Nevada",
     "OH": "Ohio",
+    'CT': 'Connecticut',
+    'MA': 'Massachusetts',
+    'NJ': 'New Jersey',
+    'NY': 'New York',
+    'RI': 'Rhode Island',
 }
 
 # (state, variable, geo_level, status, detail)
@@ -572,6 +577,63 @@ COVERAGE = [
      "Research Office Report 2023 edition: 2020 estimates and exact five-year projections 2025-2050; published workbook totals loaded."),
     ("OH", "population", "county", "available",
      "All 88 counties at seven five-year points 2020-2050. County totals reconcile exactly to the separately published state row; workbook Ottawa 2050 is retained despite an overview-map discrepancy."),
+    # ---- Batch three: selected demographic editions and municipal geography
+    ('MA', 'population', 'state', 'available',
+     'UMass Donahue Institute Vintage 2024 (May 2024): exact adjusted 2020 historical launch and '
+     'five-year projections 2025-2050; fractional historical total retained.'),
+    ('MA', 'population', 'county', 'available',
+     'All 14 counties at seven published points 2020-2050. Totals checked against the independently '
+     'published age/sex workbook and municipal/RPA sums.'),
+    ('MA', 'population', 'place', 'available',
+     'Vintage 2024 publishes municipal population projections, including cities; city/place '
+     'identifiers and totals are deferred and not loaded. Published MCD codes are not Census place '
+     'FIPS.'),
+    ('MA', 'population', 'county_subdivision', 'available',
+     'Vintage 2024 publishes all 351 city/town MCD population projections at 2020 and five-year points '
+     '2025-2050. Municipal county-subdivision identifier loading is deferred; originals are archived '
+     'but not loaded.'),
+    ('NJ', 'population', 'state', 'available',
+     'NJDOL 2014–2034 series: July 1, 2014 estimate and 2019/2024/2029/2034 projections, four state '
+     'models. Preferred Economic-Demographic is the default; old projection dates do not become '
+     'estimates.'),
+    ('NJ', 'population', 'county', 'available',
+     'All 21 counties: July 1, 2014 estimate and exact five-year 2019/2024/2029/2034 projections under '
+     'one Economic-Demographic model. State-only alternatives do not apply; published rounding and the '
+     '2029 state/county discrepancy are retained.'),
+    ('NY', 'population', 'state', 'available',
+     'Cornell PAD October 2024 state-only edition: July 2022 estimate base and annual 2023-2050 '
+     'projections; all Middle/High/Low scenarios loaded. Published fractional counts preserved.'),
+    ('NY', 'population', 'county', 'available',
+     'Cornell PAD September 21, 2018 county edition: 2015 estimate base and annual 2016-2040 '
+     'projections, all 62 counties, one series. This older product is separate from the 2024 statewide '
+     'scenarios.'),
+    ('NY', 'population', 'economic_region', 'available',
+     'The 2018 county explorer and user guide publish 10 economic-region population series, 2015-2040; '
+     'these aggregates are not loaded.'),
+    ('NY', 'components', 'state', 'available',
+     'All three October 2024 state scenario workbooks publish annual 2023-2050 births, deaths and '
+     'domestic/international migration flows in Components; archived, not loaded.'),
+    ('NY', 'components', 'county', 'available',
+     'The 2018 county chart JSON publishes annual 2016-2040 births, deaths, net migration, natural '
+     'increase and special population change; archived, not loaded.'),
+    ('CT', 'population', 'state', 'available',
+     'Revised September 2017 edition: exact five-year resident population projections 2015-2040; 2010 '
+     'Census anchor.'),
+    ('CT', 'population', 'county', 'available',
+     'June 2018 release based on the 2017 model, all eight historical counties at six points '
+     '2015-2040. Modern planning-region county equivalents are not substituted.'),
+    ('CT', 'population', 'cog', 'available',
+     'Nine 2018 regional councils of government at six points 2015-2040, separate prefixed IDs and no '
+     'mapping to modern county-equivalent FIPS.'),
+    ('CT', 'population', 'county_subdivision', 'available',
+     'Official SDC town projections are documented in the archived DSS report; town identifiers and '
+     'observations remain deferred.'),
+    ('RI', 'population', 'state', 'available',
+     'Official February 27, 2026 revised table Total row, exact five-year projections 2025-2050; base '
+     'year unconfirmed.'),
+    ('RI', 'population', 'county_subdivision', 'available',
+     'All 39 cities/towns at six points 2025-2050. Ten-digit Census county-subdivision GEOIDs, '
+     'distinct from Census places.'),
 ]
 
 

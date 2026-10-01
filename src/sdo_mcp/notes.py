@@ -1215,4 +1215,240 @@ STATES = {
             "near_term": "https://tax.nv.gov/wp-content/uploads/2026/02/FINAL-March-2026-Five-Year-Projections.pdf",
         },
     },
+    'MA': {'name': 'Massachusetts',
+     'agency': 'University of Massachusetts Donahue Institute, Population Estimates Program',
+     'producer_type': 'university (official population projections supported by the Massachusetts Secretary '
+                      'of the Commonwealth)',
+     'current_vintage': 'UMDI Vintage 2024 (May 2024), launch 2020, exact five-year projections 2025-2050. '
+                        'Workbooks last modified October 16, 2024; no separate revision label established.',
+     'geography_floor': '351 municipalities (MCD identifiers) are published, plus 14 counties, 13 Regional '
+                        'Planning Agency total rows, and the state. Only state and county totals are '
+                        'loaded; municipal county-subdivision identifier loading is deferred.',
+     'scenarios': [],
+     'default_scenario': None,
+     'products': ['V2024 state/county/municipal/RPA total population at 2010, 2020 and five-year points '
+                  '2025-2050; state/county 2020-2050 totals loaded',
+                  'V2024 population by 18 five-year age groups and sex; archived for checks but not served'],
+     'methodology': 'Cohort-component projections with a 2020 Census DHC launch adjusted for Census '
+                    'challenges and child undercounts. Regional gross age-specific migration uses ACS PUMS '
+                    '2012-2019; county/municipal residual net migration uses Census 2010-2020 and vital '
+                    'statistics. Municipality cohorts are controlled to regional projections, with '
+                    'documented Suffolk exceptions. Population forecasts reflect historical trend '
+                    'assumptions.',
+     'employment_note': 'Eligible current SDO employment forecast coverage remains unverified. The V2024 '
+                        'methods mention older UMDI employment work under MassDOT for regional '
+                        'transportation plans; it is not merged with population or treated as a verified '
+                        'current SDO jobs product.',
+     'license': 'No explicit data license identified; cite UMass Donahue Institute V2024 Population '
+                'Projections.',
+     'caveats': ['2020 totals are adjusted historical launch values, not unadjusted Census totals. '
+                 'Fractional workbook cells are retained at source precision.',
+                 'The Source tab typo May 9, 20204 is corroborated by its Vintage 2024/May 2024 labels and '
+                 'the methods cover dated May 9, 2024.',
+                 'No intermediate years are generated. The publisher warns that small geographies and '
+                 'distant horizons have greater uncertainty.',
+                 'All 351 municipal rows and 13 RPA total rows are published and archived but not loaded. '
+                 'MCD codes are not Census place FIPS; municipal county-subdivision identifier loading is '
+                 'deferred.',
+                 'Household-count, complete future components, and eligible current SDO jobs coverage '
+                 'remain unverified; absence of coverage is unknown, not not_published.'],
+     'links': {'agency': 'https://www.umass.edu/donahue/research-and-data/massachusetts-population-estimates-program',
+               'population_catalog': 'https://www.umass.edu/donahue/research-and-data/massachusetts-population-estimates-program/population-projections',
+               'population_totals': 'https://www.umass.edu/donahue/media/2441/download?attachment=',
+               'population_age_sex': 'https://www.umass.edu/donahue/media/2443/download?attachment=',
+               'population_methodology': 'https://www.umass.edu/donahue/media/2445/download?attachment='}},
+    'NJ': {'name': 'New Jersey',
+     'agency': 'New Jersey Department of Labor and Workforce Development, Division of Economic and '
+               'Demographic Research',
+     'producer_type': 'state agency (NJDOL demographic research program)',
+     'current_vintage': '2014–2034 series: Census Vintage 2014 estimate base and four five-year projection '
+                        'points, distributed in May 2017 XLSX files. The current NJDOL catalog still serves '
+                        'this older series; no newer NJDOL demographic successor was found.',
+     'geography_floor': 'State and all 21 counties loaded. Four models apply at state level only; counties '
+                        'have one preferred Economic-Demographic series. Other geography publication '
+                        'coverage remains unknown.',
+     'scenarios': ['economic_demographic', 'zero_migration', 'historical_migration', 'linear_regression'],
+     'default_scenario': 'economic_demographic',
+     'scenario_geo_levels': ['state'],
+     'products': ['Total population by four statewide projection models, 2014/2019/2024/2029/2034 (loaded)',
+                  'Total population for all 21 counties, preferred Economic-Demographic model at the same '
+                  'exact points (loaded)',
+                  'Civilian labor force and age/sex/race/Hispanic-origin demographic tables (published but '
+                  'not loaded)'],
+     'methodology': 'The preferred Economic-Demographic model uses cohort-component demographic '
+                    'calculations and migration under age 65 linked to labor demand. Historical Migration '
+                    'replaces that migration assumption with historical rates. Zero Migration is an '
+                    'illustrative cohort-component model without net migration; Linear Regression is an '
+                    'illustrative extrapolation of state total population history from 1900 through 2014. '
+                    'The county introduction identifies its single series as Economic-Demographic.',
+     'employment_note': 'This demographic product publishes civilian labor force, which includes employed '
+                        'and job-seeking residents and is not employment or a count of jobs. NJDOL '
+                        'industry/occupational projections and newer MPO planning products are separate '
+                        'products and are not substituted. An eligible demographic-program jobs forecast '
+                        'was not established; employment coverage remains unknown.',
+     'license': 'No explicit data license identified; cite the New Jersey Department of Labor and Workforce '
+                'Development.',
+     'caveats': ['2014 is the last estimate year in this product. The 2019 and 2024 values remain '
+                 'projections even though their years are past at retrieval. The April 2010 Census column '
+                 'is archived only; no later estimates, annual interpolation or rebasing are inserted.',
+                 'The preferred state 2029 total is 9,531,200 in the state workbook and its independent '
+                 'summary chart at table precision; the county workbook state row and county sum are '
+                 '9,530,900. State queries consistently use the state workbook and county queries use '
+                 'published county values.',
+                 'The independently published tables round estimates and projections to hundreds. Preferred '
+                 'state minus county sum is +100 in 2014, 0 in 2019, -300 in 2024, +300 in 2029 and +100 in '
+                 '2034. Differences are retained rather than forcing equality.',
+                 'The source designates Economic-Demographic as preferred. Zero Migration and Linear '
+                 'Regression are chiefly illustrative; alternatives are state-only and are not substituted '
+                 'for county data.',
+                 'The XLSX files were last modified May 11, 2017; the archived methodology and county '
+                 'introduction were saved November 2016. File timestamps identify the archived edition and '
+                 'do not establish an exact model release date. October 2026 is retrieval, not projection '
+                 'vintage.',
+                 'The publisher describes these as projections rather than predictions or policy targets '
+                 'and cautions that long-term economic assumptions may not hold. Unused #REF! cells at '
+                 'H198:H219 are outside the county data table and remain only in the archived original.',
+                 'Household counts, future components, subcounty population and eligible '
+                 'demographic-program jobs publication coverage were not established by this '
+                 'catalog/methods survey and remain unknown. No completed statewide review date is '
+                 'recorded.'],
+     'links': {'agency': 'https://www.nj.gov/labor/labormarketinformation/demographics/',
+               'catalog': 'https://www.nj.gov/labor/labormarketinformation/demographics/population-labor-projections/',
+               'state_workbook': 'https://www.nj.gov/labor/labormarketinformation/assets/PDFs/dmograph/lfproj/sptab1.xlsx',
+               'county_workbook': 'https://www.nj.gov/labor/labormarketinformation/assets/PDFs/dmograph/lfproj/table1.xlsx',
+               'methodology': 'https://www.nj.gov/labor/labormarketinformation/assets/PDFs/dmograph/lfproj/method24.doc',
+               'county_introduction': 'https://www.nj.gov/labor/labormarketinformation/assets/PDFs/dmograph/lfproj/county_intro2034.doc',
+               'summary_presentation': 'https://www.nj.gov/labor/labormarketinformation/assets/PDFs/dmograph/lfproj/PopLFProj.pptx'}},
+    'NY': {'name': 'New York',
+     'agency': "Cornell University Program on Applied Demographics (New York's Federal-State population "
+               'projections representative)',
+     'producer_type': "university (New York's Federal-State population estimates/projections representative "
+                      'and State Data Center coordinating agency)',
+     'current_vintage': 'State: October 2024 provisional edition, base 2022, horizon 2050. Counties: '
+                        'September 21, 2018 edition, base 2015, horizon 2040; catalog reviewed October 1, '
+                        '2026 still lists these distinct products.',
+     'geography_floor': 'All 62 counties are loaded from the 2018 product. State scenarios come from the '
+                        'separate 2024 product. Ten economic-region series are published in the older '
+                        'county explorer and remain deferred; smaller-area forecast coverage is unverified.',
+     'scenarios': ['middle', 'high', 'low'],
+     'default_scenario': 'middle',
+     'scenario_geo_levels': ['state'],
+     'default_scenario_note': "defaulted to this server's central scenario (middle); Cornell PAD describes "
+                              'Middle as pre-Covid demographic change',
+     'products': ['New York State Population Projections 2022-2050, October 2024, annual Middle/High/Low '
+                  'scenarios',
+                  '2018 County Population Projections, 2015-2040, annual, 62 counties, single series',
+                  'State scenario components 2023-2050 and county components 2016-2040, archived but not '
+                  'loaded',
+                  '2018 economic-region population projections 2015-2040, published but not loaded'],
+     'methodology': 'Separate cohort-component products. The 2024 state model starts July 1, 2022 from '
+                    'Census Vintage 2023 estimates. The 2018 county model starts in 2015 from Vintage 2017 '
+                    'Bridged-Race Postcensal Population Estimates through CDC-Wonder, with fertility, '
+                    'mortality and adjusted migration assumptions. Base years are not publication years or '
+                    'estimate vintages. Only source-published totals are served; county aggregates never '
+                    'replace the newer statewide forecast.',
+     'employment_note': 'The reviewed population catalogs do not establish whether Cornell PAD publishes a '
+                        'current eligible jobs forecast. Employment coverage remains unknown; labor-force '
+                        'or New York labor-department occupational projections are not substituted.',
+     'license': 'No explicit data license identified in the reviewed products; cite Cornell Program on '
+                'Applied Demographics.',
+     'caveats': ['State and county products have different editions, bases, horizons and scenario support; '
+                 'the 2018 counties are not consistent with the newer state controls.',
+                 '2023-2050 state and 2016-2040 county points remain projections even for years preceding '
+                 'retrieval.',
+                 'State workbook totals are fractional; their published precision is preserved. Age/sex and '
+                 'median-age detail is archived only.',
+                 'The 2024 statewide edition is labeled provisional and planned updates are not evidence of '
+                 'a newer released edition.',
+                 'The county source spells St. Lawrence as St Lawrence; full Census FIPS and Census names '
+                 'are used for queries.',
+                 'Household, municipal and eligible employment products have not been established by the '
+                 'reviewed population catalogs; coverage stays unknown.',
+                 'State/county components and ten economic-region population series are demonstrably '
+                 'published but remain un-ingested.'],
+     'links': {'agency': 'https://pad.human.cornell.edu/people.cfm',
+               'state_catalog': 'https://pad.human.cornell.edu/state_projections/',
+               'state_data': 'https://pad.human.cornell.edu/state_projections/datatools.cfm',
+               'state_base': 'https://pad.human.cornell.edu/state_projections/meth_base.cfm',
+               'state_scenarios': 'https://pad.human.cornell.edu/state_projections/meth_scenarios.cfm',
+               'county_catalog': 'https://pad.human.cornell.edu/counties/index.cfm',
+               'county_explorer': 'https://pad.human.cornell.edu/counties/projections.cfm',
+               'county_methods': 'https://pad.human.cornell.edu/counties/downloads/2018Methodology.pdf',
+               'county_guide': 'https://pad.human.cornell.edu/counties/downloads/ProjectionsUserManual.pdf'}},
+    'CT': {'name': 'Connecticut',
+     'agency': 'Connecticut State Data Center, University of Connecticut',
+     'producer_type': 'university state data center; officially published by the State of Connecticut',
+     'current_vintage': 'Revised September 2017 state model; June 2018 county/COG release, five-year '
+                        'projections 2015-2040. Catalog metadata updated in 2023; no newer eligible model '
+                        'established.',
+     'geography_floor': 'State, all eight historical counties, and nine separately identified 2018 regional '
+                        'councils of government loaded. Modern county-equivalent planning regions are not '
+                        'substituted. Town projections remain deferred.',
+     'scenarios': [],
+     'default_scenario': None,
+     'products': ['Resident population 2015-2040: state, eight historical counties and nine COG totals '
+                  '(loaded)',
+                  'Town population projections and age/sex detail (published but not loaded)'],
+     'methodology': 'Demographic projections based on Census population, state birth/mortality data and '
+                    'Census migration inputs. The DSS 2019 report reproduces the SDC methodology and '
+                    'identifies the 2010 Census as the starting point. Every published 2015-2040 point '
+                    'remains a projection; values represent annual-average residents.',
+     'employment_note': 'No eligible SDO jobs forecast was established. Publication coverage remains '
+                        'unknown; occupational, regional and health-service forecasts are not substituted.',
+     'license': 'CC BY-SA 3.0 for Connecticut open-data dataset pv2w-k7qu; cite the Connecticut State Data '
+                'Center.',
+     'caveats': ['This is an older forecast, not a 2023 vintage. Past projection years retain projection '
+                 'labels.',
+                 'The eight historical counties use Census 2020 FIPS 09001-09015. The 2018 COGs use '
+                 'separate prefixed IDs at geo_level=cog, not modern county-equivalent FIPS or county '
+                 'values.',
+                 'Published county and COG sums differ slightly from independently rounded state totals. No '
+                 'balancing or interpolation is applied.',
+                 'The source misspells Metropolitan as Metropolitian; the display name is corrected without '
+                 'changing its data.',
+                 'The original UConn methods URL now redirects to CTData. The archived state DSS report '
+                 'reproduces the methods; 2010 records the historical Census anchor, and no estimate rows '
+                 'are loaded.',
+                 'Households, complete components and eligible SDO jobs publication coverage remains '
+                 'unverified. Town identifier/data loading is deferred.'],
+     'links': {'agency': 'https://www.ctdata.org/',
+               'population_dataset': 'https://data.ct.gov/d/pv2w-k7qu',
+               'population_download': 'https://data.ct.gov/api/views/pv2w-k7qu/rows.csv?accessType=DOWNLOAD',
+               'release': 'https://blogs.lib.uconn.edu/outsidetheneatline/2017/07/30/connecticuts-population-is-expected-to-grow-slowly-connecticut-state-data-center-reports/',
+               'adopted_methods': 'https://portal.ct.gov/-/media/Departments-and-Agencies/DSS/Health-and-Home-Care/Medicaid-Long-Term-Care-Demand-Projections/Main-report--CT-LTC-Demand-Report-Narrative.pdf',
+               'geography_guidance': 'https://portal.ct.gov/dph/resources-and-records/data-research/vital-statistics-and-population-data/population-statistics'}},
+    'RI': {'name': 'Rhode Island',
+     'agency': 'Rhode Island Division of Statewide Planning, Department of Administration',
+     'producer_type': 'state agency and State Data Center',
+     'current_vintage': 'Revised February 27, 2026: published five-year projections 2025-2050. Last '
+                        'underlying estimate year is unconfirmed.',
+     'geography_floor': 'State Total row and all 39 cities/towns loaded as county_subdivision with '
+                        'ten-digit Census 2025 GEOIDs. No county forecasts are derived from municipalities.',
+     'scenarios': [],
+     'default_scenario': None,
+     'products': ['Population Projections 2025-2050: state and all 39 municipalities (loaded)'],
+     'methodology': 'The FY2026 RIDSP work program describes a statewide cohort-component model guiding '
+                    'municipal projections and municipal input. The current revised table is officially '
+                    'linked by the agency. Completed methods confirming the model base and detailed '
+                    'assumptions were not located.',
+     'employment_note': 'RIDSP planned a separate jobs projection project in its FY2026 work program, but a '
+                        'released eligible jobs series was not established. Employment publication coverage '
+                        'remains unknown.',
+     'license': 'No explicit data license identified; cite the Rhode Island Division of Statewide Planning.',
+     'caveats': ['Every 2025-2050 value is labeled projection. The table does not identify a last estimate '
+                 'year; base_year is null. A proposed 2020 base in the work program is not confirmation for '
+                 'the revised product.',
+                 'The agency states that projections are subject to future revision and correction based on '
+                 'available data and municipal input.',
+                 'The statewide Total row is published directly; municipal sums differ by -3 to +1 persons '
+                 'and are preserved.',
+                 'All cities/towns use county_subdivision GEOIDs. Census place IDs, full town/city GEOIDs, '
+                 'and counties are distinct. One undefined Newport County water subdivision has no forecast '
+                 'and is excluded.',
+                 'The selected table has no county rows. Earlier county products are not mixed into this '
+                 'edition; households, components and released SDO employment remain unverified.'],
+     'links': {'agency': 'https://planning.ri.gov/',
+               'population_table': 'https://planning.ri.gov/sites/g/files/xkgbur826/files/2026-02/Municipal%20Projections%20%2002272026.pdf',
+               'geography_reference': 'https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2025_Gazetteer/2025_gaz_cousubs_44.txt',
+               'work_program': 'https://planning.ri.gov/sites/g/files/xkgbur826/files/2025-09/FY26_UPWP_FINAL_06.12.2025%20%285%29.pdf'}},
 }

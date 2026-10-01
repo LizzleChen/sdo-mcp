@@ -43,6 +43,28 @@ POLICIES = {
     "NH": (90, "Review OPD publication and Census-based boundary, Table 1/Appendix A/Appendix B discrepancies, municipal forecasts, five-year components, households and eligible OPD jobs separately."),
     "NV": (90, "Review long-range and March near-term editions separately, certified base estimates, Carson City, rounded PDF totals, demographic detail, and household/eligible jobs/components coverage."),
     "OH": (90, "Review the Research Office catalog and Report 2023 workbook, 2020 estimate base, county/state controls, Ottawa overview discrepancy, conditional revisions and any household, subcounty, components or eligible jobs product."),
+    'MA': (90,
+     'Review UMDI V2024 edition and any separate revision, adjusted 2020 launch and fractional base '
+     'precision, totals versus age/sex workbook, MCD municipal identifiers and RPA products; establish '
+     'household, complete future components and eligible current SDO employment coverage independently.'),
+    'NJ': (90,
+     'Review NJDOL demographic catalog for a successor to the 2014–2034 series, 2014 estimate base, '
+     'preferred versus illustrative state models, county rounding and 2029 state/county discrepancy; check '
+     'households, future components, subcounty and eligible demographic-program jobs separately from labor '
+     'force, occupational and MPO products.'),
+    'NY': (90,
+     'Review Cornell PAD state and county editions independently: provisional October 2024 state '
+     'scenarios/base 2022/horizon 2050 versus September 2018 counties/base 2015/horizon 2040; check all '
+     'three state scenarios, county update release, components, economic regions, households, smaller '
+     'geography and eligible SDO jobs.'),
+    'CT': (90,
+     'Review old 2017/2018 edition for a successor, Census anchor and original method recovery, eight '
+     'historical counties versus nine COGs and modern planning regions, town identifiers, '
+     'households/components/eligible jobs.'),
+    'RI': (90,
+     'Review revised municipal table, released methods and estimate boundary, city/town county-subdivision '
+     'identifiers, state/municipal rounding, earlier county products and released '
+     'household/component/eligible jobs products.'),
 }
 REVIEWS_PATH = Path(__file__).with_name("source_reviews.json")
 

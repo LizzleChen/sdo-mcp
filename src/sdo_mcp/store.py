@@ -88,10 +88,13 @@ def state_fips(conn, state: str) -> str | None:
     return row["geo_id"] if row else None
 
 
-def _name_key(name: str) -> str:
+def _name_key(name: str, geo_level: str | None = None) -> str:
     key = " ".join(name.lower().split())
     for suffix in (" county", " parish", " borough", " census area"):
         key = key.removesuffix(suffix)
+    if geo_level == "county_subdivision":
+        for suffix in (" town", " city"):
+            key = key.removesuffix(suffix)
     return key
 
 
@@ -131,14 +134,14 @@ def resolve_geo(conn, state: str, geo_level: str, geo: str) -> dict:
                 return {"geo_id": prefixed, "name": by_id[prefixed]}
         return {"error": f"FIPS {geo!r} is not a {state} {geo_level}"}
 
-    key = _name_key(g)
+    key = _name_key(g, geo_level)
     if geo_level == "state" and g.upper() == state:
         r = rows[0]
         return {"geo_id": r["geo_id"], "name": r["name"]}
-    exact = [r for r in rows if _name_key(r["name"]) == key]
+    exact = [r for r in rows if _name_key(r["name"], geo_level) == key]
     if len(exact) == 1:
         return {"geo_id": exact[0]["geo_id"], "name": exact[0]["name"]}
-    matches = [r for r in rows if key and key in _name_key(r["name"])]
+    matches = [r for r in rows if key and key in _name_key(r["name"], geo_level)]
     if len(matches) == 1:
         return {"geo_id": matches[0]["geo_id"], "name": matches[0]["name"]}
     if matches:
