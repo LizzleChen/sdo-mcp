@@ -83,6 +83,52 @@ def test_installed_tools_over_mcp(installed_server, protocol):
                     summary = await call("list_states", {})
                     assert summary["database_release"] == "mcp-test"
                     assert {"VA", "WI", "UT", "IN", "MI", "PA", "KY", "IL", "MD"} <= set(summary["states"])
+                    assert {"AK", "HI", "ME", "NE", "NH", "OH", "NV"} <= set(summary["states"])
+                    for state, geo, year, value, base_year in (
+                        ("AK", "Chugach", 2055, 5623, 2025),
+                        ("HI", "hi-maui-kalawao", 2030, 173620.30660481827, 2020),
+                        ("ME", "Cumberland", 2032, 322972.8624317943, 2022),
+                        ("NE", "Keya Paha", 2050, 514, 2020),
+                        ("NH", "Carroll", 2020, 50111, 2020),
+                        ("OH", "Ottawa", 2050, 31371, 2020),
+                        ("NV", "Carson City", 2044, 64275, 2024),
+                    ):
+                        forecast = await call("get_forecast", {
+                            "state": state, "geo_level": "county", "geo": geo,
+                            "variable": "population", "start_year": year, "end_year": year,
+                        }, "ok")
+                        assert forecast["series"] == [{"year": year, "value": value,
+                                                       "datatype": "estimate" if year == 2020 else "projection"}]
+                        assert forecast["source"]["base_year"] == base_year
+                        assert forecast["source"]["retrieved_at"]
+                    jobs = await call("get_forecast", {
+                        "state": "HI", "geo_level": "county", "geo": "hi-maui-kalawao",
+                        "variable": "employment", "start_year": 2050, "end_year": 2050,
+                    }, "ok")
+                    assert jobs["series"][0]["value"] == 129980
+                    assert jobs["source"]["base_year"] == 2022
+                    for variable in ("population", "employment"):
+                        refusal = await call("get_forecast", {
+                            "state": "HI", "geo_level": "county", "geo": "Maui", "variable": variable,
+                        }, "not_published")
+                        assert "hi-maui-kalawao" in refusal["reason"]
+                        assert "series" not in refusal
+                    await call("get_forecast", {
+                        "state": "AK", "geo_level": "county", "geo": "Chugach",
+                        "variable": "population", "scenario": "high",
+                    }, "error", True)
+                    high = await call("get_forecast", {
+                        "state": "AK", "geo_level": "state", "geo": "AK", "variable": "population",
+                        "scenario": "high", "start_year": 2055, "end_year": 2055,
+                    }, "ok")
+                    assert high["series"][0]["value"] == 925038
+                    await call("get_forecast", {
+                        "state": "ME", "geo_level": "state", "geo": "ME", "variable": "population",
+                        "start_year": 2028, "end_year": 2028,
+                    }, "empty_range")
+                    await call("get_components", {"state": "NH", "geo": "Carroll"}, "pdf_only")
+                    hi_source = await call("describe_source", {"state": "HI"})
+                    assert {source["base_year"] for source in hi_source["sources_loaded"]} == {2020, 2022}
                     for variable, value in (("population", 584130), ("households", 262030), ("employment", 454800)):
                         maryland = await call("get_forecast", {
                             "state": "MD", "geo_level": "county", "geo": "Baltimore City",

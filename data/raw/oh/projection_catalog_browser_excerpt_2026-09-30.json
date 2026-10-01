@@ -1,0 +1,27 @@
+{
+  "format": "browser-rendered-catalog-excerpt",
+  "source_url": "https://development.ohio.gov/about-us/research/population",
+  "retrieved_at": "2026-09-30",
+  "extraction": "Read-only browser DOM capture of document.title, rendered text and the visible population-projection link hrefs. This is an excerpt of the rendered catalog, not the original HTTP response HTML.",
+  "page_title": "Population | Development",
+  "overview": "The Office of Research compiles statewide and county-level profiles on Ohio’s population. Data includes current and forecasted trends, selected population characteristics, and estimates by demographics.",
+  "report_note": "The Ohio Population Projections Report is derived from demographic trends, including age distribution, fertility, mortality, and migration patterns. Economic, political, and policy factors were not considered or incorporated, though these factors can substantially affect population outcomes. The projections featured in this report are data-informed estimates that illustrate the population shifts that could occur if point-in-time demographic trends persist.",
+  "links": [
+    {
+      "href": "https://development.ohio.gov/static/research/pop1/State-of-Ohio-Population-Projections-Report-2023.pdf",
+      "text": "Population Projections Report 2023\n\nReport on Ohio population trends into 2050"
+    },
+    {
+      "href": "https://development.ohio.gov/wps/portal/gov/development/about-us/research/population/population-projections/projected-2050-populations-map",
+      "text": "Projected 2050 County Populations\n\nPDF detailing projected county populations in 2050."
+    },
+    {
+      "href": "https://development.ohio.gov/wps/portal/gov/development/about-us/research/population/population-projections/pop-projection-overview-2020-2050",
+      "text": "Population Projections Overview: 2020 to 2050\n\nOhio’s population is projected to decline by around 5.7% by 2050."
+    },
+    {
+      "href": "https://development.ohio.gov/static/research/pop1/Projections-by-County.xlsx",
+      "text": "Projections by County, 2020 to 2050\n\nXLSX file detailing county-level population trends through 2050."
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+[
+ {
+  "file": "population_aug2022.pdf",
+  "source": "https://uofnebraska.sharepoint.com/:b:/s/UNOCenterforPublicAffairsResearch2/IQArysrd74RcR7lkqZFVHOVBAa7xSaM0iYr5KGXLHaEKDU4",
+  "retrieved_at": "2026-09-30",
+  "sha256": "74a6f0ea5ed5b2ab48f154b1575df95608ef4e8831ba4b8250502220b49392e5",
+  "records": 376,
+  "note": "Original UNO CPAR August 2022 report acquired using the public SharePoint browser download on the current publisher catalog. CPAR explicitly adopts Hauer/SEDAC regional-rivalry projections; the June 2025 PDF modification date does not identify a new forecast edition."
+ },
+ {
+  "file": "projection_catalog_2026-09-30.html",
+  "source": "https://www.unomaha.edu/college-of-public-affairs-and-community-service/center-for-public-affairs-research/programs/data-for-policy-and-decision-makers.php",
+  "retrieved_at": "2026-09-30",
+  "sha256": "ad9ce271abd2be82cc6e31e63299074fcc23d2075c30f8a94bbf832de42dcedc",
+  "records": null,
+  "note": "Original UNO CPAR August 2022 report acquired using the public SharePoint browser download on the current publisher catalog. CPAR explicitly adopts Hauer/SEDAC regional-rivalry projections; the June 2025 PDF modification date does not identify a new forecast edition."
+ },
+ {
+  "file": "state_data_center_2026-09-30.html",
+  "source": "https://www.unomaha.edu/college-of-public-affairs-and-community-service/center-for-public-affairs-research/programs/nebraska-state-data-center.php",
+  "retrieved_at": "2026-09-30",
+  "sha256": "4aa03acd1b86d34b41c804cfb76ddb326de890c667fc86dd1fdec2cb5fd2c94c",
+  "records": null,
+  "note": "Original UNO CPAR August 2022 report acquired using the public SharePoint browser download on the current publisher catalog. CPAR explicitly adopts Hauer/SEDAC regional-rivalry projections; the June 2025 PDF modification date does not identify a new forecast edition."
+ },
+ {
+  "file": "repository_record_2026-09-30.html",
+  "source": "https://digitalcommons.unomaha.edu/cparpubarchives/643/",
+  "retrieved_at": "2026-09-30",
+  "sha256": "e9dac6e30a50cfb8eebbaf5407ed398f3645de76e472e94ca458e8aa102ae8d9",
+  "records": null,
+  "note": "Original UNO CPAR August 2022 report acquired using the public SharePoint browser download on the current publisher catalog. CPAR explicitly adopts Hauer/SEDAC regional-rivalry projections; the June 2025 PDF modification date does not identify a new forecast edition."
+ }
+]

@@ -1,0 +1,18 @@
+[
+ {
+  "file": "population_2025-2044_oct2025.pdf",
+  "source": "https://tax.nv.gov/wp-content/uploads/2025/09/Nevada-County-Population-Projections-2025-to-2044.pdf",
+  "retrieved_at": "2026-09-30",
+  "sha256": "2ee54b8e38edad68e393d0e13fdb05eefa635aacb1925ab00c1b00a5ac7af33c",
+  "records": 378,
+  "note": "Original Nevada October 2025 long-range report and current publisher catalog; printed summary pages 2-3 independently checked against detail pages 4-8. No March2026 short-range rows merged."
+ },
+ {
+  "file": "demographics_catalog_2026-09-30.html",
+  "source": "https://tax.nv.gov/news-publications/demographics/",
+  "retrieved_at": "2026-09-30",
+  "sha256": "2a9e2dbc536a4959747d52d2477533bbb4e8d5582acd11eaea0fae058fc34d97",
+  "records": null,
+  "note": "Original Nevada October 2025 long-range report and current publisher catalog; printed summary pages 2-3 independently checked against detail pages 4-8. No March2026 short-range rows merged."
+ }
+]

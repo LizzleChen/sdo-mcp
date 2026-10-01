@@ -1,0 +1,34 @@
+[
+ {
+  "file": "population_2020-2050_report2023.xlsx",
+  "source": "https://dam.assets.ohio.gov/raw/upload/development.ohio.gov/research/pop1/Projections-by-County.xlsx",
+  "retrieved_at": "2026-09-30",
+  "sha256": "28334e9fcbf0fd794f4d835f022452cb60f106d01ab9b77f7319537b9e05d398",
+  "records": 623,
+  "note": "Unmodified publisher original. Workbook fetched from publisher DAM raw asset corresponding to the catalog's static link; report and overview independently corroborate state endpoints and ages. 2020 estimates base; exact five-year totals. Overview cites 2022 while current report/catalog label 2023. Overview map Ottawa 2050 differs by three from the selected workbook."
+ },
+ {
+  "file": "population_report_2023.pdf",
+  "source": "https://dam.assets.ohio.gov/image/upload/development.ohio.gov/research/pop1/State-of-Ohio-Population-Projections-Report-2023.pdf",
+  "retrieved_at": "2026-09-30",
+  "sha256": "c56fb21f1756b00499d272a1ceb0666d7817955086a770170acc8bb762bcac5c",
+  "records": null,
+  "note": "Unmodified publisher original. Workbook fetched from publisher DAM raw asset corresponding to the catalog's static link; report and overview independently corroborate state endpoints and ages. 2020 estimates base; exact five-year totals. Overview cites 2022 while current report/catalog label 2023. Overview map Ottawa 2050 differs by three from the selected workbook."
+ },
+ {
+  "file": "population_overview_2020-2050.pdf",
+  "source": "https://dam.assets.ohio.gov/image/upload/development.ohio.gov/research/pop1/State-of-Ohio-Population-Projections-Overview-2020-to-2050.pdf",
+  "retrieved_at": "2026-09-30",
+  "sha256": "82ed36d3e344b17244af7658c25d998c77b4635bca06ddb60a00e33facccb551",
+  "records": null,
+  "note": "Unmodified publisher original. Workbook fetched from publisher DAM raw asset corresponding to the catalog's static link; report and overview independently corroborate state endpoints and ages. 2020 estimates base; exact five-year totals. Overview cites 2022 while current report/catalog label 2023. Overview map Ottawa 2050 differs by three from the selected workbook."
+ },
+ {
+  "file": "projection_catalog_browser_excerpt_2026-09-30.json",
+  "source": "https://development.ohio.gov/about-us/research/population",
+  "retrieved_at": "2026-09-30",
+  "sha256": "b64e9c20a582c1fac80a4304e7732b2102affecb58f34db0010a1ff6dd4d9614",
+  "records": null,
+  "note": "Read-only browser-rendered catalog EXCERPT, not original HTTP HTML. Records observed workbook and Report 2023 links; catalog HTTP requests returned 404."
+ }
+]

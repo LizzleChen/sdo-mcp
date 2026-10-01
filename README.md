@@ -5,8 +5,38 @@ households, and employment where the state office publishes it. The server
 reads a local SQLite database and does not download data while answering a
 question.
 
-Coverage now includes **25 recognized states, all with loaded population
-forecasts**. The newest addition is **Wyoming**, using the
+Coverage now includes **32 recognized states, all with loaded population
+forecasts**. Batch two adds **Alaska, Hawaii, Maine, Nebraska, New Hampshire,
+Ohio and Nevada**, with 1,862 population totals and 20 Hawaii jobs totals.
+The new population coverage is:
+
+| State | Published points served | County coverage |
+| --- | --- | --- |
+| Alaska | 2025 estimate; annual state projections through 2055 under Low/Middle/High, and five-year county points | All 30 boroughs and census areas; county series follows Middle |
+| Hawaii | 2020 estimate; 2030, 2040 and 2050 resident population | Three individual counties plus combined Maui/Kalawao |
+| Maine | 2022 estimate; 2027, 2032, 2037 and 2042 | All 16 counties |
+| Nebraska | 2020 Census history; 2030, 2040 and 2050 | All 93 counties |
+| New Hampshire | 2020 Census-based history; five-year projections through 2050 | All 10 counties |
+| Ohio | 2020 estimate; five-year projections through 2050 | All 88 counties |
+| Nevada | 2024 estimate; annual projections 2025–2044 | All 17 county equivalents, including Carson City |
+
+Hawaii also serves DBEDT's civilian total jobs: 2022 estimates and
+2030/2040/2050 projections, including wage/salary and proprietors' jobs.
+Use county ID `hi-maui-kalawao` for the combined population or jobs series.
+Separate Maui or Kalawao requests return `not_published` for this selected
+product; the combined value is never assigned to either county.
+
+The original files and supporting methods are archived with fingerprints and
+retrieval dates. Published values and source discrepancies are preserved,
+including Hawaii's Maui/Kalawao 2030 workbook/PDF difference and Ohio's Ottawa
+2050 map/workbook difference. Nebraska's producer explicitly adopted a
+Hauer/SEDAC model; that provenance is visible in its source notes. Maine's
+publisher cautions against use beyond 2032. Municipal forecasts and additional
+components remain deferred; household and other eligible jobs coverage is
+unverified. No years are interpolated. See the
+[source checks and limitations](docs/source-reviews.md) for each edition.
+
+The preceding addition was **Wyoming**, using the
 [Economic Analysis Division's February 2025 population publication](https://ai.wyo.gov/divisions/economic-analysis/demographic-information/projections).
 The state and all 23 counties have annual 2020–2050 totals: 2020 Census
 history, 2021–2023 estimates, and 2024–2050 forecasts. All 744 loaded values
@@ -239,4 +269,4 @@ or upload them.
 Source review schedules and publication-versus-loading status are available
 through `list_states`, `describe_source`, and the local report command:
 `uv run python -m sdo_mcp.monitoring --database data/sdo.sqlite`.
-See [source review instructions](docs/source-reviews.md) for all 25 states.
+See [source review instructions](docs/source-reviews.md) for all 32 states.

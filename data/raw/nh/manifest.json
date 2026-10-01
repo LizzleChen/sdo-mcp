@@ -1,0 +1,18 @@
+[
+ {
+  "file": "population_2020-2050_sep2022.pdf",
+  "source": "https://www.nheconomy.com/getmedia/0205c62d-9c30-4b00-9c9e-d81d8f17b8b3/NH-Population-Projections-2020-2050-Final-Report-092022.pdf",
+  "retrieved_at": "2026-09-30",
+  "sha256": "83d34db7886df43d8675a49eb22183366270d254b89d7eb4003c69b4bf588cbe",
+  "records": 77,
+  "note": "Original OPD September 2022 publication or current PDF-only catalog. Table 1 supplies 77 state/county totals, checked against Appendix A Tables 6-16; municipal and five-year components tables retained but not served."
+ },
+ {
+  "file": "projection_catalog_2026-09-30.html",
+  "source": "https://www.nheconomy.com/office-of-planning-and-development/what-we-do/state-data-center-(census-data)/population-projections",
+  "retrieved_at": "2026-09-30",
+  "sha256": "f2e1ddbdaf0760f0c61e955278be65f809fa4d6d1dfb3594cd65f8cbb875c008",
+  "records": null,
+  "note": "Original OPD September 2022 publication or current PDF-only catalog. Table 1 supplies 77 state/county totals, checked against Appendix A Tables 6-16; municipal and five-year components tables retained but not served."
+ }
+]

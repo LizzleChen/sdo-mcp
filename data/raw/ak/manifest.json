@@ -1,0 +1,42 @@
+[
+ {
+  "file": "projection_catalog_2026-09-30.html",
+  "source": "https://live.laborstats.alaska.gov/article/alaska-population-projections",
+  "retrieved_at": "2026-09-30",
+  "sha256": "5df6b6c3b8ae8bf5a5bdd3b617ddb7ea69809fc4f5593a9864572f5c25c04d57",
+  "records": null,
+  "note": "Original Alaska September 2026 edition; state annual scenarios and county five-year totals; Census evidence verifies current county equivalents."
+ },
+ {
+  "file": "state_projections_2025-2055_sep2026.xlsx",
+  "source": "https://live.laborstats.alaska.gov/sites/default/files/2026-09/StateProjections.xlsx",
+  "retrieved_at": "2026-09-30",
+  "sha256": "997f9a62ceb772042c11862c62df57d2c02443105016f65d98ea987e260c66fd",
+  "records": 93,
+  "note": "Original Alaska September 2026 edition; state annual scenarios and county five-year totals; Census evidence verifies current county equivalents."
+ },
+ {
+  "file": "borough_census_area_projections_2025-2055_sep2026.xlsx",
+  "source": "https://live.laborstats.alaska.gov/sites/default/files/2026-09/Boroughs%20and%20Census%20Areas.xlsx",
+  "retrieved_at": "2026-09-30",
+  "sha256": "daf5dbea38ff353837181d9fec92d41014a1da397022c21a6589a5e807cdb567",
+  "records": 210,
+  "note": "Original Alaska September 2026 edition; state annual scenarios and county five-year totals; Census evidence verifies current county equivalents."
+ },
+ {
+  "file": "population_projections_2025-2055_sep2026.pdf",
+  "source": "https://live.laborstats.alaska.gov/pop/projections/pub/popproj.pdf",
+  "retrieved_at": "2026-09-30",
+  "sha256": "0896c61c26c1c6e55f465e4ba4e28fb946c10c6fcec172aea5cebe69da7a46ce",
+  "records": null,
+  "note": "Original Alaska September 2026 edition; state annual scenarios and county five-year totals; Census evidence verifies current county equivalents."
+ },
+ {
+  "file": "census_2020_county_geographies_2026-09-30.html",
+  "source": "https://tigerweb.geo.census.gov/tigerwebmain/Files/acs26/tigerweb_acs26_county_2020_tab20_ak.html",
+  "retrieved_at": "2026-09-30",
+  "sha256": "24787f7f1e229b1c877d53f9e5be298a0d2785deeba66001838be6c44fe14eb3",
+  "records": null,
+  "note": "Original Alaska September 2026 edition; state annual scenarios and county five-year totals; Census evidence verifies current county equivalents."
+ }
+]

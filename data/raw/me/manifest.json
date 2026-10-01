@@ -1,0 +1,50 @@
+[
+ {
+  "file": "projection_catalog_2026-09-30.html",
+  "source": "https://www11.maine.gov/dafs/economist/demographic-projections",
+  "retrieved_at": "2026-09-30",
+  "sha256": "2e14b991e3dc4807e0e1cc53d33b0ff5df8d69684e36815498651d964e9242ec",
+  "records": null,
+  "note": "Original publisher source. Maine April 2025 fractional workbook totals are independently checked against rounded PDF values; municipal rows archived only."
+ },
+ {
+  "file": "population_apr2025.xlsx",
+  "source": "https://www11.maine.gov/dafs/economist/sites/maine.gov.dafs.economist/files/inline-files/MaineStateCountyPopulationProjections2042.xlsx",
+  "retrieved_at": "2026-09-30",
+  "sha256": "9ccb863b8a4a30f76aaf74087d3d302c88086976346d205f1df747ef07ac4f4b",
+  "records": 85,
+  "note": "Original publisher source. Maine April 2025 fractional workbook totals are independently checked against rounded PDF values; municipal rows archived only."
+ },
+ {
+  "file": "population_apr2025.pdf",
+  "source": "https://www11.maine.gov/dafs/economist/sites/maine.gov.dafs.economist/files/inline-files/MaineStateCountyPopulationProjections2042.pdf",
+  "retrieved_at": "2026-09-30",
+  "sha256": "b043cd09000b88347c77460250334aeb574e61bfe472ded0f1898949c5e212d3",
+  "records": null,
+  "note": "Original publisher source. Maine April 2025 fractional workbook totals are independently checked against rounded PDF values; municipal rows archived only."
+ },
+ {
+  "file": "population_outlook_apr2025.pdf",
+  "source": "https://www11.maine.gov/dafs/economist/sites/maine.gov.dafs.economist/files/inline-files/Maine%20Population%20Outlook%20to%202032.pdf",
+  "retrieved_at": "2026-09-30",
+  "sha256": "56db19ab0c38293c5ee7b541c27fcbb13400e9e040708603672efea63403b8da",
+  "records": null,
+  "note": "Original publisher source. Maine April 2025 fractional workbook totals are independently checked against rounded PDF values; municipal rows archived only."
+ },
+ {
+  "file": "municipal_population_apr2025.xlsx",
+  "source": "https://www11.maine.gov/dafs/economist/sites/maine.gov.dafs.economist/files/inline-files/MaineCityTownPopulationProjection2042.xlsx",
+  "retrieved_at": "2026-09-30",
+  "sha256": "0779eeace14b9d8c4cddf06b388c8b92af293906094718e4647fe0d6ce85b8c5",
+  "records": null,
+  "note": "Original publisher source. Maine April 2025 fractional workbook totals are independently checked against rounded PDF values; municipal rows archived only."
+ },
+ {
+  "file": "economic_catalog_2026-09-30.html",
+  "source": "https://www1.maine.gov/dafs/economist/economic-forecasting",
+  "retrieved_at": "2026-09-30",
+  "sha256": "5de317d945538e37119b0301a0545a1e66570234da4e5968252fd2ced579d80c",
+  "records": null,
+  "note": "Original publisher source. Maine April 2025 fractional workbook totals are independently checked against rounded PDF values; municipal rows archived only."
+ }
+]
