@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html xmlns="https://www.w3.org/1999/xhtml" dir="ltr" lang="en-US" xml:lang="en">
+<head><script type="text/javascript" src="/cf_scripts/scripts/cfform.js"></script>
+<script type="text/javascript" src="/cf_scripts/scripts/masks.js"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+	
+    	<title>PAD county data</title>
+	
+	    <meta name="description" content="Find demographic and social economic data here for the counties in New York. Choose between recent trends, historic trends, future trends or a current profile. There are also maps that show the spatial patterns. Data collected comes from the Census, ACS, BLS, BEA, SAIPE or are produced by the Cornell Program on Applied Demographics." />
+    
+	<link rel="stylesheet" type="text/css" href="../cugray/styles/main.css" />
+	<link rel="stylesheet" type="text/css" href="../style/PADstyle.css" />
+    <!--[if lt IE 8]><link rel="stylesheet" href="/style/PADie.css" type="text/css" media="screen" /><![endif]-->
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-2306726-2']);
+		_gaq.push(['_trackPageview']);
+		(function() {
+			var ga = document.createElement('script');
+			ga.type = 'text/javascript';
+			ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  
+			})();
+    </script>
+
+
+
+        <style>
+	.button {
+    background: transparent url('/images/bg_button_a.gif') no-repeat scroll top right;
+    color: #444;
+/*    display: block;
+    float: left; */
+    font: normal 12px arial, sans-serif;
+    height: 24px;
+    margin-right: 6px;
+    padding-right: 18px; /* sliding doors padding */
+    text-decoration: none;
+	cursor:pointer;
+}
+
+.button span {
+    background: transparent url('/images/bg_button_span.gif') no-repeat;
+    display: block;
+    line-height: 14px;
+    padding: 5px 0 5px 18px;
+} 
+
+.button:hover {
+    background-position: bottom right;
+    color: #000;
+    outline: none; /* hide dotted outline in Firefox */
+}
+
+.button:hover span {
+    background-position: bottom left;
+    padding: 6px 0 4px 18px; /* push text down 1px */
+}
+</style>
+
+
+<link rel="stylesheet" type="text/css" href="../style/anylinkcssmenu.css" />
+<script type="text/javascript" src="../scripts/anylinkcssmenu.js">
+/***********************************************
+* AnyLink CSS Menu script v2.0- © Dynamic Drive DHTML code library (www.dynamicdrive.com)
+* This notice MUST stay intact for legal use
+* Visit Project Page at http://www.dynamicdrive.com/dynamicindex1/anylinkcss.htm for full source code
+***********************************************/
+</script>
+<script type="text/javascript">anylinkcssmenu.init("anchorclass")</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/1.4.5/numeral.min.js"></script>
+
+<script type="text/javascript">
+<!--
+    _CF_checkCSelect = function(_CF_this)
+    {
+        //reset on submit
+        _CF_error_exists = false;
+        _CF_error_messages = new Array();
+        _CF_error_fields = new Object();
+        _CF_FirstErrorField = null;
+
+
+        //display error messages and return success
+        if( _CF_error_exists )
+        {
+            if( _CF_error_messages.length > 0 )
+            {
+                // show alert() message
+                _CF_onErrorAlert(_CF_error_messages);
+                // set focus to first form error, if the field supports js focus().
+                if( _CF_this[_CF_FirstErrorField].type == "text" )
+                { _CF_this[_CF_FirstErrorField].focus(); }
+
+            }
+            return false;
+        }else {
+            return true;
+        }
+    }
+//-->
+</script>
+</head>
+<body>
+<div id="skipnav">
+	<a href="#content">Skip to main content</a>
+</div>
+
+<hr class="banner-separator" />
+
+<div id="cu-identity">
+	<div id="cu-logo">
+		<a href="http://www.cornell.edu/"><img src="../cugray/images/cu_logo_unstyled.gif" alt="Cornell University" width="180" height="45" border="0" /></a>
+	</div>
+	<div id="cu-search">
+		<a href="http://www.cornell.edu/search/">Search Cornell</a>
+	</div>
+</div>
+
+
+<hr class="banner-separator" />
+
+<div class="PAD_maindiv"><a name="PADtop"></a>
+	<div class="PAD_TopBar">
+    	<span class="PADname">Cornell Program on Applied Demographics
+			
+
+        </span>
+		<ul id="PADnav">
+			<li><a href="../index.cfm">Home</a></li>
+			
+			<li id="r"><a href="Mailto:padInfo@cornell.edu">Email</a></li>
+			<li><a href="https://bsky.app/profile/PADCornell.bsky.social">Bluesky</a></li>
+		</ul>
+	</div> <!--PAD_TopBar-->
+    <div class="PAD_Content">
+    <table class="PAD_2column">
+    	<tr>
+        
+		<td class="PAD_MainMenu">
+		<style>.new {font-size: 75%; vertical-align: super; color: red; font-weight: bold}</style>
+<ul>
+	<li class="section" style="margin-top:0">About PAD</li>
+	
+	<li ><a href="../index.cfm">About</a></li>
+
+	<li ><a href="../activities.cfm">Activities</a></li>
+
+	<li ><a href="../people.cfm">People</a></li>
+
+	<li ><a href="../contact.cfm">Contact</a></li>
+
+    <li class="section">Data</li>
+	
+	<li class="page">NY Counties</li>
+
+    <div id="submenucounties" class="anylinkcss" style="width: 175px">
+	<ul>
+    	<li><a href="../state_projections">State Projections (2022-2050)</a></li>
+    	<li><a href="../counties/projections.cfm">County Projections (2015-2040)</a></li>
+    	<li><a href="../counties/trends1geo.cfm">Trends</a></li>
+    	<li><a href="../counties/maps.cfm">Maps</a></li>
+    	<li><a href="../counties/index.cfm"><em>more ...</em></a></li>
+    </ul>
+    </div>
+	
+	<li class="anchorclass" rel='submenuschools' rev='lr'> <img src="/images/arrow_right.gif" width="7" height="9" style="float:right;padding:3px 5px"/><a href="../schools/index.cfm">School districts</a></li>
+
+    <div id="submenuschools" class="anylinkcss" style="width: 175px">
+	<ul>
+    	<li><a href="../schools/projections.cfm">Projections</a></li>
+    	<li><a href="../schools/trends1geo.cfm">Trends</a></li>
+    	<li><a href="../schools/budg_scen.cfm">Budget playground</a></li>
+    	<li><a href="../schools/index.cfm"><em>more ...</em></a></li>
+    </ul>
+    </div>
+	
+	<li ><a href="../census2020/index.cfm">Census 2020</a></li>
+
+	<li ><a href="../state_projections">State Projections</a></li>
+
+
+	<li class="section">Maps</li>
+	
+	
+	<li class="anchorclass" rel='submenumaps' rev='lr'> <img src="/images/arrow_right.gif" width="7" height="9" style="float:right;padding:3px 5px"/><a href="../maps2020/index.cfm">Reference maps</a></li>
+
+    <div id="submenumaps" class="anylinkcss" style="width: 175px">
+	<ul>
+    	<li><a href="../maps2020/maps/ReferenceMaps.pdf">Towns, cities and villages</a></li>
+        
+    	<li><a href="../census2020/PUMA2020maps.cfm">PUMAs</a></li>
+    	<li><a href="../maps2020/index.cfm"><em>more ...</em></a></li>
+    </ul>
+    </div>
+	<li class="section">Publications</li>
+		
+	
+	<li ><a href="../TiDbit/index.cfm">Topics in Demography (TiDbit)</a></li>
+
+	<li ><a href="../papers/index.cfm">White papers</a></li>
+
+	<li class="anchorclass" rel='submenupubs' rev='lr'> <img src="/images/arrow_right.gif" width="7" height="9" style="float:right;padding:3px 5px"/><a href="../publications/index.cfm">Other publications</a></li>
+
+    <div id="submenupubs" class="anylinkcss" style="width: 175px">
+	<ul>
+    	<li><a href="../NYMinutes/index.cfm">NY minutes</a></li>
+    	<li><a href="../presentations/index.cfm">Presentations</a></li>
+        <li><a href="../posters/index.cfm">Posters</a></li>
+    	
+    	<li><a href="../publications/index.cfm"><em>more ...</em></a></li>
+    </ul>
+    </div>
+
+
+
+	<li class="section">Resources</li>
+	
+	<li ><a href="../atcornell/index.cfm">At Cornell</a></li>
+
+	<li ><a href="../aboutny/index.cfm">About NY</a></li>
+
+	<li ><a href="../other/index.cfm">Other resources</a></li>
+
+	<li class="section">Tools</li>
+
+	
+	<li ><a href="../acscalc/index.cfm">ACS Calculator</a></li>
+
+	<li ><a href="../tools/countychar.cfm">County Characteristics</a></li>
+
+	<li ><a href="../tools/API2Excel">Census API into Excel</a></li>
+
+	
+</ul>
+
+		</td>
+        
+		<td class="PAD_MainContent">
+
+<div class="PAD_DMenu">
+	<ul id="DMenu">
+		<li><form name="CSelect" id="CSelect" action="&#x2f;counties&#x2f;index.cfm" method="post" style="float:left" onsubmit="return _CF_checkCSelect(this)">
+Select County: <select name="Cnty" id="Cnty" onchange="this.form.submit();" >
+<option value=-1>Select County</option>    <option value="000">000 - New York</option>
+    <option value="001">001 - Albany County</option>
+    <option value="003">003 - Allegany County</option>
+    <option value="005">005 - Bronx County</option>
+    <option value="007">007 - Broome County</option>
+    <option value="009">009 - Cattaraugus County</option>
+    <option value="011">011 - Cayuga County</option>
+    <option value="013">013 - Chautauqua County</option>
+    <option value="015">015 - Chemung County</option>
+    <option value="017">017 - Chenango County</option>
+    <option value="019">019 - Clinton County</option>
+    <option value="021">021 - Columbia County</option>
+    <option value="023">023 - Cortland County</option>
+    <option value="025">025 - Delaware County</option>
+    <option value="027">027 - Dutchess County</option>
+    <option value="029">029 - Erie County</option>
+    <option value="031">031 - Essex County</option>
+    <option value="033">033 - Franklin County</option>
+    <option value="035">035 - Fulton County</option>
+    <option value="037">037 - Genesee County</option>
+    <option value="039">039 - Greene County</option>
+    <option value="041">041 - Hamilton County</option>
+    <option value="043">043 - Herkimer County</option>
+    <option value="045">045 - Jefferson County</option>
+    <option value="047">047 - Kings County</option>
+    <option value="049">049 - Lewis County</option>
+    <option value="051">051 - Livingston County</option>
+    <option value="053">053 - Madison County</option>
+    <option value="055">055 - Monroe County</option>
+    <option value="057">057 - Montgomery County</option>
+    <option value="059">059 - Nassau County</option>
+    <option value="061">061 - New York County</option>
+    <option value="063">063 - Niagara County</option>
+    <option value="065">065 - Oneida County</option>
+    <option value="067">067 - Onondaga County</option>
+    <option value="069">069 - Ontario County</option>
+    <option value="071">071 - Orange County</option>
+    <option value="073">073 - Orleans County</option>
+    <option value="075">075 - Oswego County</option>
+    <option value="077">077 - Otsego County</option>
+    <option value="079">079 - Putnam County</option>
+    <option value="081">081 - Queens County</option>
+    <option value="083">083 - Rensselaer County</option>
+    <option value="085">085 - Richmond County</option>
+    <option value="087">087 - Rockland County</option>
+    <option value="089">089 - St. Lawrence County</option>
+    <option value="091">091 - Saratoga County</option>
+    <option value="093">093 - Schenectady County</option>
+    <option value="095">095 - Schoharie County</option>
+    <option value="097">097 - Schuyler County</option>
+    <option value="099">099 - Seneca County</option>
+    <option value="101">101 - Steuben County</option>
+    <option value="103">103 - Suffolk County</option>
+    <option value="105">105 - Sullivan County</option>
+    <option value="107">107 - Tioga County</option>
+    <option value="109">109 - Tompkins County</option>
+    <option value="111">111 - Ulster County</option>
+    <option value="113">113 - Warren County</option>
+    <option value="115">115 - Washington County</option>
+    <option value="117">117 - Wayne County</option>
+    <option value="119">119 - Westchester County</option>
+    <option value="121">121 - Wyoming County</option>
+    <option value="123">123 - Yates County</option>
+</select></form>
+
+</li>
+
+	</ul>
+</div> <!--PAD_DMenu-->
+
+<h2>New York Counties Data</h2>
+<div class="PAD_Fade"></div>
+<h4><a href="maps.cfm">Maps</a></h4>
+<p>An interactive map with selected County statistics</p>
+<h4><a href="trends1geo.cfm?geo=0">Recent trends for a certain area</a></h4>
+<p>Data from several demographic and economic annual time series for a selected area</p>
+<h4><a href="trends1var.cfm?var=popestimate">Recent trends for all counties</a></h4>
+<p>Data from a selected demographic and economic annual time series</p>
+<h4><a href="history.cfm">Historic trends</a></h4>
+<p>Data from the latest decenial Census, compared with data from past censuses</p>
+<h4><a href="../state_projections/">2024 State Projections</a></h4>
+<p>Projections for New York State until 2050. Results for three different scenarios of demographic change. These state projections are an update from the projections produced in 2018 and are a first step in the projection process. Later on the 2018 county projections will be updated, using these state projections as control.</p>
+<h4><a href="projections.cfm">2018 County Projections</a></h4>
+<p>Population size and characteristics, projected until 2040</p>
+
+<h4>ACS data</h4>
+<ul>
+<li><a href="acs5cb.cfm">Latest ACS data profiles</a><br />
+The latest information from the American Community Survey (2013-2017 5-year estimates)</li>
+<li><a href="migration.cfm">County-to-County migration</a><br />
+Migration data by different characteristics based on data from the ACS</li>
+</ul>
+		</td>
+        </tr>
+    </table>
+    </div>
+</div><!--PAD_maindiv-->
+
+</body>
+</html>

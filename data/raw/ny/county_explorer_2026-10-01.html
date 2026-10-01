@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html xmlns="https://www.w3.org/1999/xhtml" dir="ltr" lang="en-US" xml:lang="en">
+<head><script type="text/javascript" src="/cf_scripts/scripts/cfform.js"></script>
+<script type="text/javascript" src="/cf_scripts/scripts/masks.js"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+	
+    	<title>PAD - Cornell Program on Applied Demographics</title>
+	
+	<link rel="stylesheet" type="text/css" href="../cugray/styles/main.css" />
+	<link rel="stylesheet" type="text/css" href="../style/PADstyle.css" />
+    <!--[if lt IE 8]><link rel="stylesheet" href="/style/PADie.css" type="text/css" media="screen" /><![endif]-->
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-2306726-2']);
+		_gaq.push(['_trackPageview']);
+		(function() {
+			var ga = document.createElement('script');
+			ga.type = 'text/javascript';
+			ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  
+			})();
+    </script>
+
+
+
+        <style>
+	.button {
+    background: transparent url('/images/bg_button_a.gif') no-repeat scroll top right;
+    color: #444;
+/*    display: block;
+    float: left; */
+    font: normal 12px arial, sans-serif;
+    height: 24px;
+    margin-right: 6px;
+    padding-right: 18px; /* sliding doors padding */
+    text-decoration: none;
+	cursor:pointer;
+}
+
+.button span {
+    background: transparent url('/images/bg_button_span.gif') no-repeat;
+    display: block;
+    line-height: 14px;
+    padding: 5px 0 5px 18px;
+} 
+
+.button:hover {
+    background-position: bottom right;
+    color: #000;
+    outline: none; /* hide dotted outline in Firefox */
+}
+
+.button:hover span {
+    background-position: bottom left;
+    padding: 6px 0 4px 18px; /* push text down 1px */
+}
+</style>
+
+
+<link rel="stylesheet" type="text/css" href="../style/anylinkcssmenu.css" />
+<script type="text/javascript" src="../scripts/anylinkcssmenu.js">
+/***********************************************
+* AnyLink CSS Menu script v2.0- © Dynamic Drive DHTML code library (www.dynamicdrive.com)
+* This notice MUST stay intact for legal use
+* Visit Project Page at http://www.dynamicdrive.com/dynamicindex1/anylinkcss.htm for full source code
+***********************************************/
+</script>
+<script type="text/javascript">anylinkcssmenu.init("anchorclass")</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/1.4.5/numeral.min.js"></script>
+
+<script type="text/javascript">
+<!--
+    _CF_checkCFForm_1 = function(_CF_this)
+    {
+        //reset on submit
+        _CF_error_exists = false;
+        _CF_error_messages = new Array();
+        _CF_error_fields = new Object();
+        _CF_FirstErrorField = null;
+
+
+        //display error messages and return success
+        if( _CF_error_exists )
+        {
+            if( _CF_error_messages.length > 0 )
+            {
+                // show alert() message
+                _CF_onErrorAlert(_CF_error_messages);
+                // set focus to first form error, if the field supports js focus().
+                if( _CF_this[_CF_FirstErrorField].type == "text" )
+                { _CF_this[_CF_FirstErrorField].focus(); }
+
+            }
+            return false;
+        }else {
+            return true;
+        }
+    }
+//-->
+</script>
+</head>
+<body>
+<div id="skipnav">
+	<a href="#content">Skip to main content</a>
+</div>
+
+<hr class="banner-separator" />
+
+<div id="cu-identity">
+	<div id="cu-logo">
+		<a href="http://www.cornell.edu/"><img src="../cugray/images/cu_logo_unstyled.gif" alt="Cornell University" width="180" height="45" border="0" /></a>
+	</div>
+	<div id="cu-search">
+		<a href="http://www.cornell.edu/search/">Search Cornell</a>
+	</div>
+</div>
+
+
+<hr class="banner-separator" />
+
+<div class="PAD_maindiv"><a name="PADtop"></a>
+	<div class="PAD_TopBar">
+    	<span class="PADname">Cornell Program on Applied Demographics
+			
+
+        </span>
+		<ul id="PADnav">
+			<li><a href="../index.cfm">Home</a></li>
+			<li><a id="menu_up" href="./index.cfm">Up</a></li>
+			<li id="r"><a href="Mailto:padInfo@cornell.edu">Email</a></li>
+			<li><a href="https://bsky.app/profile/PADCornell.bsky.social">Bluesky</a></li>
+		</ul>
+	</div> <!--PAD_TopBar-->
+    <div class="PAD_Content">
+    <table class="PAD_2column">
+    	<tr>
+        
+		<td class="PAD_MainContent">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<!--script src="../scripts/export-csv.js"></script-->
+
+
+
+<script type="text/javascript">
+
+var stateselected = "36";
+var baseyr = 2015;
+var horizon = 2040;
+var data = [];
+var comp_data = [];
+var countyselected = "0";
+
+var ratioselected = "0";
+var chType = "agebydate";
+var resetcounty = "$('#countyselect option["+"'0'"+"]').prop('selected', true);";
+var title, subtitle; 
+var hiddenseries = [];
+var ind = [];
+var groups = [];
+var sumlev;
+
+function initGroup (gr, grSelect, grOptions) {
+	groups[gr] = new Object;
+	groups[gr].selected = 0;
+	groups[gr].opts = grOptions;
+	$.each(grOptions, function(index, value) {
+		$(grSelect).append($('<option>', { value : index }).text(value))
+	});
+}
+
+
+$(document).ready(function(){
+//	fillCounties();
+
+	$('input:radio').on('change', function(){drawChart()});
+	$('input:radio').each(function(index, element) {
+		hiddenseries[$(this).val()] = [];
+    });
+//	for (var i=1; i<=30; i++) {hiddenseries["trendsbyage"].push(i)}
+	initGroup("age", "#ageselect", ["Total","0-4", "5-9","10-14", "15-19","20-24", "25-29","30-34", "35-39","40-44", "45-49","50-54", "55-59","60-64", "65-69","70-74", "75-79","80-84", "85+", "0-17", "5-13", "14-17", "18-64", "18-24", "25-44", "45-64", "65+", "85+", "16+", "18+","15-44"]);
+	initGroup("sex", "#sexselect", ["Total","Male", "Female"]);
+	groups["total"] = new Object;
+	groups["total"].opts = ['','Total'];
+	groups["total"].selected = 0;
+	groups["perc"] = Object.create(groups["total"]);
+	groups["date"] = new Object;
+	groups["date"].opts = [];
+	groups["date"].nullArray = [];
+	groups["date"].zeroArray = [];
+	for (var yr = baseyr; yr <= horizon; yr++) {
+		groups["date"].nullArray.push(null);
+		groups["date"].zeroArray.push([yr,0]);
+		if (yr % 5 == 0) {
+			groups["date"].opts.push(''+yr);
+			if (yr > baseyr && yr < horizon) {hiddenseries["agebydate"].push(groups["date"].opts.length-1)}
+		}
+	}
+	groups["date"].selected = 0;
+	$.each(groups["date"].opts, function(index, value) {
+		$("#dateselect").append($('<option>', { value : index }).text(value))
+	});
+	hiddenseries["agebydatep"] = hiddenseries["agebydate"];
+	getNewData();
+});
+
+function getNewData() {
+	$("#chart").hide();
+	$("#loading").show();
+	var url2 = "./getprojdata.cfm?county="+countyselected;
+		var cname;
+		$.getJSON(url2,function(d){
+			var proj18 = d.char;
+			data = proj18.DATA;
+			var columns = proj18.COLUMNS;
+			comp_data=d.comp.DATA;
+			var comp_columns=d.comp.COLUMS;
+			$("#chart").show();
+			$("#loading").hide();
+
+			ind["base"] = columns.indexOf("YR_2015");
+			ind["age"] = columns.indexOf("AGEGRPCODE");
+			ind["sex"] = columns.indexOf("SEXCODE");
+			ind["total"] = columns.length;
+			ind["perc"] = columns.length;
+			title = $("#countyselect option[value="+countyselected+"]").text();
+			$('#countyselect option[value='+countyselected+']').prop('selected', true);
+			updateDisabled("countyselect",countyselected);
+			drawChart();
+			$("#exportlink").attr("href","expprojdata.cfm?county="+countyselected);
+		});
+
+}
+
+function disableSelect (s) {
+//	$("#"+s+"select").prop("disabled", true).next().prop("disabled", true);
+$("#"+s+"select").hide().next().hide();
+}
+
+function disableRatio (r) {
+	if (ratioselected == r ) {
+		$('#ratioselect option[value="0"]').prop('selected', true);
+		ratioselected = "0";
+	}
+	$('#ratioselect option[value='+r+']').prop('disabled', true);
+}
+
+function updateDisabled (sel, newv) {
+	$('select').each(function() {
+		$(this).show();
+		$(this).removeProp("disabled");
+		$(this).children().removeProp("disabled");
+	});
+	$('.nextbutton').removeProp("disabled").show();
+	$("#countywarning").hide();
+	if (sumlev=="010") {
+		disableSelect('county');
+	}
+	if (chType == "agebydate") {
+		disableSelect('age');
+		disableSelect('date');
+		$.each([2,3,4,5,6,7], function(i,v) {disableRatio(v)});
+	}
+	if (chType ==  "singleage") {
+		disableSelect('age');
+		disableSelect('date');
+		disableSelect('ratio');
+	}
+	if (chType == "pyramid") {
+		disableSelect('sex');
+		disableSelect('age');
+		disableSelect('ratio');
+	}
+	if (chType == "trendstotal") {
+		disableSelect('date');
+	}
+	if (chType == "trendsperc") {
+		disableSelect('date');
+		disableSelect('ratio');
+	}
+	if (chType == "comptrends") {
+		disableSelect('age');
+		disableSelect('sex');
+		disableSelect('date');
+		disableSelect('ratio');
+	}
+	
+	if (chType == "trendsbysex") {
+		disableSelect('sex');
+		disableSelect('date');
+		disableRatio(1);
+		disableRatio(2);
+	}
+	if (ratioselected == 1) {
+		disableSelect('sex')
+	}
+	if (ratioselected == 2) {
+		disableSelect('sex');
+		disableSelect('age');
+	}
+	if (ratioselected == 3) {
+		disableSelect('age');
+	}
+}
+
+
+function nextcounty() {
+	var countycount = $('#countyselect option').length;
+	var opt_index = (document.getElementById('countyselect').selectedIndex+1)%countycount;
+//	var opt_index = ($("#countyselect option[value='"+countyselected+"']").index()+1)%countycount;
+	$('#countyselect option:eq('+opt_index+')').prop('selected', true);
+	countyselected = $('#countyselect option:eq('+opt_index+')').val();
+	getNewData();
+}
+
+function nextselect (gr, selId) {
+	var optioncount = $("#"+selId).find('option:not(:disabled)').length;
+	var opt_index = ($("#"+selId+" option:selected").index()+1)%optioncount;
+ 	groups[gr].selected = opt_index;
+	$('#' + selId +' option:eq('+opt_index+')').prop('selected', true);
+	drawChart();
+}
+
+function grSel(gr) {return groups[gr].opts[groups[gr].selected]}
+
+function createCountyAgeChart (detail) {
+	var d = []; m = []; f = []; r = []; series = []; tot = []
+	for (y = 1; y <= groups["date"].opts.length; y++) {
+		if (ratioselected == 1) {
+			m[y-1] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];	
+			f[y-1] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];	
+			r[y-1] = [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null];	
+		} else {
+			d[y-1] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+			tot = groups["date"].zeroArray.slice();;
+		}
+	}
+	for (y = 0; y < data.length; y++) {
+		datarecord = data[y];
+		if (ratioselected == 1) {
+			var age = parseInt(datarecord[ind["age"]]);
+			for (var yr = baseyr; yr <= horizon; yr=yr+5) {
+				var yr_id = (yr-baseyr)/5;
+				if (0<=age&&age<=85){
+					agegrp = Math.floor(age / 5);
+					if (datarecord[ind["sex"]] == "1") {
+						m[yr_id][agegrp] += parseInt(datarecord[ind["base"]+yr - baseyr])
+					} else if (datarecord[ind["sex"]] == "2"){
+						if (m[yr_id][agegrp] > 0) {
+							f[yr_id][agegrp] += parseInt(datarecord[ind["base"]+yr - baseyr])
+							r[yr_id][agegrp] = 
+								100*m[yr_id][agegrp]/f[yr_id][agegrp]
+						}
+					}
+				}
+			}
+		} else {
+			if (datarecord[ind["sex"]] == groups["sex"].selected) {
+				var age = parseInt(datarecord[ind["age"]]);
+				for (var yr = baseyr; yr <= horizon; yr=yr+5) {
+					var yr_id = (yr-baseyr)/5;
+					if (age == -999) {
+						tot[yr_id] = parseInt(datarecord[ind["base"]+yr - baseyr])
+					}
+					if (0 <= age && age <=85) {
+						agegrp = Math.floor(age / 5);
+						d[yr_id][agegrp] += parseInt(datarecord[ind["base"]+yr - baseyr]);
+					}
+				}
+			}
+		}
+	}
+	var suffix = "";
+	if (ratioselected != "0") {
+		subtitle = $("#ratioselect option:selected").text();
+		d = r; ytype = "logarithmic"; valueDecimals = 1
+	} else {
+		if (detail == "count") {
+			subtitle = grSel("sex");
+			ytype = "linear"; valueDecimals = 0
+		} else {
+			subtitle = grSel("sex")+" (% of total)";
+			ytype = "linear"; valueDecimals = 1;
+			suffix = "%";
+		}
+	}
+	for (y = 1; y <= groups["date"].opts.length; y++) {
+		series[y-1] = new Object;
+		series[y-1].data = [];
+		if (detail == "count") {
+			series[y-1].data = d[y-1]
+		} else {
+			for (var i=d[y-1].length; i--;) {
+			     series[y-1].data[i]=(tot[y-1]==0)?0:100*d[y-1][i]/tot[y-1];
+   			} 
+		}
+		series[y-1].name = groups["date"].opts[y-1];
+		series[y-1].visible = ($.inArray(y-1, hiddenseries[chType]) == -1);
+
+	}
+
+		$('#chart').highcharts({
+			chart: {type: 'line', animation: false, zoomType: 'xy'},
+			plotOptions: {series: {animation: false, events: {legendItemClick: function (){updatehidden(this.index)}}}},
+			title: {text: title},
+			subtitle: {text: subtitle},
+			credits: {enabled: true, text: 'Based on Cornell PAD projections, 2018'},
+			legend : {title: {text: "Series (click to toggle)"}},
+			tooltip: {shared: true, valueDecimals: valueDecimals, valueSuffix: suffix},
+			xAxis: {categories: groups["age"].opts.slice(1)},
+			yAxis: {floor: 0, type: ytype, allowDecimals: false, labels: {format: '{value}'+suffix}},
+        	series: series		
+    	});
+};
+
+function createPyramid() {
+	m = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];	
+	f = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+	var max_count = 0;
+	var p;
+	var yrloc = parseInt(groups["date"].opts[groups["date"].selected])-baseyr+ind["base"];
+	for (y = 0; y < data.length; y++) {
+		datarecord = data[y];
+		age = parseInt(datarecord[ind["age"]]);
+		sex = parseInt(datarecord[ind["sex"]])
+		if (sex > 0 && age >= 0 && age <= 85){
+				agegrp = Math.floor(age/5);
+				p = parseInt(datarecord[yrloc]);
+				if (sex == 1) {
+					m[agegrp] -= p;
+					max_count = Math.max(max_count, -m[agegrp]);
+				}
+				if (sex == 2) {
+					f[agegrp] += p;
+					max_count = Math.max(max_count, f[agegrp]);
+				}
+			}
+	}
+	subtitle = grSel("date");
+
+		$('#chart').highcharts({
+			chart: {type: 'bar', animation: false, height: 600},
+			plotOptions: {series: {animation: false, stacking: 'normal', groupPadding:0.1}},
+			title: {text: title},
+			subtitle: {text: subtitle},
+			credits: {enabled: true, text: 'Based on Cornell PAD projections, 2018'},
+			legend : {title: {text: "Series (click to toggle)"}},
+			tooltip: {shared: true, formatter: function () {
+                var s = '<b>' + this.x + '</b>';
+                $.each(this.points, function () {
+                    s += '<br/>' + this.series.name + ': ' +
+                        Highcharts.numberFormat(Math.abs(this.y), 0);
+                });
+
+                return s;
+            }},
+			xAxis: [{categories: groups["age"].opts.slice(1), reversed: false},
+			{categories: groups["age"].opts.slice(1), reversed: false, opposite:true, linkedTo:0}],
+			yAxis: {allowDecimals: false, labels: {format: '{value}', formatter: function () {
+                        return Highcharts.numberFormat(Math.abs(this.value), 0);
+                    }}, min:-max_count, max:max_count},
+        	series: [{name: 'Male', data: m}, {name: 'Female', data: f}]		
+    	});
+}
+
+function collectData(d, gr) {
+	var nrLines=$("#"+gr+"select").find('option:not(:disabled)').length - 1; // groups[gr].opts.length;
+	if (gr == "total" || gr == "perc") {nrLines = 1};
+	for (s = 1; s <= nrLines; s++) {
+			d[s-1] = new Object;
+			d[s-1].data = $.extend(true, [], groups["date"].zeroArray);
+			d[s-1].name = groups[gr].opts[s];
+			d[s-1].visible = ($.inArray(s-1, hiddenseries[chType]) == -1);
+	}
+			switch (parseInt(groups["age"].selected)) {
+				case 0: min_age = -999; max_age = -999; break;
+				case 1: min_age = 0; max_age = 4; break;
+				case 2: min_age = 5; max_age = 9; break;
+				case 3: min_age = 10; max_age = 14; break;
+				case 4: min_age = 15; max_age = 19; break;
+				case 5: min_age = 20; max_age = 24; break;
+				case 6: min_age = 25; max_age = 29; break;
+				case 7: min_age = 30; max_age = 34; break;
+				case 8: min_age = 35; max_age = 39; break;
+				case 9: min_age = 40; max_age = 44; break;
+				case 10: min_age = 45; max_age = 49; break;
+				case 11: min_age = 50; max_age = 54; break;
+				case 12: min_age = 55; max_age = 59; break;
+				case 13: min_age = 60; max_age = 64; break;
+				case 14: min_age = 65; max_age = 69; break;
+				case 15: min_age = 70; max_age = 74; break;
+				case 16: min_age = 75; max_age = 79; break;
+				case 17: min_age = 80; max_age = 84; break;
+				case 18: min_age = 85; max_age = 85; break;
+				case 19: min_age = 0; max_age = 17; break;
+				case 20: min_age = 5; max_age = 13; break;
+				case 21: min_age = 14; max_age = 17; break;
+				case 22: min_age = 18; max_age = 64; break;
+				case 23: min_age = 18; max_age = 24; break;
+				case 24: min_age = 25; max_age = 44; break;
+				case 25: min_age = 45; max_age = 64; break;
+				case 26: min_age = 65; max_age = 85; break;
+				case 27: min_age = 85; max_age = 85; break;
+				case 28: min_age = 16; max_age = 85; break;
+				case 29: min_age = 18; max_age = 85; break;
+				case 30: min_age = 15; max_age = 44; break;
+			}
+	switch (ratioselected)  {
+		case "0":
+			subtitle = '';
+			if (gr!="sex" && groups["sex"].selected != "0") {subtitle = grSel("sex")+" "+subtitle}
+			if (gr!="age" && groups["age"].selected != "0") {subtitle = grSel("age")+" "+subtitle};
+			if (subtitle == '') {subtitle = 'Total'}
+			if (gr == "perc") {subtitle += " (Percent of Total)"}
+			var total = [];
+			for (y = 0; y < data.length; y++) {
+				datarecord = data[y];
+				datarecord.push(1);
+				age = parseInt(datarecord[ind["age"]]);
+				if ((age == -999) &&	(datarecord[ind["sex"]] == 0)) {
+						for (var yr=baseyr; yr <= horizon; yr++) {
+							total[yr-baseyr] = parseInt(datarecord[ind["base"]+yr-baseyr]);
+						}
+				}
+				if ((gr == "age" || (age >= min_age && age <= max_age)) &&
+					((gr == "sex" && datarecord[ind["sex"]] != 0)|| (gr != "sex" && datarecord[ind["sex"]] == groups["sex"].selected))) {
+						for (var yr=baseyr; yr <= horizon; yr++) {
+							d[parseInt(datarecord[ind[gr]])-1].data[yr-baseyr][1] += parseInt(datarecord[ind["base"]+yr-baseyr])/(gr=="perc"?0.01*total[yr-baseyr]:1);
+						}
+				}
+			}
+			break;
+		case "1":
+			subtitle = $("#ratioselect option:selected").text();
+			var num = []; var den = []; var r = [];
+			for (s = 1; s <= nrLines; s++) {
+				num[s-1] = new Object; num[s-1].data = $.extend(true, [], groups["date"].zeroArray);	
+				den[s-1] = new Object; den[s-1].data = $.extend(true, [], groups["date"].zeroArray);	
+				r[s-1] = new Object; r[s-1].data = $.extend(true, [], groups["date"].zeroArray);
+			}
+			for (y = 1; y < data.length; y++) {
+				datarecord = data[y];
+				datarecord.push("1");
+				age = parseInt(datarecord[ind["age"]]);
+				if (gr == "age" || (age >= min_age && age <= max_age)) {
+						if (datarecord[ind["sex"]] == "1") {
+							for (var yr=baseyr; yr <= horizon; yr++) {
+								num[parseInt(datarecord[ind[gr]])-1].data[yr-baseyr][1] += parseInt(datarecord[ind["base"]+yr-baseyr])
+							}
+						} else if (datarecord[ind["sex"]] == "2") {
+							for (var yr=baseyr; yr <= horizon; yr++) {
+								if (num[parseInt(datarecord[ind[gr]])-1].data[yr-baseyr][1] > 0) {
+									den[parseInt(datarecord[ind[gr]])-1].data[yr-baseyr][1] += parseInt(datarecord[ind["base"]+yr-baseyr])
+									r[parseInt(datarecord[ind[gr]])-1].data[yr-baseyr][1] = 
+										100*num[parseInt(datarecord[ind[gr]])-1].data[yr-baseyr][1]/den[parseInt(datarecord[ind[gr]])-1].data[yr-baseyr][1]
+								}
+							}
+						}
+				}
+			}
+			for (s = 1; s <= nrLines; s++) {
+				d[s-1].data = r[s-1].data;
+			}
+			break;
+		case "2":
+			subtitle = $("#ratioselect option:selected").text();
+			var num = []; var den = []; var r = [];
+			for (s = 1; s <= nrLines; s++) {
+				num[s-1] = new Object; num[s-1].data = $.extend(true, [], groups["date"].zeroArray);	
+				den[s-1] = new Object; den[s-1].data = $.extend(true, [], groups["date"].zeroArray);	
+				r[s-1] = new Object; r[s-1].data = $.extend(true, [], groups["date"].zeroArray);
+			}
+			for (y = 1; y < data.length; y++) {
+				datarecord = data[y];
+				datarecord.push("1");
+				age = parseInt(datarecord[ind["age"]]);
+				if (0 <= age && age <= 4 && datarecord[ind["sex"]] == 0) {
+					for (var yr=baseyr; yr <= horizon; yr++) {
+						num[parseInt(datarecord[ind[gr]])-1].data[yr-baseyr][1] += parseInt(datarecord[ind["base"]+yr-baseyr])
+					}
+				} else {
+					if (datarecord[ind["sex"]] == 2 && 15 <= age && age <= 49) {
+						for (var yr=baseyr; yr <= horizon; yr++) {
+							den[parseInt(datarecord[ind[gr]])-1].data[yr-baseyr][1] += parseInt(datarecord[ind["base"]+yr-baseyr]);
+							r[parseInt(datarecord[ind[gr]])-1].data[yr-baseyr][1] = 
+								1000*num[parseInt(datarecord[ind[gr]])-1].data[yr-baseyr][1]/den[parseInt(datarecord[ind[gr]])-1].data[yr-baseyr][1]
+						}
+					}
+				}
+			}
+			for (s = 1; s <= nrLines; s++) {
+				d[s-1].data = r[s-1].data;
+			}
+			break;
+		case "3":
+			subtitle = $("#ratioselect option:selected").text();
+			for (y = 1; y < data.length; y++) {
+				datarecord = data[y];
+				datarecord.push("1");
+				if (1 <= parseInt(datarecord[ind[gr]])) {
+					if ((gr == "sex" || datarecord[ind["sex"]] == groups["sex"].selected) &&
+						(datarecord[ind["age"]] == "999")) {
+							for (var yr=baseyr; yr <= horizon; yr++) {
+								d[parseInt(datarecord[ind[gr]])-1].data[yr-baseyr][1] = parseFloat(datarecord[ind["base"]+yr-baseyr])
+							}
+					}
+				}
+			}
+		break;
+		case "4":
+		case "5":
+		case "6":
+		case "7":
+			subtitle = $("#ratioselect option:selected").text();
+			var num = new Object; num.data = $.extend(true, [], groups["date"].zeroArray);	
+			var den = new Object; den.data = $.extend(true, [], groups["date"].zeroArray);	
+			var r = new Object; r.data = $.extend(true, [], groups["date"].zeroArray);
+			for (y = 1; y < data.length; y++) {
+				datarecord = data[y];
+				datarecord.push("1");
+				if (parseInt(datarecord[ind["sex"]])==0) {
+				age = parseInt(datarecord[ind["age"]]);
+				if (0 <= age && age <= 17 && ["4","5","7"].includes(ratioselected)) {
+					for (var yr=baseyr; yr <= horizon; yr++) {
+						num.data[yr-baseyr][1] += parseInt(datarecord[ind["base"]+yr-baseyr])
+					}
+				}
+				if (65 <= age && age <= 85 && ["4", "6"].includes(ratioselected)) {
+					for (var yr=baseyr; yr <= horizon; yr++) {
+						num.data[yr-baseyr][1] += parseInt(datarecord[ind["base"]+yr-baseyr])
+					}
+				}
+				if (18 <= age && age <= 64 && ratioselected == "4") {
+					for (var yr=baseyr; yr <= horizon; yr++) {
+						den.data[yr-baseyr][1] += parseInt(datarecord[ind["base"]+yr-baseyr]);
+					}
+				}
+				if (25 <= age && age <= 64 && ["5", "6"].includes(ratioselected)) {
+					for (var yr=baseyr; yr <= horizon; yr++) {
+						den.data[yr-baseyr][1] += parseInt(datarecord[ind["base"]+yr-baseyr]);
+					}
+				}
+				if (65 <= age && age <= 85 && ratioselected == "7") {
+					for (var yr=baseyr; yr <= horizon; yr++) {
+						den.data[yr-baseyr][1] += parseInt(datarecord[ind["base"]+yr-baseyr]);
+					}
+				}
+				}
+			}
+			for (var yr=baseyr; yr <= horizon; yr++) {
+				d[0].data[yr-baseyr][1] = 100*num.data[yr-baseyr][1]/den.data[yr-baseyr][1]
+			}
+			break;
+	}
+}
+
+function createTrendsChart(d) {
+	switch (ratioselected) {
+		case "0":
+			ytype = "linear"; valueDecimals = 0; break;
+		case "1":
+		case "7":
+			ytype = "logarithmic"; valueDecimals = 1; break;
+		case "2":
+		case "3":
+		case "4":
+		case "5":
+		case "6":
+			ytype = "linear"; valueDecimals = 1; break;
+	}
+		$('#chart').highcharts({
+			chart: {type: 'line', animation: false, zoomType: 'xy'},
+			plotOptions: {series: {animation: false, events: {legendItemClick: function (){updatehidden(this.index)}}}},
+			title: {text: title},
+			subtitle: {text: subtitle},
+			credits: {enabled: true, text: 'Based on Cornell PAD projections, 2018'},
+			legend : {title: {text: "Series (click to toggle)"}},
+			tooltip: {shared: true, valueDecimals: valueDecimals},
+			yAxis: {floor: 0, allowDecimals : false, type: ytype},
+        	series: d
+    	});
+}
+
+
+function ChartCompData() {
+	var d = [];
+	d[0] = new Object;
+	d[0].data = $.extend(true, [], groups["date"].zeroArray);
+	d[0].name = "Births";
+	d[0].visible = ($.inArray(0, hiddenseries[chType]) == -1);
+	d[1] = new Object;
+	d[1].data = $.extend(true, [], groups["date"].zeroArray);
+	d[1].name = "Deaths";
+	d[1].visible = ($.inArray(1, hiddenseries[chType]) == -1);
+	d[2] = new Object;
+	d[2].data = $.extend(true, [], groups["date"].zeroArray);
+	d[2].name = "Natural increase";
+	d[2].visible = ($.inArray(2, hiddenseries[chType]) == -1);
+	d[3] = new Object;
+	d[3].data = $.extend(true, [], groups["date"].zeroArray);
+	d[3].name = "Net Migration";
+	d[3].visible = ($.inArray(3, hiddenseries[chType]) == -1);
+	d[0].data[0][1] = null;
+	d[1].data[0][1] = null;
+	d[2].data[0][1] = null;
+	d[3].data[0][1] = null;
+	for (y = 0; y < comp_data.length; y++) {
+		datarecord = comp_data[y];
+		var yr  = datarecord[1];
+		d[0].data[yr-baseyr][1]=datarecord[6];
+		d[1].data[yr-baseyr][1]=datarecord[7];
+		d[2].data[yr-baseyr][1]=datarecord[8];
+		d[3].data[yr-baseyr][1]=datarecord[5];
+	}
+		$('#chart').highcharts({
+			chart: {type: 'line', animation: false, zoomType: 'xy'},
+			plotOptions: {series: {animation: false, events: {legendItemClick: function (){updatehidden(this.index)}}}},
+			title: {text: title},
+			subtitle: {text: 'Components of Change'},
+			credits: {enabled: true, text: 'Based on Cornell PAD projections, 2018'},
+			legend : {title: {text: "Series (click to toggle)"}},
+			tooltip: {shared: true, valueDecimals: 0},
+			yAxis: {allowDecimals : false,
+				plotLines: [{value:0, color: 'black', width: 3}]},
+        	series: d
+    	});
+}
+
+function ChartAge1Data() {
+	var d = [];
+	hiddenseries[chType] = hiddenseries["agebydate"];
+	for (var yr = baseyr; yr <= horizon; yr++) {
+		if (yr % 5 == 0) {
+			yr_id = Math.floor((yr-baseyr)/5);
+			d[yr_id] = new Object;
+			d[yr_id].data=[];
+			d[yr_id].name = yr;
+			d[yr_id].visible = ($.inArray(yr_id, hiddenseries[chType]) == -1);
+		}
+	}
+	for (y = 0; y < data.length; y++) {
+		datarecord = data[y];
+		var age = datarecord[ind["age"]];
+		if (age >= 0 && age <= 84 && datarecord[ind["sex"]] == groups["sex"].selected) {
+			for (var yr = baseyr; yr <= horizon; yr++) {
+				if (yr % 5 == 0) {
+					yr_id = Math.floor((yr-baseyr)/5);
+					d[yr_id].data.push([age,parseInt(datarecord[ind["base"]+yr-baseyr])])
+				}
+			}
+		}
+	}
+		$('#chart').highcharts({
+			chart: {type: 'line', animation: false, zoomType: 'xy'},
+			plotOptions: {series: {animation: false,
+							marker: {enabled: false},
+							events: {legendItemClick: function (){updatehidden(this.index)}}}},
+			title: {text: title},
+			subtitle: {text: grSel("sex")},
+			credits: {enabled: true, text: 'Based on Cornell PAD projections, 2018'},
+			legend : {title: {text: "Series (click to toggle)"}},
+			tooltip: {shared: true, valueDecimals: 0},
+			xAxis: {title: {text: "Age"}},
+			yAxis: {allowDecimals : false, min: 0},
+        	series: d
+    	});
+}
+
+
+function updatehidden(i) {
+	var ii = $.inArray(i, hiddenseries[chType]);
+	if (ii >= 0) { hiddenseries[chType].splice(ii, 1 )} else {hiddenseries[chType].push(i)}
+}
+
+function drawChart () {
+	var d = [];
+	chType = $('input[name=chartselect]:checked').val();
+	updateDisabled("chartselect", chType);
+//	resetratioselect();
+	if (chType == "agebydate") {createCountyAgeChart("count")};
+	if (chType == "singleage") {ChartAge1Data()};
+	if (chType == "pyramid") {createPyramid()};
+	if (chType == "trendstotal") {collectData(d, "total"); createTrendsChart(d)};
+	if (chType == "trendsperc") {collectData(d, "perc"); createTrendsChart(d)};
+	if (chType == "trendsbysex") {collectData(d, "sex"); createTrendsChart(d)};
+	if (chType == "comptrends") {ChartCompData()};
+}
+</script>
+	
+</script>
+<a class="button" style="float:right; margin-top:11px" href="downloads/2018Methodology.pdf"><span>Methodology</span></a>
+<a class="button" style="float:right; margin-top:11px" href="downloads/ProjectionsUserManual.pdf"><span>User Guide</span></a>
+<h2>County Projections Explorer</h2>
+<div class="PAD_Fade" style="margin-bottom:5px"></div>
+<div style="float:right; width: 275px">
+Chart type<br>
+<input type="radio" name="chartselect" value="trendstotal" checked="true">Trends total - select age, sex, indicator<br>
+<input type="radio" name="chartselect" value="trendsperc">Trends as percent of total - select age, sex<br>
+<input type="radio" name="chartselect" value="trendsbysex">Trends by sex - select age<br><br>
+<input type="radio" name="chartselect" value="agebydate">Age groups (0-85+) - select sex<br>
+<input type="radio" name="chartselect" value="singleage">Single yr of age (0-84) - select sex<br>
+<input type="radio" name="chartselect" value="pyramid">Population pyramids - select year<br><br>
+<input type="radio" name="chartselect" value="comptrends">Components of Change<br>
+</div>
+<style>
+	#optiontable tr {height: 25px}
+</style>
+<table id="optiontable">
+<tr>
+<th style="text-align:left">Filters</th>
+</tr>
+<tr>
+
+<form id="geoform" method="get">
+	<td>Select County/Region:</td>
+    <td><form id="geoform" action="&#x2f;counties&#x2f;projections.cfm" method="get" onsubmit="return _CF_checkCFForm_1(this)"><select name="county" id="countyselect"  onchange="countyselected=this.value;getNewData();" >
+    <option value="0" selected="selected">New York</option>
+    <option value="1">Albany County</option>
+    <option value="3">Allegany County</option>
+    <option value="5">Bronx County</option>
+    <option value="7">Broome County</option>
+    <option value="9">Cattaraugus County</option>
+    <option value="11">Cayuga County</option>
+    <option value="13">Chautauqua County</option>
+    <option value="15">Chemung County</option>
+    <option value="17">Chenango County</option>
+    <option value="19">Clinton County</option>
+    <option value="21">Columbia County</option>
+    <option value="23">Cortland County</option>
+    <option value="25">Delaware County</option>
+    <option value="27">Dutchess County</option>
+    <option value="29">Erie County</option>
+    <option value="31">Essex County</option>
+    <option value="33">Franklin County</option>
+    <option value="35">Fulton County</option>
+    <option value="37">Genesee County</option>
+    <option value="39">Greene County</option>
+    <option value="41">Hamilton County</option>
+    <option value="43">Herkimer County</option>
+    <option value="45">Jefferson County</option>
+    <option value="47">Kings County</option>
+    <option value="49">Lewis County</option>
+    <option value="51">Livingston County</option>
+    <option value="53">Madison County</option>
+    <option value="55">Monroe County</option>
+    <option value="57">Montgomery County</option>
+    <option value="59">Nassau County</option>
+    <option value="61">New York County</option>
+    <option value="63">Niagara County</option>
+    <option value="65">Oneida County</option>
+    <option value="67">Onondaga County</option>
+    <option value="69">Ontario County</option>
+    <option value="71">Orange County</option>
+    <option value="73">Orleans County</option>
+    <option value="75">Oswego County</option>
+    <option value="77">Otsego County</option>
+    <option value="79">Putnam County</option>
+    <option value="81">Queens County</option>
+    <option value="83">Rensselaer County</option>
+    <option value="85">Richmond County</option>
+    <option value="87">Rockland County</option>
+    <option value="89">St. Lawrence County</option>
+    <option value="91">Saratoga County</option>
+    <option value="93">Schenectady County</option>
+    <option value="95">Schoharie County</option>
+    <option value="97">Schuyler County</option>
+    <option value="99">Seneca County</option>
+    <option value="101">Steuben County</option>
+    <option value="103">Suffolk County</option>
+    <option value="105">Sullivan County</option>
+    <option value="107">Tioga County</option>
+    <option value="109">Tompkins County</option>
+    <option value="111">Ulster County</option>
+    <option value="113">Warren County</option>
+    <option value="115">Washington County</option>
+    <option value="117">Wayne County</option>
+    <option value="119">Westchester County</option>
+    <option value="121">Wyoming County</option>
+    <option value="123">Yates County</option>
+
+  <optgroup label="Economic Regions">
+    <option value="1000">Capital Region</option>
+    <option value="2000">Central New York</option>
+    <option value="3000">Finger Lakes</option>
+    <option value="4000">Long Island</option>
+    <option value="5000">Mid-Hudson</option>
+    <option value="6000">Mohawk Valley</option>
+    <option value="7000">New York City</option>
+    <option value="8000">North Country</option>
+    <option value="9000">Southern Tier</option>
+    <option value="10000">Western NY</option>
+  </optgroup>
+    </select></form>
+
+
+	<input type="button" id="nextcounty" class="nextbutton"  value="next" onclick="nextcounty();">
+</td>
+</tr>
+<tr>
+	<td>Select Age:</td>
+    <td><select id="ageselect" class="charselect" onChange="groups['age'].selected=this.value;drawChart()"></select>
+<input type="button" id="nextage" class="charselect nextbutton"  value="next" onclick="nextselect('age', 'ageselect')"></td></tr>
+<tr>
+	<td>Select Sex:</td>
+    <td><select id="sexselect" class="charselect" onChange="groups['sex'].selected=this.value;drawChart()"></select>
+<input type="button" id="nextsex" class="charselect nextbutton"  value="next" onclick="nextselect('sex', 'sexselect')"></td></tr>
+<tr>
+	<td>Select Year:</td>
+    <td><select id="dateselect" class="charselect"  onChange="groups['date'].selected=this.value;drawChart()"></select>
+<input type="button" id="nextdate" class="charselect nextbutton"  value="next" onclick="nextselect('date', 'dateselect')"></td></tr>
+<tr>
+	<td>Special indicators:</td>
+    <td><select id="ratioselect" class="charselect" onChange="ratioselected=this.value;drawChart()">
+<option value="0" selected="selected">None</option>
+<option value="1">Sex ratio (Males per 100 females)</option>
+<option value="2">Child-Woman ratio (Children age 0-4 per 1,000 women age 15-49)</option>
+<option value="3">Median age</option>
+<option value="4">Age dependency ratio (persons age 0-17 and 65plus per 100 persons age 18-64)</option>
+<option value="5">Child dependency ratio (persons age 0-17 per 100 persons age 25-64)</option>
+<option value="6">Aged dependency ratio (persons age 65plus per 100 persons age 25-64)</option>
+<option value="7">Youth/aged ratio (persons age 0-17 per 100 persons age 65plus)</option>
+</select>
+
+</td></tr>
+</table>
+
+<div id = "loading" style="display:none"><h4>Loading data <img src="../images/loading_data.gif" width="64" height="64" alt=""/><h4></div>
+<div id = "chart" style="clear:both"></div>
+<a href="#" id="exportlink">Export projection data set for this area</a>
+		</td>
+        </tr>
+    </table>
+    </div>
+</div><!--PAD_maindiv-->
+
+</body>
+</html>

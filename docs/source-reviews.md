@@ -1,7 +1,7 @@
 # Source reviews and loading status
 
 Run `uv run python -m sdo_mcp.monitoring --database data/sdo.sqlite`
-for a JSON report of all 32 states. Omit `--database` to inspect the installed
+for a JSON report of all 37 states. Omit `--database` to inspect the installed
 copy (or the file selected by `SDO_DB`). The command reads local files only.
 It neither checks websites nor changes the database. Save its output when
 preparing a data release. `list_states` and `describe_source` expose the same
@@ -19,6 +19,7 @@ Check sooner when an agency announces a revision or a source check fails.
 | Arizona | 90 days | Three scenarios and components |
 | California | 30 days | Population, households, jobs; replaced files |
 | Colorado | 30 days | Population, households, jobs; autumn updates |
+| Connecticut | 90 days | Old 2017/2018 model, 2010 Census anchor, historical counties versus COGs and modern planning regions; towns and other products |
 | Delaware | 90 days | DPC edition and readoption, population, households, jobs, municipal and seasonal products |
 | Florida | 90 days | Population workbook and household/jobs PDFs |
 | Georgia | 90 days | OPB edition and county workbook |
@@ -28,8 +29,11 @@ Check sooner when an agency announces a revision or a source check fails.
 | Kentucky | 90 days | KSDC population/household editions, Census anchor and estimate inputs, age/sex codebook and county codes; regional, place, projected components and eligible jobs coverage |
 | Maine | 90 days | April 2025 edition, 2022 base, unusual year grid, long-horizon caution, municipal suppression and eligible OSE jobs |
 | Maryland | 90 days | Workbook/catalog date mismatch; Census anchor and auxiliary inputs; separate preliminary jobs vintage; Baltimore City/county codes, regions, municipalities and projected components |
+| Massachusetts | 90 days | Vintage 2024, adjusted fractional 2020 launch, independent age/sex totals; municipal MCD identifiers and other products |
 | Michigan | 90 days | MCDA state/county editions, workbook codes, base years and scenarios; regional, place, household, components and eligible jobs coverage |
 | Minnesota | 90 days | State/county files and projected launch year |
+| New Jersey | 90 days | Older 2014–2034 series, four state models versus one county model, rounding and 2029 state/county discrepancy; labor force versus jobs |
+| New York | 90 days | Separate 2024 state and 2018 county editions, bases, horizons and scenarios; updated county release, components and economic regions |
 | Nebraska | 90 days | CPAR adopted Hauer/SEDAC product, August 2022 edition, historical base, source download and successor search |
 | Nevada | 90 days | Long-range and near-term editions separately, certified base, Carson City, PDF rounding and eligible jobs |
 | New Hampshire | 90 days | Table 1/appendix discrepancies, Census-based boundary, municipal identifiers and five-year components |
@@ -37,6 +41,7 @@ Check sooner when an agency announces a revision or a source check fails.
 | North Carolina | 90 days | Edition, base year, and components |
 | Ohio | 90 days | Report 2023 edition versus overview's 2022 credit, 2020 estimate base, county controls, Ottawa discrepancy and conditional revisions |
 | Oregon | 30 days | Every regional/county edition and exclusions |
+| Rhode Island | 90 days | Revised municipal table, confirmed model base and methods, county-subdivision identities; earlier county products and released jobs |
 | Pennsylvania | 90 days | PaSDC edition, estimate labels, state components PDF; place, household and eligible jobs coverage |
 | South Carolina | 90 days | RFA vintage, totals and age-group agreement, components and eligible jobs |
 | Tennessee | 90 days | Boyd Center releases and county detail service |
@@ -347,6 +352,92 @@ served until place identifiers and geography support are checked. No county
 values are substituted for those places. Household, components, and eligible
 EAD jobs publication status remains unverified, so no completed statewide
 review date is recorded.
+
+## Batch three source checks: October 1, 2026
+
+Illinois was already loaded before this batch. Five additions load 2,277
+population totals, bringing both recognized and population-loaded counts to 37.
+Every new state retains `never_reviewed`: this population implementation does
+not establish a complete household, components, employment and subcounty audit.
+
+**Connecticut:** the [state open-data dataset](https://data.ct.gov/d/pv2w-k7qu)
+identifies the revised September 19, 2017 state model and June 29, 2018
+county/COG release. The [revised publisher announcement](https://blogs.lib.uconn.edu/outsidetheneatline/2017/07/30/connecticuts-population-is-expected-to-grow-slowly-connecticut-state-data-center-reports/)
+corroborates that edition. The archived
+[Connecticut DSS report](https://portal.ct.gov/-/media/Departments-and-Agencies/DSS/Health-and-Home-Care/Medicaid-Long-Term-Care-Demand-Projections/Main-report--CT-LTC-Demand-Report-Narrative.pdf),
+printed page 9, reproduces the SDC methods and states that 2010 Census data is
+the starting point. All six published 2015–2040 points remain projections;
+`base_year=2010` records the historical Census anchor, with no estimate rows
+loaded. A 2023 metadata update is not a new model vintage.
+
+The adapter loads 108 totals directly from CSV: the state, eight historical
+counties and nine regional councils of government. Complete age/sex grids and
+published totals are checked; independently rounded state, county and COG
+figures are retained. COG IDs use the `ct-cog-` prefix under `cog`, distinct from
+historical county FIPS and modern county-equivalent planning regions. The
+[DPH geography guidance](https://portal.ct.gov/dph/resources-and-records/data-research/vital-statistics-and-population-data/population-statistics)
+confirms those boundaries differ. Town forecasts and age/sex detail remain
+unloaded. The old UConn methods address redirects to CTData; the state-adopted
+report preserves the method evidence.
+
+**Massachusetts:** the [UMass Donahue Institute catalog](https://www.umass.edu/donahue/research-and-data/massachusetts-population-estimates-program/population-projections)
+and its May 9, 2024 methods identify Vintage 2024, supported by the Secretary
+of the Commonwealth. Original total and age/sex workbooks were archived.
+State and all 14 county series have seven points, 105 totals. The adjusted
+2020 launch is historical (`estimate` in this schema), followed by projections
+2025–2050. Fractional 2020 cells are preserved; county, municipal and RPA sums
+and the separately published age/sex workbook corroborate all served totals.
+The Source-tab typo `May 9, 20204` is documented and independently resolved by
+the methods cover. Workbooks were modified October 16, 2024; that timestamp is
+not treated as a separately named model vintage. All 351 municipal series,
+13 RPA totals and demographic detail remain archived but unloaded.
+
+**New Jersey:** the [NJDOL catalog](https://www.nj.gov/labor/labormarketinformation/demographics/population-labor-projections/)
+still links its 2014–2034 population series. Original May 2017 workbooks,
+November 2016 Word methods/introduction, and a separate presentation are
+archived. Four state models and all 21 county series add 125 totals. The
+2014 estimate is followed by exact 2019/2024/2029/2034 projection points.
+The agency's preferred Economic-Demographic model is the state default; other
+models are illustrative and only apply to state requests. Independent chart
+values corroborate every county endpoint and selected state totals at the
+workbook's precision. The state workbook gives 9,531,200 for preferred 2029;
+the county workbook's state row and county sum give 9,530,900. Both published
+products are preserved. Newer MPO forecasts are not substituted, and civilian
+labor force is not served as employment.
+
+**New York:** [Cornell PAD state projections](https://pad.human.cornell.edu/state_projections/)
+use the provisional October 2024 edition with a July 2022 estimate base,
+annual projections through 2050 and Middle/High/Low scenarios. The server
+selects Middle as its central default; PAD does not recommend one. Published
+fractional totals are retained. The separate
+[county catalog](https://pad.human.cornell.edu/counties/index.cfm) still lists
+September 2018, with a July 2015 estimate base, annual projections through
+2040 and one series for all 62 counties. Different source records preserve
+the two editions, bases and horizons; no county sum becomes the newer state
+forecast. This adds 1,699 totals. Original state workbooks and 62 county JSON
+responses are archived, with independent chart data and county Excel exports
+for checks. Cornell's Excel county exports contain incorrect worksheet
+dimensions; resetting those dimensions exposes the full table for comparison.
+Published state/county components and ten economic regions remain unloaded.
+
+**Rhode Island:** the [current agency homepage](https://planning.ri.gov/)
+links the [February 27, 2026 revised table](https://planning.ri.gov/sites/g/files/xkgbur826/files/2026-02/Municipal%20Projections%20%2002272026.pdf).
+Its six 2025–2050 points for all 39 cities/towns and the direct state Total row
+add 240 totals. The original one-page PDF was visually checked and archived;
+its publication is subject to revision and correction based on available data
+and municipal input. The FY2026 work program identifies RIDSP as producer and
+describes a statewide cohort-component model guiding municipal projections.
+It proposes a 2020 base, but completed methods confirming the last estimate
+year for this revision were not located. Therefore `base_year` is null and
+all published rows retain their projection label.
+
+Municipalities use ten-digit GEOIDs from the original Census 2025
+county-subdivision Gazetteer, including the coextensive city records. One
+undefined Newport County water subdivision has no forecast and is excluded.
+Municipal sums differ slightly from the independently published state total;
+no values are adjusted and no county forecasts are manufactured. Earlier
+county publications are not mixed into this edition. The work program's
+planned jobs product is not evidence of a released jobs forecast.
 
 ## Reading the status
 

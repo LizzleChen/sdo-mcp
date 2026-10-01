@@ -1,0 +1,34 @@
+[
+ {
+  "file": "population_v2024.xlsx",
+  "source": "https://www.umass.edu/donahue/media/2441/download?attachment=",
+  "retrieved_at": "2026-10-01",
+  "sha256": "f780289ea89e461c4b98e5dc7fa652ef0ca1c72febf3a051d0385e685cd1c47e",
+  "records": 105,
+  "note": "Unmodified UMass Donahue Institute Vintage 2024 original or current catalog. Exact adjusted 2020 launch and five-year 2025-2050 state/county totals checked against the separately published age/sex workbook. Municipal/RPA and demographic detail archived but not served."
+ },
+ {
+  "file": "population_age_sex_v2024.xlsx",
+  "source": "https://www.umass.edu/donahue/media/2443/download?attachment=",
+  "retrieved_at": "2026-10-01",
+  "sha256": "d7ef351b97f468147d4bd6dabcefd12443c91c44226f0427b4e21f733a46af81",
+  "records": null,
+  "note": "Unmodified UMass Donahue Institute Vintage 2024 original or current catalog. Exact adjusted 2020 launch and five-year 2025-2050 state/county totals checked against the separately published age/sex workbook. Municipal/RPA and demographic detail archived but not served."
+ },
+ {
+  "file": "population_methods_v2024.pdf",
+  "source": "https://www.umass.edu/donahue/media/2445/download?attachment=",
+  "retrieved_at": "2026-10-01",
+  "sha256": "15ef385750f3384be4a2c74a2f4aa81a37811275e3a17205de8270c2e39c4ec4",
+  "records": null,
+  "note": "Unmodified UMass Donahue Institute Vintage 2024 original or current catalog. Exact adjusted 2020 launch and five-year 2025-2050 state/county totals checked against the separately published age/sex workbook. Municipal/RPA and demographic detail archived but not served."
+ },
+ {
+  "file": "projection_catalog_2026-10-01.html",
+  "source": "https://www.umass.edu/donahue/research-and-data/massachusetts-population-estimates-program/population-projections",
+  "retrieved_at": "2026-10-01",
+  "sha256": "303370cc70016002819881c6c6fe8db8ce6237f54ef11b55f4dcb79c8b0363ba",
+  "records": null,
+  "note": "Unmodified UMass Donahue Institute Vintage 2024 original or current catalog. Exact adjusted 2020 launch and five-year 2025-2050 state/county totals checked against the separately published age/sex workbook. Municipal/RPA and demographic detail archived but not served."
+ }
+]

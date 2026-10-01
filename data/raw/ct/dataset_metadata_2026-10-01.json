@@ -1,0 +1,605 @@
+{
+  "id" : "pv2w-k7qu",
+  "name" : "Connecticut Population Projections - State, County, and Regional Councils of Governments Level, 2015-2040",
+  "assetType" : "dataset",
+  "attribution" : "Connecticut State Data Center",
+  "attributionLink" : "https://www.ctdata.org/state-data-center",
+  "averageRating" : 0,
+  "category" : "Government",
+  "createdAt" : 1501457945,
+  "description" : "The 2015 to 2040 population projections for the state of Connecticut were developed by the Connecticut State Data Center for planning, analysis, and to inform decision making. The projections are individual population projections for the resident population of Connecticut and were developed on July 31, 2017 and revised and republished on September 19, 2017 to address an error in the original dataset that was published on July 31, 2017. The County and Regional Council of Government Projections were published on June 29, 2018 and are based on the projections developed on September 19, 2017. These projections supersede the 2012 edition of the population projections developed by the Connecticut State Data Center.",
+  "diciBackend" : false,
+  "displayType" : "table",
+  "downloadCount" : 3450,
+  "hideFromCatalog" : false,
+  "hideFromDataJson" : false,
+  "indexUpdatedAt" : 1530303162,
+  "licenseId" : "CC_30_BY_SA",
+  "locale" : "en_US",
+  "locked" : false,
+  "newBackend" : true,
+  "numberOfComments" : 0,
+  "oid" : 29183645,
+  "provenance" : "official",
+  "publicationAppendEnabled" : false,
+  "publicationDate" : 1530301701,
+  "publicationGroup" : 14364575,
+  "publicationStage" : "published",
+  "rowClass" : "",
+  "rowsUpdatedAt" : 1530301659,
+  "tableId" : 15352939,
+  "totalTimesRated" : 0,
+  "viewCount" : 4701,
+  "viewLastModified" : 1690991561,
+  "viewType" : "tabular",
+  "approvals" : [ {
+    "reviewedAt" : 1530301721,
+    "reviewedAutomatically" : true,
+    "state" : "approved",
+    "submissionId" : 819362,
+    "submissionObject" : "public_audience_request",
+    "submissionOutcome" : "change_audience",
+    "submittedAt" : 1530301721,
+    "targetAudience" : "public",
+    "workflowId" : 2184,
+    "submissionDetails" : {
+      "permissionType" : "READ"
+    },
+    "submissionOutcomeApplication" : {
+      "failureCount" : 0,
+      "status" : "success"
+    },
+    "submitter" : {
+      "id" : "xzwt-5rcy",
+      "displayName" : "Connecticut State Data Center"
+    }
+  } ],
+  "clientContext" : {
+    "clientContextVariables" : [ ],
+    "inheritedVariables" : { }
+  },
+  "columns" : [ {
+    "id" : 365384952,
+    "name" : "Year",
+    "dataTypeName" : "text",
+    "description" : "Year of the Population Projection",
+    "fieldName" : "year",
+    "position" : 1,
+    "rdfProperties" : "",
+    "renderTypeName" : "text",
+    "tableColumnId" : 51159298,
+    "width" : 148,
+    "cachedContents" : {
+      "largest" : "2040",
+      "non_null" : "2052",
+      "null" : "0",
+      "top" : [ {
+        "item" : "2020",
+        "count" : "342"
+      }, {
+        "item" : "2040",
+        "count" : "342"
+      }, {
+        "item" : "2035",
+        "count" : "342"
+      }, {
+        "item" : "2015",
+        "count" : "342"
+      }, {
+        "item" : "2025",
+        "count" : "342"
+      }, {
+        "item" : "2030",
+        "count" : "342"
+      } ],
+      "smallest" : "2015",
+      "count" : "2052",
+      "cardinality" : "6"
+    },
+    "format" : {
+      "precisionStyle" : "standard",
+      "rdf" : "",
+      "noCommas" : "false",
+      "align" : "right"
+    }
+  }, {
+    "id" : 365384989,
+    "name" : "Geography_Type",
+    "dataTypeName" : "text",
+    "description" : "Type of Geography to view data includes State, County, and Regional Council of Government",
+    "fieldName" : "geography_type",
+    "position" : 2,
+    "renderTypeName" : "text",
+    "tableColumnId" : 66632184,
+    "width" : 100,
+    "cachedContents" : {
+      "largest" : "State",
+      "non_null" : "2052",
+      "null" : "0",
+      "top" : [ {
+        "item" : "Regional Council of Government",
+        "count" : "1026"
+      }, {
+        "item" : "County",
+        "count" : "912"
+      }, {
+        "item" : "State",
+        "count" : "114"
+      } ],
+      "smallest" : "County",
+      "count" : "2052",
+      "cardinality" : "3"
+    },
+    "format" : { }
+  }, {
+    "id" : 365384953,
+    "name" : "Geography",
+    "dataTypeName" : "text",
+    "description" : "Geography is the State of Connecticut",
+    "fieldName" : "geography",
+    "position" : 3,
+    "renderTypeName" : "text",
+    "tableColumnId" : 51159299,
+    "width" : 208,
+    "cachedContents" : {
+      "largest" : "Windham",
+      "non_null" : "2052",
+      "null" : "0",
+      "top" : [ {
+        "item" : "Naugatuck Valley",
+        "count" : "114"
+      }, {
+        "item" : "Fairfield",
+        "count" : "114"
+      }, {
+        "item" : "Metropolitian",
+        "count" : "114"
+      }, {
+        "item" : "Litchfield",
+        "count" : "114"
+      }, {
+        "item" : "Northeastern CT",
+        "count" : "114"
+      }, {
+        "item" : "Middlesex",
+        "count" : "114"
+      }, {
+        "item" : "Lower CT River Valley",
+        "count" : "114"
+      }, {
+        "item" : "Capitol Region",
+        "count" : "114"
+      }, {
+        "item" : "Southeastern CT",
+        "count" : "114"
+      }, {
+        "item" : "Western CT",
+        "count" : "114"
+      }, {
+        "item" : "New Haven",
+        "count" : "114"
+      }, {
+        "item" : "Tolland",
+        "count" : "114"
+      }, {
+        "item" : "New London",
+        "count" : "114"
+      }, {
+        "item" : "Connecticut",
+        "count" : "114"
+      }, {
+        "item" : "Northwest Hills",
+        "count" : "114"
+      }, {
+        "item" : "Hartford",
+        "count" : "114"
+      }, {
+        "item" : "South Central",
+        "count" : "114"
+      }, {
+        "item" : "Windham",
+        "count" : "114"
+      } ],
+      "smallest" : "Capitol Region",
+      "count" : "2052",
+      "cardinality" : "18"
+    },
+    "format" : {
+      "displayStyle" : "plain",
+      "align" : "left"
+    }
+  }, {
+    "id" : 365384954,
+    "name" : "Age_Group",
+    "dataTypeName" : "text",
+    "description" : "Age Group/Cohort from 0 to 85+ in 5 year intervals.",
+    "fieldName" : "age_group",
+    "position" : 4,
+    "renderTypeName" : "text",
+    "tableColumnId" : 51159300,
+    "width" : 208,
+    "cachedContents" : {
+      "largest" : "Total",
+      "non_null" : "2052",
+      "null" : "0",
+      "top" : [ {
+        "item" : "0_4",
+        "count" : "108"
+      }, {
+        "item" : "10_14",
+        "count" : "108"
+      }, {
+        "item" : "15_19",
+        "count" : "108"
+      }, {
+        "item" : "20_24",
+        "count" : "108"
+      }, {
+        "item" : "25_29",
+        "count" : "108"
+      }, {
+        "item" : "30_34",
+        "count" : "108"
+      }, {
+        "item" : "35_39",
+        "count" : "108"
+      }, {
+        "item" : "40_44",
+        "count" : "108"
+      }, {
+        "item" : "45_49",
+        "count" : "108"
+      }, {
+        "item" : "50_54",
+        "count" : "108"
+      }, {
+        "item" : "55_59",
+        "count" : "108"
+      }, {
+        "item" : "5_9",
+        "count" : "108"
+      }, {
+        "item" : "60_64",
+        "count" : "108"
+      }, {
+        "item" : "65_69",
+        "count" : "108"
+      }, {
+        "item" : "70_74",
+        "count" : "108"
+      }, {
+        "item" : "75_79",
+        "count" : "108"
+      }, {
+        "item" : "80_84",
+        "count" : "108"
+      }, {
+        "item" : "85+",
+        "count" : "108"
+      }, {
+        "item" : "Total",
+        "count" : "108"
+      } ],
+      "smallest" : "0_4",
+      "count" : "2052",
+      "cardinality" : "19"
+    },
+    "format" : {
+      "displayStyle" : "plain",
+      "align" : "left"
+    }
+  }, {
+    "id" : 365384955,
+    "name" : "Male",
+    "dataTypeName" : "number",
+    "description" : "Male",
+    "fieldName" : "male",
+    "position" : 5,
+    "renderTypeName" : "number",
+    "tableColumnId" : 51159301,
+    "width" : 148,
+    "cachedContents" : {
+      "largest" : "1785042",
+      "non_null" : "2052",
+      "average" : "31042.76364522417",
+      "null" : "0",
+      "top" : [ {
+        "item" : "4939",
+        "count" : "3"
+      }, {
+        "item" : "4157",
+        "count" : "3"
+      }, {
+        "item" : "3191",
+        "count" : "2"
+      }, {
+        "item" : "3062",
+        "count" : "2"
+      }, {
+        "item" : "4316",
+        "count" : "2"
+      }, {
+        "item" : "4407",
+        "count" : "2"
+      }, {
+        "item" : "3886",
+        "count" : "2"
+      }, {
+        "item" : "4103",
+        "count" : "2"
+      }, {
+        "item" : "3720",
+        "count" : "2"
+      }, {
+        "item" : "7380",
+        "count" : "2"
+      }, {
+        "item" : "2311",
+        "count" : "2"
+      }, {
+        "item" : "4019",
+        "count" : "2"
+      }, {
+        "item" : "2351",
+        "count" : "2"
+      }, {
+        "item" : "13148",
+        "count" : "2"
+      }, {
+        "item" : "5065",
+        "count" : "2"
+      }, {
+        "item" : "3039",
+        "count" : "2"
+      }, {
+        "item" : "4323",
+        "count" : "2"
+      }, {
+        "item" : "11746",
+        "count" : "2"
+      }, {
+        "item" : "2531",
+        "count" : "2"
+      }, {
+        "item" : "3629",
+        "count" : "2"
+      } ],
+      "smallest" : "621",
+      "count" : "2052",
+      "sum" : "63699751",
+      "cardinality" : "1959"
+    },
+    "format" : {
+      "precisionStyle" : "standard",
+      "noCommas" : "false",
+      "align" : "right"
+    }
+  }, {
+    "id" : 365384956,
+    "name" : "Female",
+    "dataTypeName" : "number",
+    "description" : "Female",
+    "fieldName" : "female",
+    "position" : 6,
+    "renderTypeName" : "number",
+    "tableColumnId" : 51159302,
+    "width" : 172,
+    "cachedContents" : {
+      "largest" : "1868973",
+      "non_null" : "2052",
+      "average" : "32553.84941520468",
+      "null" : "0",
+      "top" : [ {
+        "item" : "4324",
+        "count" : "3"
+      }, {
+        "item" : "4008",
+        "count" : "3"
+      }, {
+        "item" : "4542",
+        "count" : "3"
+      }, {
+        "item" : "2964",
+        "count" : "3"
+      }, {
+        "item" : "3401",
+        "count" : "2"
+      }, {
+        "item" : "9490",
+        "count" : "2"
+      }, {
+        "item" : "4681",
+        "count" : "2"
+      }, {
+        "item" : "14971",
+        "count" : "2"
+      }, {
+        "item" : "27534",
+        "count" : "2"
+      }, {
+        "item" : "11721",
+        "count" : "2"
+      }, {
+        "item" : "21660",
+        "count" : "2"
+      }, {
+        "item" : "4621",
+        "count" : "2"
+      }, {
+        "item" : "4516",
+        "count" : "2"
+      }, {
+        "item" : "30763",
+        "count" : "2"
+      }, {
+        "item" : "3287",
+        "count" : "2"
+      }, {
+        "item" : "9756",
+        "count" : "2"
+      }, {
+        "item" : "4358",
+        "count" : "2"
+      }, {
+        "item" : "4327",
+        "count" : "2"
+      }, {
+        "item" : "3873",
+        "count" : "2"
+      }, {
+        "item" : "4673",
+        "count" : "2"
+      } ],
+      "smallest" : "936",
+      "count" : "2052",
+      "sum" : "66800499",
+      "cardinality" : "1970"
+    },
+    "format" : {
+      "precisionStyle" : "standard",
+      "noCommas" : "false",
+      "align" : "right"
+    }
+  }, {
+    "id" : 365384957,
+    "name" : "Total",
+    "dataTypeName" : "number",
+    "description" : "Total Population for age group/cohort includes both males and females",
+    "fieldName" : "total",
+    "position" : 7,
+    "renderTypeName" : "number",
+    "tableColumnId" : 51159303,
+    "width" : 160,
+    "cachedContents" : {
+      "largest" : "3654015",
+      "non_null" : "2052",
+      "average" : "63596.61598440546",
+      "null" : "0",
+      "top" : [ {
+        "item" : "13073",
+        "count" : "2"
+      }, {
+        "item" : "10462",
+        "count" : "2"
+      }, {
+        "item" : "6924",
+        "count" : "2"
+      }, {
+        "item" : "5708",
+        "count" : "2"
+      }, {
+        "item" : "7532",
+        "count" : "2"
+      }, {
+        "item" : "23565",
+        "count" : "2"
+      }, {
+        "item" : "10700",
+        "count" : "2"
+      }, {
+        "item" : "21980",
+        "count" : "2"
+      }, {
+        "item" : "9328",
+        "count" : "2"
+      }, {
+        "item" : "13552",
+        "count" : "2"
+      }, {
+        "item" : "25266",
+        "count" : "2"
+      }, {
+        "item" : "7616",
+        "count" : "2"
+      }, {
+        "item" : "8162",
+        "count" : "2"
+      }, {
+        "item" : "5650",
+        "count" : "2"
+      }, {
+        "item" : "6787",
+        "count" : "2"
+      }, {
+        "item" : "20183",
+        "count" : "2"
+      }, {
+        "item" : "15891",
+        "count" : "2"
+      }, {
+        "item" : "5784",
+        "count" : "2"
+      }, {
+        "item" : "6293",
+        "count" : "2"
+      }, {
+        "item" : "7772",
+        "count" : "2"
+      } ],
+      "smallest" : "1677",
+      "count" : "2052",
+      "sum" : "130500256",
+      "cardinality" : "2007"
+    },
+    "format" : {
+      "precisionStyle" : "standard",
+      "noCommas" : "false",
+      "align" : "right"
+    }
+  } ],
+  "grants" : [ {
+    "inherited" : false,
+    "type" : "viewer",
+    "flags" : [ "public" ]
+  } ],
+  "license" : {
+    "name" : "Creative Commons Attribution | Share Alike 3.0 Unported",
+    "logoUrl" : "images/licenses/cc30bysa.png",
+    "termsLink" : "http://creativecommons.org/licenses/by-sa/3.0/legalcode"
+  },
+  "metadata" : {
+    "rdfSubject" : "0",
+    "rdfClass" : "",
+    "custom_fields" : {
+      "Agency" : {
+        "Agency" : "State Data Center"
+      },
+      "Details" : {
+        "Update Frequency" : "Not updated (historical data)",
+        "Temporal Coverage" : "2015-2040",
+        "Geographic Unit" : "Other"
+      }
+    },
+    "rowLabel" : "Population projection ",
+    "availableDisplayTypes" : [ "table", "fatrow", "page" ],
+    "renderTypeConfig" : {
+      "visible" : {
+        "table" : true
+      }
+    }
+  },
+  "owner" : {
+    "id" : "xzwt-5rcy",
+    "disabledAt" : 1562161887,
+    "displayName" : "Connecticut State Data Center",
+    "profileImageUrlLarge" : "/api/users/xzwt-5rcy/profile_images/LARGE",
+    "profileImageUrlMedium" : "/api/users/xzwt-5rcy/profile_images/THUMB",
+    "profileImageUrlSmall" : "/api/users/xzwt-5rcy/profile_images/TINY",
+    "screenName" : "Connecticut State Data Center",
+    "type" : "interactive"
+  },
+  "query" : { },
+  "rights" : [ "read" ],
+  "tableAuthor" : {
+    "id" : "xzwt-5rcy",
+    "disabledAt" : 1562161887,
+    "displayName" : "Connecticut State Data Center",
+    "profileImageUrlLarge" : "/api/users/xzwt-5rcy/profile_images/LARGE",
+    "profileImageUrlMedium" : "/api/users/xzwt-5rcy/profile_images/THUMB",
+    "profileImageUrlSmall" : "/api/users/xzwt-5rcy/profile_images/TINY",
+    "screenName" : "Connecticut State Data Center",
+    "type" : "interactive"
+  },
+  "tags" : [ "projections", "state", "county", "regional councils of goverment", "rcogs", "cog", "connecticut", "towns", "state data center", "population projections", "census" ],
+  "flags" : [ "default", "ownerMayBeContacted", "restorable", "restorePossibleForType" ]
+}

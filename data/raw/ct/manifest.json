@@ -1,0 +1,37 @@
+[
+ {
+  "file": "population_2015-2040_revised2017-2018.csv",
+  "source": "https://data.ct.gov/api/views/pv2w-k7qu/rows.csv?accessType=DOWNLOAD",
+  "retrieved_at": "2026-10-01",
+  "sha256": "7859e4c3496ba925455185cc329ac688b9b4c88429ac15995918824269aba18b",
+  "records": 2052
+ },
+ {
+  "file": "dataset_metadata_2026-10-01.json",
+  "source": "https://data.ct.gov/api/views/pv2w-k7qu.json",
+  "retrieved_at": "2026-10-01",
+  "sha256": "201fa03f7d8ef3c83cac5623d753cdd8ddf27440b6581d58c1cbc0c756fa2fa7",
+  "records": null
+ },
+ {
+  "file": "revised_release_2017.html",
+  "source": "https://blogs.lib.uconn.edu/outsidetheneatline/2017/07/30/connecticuts-population-is-expected-to-grow-slowly-connecticut-state-data-center-reports/",
+  "retrieved_at": "2026-10-01",
+  "sha256": "528e447409bddc7ac81e916f0d837a546f55f6a2bca1630be27ede5082d35475",
+  "records": null
+ },
+ {
+  "file": "adopted_population_methods_2019.pdf",
+  "source": "https://portal.ct.gov/-/media/Departments-and-Agencies/DSS/Health-and-Home-Care/Medicaid-Long-Term-Care-Demand-Projections/Main-report--CT-LTC-Demand-Report-Narrative.pdf",
+  "retrieved_at": "2026-10-01",
+  "sha256": "22121a457a1ba16052c077be5f3581767bc9bb47852a3d8e751306bd6c4169d7",
+  "records": null
+ },
+ {
+  "file": "geography_guidance_2026-10-01.html",
+  "source": "https://portal.ct.gov/dph/resources-and-records/data-research/vital-statistics-and-population-data/population-statistics",
+  "retrieved_at": "2026-10-01",
+  "sha256": "e75f3699b49e4e9187f84f9d434e29f774605cf7f933e9a5ee456c0f8c0e0566",
+  "records": null
+ }
+]

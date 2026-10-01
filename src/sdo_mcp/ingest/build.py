@@ -25,9 +25,9 @@ from .. import store
 from ..common import fetch
 from ..install import validate_database
 from . import (
-    ak, al, az, ca, co, de, fl, ga, hi, il, ky, md, me, mi,
-    mn, nc, ne, nh, nm, nv, oh, pa, sc, seed, tn, tx, ut, va, wa,
-    wi, wy,
+    ak, al, az, ca, co, ct, de, fl, ga, hi, il, ky, ma, md, me, mi,
+    mn, nc, ne, nh, nj, nm, nv, ny, oh, pa, ri, sc, seed, tn, tx,
+    ut, va, wa, wi, wy,
 )
 
 # Oregon and Indiana have postal codes that are reserved Python words.
@@ -40,6 +40,7 @@ ADAPTERS: list = [
     co, tn, ga, ca, tx, fl, nc, mn, az, wa, or_adapter, va, wi, ut,
     in_adapter, ky, mi, pa, il, md, de, nm, sc, al, wy,
     ak, hi, me, ne, nh, nv, oh,
+    ct, ri, ma, ny, nj,
 ]
 
 

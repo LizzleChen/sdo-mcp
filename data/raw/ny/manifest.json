@@ -1,0 +1,642 @@
+[
+ {
+  "file": "state_2024_middle.xlsx",
+  "source": "https://pad.human.cornell.edu/state_projections/downloads/results_Assumptions_Middle.xlsx",
+  "retrieved_at": "2026-10-01",
+  "sha256": "89d4fb04a4103638e7d2933e1aab21ba3862ab2508475c19e01ab9b4847afca5",
+  "records": 29,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "state_2024_high.xlsx",
+  "source": "https://pad.human.cornell.edu/state_projections/downloads/results_Assumptions_High.xlsx",
+  "retrieved_at": "2026-10-01",
+  "sha256": "ac2bad19544d9173b6f71b64df00985a95a91d0fccbdddf713a4fc3b254877a6",
+  "records": 29,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "state_2024_low.xlsx",
+  "source": "https://pad.human.cornell.edu/state_projections/downloads/results_Assumptions_Low.xlsx",
+  "retrieved_at": "2026-10-01",
+  "sha256": "1676399117127aa1d77ea00f84a3689d261df90aae21d8140b977388de205ed0",
+  "records": 29,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_001.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=1",
+  "retrieved_at": "2026-10-01",
+  "sha256": "41f8b6c829241610a753ff837c1760d6e6ae8d5761186c2939152b72c4eede53",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_003.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=3",
+  "retrieved_at": "2026-10-01",
+  "sha256": "4d8be88a748ca86c88fe64b09f9cc0321c44ffc950d4ea84b7d73e70218ff479",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_005.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=5",
+  "retrieved_at": "2026-10-01",
+  "sha256": "11124d3086e210a1e630e550c61d527d9834cbafef6c64915c26d0675c1517df",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_007.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=7",
+  "retrieved_at": "2026-10-01",
+  "sha256": "f7b939ccbb87da63d054c00251eba326cdd971b4bcdd4d4ad8c2238095087102",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_009.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=9",
+  "retrieved_at": "2026-10-01",
+  "sha256": "ec4b6e23e1a62d7c97657c6680908634ab1dc3edbbeef5060b513dd4fce7e061",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_011.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=11",
+  "retrieved_at": "2026-10-01",
+  "sha256": "a0f08aeea6016d6cd1c2b69abb0ed3e6bca785cff503095f9a6b7080eff4867e",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_013.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=13",
+  "retrieved_at": "2026-10-01",
+  "sha256": "95f561588590b66095ea70eea9454325aa2cf713c1db5eea787254d10d386996",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_015.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=15",
+  "retrieved_at": "2026-10-01",
+  "sha256": "61397cf0f2967994d5af1911ffff97c98e76dcb44659a4076ccee110112e386f",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_017.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=17",
+  "retrieved_at": "2026-10-01",
+  "sha256": "c69a3b1948b78cf1407e768eef82c5a73fbc027b1ed78fe299b52b30567340dc",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_019.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=19",
+  "retrieved_at": "2026-10-01",
+  "sha256": "46c96c4d192aadccb52a009356ce08cfba218847c6c1eaa81040802e68a87998",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_021.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=21",
+  "retrieved_at": "2026-10-01",
+  "sha256": "cdcefa1027054199683f725a882dd05e422acaca76a07af3e6b255eeabaa6aa9",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_023.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=23",
+  "retrieved_at": "2026-10-01",
+  "sha256": "e1d1332746252c30eef8ca4c88916aa618aded795f9d54de8b6bd7eb3c2fd84f",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_025.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=25",
+  "retrieved_at": "2026-10-01",
+  "sha256": "9a4581ee7141d200641ff58d675ab26d01e1725f89fa51dca57b49ddbd497047",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_027.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=27",
+  "retrieved_at": "2026-10-01",
+  "sha256": "f5107473121e33e4a41218b060306d80db9361a9e688e5a69736d24b04b5a2f8",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_029.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=29",
+  "retrieved_at": "2026-10-01",
+  "sha256": "5a5c9476696ce30810abe7f4e4f0875b2d6a8bfd04a1c483cd96d89f7e4001c4",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_031.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=31",
+  "retrieved_at": "2026-10-01",
+  "sha256": "c94fcc6f9c966fc45436f7117efc4302545f9795c5168d46469a96c2219efaf4",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_033.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=33",
+  "retrieved_at": "2026-10-01",
+  "sha256": "925b3cb2e7788c34e5945d5b7beb0d77b135d8612d0d01d76919bab4b1eaee98",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_035.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=35",
+  "retrieved_at": "2026-10-01",
+  "sha256": "f8ccbf8ecb52e3f95fb96277818db8cb16b06262112cf2a9bd0c19e00a51522d",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_037.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=37",
+  "retrieved_at": "2026-10-01",
+  "sha256": "dc100bc9221caa77945283fe1af07c8c4658eb4925a01f999387d1b8862a7061",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_039.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=39",
+  "retrieved_at": "2026-10-01",
+  "sha256": "0d6ffcb4161af7c6d3ca650cb3b97445dc43233e33122f8dc63c64c5245100c4",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_041.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=41",
+  "retrieved_at": "2026-10-01",
+  "sha256": "d9927e7e388fa5a29663f42fb00cd63082c399abc050ff24254294537d95d1dd",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_043.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=43",
+  "retrieved_at": "2026-10-01",
+  "sha256": "0f3dde083c37371398c87edb1ca1eaf061cde73757762f22d2e1a56e30a81f35",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_045.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=45",
+  "retrieved_at": "2026-10-01",
+  "sha256": "12b7a1534443f35f598ec06bdb658005648f8dcb02f42bbfb8be051514128ed4",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_047.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=47",
+  "retrieved_at": "2026-10-01",
+  "sha256": "4a577735674ac3cf2324f2f120b5aafe1654ba645300d20d5ec590045589f3ca",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_049.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=49",
+  "retrieved_at": "2026-10-01",
+  "sha256": "af6c1c9a220330717b01a991645923c332feb44bacca330dc71c8adce198f2d4",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_051.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=51",
+  "retrieved_at": "2026-10-01",
+  "sha256": "e3fa3f7c0c2334930f855ec3a3471d5e6003bd0eae443962681f8e1506511861",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_053.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=53",
+  "retrieved_at": "2026-10-01",
+  "sha256": "a71a010419ecc7a25fcd48d5e150329e2980139d832f2e41eaf047ccea669355",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_055.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=55",
+  "retrieved_at": "2026-10-01",
+  "sha256": "9c4d20a824243c8b569017c07584a568b9cd73beb9331c107cd7291bef7ac306",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_057.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=57",
+  "retrieved_at": "2026-10-01",
+  "sha256": "b6a0d48272d72e822a3416899a173d481b1d8e33a073e778074f8e03a0cd0765",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_059.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=59",
+  "retrieved_at": "2026-10-01",
+  "sha256": "7a3856652c042ea1b8efac2c55521dae1ac04e02d879f01f0c12c33c9290e693",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_061.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=61",
+  "retrieved_at": "2026-10-01",
+  "sha256": "4c6d787ed905cf238ab12a0d5d257b3d12cdeb0ab85d3e7d18255d02db1312f0",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_063.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=63",
+  "retrieved_at": "2026-10-01",
+  "sha256": "ee2dbb3ba9dcf48e896de705a1d5257785deef96d7a06c227fd995bc7967b121",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_065.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=65",
+  "retrieved_at": "2026-10-01",
+  "sha256": "cabea13f234a22e99552a96e9dfddf5d6942860b4f316ca3845c5afd275a4f77",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_067.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=67",
+  "retrieved_at": "2026-10-01",
+  "sha256": "8c4a6cae7c79a1e70b4c3548eb16b6a27f9760dad0141c514a99a23d7bafb7af",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_069.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=69",
+  "retrieved_at": "2026-10-01",
+  "sha256": "f161915a01202bf41602dbf84213aa7b511b3c79bbcf920f086ddb9acfe2f47f",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_071.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=71",
+  "retrieved_at": "2026-10-01",
+  "sha256": "d04b445e19df0b0ff27dc696af6cec8aceb53d5c3449b60dae7a68834b8c467b",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_073.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=73",
+  "retrieved_at": "2026-10-01",
+  "sha256": "45a1244c471a95715582395101628519e5b73d588be690e776ff64ef2b9c8459",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_075.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=75",
+  "retrieved_at": "2026-10-01",
+  "sha256": "b22b1b2084fc852e9ad576efa870510c6c22a65279562fee629987a97c0dd0a2",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_077.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=77",
+  "retrieved_at": "2026-10-01",
+  "sha256": "931918013026d4cf838a7c8bcbcde122454770fb1eb5be5b047e734edbb19acb",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_079.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=79",
+  "retrieved_at": "2026-10-01",
+  "sha256": "294cca020882d6a591502236377d0b0296a5c527af8125cb7303307b66719194",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_081.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=81",
+  "retrieved_at": "2026-10-01",
+  "sha256": "ca52563ee3a15f2aa145b5e2325ed903ab4d755d05bfe7403924a9ad4c6f19f5",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_083.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=83",
+  "retrieved_at": "2026-10-01",
+  "sha256": "e732e01da806b48baa93191bfdfcd4c9282c23ba415aed1b508f145c93890b62",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_085.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=85",
+  "retrieved_at": "2026-10-01",
+  "sha256": "d51d46e104ef0cf1000f7321fdb8a2052b7c47cb30903bc9fbc296a10489b67f",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_087.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=87",
+  "retrieved_at": "2026-10-01",
+  "sha256": "52267edad4610a3e0fa8ba4d20607289c622955c6f9752c2e2ff77f7609a27a7",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_089.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=89",
+  "retrieved_at": "2026-10-01",
+  "sha256": "76c6de4fd8cf44120a756377b8a8b3c7dde8802fd86d3566e84ae82396fd1917",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_091.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=91",
+  "retrieved_at": "2026-10-01",
+  "sha256": "216c48a4710000eba6771faf37342bb957147793db9dc163386bb1ce1c7e78de",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_093.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=93",
+  "retrieved_at": "2026-10-01",
+  "sha256": "afcdcd99307b63bf772499dbc4adadbcd04bce818839d3ae050b48814df877a8",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_095.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=95",
+  "retrieved_at": "2026-10-01",
+  "sha256": "957a35a4b5b2a7139e3c3ad371be490a5220fdb7ba7253fa306eddde3ea7f4bd",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_097.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=97",
+  "retrieved_at": "2026-10-01",
+  "sha256": "93f564e3674d5cf9b87b5b84fafe6667347b5e651c17c0983991317d659ea8b5",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_099.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=99",
+  "retrieved_at": "2026-10-01",
+  "sha256": "17f409999be0052dd2fd766f16e6d8ad05d84bf89ac1f97d357b3fc34d62bf3e",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_101.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=101",
+  "retrieved_at": "2026-10-01",
+  "sha256": "10a2539410477e9c5f297a421bbd592400863958f78a17882214038449c4be80",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_103.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=103",
+  "retrieved_at": "2026-10-01",
+  "sha256": "df311a4f89ff169a94a5f866d8a1dfff67c5e0104a930f75f3061723f4585d8f",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_105.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=105",
+  "retrieved_at": "2026-10-01",
+  "sha256": "5743ac055efb370b02140c0957c80887a67d1731443c74a11f07bf8ab416297e",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_107.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=107",
+  "retrieved_at": "2026-10-01",
+  "sha256": "ca60d56bd28e8a93c940cadb350bc08d6bebd380513138603605314594c49bd0",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_109.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=109",
+  "retrieved_at": "2026-10-01",
+  "sha256": "c577296089319027282de837d8f7e5967f4bb8a78244218ceac8532c44a6c58c",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_111.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=111",
+  "retrieved_at": "2026-10-01",
+  "sha256": "e93c0c97500b16494c1fdfbb01f845ba49dfecc6223df83303bfdf886509ba32",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_113.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=113",
+  "retrieved_at": "2026-10-01",
+  "sha256": "4486435684e4b9173fa3a1c8d1e84e9dbf09fe93b1e68760191a8b7ea1831335",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_115.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=115",
+  "retrieved_at": "2026-10-01",
+  "sha256": "fcb2acda53caaa2f208be3c4420ac91bef013778847f4b93bb4f2438d0323a51",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_117.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=117",
+  "retrieved_at": "2026-10-01",
+  "sha256": "9b0994e730548e0face85fed059bdb7b2aa71ef0ed18cdf44b5574b8e4834891",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_119.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=119",
+  "retrieved_at": "2026-10-01",
+  "sha256": "17cabcfc7f434d1e220779e98b8e33fd73871e57a65d77560c579f4eb9183734",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_121.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=121",
+  "retrieved_at": "2026-10-01",
+  "sha256": "9e705fdaddbd31464890c8b282e7e8a2a2a23d6416a3b8eb71cb152f2abe3878",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_123.json",
+  "source": "https://pad.human.cornell.edu/counties/getprojdata.cfm?county=123",
+  "retrieved_at": "2026-10-01",
+  "sha256": "39bc57f1f2788d145d730591151959729c43b42521d6cda8ca8553fc92b9b002",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_001_check.xlsx",
+  "source": "https://pad.human.cornell.edu/counties/expprojdata.cfm?county=1",
+  "retrieved_at": "2026-10-01",
+  "sha256": "200846220aa7c3e212f3b55d0487f58ccdefa3ab853cb6b0a3164f62e6c92685",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_047_check.xlsx",
+  "source": "https://pad.human.cornell.edu/counties/expprojdata.cfm?county=47",
+  "retrieved_at": "2026-10-01",
+  "sha256": "86b7e1166c2bbde8d259f7322248e399f2fe5cfe3e29300085e96b4db4a9f217",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_2018_089_check.xlsx",
+  "source": "https://pad.human.cornell.edu/counties/expprojdata.cfm?county=89",
+  "retrieved_at": "2026-10-01",
+  "sha256": "7e361f6769fba571ba09628bef2047039f3bfb7c5a3250ffaacde8db0eb54770",
+  "records": 26,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "state_catalog_2026-10-01.html",
+  "source": "https://pad.human.cornell.edu/state_projections/",
+  "retrieved_at": "2026-10-01",
+  "sha256": "03763858364847c7b10d00e7059b74cfaa6ec63b230bc6236203c9fc87791f10",
+  "records": null,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "state_datatools_2026-10-01.html",
+  "source": "https://pad.human.cornell.edu/state_projections/datatools.cfm",
+  "retrieved_at": "2026-10-01",
+  "sha256": "6b927004d2167faa3896fdb03e371367d9e958335c8dad788eab9761d010381d",
+  "records": null,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "state_base_2026-10-01.html",
+  "source": "https://pad.human.cornell.edu/state_projections/meth_base.cfm",
+  "retrieved_at": "2026-10-01",
+  "sha256": "1efb798f9deb7f8ad66b82960e2c2012993e252b3278d4117c5813543981b02c",
+  "records": null,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "state_methodology_2026-10-01.html",
+  "source": "https://pad.human.cornell.edu/state_projections/meth_overview.cfm",
+  "retrieved_at": "2026-10-01",
+  "sha256": "7c2c613a8ccff0e1307e46acf0eaf26c4ef1dd4e89d15790f67b29230e32ce4f",
+  "records": null,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "state_scenarios_2026-10-01.html",
+  "source": "https://pad.human.cornell.edu/state_projections/meth_scenarios.cfm",
+  "retrieved_at": "2026-10-01",
+  "sha256": "8c832d8596733ab59ebbd611dcd28262d18bedd0b745c442d0635cffc7513b94",
+  "records": null,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "state_trends_2026-10-01.html",
+  "source": "https://pad.human.cornell.edu/state_projections/poptrends.cfm",
+  "retrieved_at": "2026-10-01",
+  "sha256": "85c41dd5a12c8dbe6568363170304295e69af69a906c56b81d6c7ea397d02023",
+  "records": null,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "state_chart_data_2026-10-01.js",
+  "source": "https://pad.human.cornell.edu/state_projections/loadDataTables.js",
+  "retrieved_at": "2026-10-01",
+  "sha256": "cd294b7b5627b2f5bb6ecb1d8615859ef7222421a973577e7995a8ef7775d658",
+  "records": null,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_catalog_2026-10-01.html",
+  "source": "https://pad.human.cornell.edu/counties/index.cfm",
+  "retrieved_at": "2026-10-01",
+  "sha256": "46ffcb12d0a647b669f332570b2b74dba2840a0ef2e04f304dcd54b6f6bd0df2",
+  "records": null,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_explorer_2026-10-01.html",
+  "source": "https://pad.human.cornell.edu/counties/projections.cfm",
+  "retrieved_at": "2026-10-01",
+  "sha256": "2ae576e89d3cc92dd5dcaf6b01372ac3d8f23669b118d3044464b76a57de912f",
+  "records": null,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_methodology_2018.pdf",
+  "source": "https://pad.human.cornell.edu/counties/downloads/2018Methodology.pdf",
+  "retrieved_at": "2026-10-01",
+  "sha256": "b51d3049b883e14617c4ec74b4a06d91990019f4bb6a9e88e434b2cd88abc4f1",
+  "records": null,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "county_user_guide.pdf",
+  "source": "https://pad.human.cornell.edu/counties/downloads/ProjectionsUserManual.pdf",
+  "retrieved_at": "2026-10-01",
+  "sha256": "f8b943763045e324809cbf37d7f05a4bbeb0462cdec5607a64e9eeef8750c463",
+  "records": null,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ },
+ {
+  "file": "producer_2026-10-01.html",
+  "source": "https://pad.human.cornell.edu/people.cfm",
+  "retrieved_at": "2026-10-01",
+  "sha256": "e753836c39a78ae5d62105ce6a8131f5fa77d0c4ece67ac5cf3a6a741b77efd1",
+  "records": null,
+  "note": "Original Cornell PAD response. October 2024 state scenarios: base 2022, horizon 2050. September 2018 county edition: base 2015, horizon 2040. Population totals only served; demographic detail and components remain archived."
+ }
+]

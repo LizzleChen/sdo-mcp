@@ -5,10 +5,38 @@ households, and employment where the state office publishes it. The server
 reads a local SQLite database and does not download data while answering a
 question.
 
-Coverage now includes **32 recognized states, all with loaded population
-forecasts**. Batch two adds **Alaska, Hawaii, Maine, Nebraska, New Hampshire,
-Ohio and Nevada**, with 1,862 population totals and 20 Hawaii jobs totals.
-The new population coverage is:
+Coverage now includes **37 recognized states, all with loaded population
+forecasts**. Batch three adds **Connecticut, Massachusetts, New Jersey,
+New York, and Rhode Island**, with 2,277 published population points. Illinois,
+the sixth state in the batch plan, was already loaded.
+
+| State | Published points served | Geography coverage |
+| --- | --- | --- |
+| Connecticut | Five-year projections 2015–2040; revised 2017/2018 edition with a 2010 Census anchor | State, eight historical counties and nine separately identified regional councils of government |
+| Massachusetts | Adjusted 2020 historical launch; five-year projections 2025–2050, Vintage 2024 | State and all 14 counties |
+| New Jersey | 2014 estimate; 2019, 2024, 2029 and 2034 projections from the older 2014–2034 series | State with four models; all 21 counties under the preferred model |
+| New York | 2022 estimate and annual state projections through 2050, October 2024 edition; separate 2018 county edition from 2015 through 2040 | State with Middle/High/Low scenarios; all 62 counties with one series |
+| Rhode Island | Five-year projections 2025–2050, revised February 2026; base year unconfirmed | Published state Total row and all 39 cities/towns |
+
+Rhode Island municipalities use `geo_level="county_subdivision"` and ten-digit
+Census GEOIDs. For example:
+`get_forecast(state="RI", geo_level="county_subdivision", geo="Providence", variable="population")`.
+Connecticut's historical counties retain their old FIPS codes; the 2018
+councils use `geo_level="cog"` and separate IDs. Their values are never remapped
+to modern county-equivalent planning regions. New York and New Jersey scenarios
+apply only to their state products. New York's Middle default is this server's
+central choice; Cornell does not recommend a scenario.
+
+These additions serve exact publisher values, including fractional Massachusetts
+historical and New York forecast cells. Past projection years retain projection
+labels. Rhode Island's table does not confirm its last underlying estimate year,
+so `base_year` is null. New York state/county editions and New Jersey's 2029
+state/county discrepancy remain separate and visible. No new household or jobs
+series is loaded. Other municipal and demographic detail remains deferred; broad
+product reviews remain open.
+
+Batch two added **Alaska, Hawaii, Maine, Nebraska, New Hampshire, Ohio and
+Nevada**, with 1,862 population totals and 20 Hawaii jobs totals:
 
 | State | Published points served | County coverage |
 | --- | --- | --- |
@@ -31,7 +59,7 @@ retrieval dates. Published values and source discrepancies are preserved,
 including Hawaii's Maui/Kalawao 2030 workbook/PDF difference and Ohio's Ottawa
 2050 map/workbook difference. Nebraska's producer explicitly adopted a
 Hauer/SEDAC model; that provenance is visible in its source notes. Maine's
-publisher cautions against use beyond 2032. Municipal forecasts and additional
+publisher cautions against use beyond 2032. Batch two's municipal forecasts and additional
 components remain deferred; household and other eligible jobs coverage is
 unverified. No years are interpolated. See the
 [source checks and limitations](docs/source-reviews.md) for each edition.
@@ -269,4 +297,4 @@ or upload them.
 Source review schedules and publication-versus-loading status are available
 through `list_states`, `describe_source`, and the local report command:
 `uv run python -m sdo_mcp.monitoring --database data/sdo.sqlite`.
-See [source review instructions](docs/source-reviews.md) for all 32 states.
+See [source review instructions](docs/source-reviews.md) for all 37 states.
