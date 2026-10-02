@@ -184,9 +184,10 @@ workbooks, catalog and methodology are archived with retrieval dates and
 fingerprints. Municipal and projected components publication coverage remains
 unverified; those requests return `coverage_unknown`.
 
-There is no public package release or hosted database download yet. You can
-install a checked compressed database release shared by the maintainer, or
-build from the saved source files in this checkout.
+The [v0.1.0 GitHub release](https://github.com/LizzleChen/sdo-mcp/releases/tag/v0.1.0)
+provides the installable wheel, the `2026-10-02` compressed database,
+`manifest.json`, and `SHA256SUMS`. Downloads require access to this private
+repository. You can also build from the saved source files in this checkout.
 
 Before starting, install [`uv`](https://docs.astral.sh/uv/getting-started/installation/)
 and use Python 3.12 or newer. The checked development setup uses Python
@@ -195,6 +196,24 @@ this checkout. If `uv python install 3.12.14` has no build for your platform,
 install that version separately with [pyenv](https://github.com/pyenv/pyenv)
 and its required build tools, or use another supported, patched Python 3.12+
 interpreter. An installed wheel needs only that supported patched interpreter.
+
+## Install from the GitHub release
+
+Download the four release assets into the same folder. With the GitHub CLI
+signed in to an account that has repository access:
+
+```sh
+gh release download v0.1.0 --repo LizzleChen/sdo-mcp --dir sdo-mcp-v0.1.0
+cd sdo-mcp-v0.1.0
+shasum -a 256 -c SHA256SUMS
+uv tool install --force ./sdo_mcp-0.1.0-py3-none-any.whl
+uv tool update-shell
+```
+
+Restart your shell if it cannot find the installed commands. Then install
+`sdo-2026-10-02.sqlite.gz` using the `sha256` value in `manifest.json`, as
+described below. Both the wheel and database are required before starting
+the MCP server. This release runs locally; it does not provide a hosted MCP URL.
 
 ## Install from this checkout
 
@@ -222,7 +241,7 @@ Obtain the versioned `.sqlite.gz` file and its `manifest.json` from a trusted
 maintainer. Read `sha256` from that manifest and use it in this command:
 
 ```sh
-sdo-mcp-install-data /path/to/sdo-2026-09-05.sqlite.gz --sha256 PASTE_THE_64_CHARACTER_SHA256_HERE
+sdo-mcp-install-data /path/to/sdo-2026-10-02.sqlite.gz --sha256 PASTE_THE_64_CHARACTER_SHA256_HERE
 ```
 
 The fingerprint must come from a trusted source. A fingerprint bundled with
@@ -347,19 +366,20 @@ results. These distinctions follow the
 After rebuilding the full database, run:
 
 ```sh
-uv run python -m sdo_mcp.release data/sdo.sqlite --version 2026-09-05
+uv run python -m sdo_mcp.release data/sdo.sqlite --version YYYY-MM-DD
 ```
 
-This writes `data/releases/2026-09-05/sdo-2026-09-05.sqlite.gz` and
-`manifest.json`. An existing release folder is never replaced. The command
+Replace `YYYY-MM-DD` with a new release identifier. This writes
+`data/releases/YYYY-MM-DD/sdo-YYYY-MM-DD.sqlite.gz` and `manifest.json`.
+An existing release folder is never replaced. The command
 compares all served observations and all source, geography, and coverage records
 in both directions before creating the archive. The manifest records the
 release version, full database fingerprint, compressed and expanded fingerprints,
 file sizes, creation time, and record counts. Source retrieval dates stay intact.
 
-These files are local and excluded from Git. Share both files through your
-chosen trusted distribution channel when ready; the command does not publish
-or upload them.
+These files are local and excluded from Git. Attach both files to a GitHub
+release alongside the matching wheel and checksums when publishing; the
+command itself does not publish or upload them.
 
 Source review schedules and publication-versus-loading status are available
 through `list_states`, `describe_source`, and the local report command:
