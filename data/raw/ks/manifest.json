@@ -1,0 +1,50 @@
+[
+ {
+  "file": "economic_demographic_report_january2010.pdf",
+  "source": "https://budget.kansas.gov/wp-content/uploads/fy2011-2009-2010-econ-demo-rpt.pdf",
+  "retrieved_at": "2026-10-02",
+  "sha256": "82210dd71219619e1d66d46046fe08b6910beafad794fb613971524a84cf580f",
+  "records": 1260,
+  "note": "Original November 2006 Budget-commissioned projections, published January 2010, Appendix L pp139-178. Newer CEDBR pages record candidates with unresolved state authority/adoption."
+ },
+ {
+  "file": "population_catalog_2026-10-02.html",
+  "source": "https://budget.kansas.gov/population/",
+  "retrieved_at": "2026-10-02",
+  "sha256": "6e9226b725b52d9c6130256b91b575d296fed2a20566cc6a4361e6d1c39584e2",
+  "records": null,
+  "note": "Original November 2006 Budget-commissioned projections, published January 2010, Appendix L pp139-178. Newer CEDBR pages record candidates with unresolved state authority/adoption."
+ },
+ {
+  "file": "historical_report_catalog_2026-10-02.html",
+  "source": "https://budget.kansas.gov/population/historic/",
+  "retrieved_at": "2026-10-02",
+  "sha256": "5fa5d5ec682698f196e0f326170a07d63259477cbec706bff99f1a3a115812b0",
+  "records": null,
+  "note": "Original November 2006 Budget-commissioned projections, published January 2010, Appendix L pp139-178. Newer CEDBR pages record candidates with unresolved state authority/adoption."
+ },
+ {
+  "file": "cedbr_population_candidate_2026-10-02.html",
+  "source": "https://cedbr.org/data-portal/population-and-demographics/population-forecast/",
+  "retrieved_at": "2026-10-02",
+  "sha256": "d3cd21b4e1f82d2cee8b77d9803e351f16451688e460f9184fe72250a7da99f5",
+  "records": null,
+  "note": "Original November 2006 Budget-commissioned projections, published January 2010, Appendix L pp139-178. Newer CEDBR pages record candidates with unresolved state authority/adoption."
+ },
+ {
+  "file": "cedbr_portal_sponsorship_2026-10-02.html",
+  "source": "https://cedbr.org/data-portal/",
+  "retrieved_at": "2026-10-02",
+  "sha256": "a8cd09366a2776ed8c321b749dac5e8f2c1d73759b9b90ac260367486ed1a9a7",
+  "records": null,
+  "note": "Original November 2006 Budget-commissioned projections, published January 2010, Appendix L pp139-178. Newer CEDBR pages record candidates with unresolved state authority/adoption."
+ },
+ {
+  "file": "cedbr_jobs_candidate_2026-10-02.html",
+  "source": "https://cedbr.org/data-portal/employment/",
+  "retrieved_at": "2026-10-02",
+  "sha256": "21861fb4faa8e20b77177b9000a15ec2c9b4c169815f0e1eba88c460bcc649db",
+  "records": null,
+  "note": "Original November 2006 Budget-commissioned projections, published January 2010, Appendix L pp139-178. Newer CEDBR pages record candidates with unresolved state authority/adoption."
+ }
+]

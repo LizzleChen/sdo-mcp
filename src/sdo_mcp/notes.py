@@ -1451,4 +1451,264 @@ STATES = {
                'population_table': 'https://planning.ri.gov/sites/g/files/xkgbur826/files/2026-02/Municipal%20Projections%20%2002272026.pdf',
                'geography_reference': 'https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2025_Gazetteer/2025_gaz_cousubs_44.txt',
                'work_program': 'https://planning.ri.gov/sites/g/files/xkgbur826/files/2025-09/FY26_UPWP_FINAL_06.12.2025%20%285%29.pdf'}},
+    'ID': {'name': 'Idaho',
+     'agency': 'Idaho Department of Labor, Labor Market Information',
+     'producer_type': 'state agency; demographic population forecast producer',
+     'current_vintage': 'Revised August 7, 2025: annual projections 2024-2034; underlying last ACS estimate '
+                        'year unconfirmed.',
+     'geography_floor': 'State and all 44 counties loaded; six economic-region products deferred. County is '
+                        'the smallest modeled geography in the linked methods.',
+     'scenarios': [],
+     'default_scenario': None,
+     'products': ['Ten-Year Population Forecast 2024-2034: state and all 44 county Total rows (loaded)',
+                  'Six regional population series, age/sex detail and potential labor-force counts '
+                  '(published but not loaded)'],
+     'methodology': 'County/age cohort model of births, deaths, aging and net migration; current catalog '
+                    'identifies American Community Survey estimate inputs. The last underlying estimate '
+                    'year and population reference day are unstated, so base_year is null and all 2024-2034 '
+                    'points remain projections.',
+     'employment_note': 'Workbook Labor Force measures the potential labor pool, not jobs. Separate '
+                        'industry/occupational projections are outside this demographic product; no '
+                        'eligible demographic jobs forecast was established.',
+     'license': 'No explicit data license identified; cite the Idaho Department of Labor.',
+     'caveats': ['Annual 2024-2034 points are explicitly cataloged projections. 2024 is not inferred to be '
+                 'an estimate; the last underlying ACS estimate year remains unknown.',
+                 'The September 2025 URL directory and workbook metadata dates are not model vintage; '
+                 'selected catalog revision is August 7, 2025.',
+                 'Published state, region and county Total rows reconcile exactly. All values retain '
+                 'integer-person precision; no interpolation or balancing.',
+                 'Regional worksheets contain all 44 counties once. Census 2020 names/FIPS match the '
+                 'publication. The currently linked 2017 general methods identify county as the most '
+                 'detailed model geography; no place values are derived.',
+                 'Age/sex detail and potential Labor Force are archived but not served. Household counts, '
+                 'published component tables and eligible demographic jobs publication coverage remain '
+                 'unverified.'],
+     'links': {'population_catalog': 'https://lmi.idaho.gov/data-tools/population-projections/',
+               'state_workbook': 'https://lmi.idaho.gov/wp-content/uploads/2025/09/Population_Statewide.xlsx',
+               'methods': 'https://lmi.idaho.gov/wp-content/uploads/publications/2017/PopulationProjections/Population-Forecast-Methodology.pdf?ver=2017-05-31-171419-813',
+               'industry_occupation_catalog': 'https://lmi.idaho.gov/data-tools/occupational-industry-projections/'}},
+    'ND': {'name': 'North Dakota',
+     'agency': 'North Dakota Department of Commerce, State Data Center',
+     'producer_type': 'state agency and official State Data Center',
+     'current_vintage': 'Prepared February 6, 2024: 2020 Census anchor and five-year population projections '
+                        '2025-2050.',
+     'geography_floor': 'State and all 53 counties loaded from printed pp10-11; eight economic-planning '
+                        'regions remain deferred. Subcounty publication coverage is unverified.',
+     'scenarios': [],
+     'default_scenario': None,
+     'products': ['2024 Population Projections of the State, Regions, and Counties: state and all 53 county '
+                  'summary totals (loaded)',
+                  'Eight economic-planning region totals and state age/sex detail (published but not '
+                  'loaded)',
+                  'Five-year natural-change/net-migration components (PDF-only, not loaded)'],
+     'methodology': 'Modified cohort-survival-component model based on Census 2020 county age/sex '
+                    'populations, state vital statistics, CDC survival inputs and adjusted migration '
+                    'patterns; historical 2020 Census counts are marked estimate under the common schema. '
+                    'Future projection reference day is unstated.',
+     'employment_note': 'No eligible State Data Center jobs forecast was established. Workforce-age '
+                        'population is persons, not jobs, and labor-agency occupational forecasts are not '
+                        'substituted.',
+     'license': 'No explicit data license identified; cite the North Dakota Department of Commerce State '
+                'Data Center.',
+     'caveats': ['State 2050 is 957,194 in the selected p11 North Dakota Totals row and p14 Both Sexes '
+                 'Total. Executive summary and catalog instead say 957,124; the explicit numeric table '
+                 'series is retained.',
+                 'County sums minus state totals are 0,-1,0,+1,+4,+2,+2 persons for '
+                 '2020/2025/2030/2035/2040/2045/2050. No balancing is applied despite methods describing '
+                 'county-to-region-to-state aggregation.',
+                 'Exact five-year points only; past projection years retain projection labels. Census 2020 '
+                 'is the historical model anchor, not a generated base row.',
+                 'Age/sex detail contains historical and rounding differences and is not substituted for '
+                 'summary Total rows. Regions and demographic detail remain deferred.',
+                 'Five-year natural change means births minus deaths; p6 does not separately publish '
+                 'births/deaths. Components remain PDF-only and unannualized.',
+                 'Subcounty population, household-count and eligible SDC jobs coverage remain unverified.'],
+     'links': {'agency': 'https://www.commerce.nd.gov/economic-development-finance/state-data-center',
+               'population_report': 'https://www.medialibrary.nd.gov/assetbank-nd/assetfile/137073.pdf'}},
+    'SD': {'name': 'South Dakota',
+     'agency': 'South Dakota State Data Center / State Demographer, South Dakota State University',
+     'producer_type': 'university State Data Center / State Demographer, jointly funded with state Labor '
+                      'Market Information Center',
+     'current_vintage': '2012 preliminary Medium Series, 2010–2035. Original workbook survives at a '
+                        'migrated university URL; no newer eligible all-county release was established.',
+     'geography_floor': 'State and all 66 source-era counties loaded. Shannon County uses historical FIPS '
+                        '46113; modern Oglala Lakota 46102 is not substituted.',
+     'scenarios': ['medium'],
+     'default_scenario': 'medium',
+     'products': ['Population 2010–2035: state and 66 source-era counties, Medium Series (loaded)',
+                  'Age/sex population detail (archived, not served)'],
+     'methodology': 'The State Demographer’s 2013 presentation identifies this as the 2012 project and '
+                    'explicitly uses trends and population existing April 1, 2010. The cohort model uses '
+                    'birth, mortality and migration assumptions. All county base totals independently match '
+                    'Census 2010; no later estimate calibration was established.',
+     'employment_note': 'No eligible SDO jobs forecast was established. Publication coverage remains '
+                        'unknown; DLR occupational forecasts and potential-workforce age counts are not '
+                        'substituted.',
+     'license': 'No explicit data license identified; cite the South Dakota State Data Center, South Dakota '
+                'State University.',
+     'caveats': ['This older preliminary product uses a 2010 Census base. 2010 is marked estimate under the '
+                 'common schema; 2015–2035 remain projections, even in past years.',
+                 'Original cached Excel numeric precision is preserved, including fractional persons that '
+                 'Excel displays rounded. DLR independently repeats all rounded state totals.',
+                 'County sums differ from the separately published state forecast by up to about 9,003 '
+                 'persons; no balancing, interpolation or derived totals are applied.',
+                 'Shannon was renamed Oglala Lakota in 2015 with unchanged boundaries and FIPS changed '
+                 '46113 to 46102. Queries must use the original source name/code; no alias or modern-code '
+                 'values are fabricated. The national Census 2020 snapshot remains unchanged.',
+                 'Only the published Medium Series is recovered. No low/high data are invented. Household '
+                 'counts, complete components, subcounty forecasts and eligible SDO jobs publication '
+                 'coverage remain unverified.'],
+     'links': {'agency': 'https://www.sdstate.edu/school-psychology-sociology-and-rural-studies/census-data-center',
+               'state_referral': 'https://dlr.sd.gov/lmic/menu_population.aspx',
+               'population_workbook': 'https://www.sdstate.edu/sites/default/files/soc/rlcdc/generaldemographicdata/upload/Projections-with-Pyramids2.xlsx',
+               'methods_catalog': 'https://openprairie.sdstate.edu/sd_demography_conference/2013/presentations/1/',
+               'archived_methods': 'https://web.archive.org/web/20210101000000id_/https://openprairie.sdstate.edu/cgi/viewcontent.cgi?article=1000&context=sd_demography_conference',
+               'historical_geography': 'https://www2.census.gov/geo/docs/maps-data/data/gazetteer/Gaz_counties_national.zip',
+               'name_change': 'https://www.weather.gov/media/notification/pdfs/scn15-31shannon_oglalacty_cca.pdf',
+               'independent_state_table': 'https://dlr.sd.gov/lmic/publications/labor_market_reports/workforce_report_2020.pdf'}},
+    'MS': {'name': 'Mississippi',
+     'agency': 'State Data Center of Mississippi, Center for Population Studies, University of Mississippi',
+     'producer_type': 'university State Data Center, collaborative University/state/Census program',
+     'current_vintage': 'May 2, 2019 preliminary state release. Current download is byte-identical to '
+                        'archived original 2019 PDF; 2020–2050 projections from 2010 launch.',
+     'geography_floor': 'State totals loaded; county and place-based forecasts are explicitly offered upon '
+                        'request but their numeric data are not loaded.',
+     'scenarios': [],
+     'default_scenario': None,
+     'products': ['State population 2020–2050 at five-year points (loaded)',
+                  'County/place-based population projections upon request (published but not loaded)',
+                  'Age/sex and source-specific white/nonwhite population detail (archived, not served)'],
+     'methodology': 'Original May 2, 2019 methods identify a 2010 launch and 2000–2010 Census base period. '
+                    'Cohort-component projections use fixed fertility/survival rates and gross migration '
+                    'assumptions. Current file retains the original 2019 figures; it is not rebased to '
+                    'Census 2020.',
+     'employment_note': 'No eligible SDO jobs forecast was established. Publication coverage remains '
+                        'unknown; labor-department occupational forecasts are not substituted.',
+     'license': 'No explicit data license identified; cite the State Data Center of Mississippi, University '
+                'of Mississippi.',
+     'caveats': ['All 2020–2050 points are projections, including past years. base_year=2010 records the '
+                 'launch; no 2010 observation is fabricated.',
+                 'Only the statewide TOTAL race / BOTH SEXES column and TOTAL row is served. Counts are '
+                 'rounded whole persons, with published age/sex/race sum differences up to three persons '
+                 'preserved.',
+                 'County and place coverage is known from the publisher’s original catalog, but numeric '
+                 'loading is deferred. No agency correspondence was undertaken.',
+                 'Household counts, complete future components and eligible SDO jobs publication coverage '
+                 'remains unverified. Housing-unit estimates and cohort-model inputs are not forecasts of '
+                 'those products.'],
+     'links': {'agency': 'https://olemiss.edu/departments/libarts/population-studies/statedatacenterofmississippi/',
+               'population_pdf': 'https://www.dropbox.com/scl/fi/z6fsf9i8vdd4kya20eqzt/State-of-Mississippi-Population-Projections-2020-2050.pdf?dl=1&rlkey=j2au553lzdzbtu0mdf7njflt7',
+               'archived_methods': 'https://web.archive.org/web/20190917012609id_/https://sdc.olemiss.edu/wp-content/uploads/sites/143/2019/05/Mississippi-Population-Projection-Methodology-2.pdf',
+               'archived_catalog': 'https://web.archive.org/web/20190501000000id_/http://sdc.olemiss.edu/population-projections/'}},
+    'KS': {'name': 'Kansas',
+     'agency': "Kansas Division of the Budget (commissioned from Moody's Economy.com)",
+     'producer_type': 'state budget demographic program; explicitly commissioned and officially published '
+                      'projections',
+     'current_vintage': 'Loaded: November 2006 official commissioned forecast, published January 2010; '
+                        'annual county projections 2010-2021 only. The entire horizon is in the past. Newer '
+                        'CEDBR 2024 university forecasts have unconfirmed official state '
+                        'authority/adoption.',
+     'geography_floor': 'All 105 counties loaded. Appendix L has no published statewide Total Population '
+                        'row. Its narrative mentions Kansas and all counties ambiguously; state population '
+                        'coverage remains unknown and no county sum is served as a state forecast.',
+     'scenarios': [],
+     'default_scenario': None,
+     'products': ['County population 2010-2021, November 2006 Budget-commissioned forecasts, Appendix L '
+                  '(loaded)',
+                  'County age-cohort projections, same official Appendix L (published but not loaded)',
+                  'CEDBR 2024 population and component dashboards (candidate; official state '
+                  'authority/adoption unconfirmed; not loaded)',
+                  'CEDBR 2026 employment forecasts (separate candidate; eligible SDO status unconfirmed; '
+                  'not loaded)'],
+     'methodology': 'The official report p. 56 explicitly identifies the Kansas Division of the Budget '
+                    "commissioning Moody's Economy.com in November 2006. Appendix L, pp. 139-178, contains "
+                    '105 county Total Population rows at 12 annual points 2010-2021. The last estimate year '
+                    'and detailed model method are unstated; base_year is null. Every value remains a '
+                    'projection.',
+     'employment_note': 'CEDBR publishes separate employment forecasts, but its official state demographic '
+                        'role or adoption has not been established. The Budget report contains employment '
+                        'history and economic commentary; no separately verified eligible SDO jobs series '
+                        'is loaded. Labor force and occupational projections are not substituted.',
+     'license': 'No explicit data license identified in the public state report; cite Kansas Division of '
+                "the Budget and Moody's Economy.com.",
+     'caveats': ['This old forecast ends in 2021. No population forecast for 2022 or later is served. Past '
+                 'projection years remain projections.',
+                 'November 2006 is the forecast vintage; January 2010 is the selected report publication '
+                 'date. The current catalog says this report is no longer produced and FY2012 onward '
+                 'demographic appendices contain Census estimates.',
+                 'base_year is null: Census 2000 references and newer historical estimates elsewhere in the '
+                 'report do not identify the forecast model’s last estimate input. No 2006 or Census 2010 '
+                 'base row is fabricated.',
+                 'The selected Appendix L contains all 105 counties, but no statewide total. Its narrative '
+                 'does not establish a recoverable statewide Total Population row. State coverage stays '
+                 'unknown; no aggregate is invented.',
+                 'Newer CEDBR 2024 dashboards remain candidates. University affiliation, the Census FSCPP '
+                 'directory, private Patterson Family Foundation sponsorship and incidental government '
+                 'citations do not establish official state demographic authority or adoption.',
+                 'KDOC 2022 testimony and the Kansas DOT freight plan use older CEDBR editions; neither '
+                 'establishes adoption of the 2024 forecast. Older 1992 Budget and 1999 Budget/Water Office '
+                 'products are historical leads and are not mixed into the selected series.',
+                 'All 1,260 totals match independent Poppler text extraction and rendered original '
+                 'fixtures. Several cells omit commas, including Bourbon County’s 2016 population 14846.',
+                 'Age-cohort detail is deferred. Household, component, subcounty and eligible SDO jobs '
+                 'publication coverage remains unverified.'],
+     'links': {'agency': 'https://budget.kansas.gov/population/',
+               'official_population_report': 'https://budget.kansas.gov/wp-content/uploads/fy2011-2009-2010-econ-demo-rpt.pdf',
+               'historical_catalog': 'https://budget.kansas.gov/population/historic/',
+               'population_candidate': 'https://cedbr.org/data-portal/population-and-demographics/population-forecast/',
+               'candidate_sponsorship': 'https://cedbr.org/data-portal/',
+               'employment_candidate': 'https://cedbr.org/data-portal/employment/',
+               'census_fscpp_directory': 'https://www.census.gov/programs-surveys/popproj/about/fscpp/contacts.html',
+               'kdoc_older_use': 'https://www.kslegislature.gov/li_2022/b2021_22/committees/ctte_jt_cjjo_1/documents/testimony/20221128_16.pdf',
+               'kdot_older_use': 'https://www.ksdot.gov/home/showpublisheddocument/472/638943023665770000'}},
+    'MO': {'name': 'Missouri',
+     'agency': 'Missouri Office of Administration, Division of Budget and Planning',
+     'producer_type': 'state demography office within the Office of Administration',
+     'current_vintage': 'Old March 2008 Preferred Series, still linked by the current official catalog: '
+                        'exact five-year points 2000-2030. No newer eligible OA edition was established. '
+                        'Last estimate input is 2007; corrected Census 2000 anchor.',
+     'geography_floor': 'State and all 114 counties plus independent St. Louis city (county equivalent) '
+                        'loaded. St. Louis County 29189 and independent city 29510 are distinct. No '
+                        'subcounty forecast is derived.',
+     'scenarios': [],
+     'default_scenario': None,
+     'products': ['Population 2000-2030, state and 115 county-equivalent totals, March 2008 Preferred '
+                  'Series (loaded)',
+                  'Age/sex detail and five-year birth/death/net migration components (published but not '
+                  'loaded)'],
+     'methodology': 'OA credits the Missouri State Demographers with producing the Preferred Series. '
+                    'Independent county cohort-component models launch from corrected April 1 Census 2000 '
+                    'counts, then use estimate inputs through 2007 for migration controls. base_year=2007 '
+                    'records the last estimate input. Methods explicitly call 2005 projected even though it '
+                    'precedes 2007; all 2005-2030 remain projections. The 2000 history uses the MCP '
+                    'estimate label.',
+     'employment_note': 'No eligible OA/SDO jobs forecast was established. MERIC links this same old '
+                        'population product; labor-department occupational projections and regional MPO '
+                        'forecasts are not substituted. Eligible jobs publication coverage remains unknown.',
+     'license': 'No explicit data license identified; cite the Missouri Office of Administration.',
+     'caveats': ['This is an old March 2008 forecast ending in 2030. The 2024/03 download URL is a hosting '
+                 'path, not a new vintage. No 2031 or later forecast is generated.',
+                 'All 2005-2030 points remain projections, including past years. The corrected Census 2000 '
+                 'point uses the MCP estimate label. Five-year gaps are not interpolated.',
+                 'base_year=2007 follows the operational migration methods’ latest estimate input. The '
+                 'model launches from Census 2000. Methods explicitly use 2000-2005 controls to project '
+                 '2005, then 2000-2007 controls starting in the 2005-2010 cycle. No 2007 row is fabricated.',
+                 'The data-source list cites estimates through 2006 while the operational discussion '
+                 'explicitly identifies 2007. The latter defines the recorded last estimate year.',
+                 'All 114 counties plus independent St. Louis city use distinct FIPS. Displayed county '
+                 'totals exactly sum to the independently published state row at all seven points.',
+                 'Every original XLS total matches the three-page county PDF and the state age PDF Total '
+                 'row. The rendered state PDF footer dates the edition March 2008.',
+                 'Preferred is the sole selected series; no alternative scenarios are exposed. Age/sex '
+                 'detail and previous-five-year components are not loaded. Components return not_loaded.',
+                 'Household, subcounty and eligible SDO jobs coverage remains unverified. The broader '
+                 'product audit is unfinished and review status remains never_reviewed.'],
+     'links': {'agency': 'https://budplan.oa.mo.gov',
+               'population_catalog': 'https://budplan.oa.mo.gov/demographic-info/population-projections/2000-2030-projections',
+               'population_table': 'https://budplan.oa.mo.gov/sites/g/files/zuston231/files/media/file/2024/03/total-pop-all-counties.xls',
+               'methods': 'https://budplan.oa.mo.gov/demographic-info/population-projections/methodology',
+               'producer': 'https://budplan.oa.mo.gov/demographic-info/population-projections',
+               'state_age_components': 'https://budplan.oa.mo.gov/sites/g/files/zuston231/files/media/pdf/2024/03/pop-projections-by-age-state-totals.pdf',
+               'county_pdf': 'https://budplan.oa.mo.gov/sites/g/files/zuston231/files/media/pdf/2024/03/total-pop-all-counties_0.pdf',
+               'meric_crosslink': 'https://meric.mo.gov/data/population/new-population-projections'}},
 }

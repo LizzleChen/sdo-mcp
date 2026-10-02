@@ -1,0 +1,66 @@
+[
+ {
+  "file": "total_population_preferred_march2008.xls",
+  "source": "https://budplan.oa.mo.gov/sites/g/files/zuston231/files/media/file/2024/03/total-pop-all-counties.xls",
+  "retrieved_at": "2026-10-02",
+  "sha256": "762d2e63caa870bbac0924a0138b01ae5fb0972706e816f95978e9f5db8b4963",
+  "records": 812,
+  "note": "Original March 2008 Preferred Series. 2024/03 URL path is a hosting date, not a revised model vintage."
+ },
+ {
+  "file": "total_population_preferred_march2008.pdf",
+  "source": "https://budplan.oa.mo.gov/sites/g/files/zuston231/files/media/pdf/2024/03/total-pop-all-counties_0.pdf",
+  "retrieved_at": "2026-10-02",
+  "sha256": "a3562011ea5889994f7be2b4dc2d58500da03d063b5c88e1d52eab81b72414e8",
+  "records": null,
+  "note": "Original March 2008 Preferred Series. 2024/03 URL path is a hosting date, not a revised model vintage."
+ },
+ {
+  "file": "state_age_components_preferred_march2008.pdf",
+  "source": "https://budplan.oa.mo.gov/sites/g/files/zuston231/files/media/pdf/2024/03/pop-projections-by-age-state-totals.pdf",
+  "retrieved_at": "2026-10-02",
+  "sha256": "c8c08f126ac7bd65b94c8fef549ecdbc0123e02e536ec51630188b910de41f8d",
+  "records": null,
+  "note": "Original March 2008 Preferred Series. 2024/03 URL path is a hosting date, not a revised model vintage."
+ },
+ {
+  "file": "projection_catalog_2026-10-02.html",
+  "source": "https://budplan.oa.mo.gov/demographic-info/population-projections/2000-2030-projections",
+  "retrieved_at": "2026-10-02",
+  "sha256": "f3a60088172cd318cc3ddf5251a5a3b078f5883de15dbc703af92df290cc02ec",
+  "records": null,
+  "note": "Original March 2008 Preferred Series. 2024/03 URL path is a hosting date, not a revised model vintage."
+ },
+ {
+  "file": "projection_methods_2026-10-02.html",
+  "source": "https://budplan.oa.mo.gov/demographic-info/population-projections/methodology",
+  "retrieved_at": "2026-10-02",
+  "sha256": "61b6b60f3e46dc3a69b417ce1d98987ab12f69a68cb443dbc96014d38aead48b",
+  "records": null,
+  "note": "Original March 2008 Preferred Series. 2024/03 URL path is a hosting date, not a revised model vintage."
+ },
+ {
+  "file": "producer_acknowledgements_2026-10-02.html",
+  "source": "https://budplan.oa.mo.gov/demographic-info/population-projections",
+  "retrieved_at": "2026-10-02",
+  "sha256": "289bab8e2686177fa3716e2f0d2e1f4218e4937c86168df8ea2ae2b6660759f3",
+  "records": null,
+  "note": "Original March 2008 Preferred Series. 2024/03 URL path is a hosting date, not a revised model vintage."
+ },
+ {
+  "file": "demographic_catalog_2026-10-02.html",
+  "source": "https://budplan.oa.mo.gov/demographic-information",
+  "retrieved_at": "2026-10-02",
+  "sha256": "eb53e85255103d5d054cbd1eea5aaa07233a2bf2e419ed227d60bae912b1692e",
+  "records": null,
+  "note": "Original March 2008 Preferred Series. 2024/03 URL path is a hosting date, not a revised model vintage."
+ },
+ {
+  "file": "meric_population_catalog_2026-10-02.html",
+  "source": "https://meric.mo.gov/data/population/new-population-projections",
+  "retrieved_at": "2026-10-02",
+  "sha256": "13a7febc226e58a9cff31f38a430924a2aed854b7c373b2bf5442da1306ef62a",
+  "records": null,
+  "note": "Original March 2008 Preferred Series. 2024/03 URL path is a hosting date, not a revised model vintage."
+ }
+]

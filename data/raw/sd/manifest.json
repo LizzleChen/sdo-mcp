@@ -1,0 +1,74 @@
+[
+ {
+  "file": "population_2010-2035_preliminary2012.xlsx",
+  "source": "https://www.sdstate.edu/sites/default/files/soc/rlcdc/generaldemographicdata/upload/Projections-with-Pyramids2.xlsx",
+  "retrieved_at": "2026-10-02",
+  "sha256": "3e8d930edec0d2b8c574ae59ba9900f950c93538fc5dd80a4ce442f6e8b7b7c7",
+  "records": 402,
+  "note": "Unchanged original source or essential producer/base/geography/independent-value evidence. Archived URLs retain original publisher bytes; archive request dates are selectors, not publication vintages."
+ },
+ {
+  "file": "census_counties_2010.zip",
+  "source": "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/Gaz_counties_national.zip",
+  "retrieved_at": "2026-10-02",
+  "sha256": "592fd19e5027658a4af44be22396561907032ec56b6fbd7ea2dc65ea9ddf4118",
+  "records": null,
+  "note": "Unchanged original source or essential producer/base/geography/independent-value evidence. Archived URLs retain original publisher bytes; archive request dates are selectors, not publication vintages."
+ },
+ {
+  "file": "projection_catalog_archived2015.html",
+  "source": "https://web.archive.org/web/20150501000000id_/http://www.sdstate.edu/soc/rlcdc/generaldemographicdata/age-and-sex-structure.cfm",
+  "retrieved_at": "2026-10-02",
+  "sha256": "29fb59f45064ec719db5b6e2742fdddf27221b5ee209a506f01b00e8c188801c",
+  "records": null,
+  "note": "Unchanged original source or essential producer/base/geography/independent-value evidence. Archived URLs retain original publisher bytes; archive request dates are selectors, not publication vintages."
+ },
+ {
+  "file": "projection_referral_2026-10-02.html",
+  "source": "https://dlr.sd.gov/lmic/menu_population.aspx",
+  "retrieved_at": "2026-10-02",
+  "sha256": "de797862b4b1c96b3dc29b92275b2b50bcd094a332aae0acaa1e8278ce2f9ffc",
+  "records": null,
+  "note": "Unchanged original source or essential producer/base/geography/independent-value evidence. Archived URLs retain original publisher bytes; archive request dates are selectors, not publication vintages."
+ },
+ {
+  "file": "projection_referral_archived2018.html",
+  "source": "https://web.archive.org/web/20180101000000id_/https://dlr.sd.gov/lmic/menu_population.aspx",
+  "retrieved_at": "2026-10-02",
+  "sha256": "441b9a2c20df28e530372617d4e5ddf465ab54694bc0a5c4b754fc7337f8c33c",
+  "records": null,
+  "note": "Unchanged original source or essential producer/base/geography/independent-value evidence. Archived URLs retain original publisher bytes; archive request dates are selectors, not publication vintages."
+ },
+ {
+  "file": "projection_methods_2013.pdf",
+  "source": "https://web.archive.org/web/20210101000000id_/https://openprairie.sdstate.edu/cgi/viewcontent.cgi?article=1000&context=sd_demography_conference",
+  "retrieved_at": "2026-10-02",
+  "sha256": "bc86b7668411fcabbd70792cbdffc3a98543673b5719942bf32664762c773f39",
+  "records": null,
+  "note": "Unchanged original source or essential producer/base/geography/independent-value evidence. Archived URLs retain original publisher bytes; archive request dates are selectors, not publication vintages."
+ },
+ {
+  "file": "projection_methods_catalog_2026-10-02.html",
+  "source": "https://openprairie.sdstate.edu/sd_demography_conference/2013/presentations/1/",
+  "retrieved_at": "2026-10-02",
+  "sha256": "5532fd7e794a41202a31fdc47b848bfe4965de03f794d65e3e08962f7221dd8f",
+  "records": null,
+  "note": "Unchanged original source or essential producer/base/geography/independent-value evidence. Archived URLs retain original publisher bytes; archive request dates are selectors, not publication vintages."
+ },
+ {
+  "file": "county_name_change_2015.pdf",
+  "source": "https://www.weather.gov/media/notification/pdfs/scn15-31shannon_oglalacty_cca.pdf",
+  "retrieved_at": "2026-10-02",
+  "sha256": "12cc06a05777c84f03f81ef72fbc8a473f8e2b9e6bf7e42b6ee48020a73de0e1",
+  "records": null,
+  "note": "Unchanged original source or essential producer/base/geography/independent-value evidence. Archived URLs retain original publisher bytes; archive request dates are selectors, not publication vintages."
+ },
+ {
+  "file": "workforce_report_2020.pdf",
+  "source": "https://dlr.sd.gov/lmic/publications/labor_market_reports/workforce_report_2020.pdf",
+  "retrieved_at": "2026-10-02",
+  "sha256": "d9412ba7aa191cfd698d51554b9c587e8a61fe1ee2f762f67969567300bdc1ac",
+  "records": null,
+  "note": "Unchanged original source or essential producer/base/geography/independent-value evidence. Archived URLs retain original publisher bytes; archive request dates are selectors, not publication vintages."
+ }
+]
