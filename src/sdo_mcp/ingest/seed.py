@@ -55,6 +55,12 @@ COVERED_STATES = {
     'NJ': 'New Jersey',
     'NY': 'New York',
     'RI': 'Rhode Island',
+    'ID': 'Idaho',
+    'ND': 'North Dakota',
+    'MS': 'Mississippi',
+    'SD': 'South Dakota',
+    'KS': 'Kansas',
+    'MO': 'Missouri',
 }
 
 # (state, variable, geo_level, status, detail)
@@ -634,6 +640,64 @@ COVERAGE = [
     ('RI', 'population', 'county_subdivision', 'available',
      'All 39 cities/towns at six points 2025-2050. Ten-digit Census county-subdivision GEOIDs, '
      'distinct from Census places.'),
+    # ---- Batch four: verified population products and unresolved source findings
+    ('ID', 'population', 'state', 'available',
+     'Revised August 7, 2025 edition: exact annual 2024–2034 projections, explicit statewide Total '
+     'row. ACS inputs; last estimate year unconfirmed.'),
+    ('ID', 'population', 'county', 'available',
+     'All 44 counties in six original regional workbooks; 11 annual 2024–2034 population Total rows, '
+     'all projections.'),
+    ('ID', 'population', 'economic_region', 'available',
+     'Six regional Total series 2024–2034 published in original workbooks; region '
+     'observations/identifiers deferred and not loaded.'),
+    ('ID', 'population', 'place', 'not_published',
+     'The currently linked 2017 Department of Labor general population methods identify county as its '
+     'most detailed modeled geography; no municipal series is substituted.'),
+    ('ND', 'population', 'state', 'available',
+     'February 6, 2024 report, pp 10–11 summary: 2020 Census anchor and exact five-year 2025–2050 '
+     'projections; published state 2050=957194 differs from executive/catalog 957124.'),
+    ('ND', 'population', 'county', 'available',
+     'All 53 counties at seven exact points 2020–2050, pp 10–11 summary; published county/state '
+     'discrepancies 0,-1, 0,+1,+4,+2,+2 preserved.'),
+    ('ND', 'population', 'economic_region', 'available',
+     'Eight economic-planning region series at five-year 2020–2050 points published on p 9; '
+     'identifiers/observations deferred.'),
+    ('ND', 'components', 'state', 'pdf_only',
+     'Printed page 6 publishes six five-year natural-change, net-migration and total-expected-change '
+     'intervals 2020–2025 through 2045–2050; not separate births/deaths, not loaded or annualized.'),
+    ('SD', 'population', 'state', 'available',
+     'Preliminary 2012 Medium Series: exact 2010 Census base and five-year 2015–2035 projections. '
+     'Original workbook precision preserved.'),
+    ('SD', 'population', 'county', 'available',
+     'All 66 source-era counties, 2010–2035 five-year points, Medium Series. Shannon uses historical '
+     'name/FIPS 46113; modern Oglala Lakota 46102 is not substituted.'),
+    ('MS', 'population', 'state', 'available',
+     'May 2, 2019 preliminary state release, exact five-year 2020–2050 projections from 2010 launch; '
+     'seven published rounded totals.'),
+    ('MS', 'population', 'county', 'available',
+     'The original State Data Center catalog explicitly offers county projections upon request; no '
+     'county numeric table is loaded and no correspondence was undertaken.'),
+    ('MS', 'population', 'place', 'available',
+     'The original State Data Center catalog explicitly offers place-based projections upon request; '
+     'place identifiers and numeric data remain deferred.'),
+    ('KS', 'population', 'county', 'available',
+     'November 2006 projections commissioned by the Division of the Budget, published January 2010: '
+     'all 105 counties, annual 2010-2021. The entire horizon is in the past; last estimate base is '
+     'unknown. Newer CEDBR 2024 authority/adoption is unconfirmed.'),
+    ('MO', 'population', 'state', 'available',
+     'Old March 2008 Preferred Series: April 1 totals at five-year points 2000-2030. Last estimate '
+     'input is 2007; Census 2000 anchor and explicit 2005 projection labels are preserved.'),
+    ('MO', 'population', 'county', 'available',
+     'Old March 2008 Preferred Series: all 114 counties plus independent St. Louis city, five-year '
+     'points 2000-2030. Current official catalog still links this edition; no successor was '
+     'established.'),
+    ('MO', 'components', 'state', 'available',
+     'March 2008 Preferred Series publishes births, deaths and net migration for previous five-year '
+     'intervals ending 2005-2030. Published in the state age PDF, but not loaded; interval-aware '
+     'ingestion is deferred.'),
+    ('MO', 'components', 'county', 'available',
+     'The official 2000-2030 catalog publishes county components over previous five-year intervals. '
+     'Not loaded; complete county extraction and interval-aware ingestion are deferred.'),
 ]
 
 

@@ -5,8 +5,31 @@ households, and employment where the state office publishes it. The server
 reads a local SQLite database and does not download data while answering a
 question.
 
-Coverage now includes **37 recognized states, all with loaded population
-forecasts**. Batch three adds **Connecticut, Massachusetts, New Jersey,
+Coverage now includes **43 recognized states, all with loaded population
+projections**. Batch four adds **Idaho, Kansas, North Dakota, South Dakota,
+Mississippi, and Missouri**, with 3,354 published population points. Kansas's
+selected official county forecast ends in 2021; loading an old forecast does
+not extend its horizon.
+
+| State | Published points served | Geography coverage |
+| --- | --- | --- |
+| Idaho | Annual projections 2024–2034, revised August 2025; last estimate year unconfirmed | State and all 44 counties |
+| North Dakota | 2020 Census history; five-year projections 2025–2050, 2024 edition | State and all 53 counties |
+| South Dakota | 2010 Census history; five-year projections 2015–2035, 2012 Medium Series | State and all 66 source-era counties, including Shannon County under historical FIPS 46113 |
+| Mississippi | Five-year projections 2020–2050, preliminary May 2019 edition with a 2010 launch | State only; county and place data are offered on request and remain unloaded |
+| Missouri | 2000 Census history; five-year projections 2005–2030, March 2008 Preferred Series | State, all 114 counties and independent St. Louis city |
+| Kansas | Annual projections 2010–2021, official November 2006 product published in January 2010; last estimate year unconfirmed | All 105 counties; no statewide total is derived. CEDBR's newer product has unconfirmed official demographic status |
+
+These additions preserve the source editions, even where their projection years
+are now past. Idaho's and Kansas's `base_year` is null. Missouri's last
+estimate input is 2007, while its 2005 point is explicitly a projection. South Dakota retains
+fractional workbook values and the original Shannon County name and code;
+modern Oglala Lakota identifiers are not substituted. North Dakota's selected
+table gives 957,194 for 2050, while its catalog and executive summary give
+957,124; the discrepancy is recorded. No new household or jobs series is loaded.
+See the [source checks and limitations](docs/source-reviews.md).
+
+Batch three added **Connecticut, Massachusetts, New Jersey,
 New York, and Rhode Island**, with 2,277 published population points. Illinois,
 the sixth state in the batch plan, was already loaded.
 
@@ -297,4 +320,4 @@ or upload them.
 Source review schedules and publication-versus-loading status are available
 through `list_states`, `describe_source`, and the local report command:
 `uv run python -m sdo_mcp.monitoring --database data/sdo.sqlite`.
-See [source review instructions](docs/source-reviews.md) for all 37 states.
+See [source review instructions](docs/source-reviews.md) for all 43 states.

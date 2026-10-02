@@ -65,6 +65,30 @@ POLICIES = {
      'Review revised municipal table, released methods and estimate boundary, city/town county-subdivision '
      'identifiers, state/municipal rounding, earlier county products and released '
      'household/component/eligible jobs products.'),
+    'ID': (90,
+     'Review current population workbook revision, ACS base/estimate boundary, county/region roster and '
+     'totals, reference day, deferred age/sex/regions, household/component/eligible demographic jobs '
+     'products.'),
+    'ND': (90,
+     'Review 2024 report successor, explicit state Total versus executive/catalog discrepancy, county '
+     'rounding, deferred regions/age/sex and five-year components, subcounty/household/eligible SDC jobs '
+     'products.'),
+    'SD': (90,
+     'Review successor to older 2012 preliminary model, recovered source precision, 2010 base versus later '
+     'calibration, all 66 source-era counties and Shannon/Oglala code handling, '
+     'household/components/subcounty and eligible jobs products.'),
+    'MS': (90,
+     'Review successor to May 2019 preliminary product, 2010 launch versus future rebasing, stable current '
+     'PDF and original methods, accessible county/place tables, household/components and eligible SDO jobs '
+     'products.'),
+    'KS': (90,
+     'Review successors to the November 2006 official forecast, unknown last estimate base and missing '
+     'state Total row. Resolve official authority/adoption for CEDBR 2024 before substituting. Audit county '
+     'horizons, components, households, subcounty and eligible jobs.'),
+    'MO': (90,
+     'Review OA for a successor to the old March 2008 Preferred Series. Check estimate input 2007 versus '
+     'Census 2000 and explicit 2005 projection labels, county/city FIPS, five-year component units, '
+     'households, subcounty and eligible jobs.'),
 }
 REVIEWS_PATH = Path(__file__).with_name("source_reviews.json")
 

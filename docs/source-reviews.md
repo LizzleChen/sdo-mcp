@@ -1,7 +1,7 @@
 # Source reviews and loading status
 
 Run `uv run python -m sdo_mcp.monitoring --database data/sdo.sqlite`
-for a JSON report of all 37 states. Omit `--database` to inspect the installed
+for a JSON report of all 43 states. Omit `--database` to inspect the installed
 copy (or the file selected by `SDO_DB`). The command reads local files only.
 It neither checks websites nor changes the database. Save its output when
 preparing a data release. `list_states` and `describe_source` expose the same
@@ -24,14 +24,18 @@ Check sooner when an agency announces a revision or a source check fails.
 | Florida | 90 days | Population workbook and household/jobs PDFs |
 | Georgia | 90 days | OPB edition and county workbook |
 | Hawaii | 90 days | Resident/de facto population, civilian jobs, separate 2020/2022 bases, combined Maui/Kalawao and workbook/PDF discrepancy |
+| Idaho | 90 days | Revised August 2025 workbooks, ACS inputs and unknown last estimate year, county/region grids, labor force versus jobs and other products |
 | Illinois | 90 days | IDPH edition/release, April/July base columns and Table 1/Table 3 differences; Chicago, five-year components, households and eligible jobs |
 | Indiana | 90 days | IBRC edition, POST query, state/county bases and horizons; separate regional, labor-force, household and economic products |
 | Kentucky | 90 days | KSDC population/household editions, Census anchor and estimate inputs, age/sex codebook and county codes; regional, place, projected components and eligible jobs coverage |
+| Kansas | 90 days | Official November 2006 county forecast ending in 2021, unknown estimate base, state table recovery and successor; verify official status of newer CEDBR product |
 | Maine | 90 days | April 2025 edition, 2022 base, unusual year grid, long-horizon caution, municipal suppression and eligible OSE jobs |
 | Maryland | 90 days | Workbook/catalog date mismatch; Census anchor and auxiliary inputs; separate preliminary jobs vintage; Baltimore City/county codes, regions, municipalities and projected components |
 | Massachusetts | 90 days | Vintage 2024, adjusted fractional 2020 launch, independent age/sex totals; municipal MCD identifiers and other products |
 | Michigan | 90 days | MCDA state/county editions, workbook codes, base years and scenarios; regional, place, household, components and eligible jobs coverage |
 | Minnesota | 90 days | State/county files and projected launch year |
+| Mississippi | 90 days | Preliminary May 2019 edition and 2010 launch, original methods, county/place downloads offered on request, successor and other products |
+| Missouri | 90 days | March 2008 Preferred Series and 2030 horizon, successor, 2000 anchor and 2007 estimate inputs, St. Louis city/county and five-year components |
 | New Jersey | 90 days | Older 2014–2034 series, four state models versus one county model, rounding and 2029 state/county discrepancy; labor force versus jobs |
 | New York | 90 days | Separate 2024 state and 2018 county editions, bases, horizons and scenarios; updated county release, components and economic regions |
 | Nebraska | 90 days | CPAR adopted Hauer/SEDAC product, August 2022 edition, historical base, source download and successor search |
@@ -39,11 +43,13 @@ Check sooner when an agency announces a revision or a source check fails.
 | New Hampshire | 90 days | Table 1/appendix discrepancies, Census-based boundary, municipal identifiers and five-year components |
 | New Mexico | 90 days | UNM-GPS edition, 2022 model launch, age/sex and annual exports |
 | North Carolina | 90 days | Edition, base year, and components |
+| North Dakota | 90 days | 2024 report, Census 2020 launch, state/county tables versus headline 2050 discrepancy, rounding, regions and other products |
 | Ohio | 90 days | Report 2023 edition versus overview's 2022 credit, 2020 estimate base, county controls, Ottawa discrepancy and conditional revisions |
 | Oregon | 30 days | Every regional/county edition and exclusions |
 | Rhode Island | 90 days | Revised municipal table, confirmed model base and methods, county-subdivision identities; earlier county products and released jobs |
 | Pennsylvania | 90 days | PaSDC edition, estimate labels, state components PDF; place, household and eligible jobs coverage |
 | South Carolina | 90 days | RFA vintage, totals and age-group agreement, components and eligible jobs |
+| South Dakota | 90 days | 2012 Medium Series and 2035 horizon, successor, Census 2010 launch, fractional totals and historical Shannon County identity |
 | Tennessee | 90 days | Boyd Center releases and county detail service |
 | Texas | 90 days | Edition, scenarios, and regional products |
 | Utah | 90 days | Gardner baseline and separate High/Low scenario workbooks; no base year stated |
@@ -438,6 +444,91 @@ Municipal sums differ slightly from the independently published state total;
 no values are adjusted and no county forecasts are manufactured. Earlier
 county publications are not mixed into this edition. The work program's
 planned jobs product is not evidence of a released jobs forecast.
+
+## Batch four source checks: October 2, 2026
+
+Six additions have selected population data: Idaho, Kansas, North Dakota,
+South Dakota, Mississippi and Missouri. Broader product audits remain open;
+each state's review status stays `never_reviewed`. No new households or jobs
+are loaded. The original source files and essential provenance evidence are
+archived with retrieval dates and fingerprints. Builds remain offline.
+
+**Idaho:** the [Department of Labor catalog](https://lmi.idaho.gov/data-tools/population-projections/)
+identifies a revision on August 7, 2025. Seven original workbooks supply
+495 population totals for the state and all 44 counties at annual 2024–2034
+points. The six regional files contain explicit county Total rows. Age and sex
+checks, county/region/state arithmetic and independent original worksheet XML
+cell reads confirm the selected totals. The catalog labels the entire grid
+projections and identifies American Community Survey inputs, but does not
+establish the last estimate year; `base_year` is null. Six region series and
+demographic detail remain unloaded. The workbook's Labor Force is a potential
+labor pool, not jobs. Separate occupational and industry projections are
+outside this demographic product.
+
+**Kansas:** the [Division of the Budget's January 2010 report](https://budget.kansas.gov/wp-content/uploads/fy2011-2009-2010-econ-demo-rpt.pdf),
+printed page 56, explicitly identifies the official population product
+commissioned from Moody's Economy.com in November 2006. Appendix L supplies
+annual 2010–2021 projections for all 105 counties. Its county Total Population
+rows are selected directly. The narrative mentions Kansas and all counties,
+but no statewide total appears in the appendix. It may refer to statewide
+county coverage, so state requests return `coverage_unknown` and no county sum
+becomes a state forecast. The last underlying estimate year
+is unstated, so `base_year` is null. All served points remain projections and
+the expired 2021 horizon is explicit. The [current budget page](https://budget.kansas.gov/population/)
+confirms the report was discontinued beginning with FY2012; current certified
+population files are estimates. CEDBR's newer forecast remains a separate
+candidate with unconfirmed official demographic status. Government planning
+citations and Census-directory inclusion alone do not settle that question.
+
+**North Dakota:** the [Commerce State Data Center report](https://www.medialibrary.nd.gov/assetbank-nd/assetfile/137073.pdf)
+was prepared February 6, 2024. Its summary tables on printed pages 10–11 supply
+378 totals for the state and all 53 counties: 2020 Census history and five-year
+projections through 2050. The state table's 2050 total is 957,194, repeated in
+the Both Sexes Total table on page 14. The executive summary and catalog instead
+give 957,124. Selected numeric cells were checked against rendered tables and
+independent Poppler extraction. County sums differ from the published state
+by 0, -1, 0, +1, +4, +2 and +2 persons across the seven years; both published
+values are preserved. Eight region series and age/sex detail remain unloaded.
+Page 6 gives five-year natural change and net migration, with no separate
+births/deaths series; these remain PDF-only and are not annualized.
+
+**South Dakota:** the [official labor-department page](https://dlr.sd.gov/lmic/menu_population.aspx)
+confirms it contracts with SDSU for state and county projections. The recovered
+2012 Medium Series workbook supplies the state and all 66 counties at six
+five-year points, 2010–2035. The original workbook's fractional population
+totals are retained. Source methods confirm the April 1, 2010 Census launch;
+2010 is history and 2015–2035 are projections. This older workbook uses
+independent county and state forecasts; county sums differ from the state by
+up to about 9,003 persons. No values are balanced. It also uses
+Shannon County, FIPS 46113. The source-era name and code are retained instead
+of substituting the modern Oglala Lakota County code 46102; the national
+Census 2020 reference snapshot is unchanged. That 2015 change concerns the
+name and identifier, not a new county boundary. The selected edition's age,
+source identities and 2035 endpoint are visible in metadata.
+
+**Mississippi:** the [Ole Miss State Data Center catalog](https://olemiss.edu/departments/libarts/population-studies/statedatacenterofmississippi/)
+links a seven-page state table. Recovered original methods associate it with
+the preliminary May 2, 2019 release and a 2010 Census launch. Seven statewide
+Total/Both Sexes values for 2020–2050 are loaded; all are projections,
+including 2020. Original rendered tables independently confirm 3,066,382 in
+2020 and 3,064,588 in 2050. County and place products are offered on request
+and remain `not_loaded`; the state value is never used for either geography.
+No agency correspondence was needed or sent.
+
+**Missouri:** the [Office of Administration catalog](https://budplan.oa.mo.gov/demographic-info/population-projections)
+still serves the March 2008 Preferred Series through 2030. Its original XLS
+supplies 812 totals for the state, all 114 counties and independent St. Louis
+city at exact five-year points from 2000. Every loaded cell agrees with the
+separate three-page county PDF; the state age/components PDF independently
+confirms the statewide totals and March 2008 edition. The 2024 upload folder
+does not identify a new forecast. [Official methods](https://budplan.oa.mo.gov/demographic-info/population-projections/methodology)
+launch from corrected 2000 Census counts but calibrate migration with estimates
+through 2007, so `base_year` is 2007. Methods explicitly describe 2005 as a
+projection; it keeps that label despite preceding the last estimate input.
+No 2007 point is generated. St. Louis city and county stay distinct, and the
+published county totals exactly equal the state in every year. Five-year
+components and demographic detail are published but not loaded. The old
+vintage and short remaining horizon are prominent in source notes.
 
 ## Reading the status
 

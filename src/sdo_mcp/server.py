@@ -235,8 +235,9 @@ def get_forecast(
     `state` is a 2-letter code; `geo_level` uses each product's published
     geography: 'state', 'county', RI's 'county_subdivision' (cities/towns),
     CT's historical 'county' or separate 'cog', and TX's 'msa', 'cog', and
-    'txdot_district' (decade totals). NY's 'economic_region' data is published
-    but remains unloaded. County subdivisions use ten-digit Census
+    'txdot_district' (decade totals). ID, ND and NY 'economic_region' data is
+    published but remains unloaded. SD's 2012 series retains historical
+    Shannon County (46113). County subdivisions use ten-digit Census
     GEOIDs, distinct from Census places. `geo`
     accepts a FIPS code, a bare TDC id for TX COG/TxDOT levels ('18'), or a
     name (unknown or ambiguous names return candidates, never a guess);
@@ -244,7 +245,7 @@ def get_forecast(
     only applies where the selected product publishes scenarios (TX
     Mid/High/Low; AZ and FL Low/Medium/High; WA county Low/Medium/High;
     UT Baseline/High/Low, with High/Low published but not loaded;
-    NY state Middle/High/Low; NJ state projection models) and
+    NY state Middle/High/Low; NJ state projection models; SD Medium Series) and
     defaults to the state's recommended one. Every point is flagged estimate
     or projection; if the state publishes nothing for the request, a
     structured refusal explains why and points to the closest published

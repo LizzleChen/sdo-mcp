@@ -1,0 +1,34 @@
+[
+ {
+  "file": "state_population_2020-2050_may2019.pdf",
+  "source": "https://www.dropbox.com/scl/fi/z6fsf9i8vdd4kya20eqzt/State-of-Mississippi-Population-Projections-2020-2050.pdf?dl=1&rlkey=j2au553lzdzbtu0mdf7njflt7",
+  "retrieved_at": "2026-10-02",
+  "sha256": "160a81f5ae12cfd5164eeadf7500c329924525eabd04e07fc0decdb187bd9d0d",
+  "records": 7,
+  "note": "Original publisher bytes. Current linked table is byte-identical to archived September 2019 original; archived methods establish May 2, 2019 preliminary edition and 2010 launch. County/place projections on request are not loaded."
+ },
+ {
+  "file": "projection_methods_may2019.pdf",
+  "source": "https://web.archive.org/web/20190917012609id_/https://sdc.olemiss.edu/wp-content/uploads/sites/143/2019/05/Mississippi-Population-Projection-Methodology-2.pdf",
+  "retrieved_at": "2026-10-02",
+  "sha256": "9cad5a3d1a148c86497b10e71c24f4ddf39510ca97086b8cb8ecd6902a3ccb5e",
+  "records": null,
+  "note": "Original publisher bytes. Current linked table is byte-identical to archived September 2019 original; archived methods establish May 2, 2019 preliminary edition and 2010 launch. County/place projections on request are not loaded."
+ },
+ {
+  "file": "projection_catalog_2026-10-02.html",
+  "source": "https://olemiss.edu/departments/libarts/population-studies/statedatacenterofmississippi/",
+  "retrieved_at": "2026-10-02",
+  "sha256": "56b3ffde9f991464faf0006b6fa1234cb5a80579397a5411e5495968ec1d640b",
+  "records": null,
+  "note": "Original publisher bytes. Current linked table is byte-identical to archived September 2019 original; archived methods establish May 2, 2019 preliminary edition and 2010 launch. County/place projections on request are not loaded."
+ },
+ {
+  "file": "projection_catalog_archived2019.html",
+  "source": "https://web.archive.org/web/20190501000000id_/http://sdc.olemiss.edu/population-projections/",
+  "retrieved_at": "2026-10-02",
+  "sha256": "68fc156db5f4347e8e0a7ffcba61e10daa76d768bf981af8e1bc77ad324c008d",
+  "records": null,
+  "note": "Original publisher bytes. Current linked table is byte-identical to archived September 2019 original; archived methods establish May 2, 2019 preliminary edition and 2010 launch. County/place projections on request are not loaded."
+ }
+]

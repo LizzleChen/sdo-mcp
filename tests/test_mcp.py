@@ -85,6 +85,43 @@ def test_installed_tools_over_mcp(installed_server, protocol):
                     assert {"VA", "WI", "UT", "IN", "MI", "PA", "KY", "IL", "MD"} <= set(summary["states"])
                     assert {"AK", "HI", "ME", "NE", "NH", "OH", "NV"} <= set(summary["states"])
                     assert {"CT", "MA", "NJ", "NY", "RI"} <= set(summary["states"])
+                    assert {"ID", "KS", "MO", "MS", "ND", "SD"} <= set(summary["states"])
+                    assert all(summary["states"][state]["data_loaded"] for state in ("ID", "KS", "MO", "MS", "ND", "SD"))
+                    for state, level, geo, year, value, base in (
+                        ("ID", "state", "ID", 2034, 2364544, None),
+                        ("KS", "county", "Greeley", 2021, 873, None),
+                        ("MO", "county", "Adair", 2005, 24690, 2007),
+                        ("MS", "state", "MS", 2050, 3064588, 2010),
+                        ("ND", "state", "ND", 2050, 957194, 2020),
+                        ("SD", "county", "Shannon", 2035, 19755.46602925523, 2010),
+                    ):
+                        forecast = await call("get_forecast", {
+                            "state": state, "geo_level": level, "geo": geo,
+                            "variable": "population", "start_year": year, "end_year": year,
+                        }, "ok")
+                        assert forecast["series"] == [{"year": year, "value": value, "datatype": "projection"}]
+                        assert forecast["source"]["base_year"] == base
+                        assert forecast["source"]["retrieved_at"]
+                    await call("get_forecast", {
+                        "state": "KS", "geo_level": "state", "geo": "KS", "variable": "population",
+                    }, "coverage_unknown")
+                    await call("get_forecast", {
+                        "state": "MS", "geo_level": "county", "geo": "Hinds", "variable": "population",
+                    }, "not_loaded")
+                    await call("get_forecast", {
+                        "state": "KS", "geo_level": "county", "geo": "Greeley", "variable": "population",
+                        "start_year": 2026, "end_year": 2030,
+                    }, "empty_range")
+                    await call("get_forecast", {
+                        "state": "SD", "geo_level": "county", "geo": "46102", "variable": "population",
+                    }, "error", True)
+                    await call("get_components", {
+                        "state": "ND", "geo": "ND",
+                    }, "pdf_only")
+                    for state in ("ID", "KS", "MO", "MS", "ND", "SD"):
+                        described = await call("describe_source", {"state": state})
+                        assert described["sources_loaded"]
+                        assert described["review"]["status"] == "never_reviewed"
                     for state, level, geo, year, value, base, datatype in (
                         ("CT", "county", "Fairfield", 2040, 905219, 2010, "projection"),
                         ("CT", "cog", "Southeastern CT", 2040, 303785, 2010, "projection"),

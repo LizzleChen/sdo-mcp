@@ -1,0 +1,82 @@
+[
+ {
+  "file": "Population_Statewide_revised2025-08-07.xlsx",
+  "source": "https://lmi.idaho.gov/wp-content/uploads/2025/09/Population_Statewide.xlsx",
+  "retrieved_at": "2026-10-02",
+  "sha256": "bc96b06255d52f3f80ef937ecbd350493685e65af14732131e4e0f5dc2a26796",
+  "records": 11,
+  "note": "Original publisher bytes. August 7, 2025 catalog revision; workbook upload path is not vintage. Population Total rows selected; labor force is not jobs."
+ },
+ {
+  "file": "Population_Northern_revised2025-08-07.xlsx",
+  "source": "https://lmi.idaho.gov/wp-content/uploads/2025/09/Population_Northern.xlsx",
+  "retrieved_at": "2026-10-02",
+  "sha256": "72b4d2dd6d2f8a29b8fdd9f7f0f3fd3000d306df071edd687c4221ccc2620eab",
+  "records": 55,
+  "note": "Original publisher bytes. August 7, 2025 catalog revision; workbook upload path is not vintage. Population Total rows selected; labor force is not jobs."
+ },
+ {
+  "file": "Population_North-central_revised2025-08-07.xlsx",
+  "source": "https://lmi.idaho.gov/wp-content/uploads/2025/09/Population_North-central.xlsx",
+  "retrieved_at": "2026-10-02",
+  "sha256": "518830ae0b2c39586853560329b616f4e1bbf45709703639cedc36e90378af85",
+  "records": 55,
+  "note": "Original publisher bytes. August 7, 2025 catalog revision; workbook upload path is not vintage. Population Total rows selected; labor force is not jobs."
+ },
+ {
+  "file": "Population_Southwestern_revised2025-08-07.xlsx",
+  "source": "https://lmi.idaho.gov/wp-content/uploads/2025/09/Population_Southwestern.xlsx",
+  "retrieved_at": "2026-10-02",
+  "sha256": "f100655b3e4d20d397a3a4f8ee19f3f25a0ef66419c4567425bec9a32879c2a2",
+  "records": 110,
+  "note": "Original publisher bytes. August 7, 2025 catalog revision; workbook upload path is not vintage. Population Total rows selected; labor force is not jobs."
+ },
+ {
+  "file": "Population_South-central_revised2025-08-07.xlsx",
+  "source": "https://lmi.idaho.gov/wp-content/uploads/2025/09/Population_South-central.xlsx",
+  "retrieved_at": "2026-10-02",
+  "sha256": "4a23643ef4d3efc1f061d9f65675502db5820b14a3031728f6dca9d52d6655b2",
+  "records": 88,
+  "note": "Original publisher bytes. August 7, 2025 catalog revision; workbook upload path is not vintage. Population Total rows selected; labor force is not jobs."
+ },
+ {
+  "file": "Population_Southeastern_revised2025-08-07.xlsx",
+  "source": "https://lmi.idaho.gov/wp-content/uploads/2025/09/Population_Southeastern.xlsx",
+  "retrieved_at": "2026-10-02",
+  "sha256": "1f8568535fa08adc7a8ad78c84225e9940f2a42c4e969dea6faef594300c968a",
+  "records": 77,
+  "note": "Original publisher bytes. August 7, 2025 catalog revision; workbook upload path is not vintage. Population Total rows selected; labor force is not jobs."
+ },
+ {
+  "file": "Population_Eastern_revised2025-08-07.xlsx",
+  "source": "https://lmi.idaho.gov/wp-content/uploads/2025/09/Population_Eastern.xlsx",
+  "retrieved_at": "2026-10-02",
+  "sha256": "10d59208096eb52e2c9e6c1f43f7ce57ea455293226cc4031eb390494e34ca50",
+  "records": 99,
+  "note": "Original publisher bytes. August 7, 2025 catalog revision; workbook upload path is not vintage. Population Total rows selected; labor force is not jobs."
+ },
+ {
+  "file": "population_catalog_2026-10-02.html",
+  "source": "https://lmi.idaho.gov/data-tools/population-projections/",
+  "retrieved_at": "2026-10-02",
+  "sha256": "21d9405cb9d141ae9ee5cbc9c1f45a6e6f8d324250840989298a074fc205047f",
+  "records": null,
+  "note": "Original publisher bytes. August 7, 2025 catalog revision; workbook upload path is not vintage. Population Total rows selected; labor force is not jobs."
+ },
+ {
+  "file": "population_forecast_methodology_2017.pdf",
+  "source": "https://lmi.idaho.gov/wp-content/uploads/publications/2017/PopulationProjections/Population-Forecast-Methodology.pdf?ver=2017-05-31-171419-813",
+  "retrieved_at": "2026-10-02",
+  "sha256": "bee2beff2546a8eda6822139df6b19c3301abda39513545c794a5df187683fd0",
+  "records": null,
+  "note": "Original publisher bytes. August 7, 2025 catalog revision; workbook upload path is not vintage. Population Total rows selected; labor force is not jobs."
+ },
+ {
+  "file": "industry_occupation_catalog_2026-10-02.html",
+  "source": "https://lmi.idaho.gov/data-tools/occupational-industry-projections/",
+  "retrieved_at": "2026-10-02",
+  "sha256": "c42bf2c5bafc14c4864c186589bb06c305c2655a1638c484aa5526c1ac6a5e7d",
+  "records": null,
+  "note": "Original publisher bytes. August 7, 2025 catalog revision; workbook upload path is not vintage. Population Total rows selected; labor force is not jobs."
+ }
+]
