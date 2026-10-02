@@ -1,0 +1,26 @@
+[
+ {
+  "file": "population_2020-2070_march2023.pdf",
+  "source": "https://www.okcommerce.gov/wp-content/uploads/Oklahoma-State-and-County-Population-Projections-Through-2070.pdf",
+  "retrieved_at": "2026-10-02",
+  "sha256": "6469b24c425faa66b968b3480763e43858a70fec9469f54779840cd7273674ce",
+  "records": 780,
+  "note": "Original current publisher bytes. March2023 state/all77county 2025-2070 tables checked against rendered original and all780independent Poppler cells. Old2012archival product is not selected."
+ },
+ {
+  "file": "demographics_catalog_2026-10-02.html",
+  "source": "https://www.okcommerce.gov/doing-business/data-reports/census-2030-demographics/",
+  "retrieved_at": "2026-10-02",
+  "sha256": "7d1e0810ccc800c84d31809203a389fbd948f5ad25692749a96b009ce92465bf",
+  "records": null,
+  "note": "Original current publisher bytes. March2023 state/all77county 2025-2070 tables checked against rendered original and all780independent Poppler cells. Old2012archival product is not selected."
+ },
+ {
+  "file": "publisher_terms_2026-10-02.html",
+  "source": "https://www.okcommerce.gov/privacy-policy-legal-notice/",
+  "retrieved_at": "2026-10-02",
+  "sha256": "0ac906df0df954a8496d0aff0b2a5aa7c12155af7167e04bc8fa7e23f3603725",
+  "records": null,
+  "note": "Original current publisher bytes. March2023 state/all77county 2025-2070 tables checked against rendered original and all780independent Poppler cells. Old2012archival product is not selected."
+ }
+]

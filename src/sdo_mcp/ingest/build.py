@@ -28,6 +28,9 @@ from . import (
     ak, al, az, ca, co, ct, de, fl, ga, hi, id, il, ks, ky, ma, md, me, mi,
     mn, mo, ms, nc, nd, ne, nh, nj, nm, nv, ny, oh, pa, ri, sc, sd, seed,
     tn, tx, ut, va, wa, wi, wy,
+    ia, wv,
+    ar, la,
+    ok, vt,
 )
 
 # Oregon and Indiana have postal codes that are reserved Python words.
@@ -42,6 +45,9 @@ ADAPTERS: list = [
     ak, hi, me, ne, nh, nv, oh,
     ct, ri, ma, ny, nj,
     id, ks, mo, ms, nd, sd,
+    ia, wv,
+    ar, la,
+    ok, vt,
 ]
 
 

@@ -7,10 +7,14 @@ from sdo_mcp import server, store
 from sdo_mcp.ingest import seed
 
 
+FIFTY_STATES = set("""AK AL AR AZ CA CO CT DE FL GA HI IA ID IL IN KS KY LA MA MD
+ME MI MN MO MS MT NC ND NE NH NJ NM NV NY OH OK OR PA RI SC SD TN TX UT VA VT
+WA WI WV WY""".split())
+
+
 def test_list_states_covers_the_covered_states():
     res = server.list_states()
-    # The six pilots plus the expansion states ingested so far.
-    assert {"CO", "TX", "CA", "TN", "GA", "FL", "NC", "MN", "AZ", "WA", "OR", "VA", "WI", "UT", "IN", "MI", "PA", "KY", "IL", "MD"} <= set(res["states"])
+    assert set(res["states"]) == set(seed.COVERED_STATES) == FIFTY_STATES
     tx = res["states"]["TX"]
     assert tx["variables"]["households"]["county"]["status"] == "not_published"
     assert tx["scenarios"] == ["mid", "high", "low"]
@@ -81,7 +85,43 @@ def test_describe_source():
     res = server.describe_source("co")
     assert "Department of Local Affairs" in res["agency"]
     assert res["sources_loaded"] is None or isinstance(res["sources_loaded"], list)
-    assert server.describe_source("AR")["status"] == "error"
+    assert server.describe_source("ZZ")["status"] == "error"
+
+
+def test_recognized_state_without_data_or_publication_findings(tmp_path, monkeypatch):
+    p = tmp_path / "metadata_only.sqlite"
+    conn = store.connect(p, create=True)
+    try:
+        store.init_db(conn)
+        seed.load(conn)
+        conn.execute("DELETE FROM coverage WHERE state='IA'")
+        conn.commit()
+        assert store.resolve_geo(conn, "IA", "county", "Polk")["geo_id"] == "19153"
+    finally:
+        conn.close()
+    monkeypatch.setenv("SDO_DB", str(p))
+    state = server.list_states()["states"]["IA"]
+    assert state["data_loaded"] is False and state["variables"] == {}
+    source = server.describe_source("IA")
+    assert source["name"] == "Iowa" and source["sources_loaded"] is None
+    assert source["variables"] == {} and source["review"]["status"] == "never_reviewed"
+    assert server.get_forecast("IA", "county", "Polk", "population")["status"] == "coverage_unknown"
+    assert server.get_components("IA", "Polk")["status"] == "coverage_unknown"
+
+
+def test_national_catalog_distinguishes_montana_unresolved_source_from_loaded_forecasts():
+    states = server.list_states()["states"]
+    population_loaded = {state for state, meta in states.items()
+                         if any(product["load_status"] == "loaded" for product in meta["variables"].get("population", {}).values())}
+    assert population_loaded == FIFTY_STATES - {"MT"}
+    assert states["MT"]["data_loaded"] is False and states["MT"]["variables"] == {}
+    source = server.describe_source("MT")
+    assert source["name"] == "Montana" and source["sources_loaded"] is None
+    assert "redistribution" in source["license"]
+    for variable in ("population", "households", "employment"):
+        assert server.get_forecast("MT", "county", "Yellowstone", variable)["status"] == "coverage_unknown"
+    assert server.get_components("MT", "Yellowstone")["status"] == "coverage_unknown"
+    assert source["review"]["status"] == "never_reviewed"
 
 
 def test_unknown_variable_names_the_right_tool():

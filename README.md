@@ -5,8 +5,52 @@ households, and employment where the state office publishes it. The server
 reads a local SQLite database and does not download data while answering a
 question.
 
-Coverage now includes **43 recognized states, all with loaded population
-projections**. Batch four adds **Idaho, Kansas, North Dakota, South Dakota,
+Coverage now includes **50 recognized states, 49 with loaded population
+projections**. Batch five adds **Arkansas, Iowa, Louisiana, Oklahoma, Vermont,
+and West Virginia**, with 9,353 published population points. Montana is
+recognized with source findings, but no forecast is loaded while its current
+commercial source's edition, redistribution permission and complete export
+remain unresolved. Montana requests return `coverage_unknown`.
+
+| State | Published points served | Geography coverage |
+| --- | --- | --- |
+| Arkansas | 1980–2013 estimates; annual 2014–2065 projections from the recovered February 2015 edition | State and all 75 counties; original fractional forecast values |
+| Iowa | 1980 Census history; five-year projections 1985–2000 from the archival July 1984 state-demographer report | State and all 99 counties; the entire forecast horizon is past |
+| Louisiana | 2005 estimates; five-year projections 2010–2030 from the state-commissioned 2009 LSU edition | State and all 64 parishes, Middle/Low/High migration scenarios; estimate inputs differ by parish |
+| Oklahoma | Five-year projections 2025–2070 from Commerce's March 2023 report; last estimate input unconfirmed | State and all 77 counties; ambiguous historical columns remain unloaded |
+| Vermont | State: 2030/2040/2050 from the adopted March 2025 housing assessment; counties: 2010 Census history and 2020/2030 projections from August 2013 | Newer statewide current-trends population; all 14 counties with older A/B migration scenarios |
+| West Virginia | 2020 Census history; five-year projections 2025–2040, October 2022 edition | State and all 55 counties; every selected total matches the companion age/sex tables |
+| Montana | No selected serveable edition | Metadata only; current eREMI authority, rights and export checks remain open |
+
+These are source editions, including older forecasts, rather than a promise of
+current forecasts for every state. Iowa ends in 2000; its newer December 1989
+state-agency edition remains unrecovered. Arkansas and Louisiana use archived
+originals whose successor searches remain open. Past projection years retain
+projection labels. Oklahoma, Vermont's newer state product and West Virginia
+have a null `base_year` because the last underlying estimate input is unstated.
+No year is interpolated and no forecast is extended beyond its published horizon.
+
+Vermont's state totals sum 18 exhaustive published age cells, checked against
+the original chart and an independent extraction. Its state and county editions
+have different scenario meanings, defaults and horizons. `list_states` exposes
+`scenario_settings_by_geo` for these products. For example:
+`get_forecast(state="VT", geo_level="state", geo="VT", variable="population")`
+selects `current_trends`; a county request defaults to `b`, this server's choice
+for the older 2000–2010 migration assumptions. The publisher names no preferred
+county scenario. Housing targets are not served as household forecasts.
+Louisiana's consistent Middle default is also a server choice; it does not
+splice the publisher's geographically varying scenario recommendations.
+
+Published source discrepancies remain visible. Louisiana's Jefferson Davis
+2030 Middle workbook value is 29,720, while its report gives 29,190. West
+Virginia's Roane 2035 combined total is 12,173, one less than its sex totals.
+Independent county/state rounding differences in Iowa and Oklahoma remain
+unchanged. No household or jobs series is added in this batch. Municipal,
+regional and demographic detail remains deferred or unverified as documented
+in the [source checks and limitations](docs/source-reviews.md). Broad product
+reviews remain `never_reviewed`.
+
+Batch four added **Idaho, Kansas, North Dakota, South Dakota,
 Mississippi, and Missouri**, with 3,354 published population points. Kansas's
 selected official county forecast ends in 2021; loading an old forecast does
 not extend its horizon.
@@ -320,4 +364,4 @@ or upload them.
 Source review schedules and publication-versus-loading status are available
 through `list_states`, `describe_source`, and the local report command:
 `uv run python -m sdo_mcp.monitoring --database data/sdo.sqlite`.
-See [source review instructions](docs/source-reviews.md) for all 43 states.
+See [source review instructions](docs/source-reviews.md) for all 50 states.

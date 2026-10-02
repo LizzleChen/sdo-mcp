@@ -1,0 +1,10 @@
+[
+ {
+  "file": "population_catalog_2026-10-02.html",
+  "source": "https://commerce.mt.gov/Data-Research/People-Housing/Population",
+  "retrieved_at": "2026-10-02",
+  "sha256": "bce1210af4dcab4477f4ee40f3ceb09525d17d291253584c70fc19ccd42d4424",
+  "records": null,
+  "note": "Primary Commerce catalog evidence only: identifies eREMI as third-party source and state/county population projection dashboard. No commercial projection data downloaded or ingested; specific-edition official adoption, redistribution license and complete reproducible export remain unresolved."
+ }
+]

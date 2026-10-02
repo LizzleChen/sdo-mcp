@@ -1,7 +1,7 @@
 # Source reviews and loading status
 
 Run `uv run python -m sdo_mcp.monitoring --database data/sdo.sqlite`
-for a JSON report of all 43 states. Omit `--database` to inspect the installed
+for a JSON report of all 50 states. Omit `--database` to inspect the installed
 copy (or the file selected by `SDO_DB`). The command reads local files only.
 It neither checks websites nor changes the database. Save its output when
 preparing a data release. `list_states` and `describe_source` expose the same
@@ -16,6 +16,7 @@ Check sooner when an agency announces a revision or a source check fails.
 | --- | --- | --- |
 | Alabama | 90 days | CBER file edition, displayed rounding, households and eligible jobs |
 | Alaska | 90 days | September 2026 state scenarios, county series, 2025 estimate boundary, borough/census-area identifiers, components and eligible jobs/households |
+| Arkansas | 90 days | Recovered February 2015 time-series edition, 2013 estimate boundary, fractional values, confidence bounds, successor and separate cohort/regional products |
 | Arizona | 90 days | Three scenarios and components |
 | California | 30 days | Population, households, jobs; replaced files |
 | Colorado | 30 days | Population, households, jobs; autumn updates |
@@ -27,8 +28,10 @@ Check sooner when an agency announces a revision or a source check fails.
 | Idaho | 90 days | Revised August 2025 workbooks, ACS inputs and unknown last estimate year, county/region grids, labor force versus jobs and other products |
 | Illinois | 90 days | IDPH edition/release, April/July base columns and Table 1/Table 3 differences; Chicago, five-year components, households and eligible jobs |
 | Indiana | 90 days | IBRC edition, POST query, state/county bases and horizons; separate regional, labor-force, household and economic products |
+| Iowa | 90 days | Archival July 1984 state-demographer forecast ending in 2000, original December 1989 or later successor, checked OCR, independent rounding and deferred regional/age detail |
 | Kentucky | 90 days | KSDC population/household editions, Census anchor and estimate inputs, age/sex codebook and county codes; regional, place, projected components and eligible jobs coverage |
 | Kansas | 90 days | Official November 2006 county forecast ending in 2021, unknown estimate base, state table recovery and successor; verify official status of newer CEDBR product |
+| Louisiana | 90 days | State-commissioned 2009 edition, 2005 versus storm-adjusted 2007 inputs, omitted 2009 revisions, migration scenario advice, Jefferson Davis XLS/report mismatch and successor |
 | Maine | 90 days | April 2025 edition, 2022 base, unusual year grid, long-horizon caution, municipal suppression and eligible OSE jobs |
 | Maryland | 90 days | Workbook/catalog date mismatch; Census anchor and auxiliary inputs; separate preliminary jobs vintage; Baltimore City/county codes, regions, municipalities and projected components |
 | Massachusetts | 90 days | Vintage 2024, adjusted fractional 2020 launch, independent age/sex totals; municipal MCD identifiers and other products |
@@ -36,6 +39,7 @@ Check sooner when an agency announces a revision or a source check fails.
 | Minnesota | 90 days | State/county files and projected launch year |
 | Mississippi | 90 days | Preliminary May 2019 edition and 2010 launch, original methods, county/place downloads offered on request, successor and other products |
 | Missouri | 90 days | March 2008 Preferred Series and 2030 horizon, successor, 2000 anchor and 2007 estimate inputs, St. Louis city/county and five-year components |
+| Montana | 90 days | Current eREMI edition, official adoption, redistribution permission and complete reproducible export; commercial scope and additional products |
 | New Jersey | 90 days | Older 2014–2034 series, four state models versus one county model, rounding and 2029 state/county discrepancy; labor force versus jobs |
 | New York | 90 days | Separate 2024 state and 2018 county editions, bases, horizons and scenarios; updated county release, components and economic regions |
 | Nebraska | 90 days | CPAR adopted Hauer/SEDAC product, August 2022 edition, historical base, source download and successor search |
@@ -45,6 +49,7 @@ Check sooner when an agency announces a revision or a source check fails.
 | North Carolina | 90 days | Edition, base year, and components |
 | North Dakota | 90 days | 2024 report, Census 2020 launch, state/county tables versus headline 2050 discrepancy, rounding, regions and other products |
 | Ohio | 90 days | Report 2023 edition versus overview's 2022 credit, 2020 estimate base, county controls, Ottawa discrepancy and conditional revisions |
+| Oklahoma | 90 days | March 2023 Commerce report, Census anchor versus unknown last estimate input, historical-column exclusions, county/state rounding, spelling/footer issues and successor |
 | Oregon | 30 days | Every regional/county edition and exclusions |
 | Rhode Island | 90 days | Revised municipal table, confirmed model base and methods, county-subdivision identities; earlier county products and released jobs |
 | Pennsylvania | 90 days | PaSDC edition, estimate labels, state components PDF; place, household and eligible jobs coverage |
@@ -53,8 +58,10 @@ Check sooner when an agency announces a revision or a source check fails.
 | Tennessee | 90 days | Boyd Center releases and county detail service |
 | Texas | 90 days | Edition, scenarios, and regional products |
 | Utah | 90 days | Gardner baseline and separate High/Low scenario workbooks; no base year stated |
+| Vermont | 90 days | Adopted March 2025 state chart versus August 2013 county A/B product, separate defaults/bases/horizons, chart extraction, municipal identifiers and housing targets versus household counts |
 | Virginia | 90 days | Cooper Center population workbook, methodology, independent-city rows, and separate town product |
 | Washington | 90 days | State, GMA population, GMA components, economic PDF |
+| West Virginia | 90 days | October 2022 BBER tables, missing technical methods/last estimate input, Census reference-date conflict, Roane sex-total discrepancy, state use and successor |
 | Wisconsin | 90 days | DOA population and household workbooks; separate subcounty products and household edition date |
 | Wyoming | 90 days | EAD edition, 2023 estimate boundary, municipal ratio method, household and eligible jobs coverage |
 
@@ -64,6 +71,13 @@ the manifests retain each file's retrieval date and fingerprint.
 
 | State and agency evidence | Loaded coverage in this checkout | Known limits and uncertainty |
 | --- | --- | --- |
+| [Arkansas — UALR/Arkansas State Data Center](https://youraedi.com/arkansas-state-data-center/) | Recovered February 20, 2015 edition: state/all 75 counties, 1980–2013 History estimates and annual 2014–2065 Point forecasts (6,536 totals), base 2013 | Catalog Vintage 2010 is the Census anchor. Original fractional forecasts retained; fitted values/confidence bounds are distinct and deferred. No complete newer statewide original recovered; regional/two-county products do not fill that gap |
+| [Iowa — original Office of the State Demographer report](https://publications.iowa.gov/21195/) | Archival July 1984: state/all 99 counties, 1980 Census history and 1985/1990/1995/2000 projections (500 totals), base 1980 | Entire horizon is past. Original December 1989 or later successor remains unrecovered. All 500 cells visually checked and independently extracted; source OCR repairs explicit. County/state differences retained. Current federal/commercial links are not substituted; Woods & Poole rights are separate |
+| [Louisiana — archived official projection catalog](https://web.archive.org/web/20180809115850id_/http://louisiana.gov/Explore/Population_Projections/) | State-commissioned LSU 2009 edition: state/all 64 parishes, 2005 estimates and five-year 2010–2030 projections, three migration scenarios (1,170 totals) | Source base 2007 for state/22 storm-adjusted parishes, 2005 for 42 others. Missing 2009 Census revisions and stale horizon are disclosed. Middle server default does not splice geographic publisher advice; Low/High migration names are not ordered population bounds. Jefferson Davis 2030 Middle XLS 29,720 versus report 29,190 retained; original government workbook cells match archive |
+| [Montana — Commerce population catalog](https://commerce.mt.gov/Data-Research/People-Housing/Population) | Metadata only; no population, household, jobs or component observations | Current catalog labels eREMI third-party. Prior official use of a Montana-specific 2019 product does not identify the current edition or grant redistribution. Complete export, edition, estimate boundary and rights unresolved. No commercial numeric snapshot or empty adapter; all unresolved requests remain coverage_unknown |
+| [Oklahoma — Commerce report](https://www.okcommerce.gov/doing-business/data-reports/census-2030-demographics/) | March 2023: published state/all 77 county five-year totals 2025–2070 (780 totals); no generated base row | Last underlying estimate input unstated; base null. Operational Census 2020 anchor conflicts with generic Census 2010 methods. Ambiguous 2000–2020 columns and separate annual estimates not loaded. Original county/state differences up to seven persons retained. Restricted old 2012 library item excluded. Age/sex narrative promises do not establish complete future tables |
+| [Vermont — ACCD/VHFA adopted housing assessment](https://accd.vermont.gov/housing/plans-data-rules/needs-assessment) | Newer state: March 10, 2025 appendix, prepared August–October 2024, 2030/2040/2050 totals 666,640/667,903/644,731, base null. Older counties: August 2013, all 14, 2010 history and 2020/2030 A/B projections, base 2010 (87 totals) | New state totals normalize exhaustive 18-age chart labels, visually and independently checked; original chart, extract and recipe archived. State current_trends and county a/b have separate defaults and source records; old county controls do not reconcile to newer state product. B is a server choice. Towns/cities/grants/gores remain not_loaded pending identities; housing targets are not household-count forecasts |
+| [West Virginia — WVU BBER catalog](https://business.wvu.edu/research-outreach/bureau-of-business-and-economic-research/data) | October 2022: state/all 55 counties, 2020 Census history and July five-year projections 2025–2040 (280 totals) | State HCA directs planning projection users to this source. Last estimate input/technical methods unestablished; base null. Summary combined/female headers print July 2020, but detailed tables explicitly say April Census-2020; counts match exactly. Roane 2035 combined 12,173 versus sex sum 12,174 retained. County-name typos explicitly mapped; all summary/detail totals and county/state sums checked |
 | [Alaska — DOLWD Research and Analysis](https://live.laborstats.alaska.gov/article/alaska-population-projections) | September 2026: 2025 estimate and annual state Low/Middle/High projections through 2055; all 30 boroughs/census areas at seven five-year points (303 population totals) | County series follows Middle only. Every loaded total agrees with report Tables 1.4/3.1. Components, regions and demographic detail are archived but not served; eligible demographer jobs, households and places remain unverified |
 | [Hawaii — DBEDT](https://dbedt.hawaii.gov/economic/economic-forecast/long-range-projections/) | April 2024: 2020 resident population estimate and 2030/2040/2050 projections; 2022 civilian total jobs estimate and the same projection years. State and four county groups (40 totals) | Maui/Kalawao is combined as `hi-maui-kalawao`; separate county requests are refused. Resident population includes military but excludes visitors; jobs exclude military and include proprietors. Workbook population decimals are retained; combined 2030 population differs from the PDF. No household forecast is established |
 | [Maine — Office of the State Economist](https://www11.maine.gov/dafs/economist/demographic-projections) | April 2025: state and all 16 counties at 2022/2027/2032/2037/2042, with 2022 estimates (85 population totals) | Fractional workbook values agree with the rounded PDF. Publisher discourages use beyond 2032. Municipal forecasts are archived but not loaded; suppressed small places and county-subdivision identifiers need further work. Other products remain unverified |

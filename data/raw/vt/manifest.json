@@ -1,0 +1,50 @@
+[
+ {
+  "file": "population_2010-2030_aug2013.pdf",
+  "source": "https://outside.vermont.gov/agency/ACCD/ACCD_Web_Docs/CD/CPR/Planning-Your-Towns-Future/ACCD-DED-VTPopulationProjections-2010-2030.pdf",
+  "retrieved_at": "2026-10-02",
+  "sha256": "6e46daf539cad7362a557b246f4ef4f134ce22f55d329f619ffe988380d6cd1a",
+  "records": 84,
+  "note": "Original publisher bytes except explicitly derived54-cell agechart extract and extractionrecipe. August2013 county A/B totals; March10,2025 adopted state population agechart. All54labels match visual inspection and independent localAppleVisionOCR; all84county cells match independentPoppler extraction. No housingtargets served as householdcounts."
+ },
+ {
+  "file": "planning_data_catalog_2026-10-02.html",
+  "source": "https://accd.vermont.gov/community-development/town-future/data",
+  "retrieved_at": "2026-10-02",
+  "sha256": "41e2d181a86a3a7c946890f837037f8c164cfef8a13927540dba16980c23aa15",
+  "records": null,
+  "note": "Original publisher bytes except explicitly derived54-cell agechart extract and extractionrecipe. August2013 county A/B totals; March10,2025 adopted state population agechart. All54labels match visual inspection and independent localAppleVisionOCR; all84county cells match independentPoppler extraction. No housingtargets served as householdcounts."
+ },
+ {
+  "file": "housing_targets_appendix_2025-2029.pdf",
+  "source": "https://outside.vermont.gov/agency/ACCD/ACCD_Web_Docs/Housing/Housing-Needs-Assessment/2025-2029/Housing-Targets-Appendix.pdf",
+  "retrieved_at": "2026-10-02",
+  "sha256": "d64cf842ffa8b166f005a86c3fce04cd308ec916008923edf0fb7b73ba615b6e",
+  "records": 3,
+  "note": "Original publisher bytes except explicitly derived54-cell agechart extract and extractionrecipe. August2013 county A/B totals; March10,2025 adopted state population agechart. All54labels match visual inspection and independent localAppleVisionOCR; all84county cells match independentPoppler extraction. No housingtargets served as householdcounts."
+ },
+ {
+  "file": "housing_catalog_2026-10-02.html",
+  "source": "https://accd.vermont.gov/housing/plans-data-rules/needs-assessment",
+  "retrieved_at": "2026-10-02",
+  "sha256": "2ed82b87e00227588da3e482de245233a918776e3eac64453a8841c1701bccc9",
+  "records": null,
+  "note": "Original publisher bytes except explicitly derived54-cell agechart extract and extractionrecipe. August2013 county A/B totals; March10,2025 adopted state population agechart. All54labels match visual inspection and independent localAppleVisionOCR; all84county cells match independentPoppler extraction. No housingtargets served as householdcounts."
+ },
+ {
+  "file": "state_age_chart_2030-2050_march2025.json",
+  "source": "https://outside.vermont.gov/agency/ACCD/ACCD_Web_Docs/Housing/Housing-Needs-Assessment/2025-2029/Housing-Targets-Appendix.pdf#page=16",
+  "retrieved_at": "2026-10-02",
+  "sha256": "eaa8cfa981697cc28a95543077edfa86563e9f073f22e6ae2c8bdc6d6f383b9d",
+  "records": 54,
+  "note": "Original publisher bytes except explicitly derived54-cell agechart extract and extractionrecipe. August2013 county A/B totals; March10,2025 adopted state population agechart. All54labels match visual inspection and independent localAppleVisionOCR; all84county cells match independentPoppler extraction. No housingtargets served as householdcounts."
+ },
+ {
+  "file": "state_age_chart_extraction_recipe.txt",
+  "source": "https://outside.vermont.gov/agency/ACCD/ACCD_Web_Docs/Housing/Housing-Needs-Assessment/2025-2029/Housing-Targets-Appendix.pdf#page=16",
+  "retrieved_at": "2026-10-02",
+  "sha256": "3c2ac5c0ea60517e7aea098ae9b07807ef394711e5c1c832991af20f55a43793",
+  "records": null,
+  "note": "Original publisher bytes except explicitly derived54-cell agechart extract and extractionrecipe. August2013 county A/B totals; March10,2025 adopted state population agechart. All54labels match visual inspection and independent localAppleVisionOCR; all84county cells match independentPoppler extraction. No housingtargets served as householdcounts."
+ }
+]

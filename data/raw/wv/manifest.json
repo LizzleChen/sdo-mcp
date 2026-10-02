@@ -1,0 +1,42 @@
+[
+ {
+  "file": "population_summary_oct2022.pdf",
+  "source": "https://business.wvu.edu/files/d/73f29801-fb12-40d4-b8d0-5802a29742be/wvsummary_2022.pdf",
+  "retrieved_at": "2026-10-02",
+  "sha256": "fa5ec5ac3a8d66b96c55e2307b766fbd255ae12673127878201ed3d7b64f7b9a",
+  "records": 280,
+  "note": "Original publisher bytes. October2022 summary totals match all companion TOTAL rows; Roane2035 combined12173 retained despite sexsum12174. Detailed Census2020 header conflicts with summary combined2020 July date. HCA source direction and application population requirement document state use."
+ },
+ {
+  "file": "population_age_sex_oct2022.pdf",
+  "source": "https://business.wvu.edu/files/d/a0ae66e0-5d50-4c96-b327-8194e3478890/wvcounties_2022.pdf",
+  "retrieved_at": "2026-10-02",
+  "sha256": "17d0fb90b7e5f8ed91b9919c27d3d079904b83247313b8cddec8117360b02922",
+  "records": null,
+  "note": "Original publisher bytes. October2022 summary totals match all companion TOTAL rows; Roane2035 combined12173 retained despite sexsum12174. Detailed Census2020 header conflicts with summary combined2020 July date. HCA source direction and application population requirement document state use."
+ },
+ {
+  "file": "projection_catalog_2026-10-02.html",
+  "source": "https://business.wvu.edu/research-outreach/bureau-of-business-and-economic-research/data",
+  "retrieved_at": "2026-10-02",
+  "sha256": "b78cde6db49a7f71f8f657e0534ecfae27240657e3a4bf744451278fe80ab854",
+  "records": null,
+  "note": "Original publisher bytes. October2022 summary totals match all companion TOTAL rows; Roane2035 combined12173 retained despite sexsum12174. Detailed Census2020 header conflicts with summary combined2020 July date. HCA source direction and application population requirement document state use."
+ },
+ {
+  "file": "hca_projection_source_2026-10-02.html",
+  "source": "https://hca.wv.gov/certificateofneed/Pages/Applications.aspx",
+  "retrieved_at": "2026-10-02",
+  "sha256": "23349e901e1f32dda259b9add75cd2de55db6ffc7e4bd772e689c2d7f169d63b",
+  "records": null,
+  "note": "Original publisher bytes. October2022 summary totals match all companion TOTAL rows; Roane2035 combined12173 retained despite sexsum12174. Detailed Census2020 header conflicts with summary combined2020 July date. HCA source direction and application population requirement document state use."
+ },
+ {
+  "file": "hca_application_mar2017.pdf",
+  "source": "https://hca.wv.gov/certificateofneed/Documents/CON_Application-August_2016.pdf",
+  "retrieved_at": "2026-10-02",
+  "sha256": "58ed6de3cd56106f8654b7bf73e8834ea3dd8bcd5f7ee01a7d971b4b92e1bdf5",
+  "records": null,
+  "note": "Original publisher bytes. October2022 summary totals match all companion TOTAL rows; Roane2035 combined12173 retained despite sexsum12174. Detailed Census2020 header conflicts with summary combined2020 July date. HCA source direction and application population requirement document state use."
+ }
+]

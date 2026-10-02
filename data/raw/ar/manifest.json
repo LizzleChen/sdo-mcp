@@ -1,0 +1,34 @@
+[
+ {
+  "file": "population_timeseries_1980-2065_feb2015.xlsx",
+  "source": "https://web.archive.org/web/20230507205934id_/https://arstatedatacenter.youraedi.com/content/Arkansas_Data/Population_Estimates/Population_Projections/LN(Trans_HIST_not_Adj)_Population_Projection_Charts_to_2065_And_STATE_Revised.xlsx",
+  "retrieved_at": "2026-10-02",
+  "sha256": "409272d9496c534ec0d6175208280d21ed6da2de666d6caa6b2e2c9d4a813d88",
+  "records": 6536,
+  "note": "Archived original Arkansas State Data Center / UALR IEA February 20, 2015 time-series product, cataloged as Vintage 2010 Census anchor. History through 2013; annual point forecasts 2014-2065, preserving fractional persons. Current live forecast routes return 404; no successor established."
+ },
+ {
+  "file": "timeseries_methods_feb2015.pdf",
+  "source": "https://web.archive.org/web/20230507205853id_/https://arstatedatacenter.youraedi.com/content/Arkansas_Data/Population_Estimates/Population_Projections/Overview.pdf",
+  "retrieved_at": "2026-10-02",
+  "sha256": "02ffbdb7d5d49ad2d83dba6b88d87232bb0b2b379619ba5f514092db1af4d8be",
+  "records": null,
+  "note": "Archived original Arkansas State Data Center / UALR IEA February 20, 2015 time-series product, cataloged as Vintage 2010 Census anchor. History through 2013; annual point forecasts 2014-2065, preserving fractional persons. Current live forecast routes return 404; no successor established."
+ },
+ {
+  "file": "projection_catalog_archived2023.html",
+  "source": "https://web.archive.org/web/20221210000000id_/https://arstatedatacenter.youraedi.com/population-projections-county/",
+  "retrieved_at": "2026-10-02",
+  "sha256": "b834031559ad20d63b9c25d0eb61f0ba50b31d8578ec67651e839ec890c039af",
+  "records": null,
+  "note": "Archived original Arkansas State Data Center / UALR IEA February 20, 2015 time-series product, cataloged as Vintage 2010 Census anchor. History through 2013; annual point forecasts 2014-2065, preserving fractional persons. Current live forecast routes return 404; no successor established."
+ },
+ {
+  "file": "state_data_center_catalog_2026-10-02.json",
+  "source": "https://youraedi.com/wp-json/wp/v2/pages?slug=arkansas-state-data-center",
+  "retrieved_at": "2026-10-02",
+  "sha256": "267a61681497f5b8c350344f6a98934ea9bacbf787d1bd13346105ce34526d97",
+  "records": null,
+  "note": "Archived original Arkansas State Data Center / UALR IEA February 20, 2015 time-series product, cataloged as Vintage 2010 Census anchor. History through 2013; annual point forecasts 2014-2065, preserving fractional persons. Current live forecast routes return 404; no successor established."
+ }
+]

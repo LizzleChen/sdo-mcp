@@ -39,8 +39,8 @@ def test_county_households_points_to_state_pdf_only():
     assert res["closest_published"][0]["status"] == "pdf_only"
 
 
-def test_all_covered_states_loaded():
+def test_all_states_with_selected_products_loaded():
     res = server.list_states()
-    assert all(s["data_loaded"] for s in res["states"].values()), {
-        k: v["data_loaded"] for k, v in res["states"].items()
-    }
+    loaded = {state for state, meta in res["states"].items() if meta["data_loaded"]}
+    assert loaded == set(res["states"]) - {"MT"}
+    assert res["states"]["MT"]["data_loaded"] is False

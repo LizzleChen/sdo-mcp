@@ -61,6 +61,13 @@ COVERED_STATES = {
     'SD': 'South Dakota',
     'KS': 'Kansas',
     'MO': 'Missouri',
+    'IA': 'Iowa',
+    'MT': 'Montana',
+    'WV': 'West Virginia',
+    'AR': 'Arkansas',
+    'LA': 'Louisiana',
+    'OK': 'Oklahoma',
+    'VT': 'Vermont',
 }
 
 # (state, variable, geo_level, status, detail)
@@ -698,6 +705,54 @@ COVERAGE = [
     ('MO', 'components', 'county', 'available',
      'The official 2000-2030 catalog publishes county components over previous five-year intervals. '
      'Not loaded; complete county extraction and interval-aware ingestion are deferred.'),
+    # ---- Batch five: selected editions and unresolved publication findings
+    ('IA', 'population', 'state', 'available',
+     'Selected archival July 1984 original state-demographer summary: 1980 Census history and exact '
+     'five-year projections 1985/1990/1995/2000. Entire projected horizon is past; no later values or '
+     'federal/commercial substitutes.'),
+    ('IA', 'population', 'county', 'available',
+     'Selected archival July 1984 original state-demographer summary, all 99 counties: 1980 Census '
+     'history and exact five-year projections 1985/1990/1995/2000. Original displayed precision and '
+     'independent state/county differences retained.'),
+    ('WV', 'population', 'state', 'available',
+     'October 2022 BBER edition: 2020 Census history, five-year July projections 2025-2040; published '
+     'totals for state and all 55 counties. Last underlying estimate year unknown.'),
+    ('WV', 'population', 'county', 'available',
+     'October 2022 BBER edition: 2020 Census history, five-year July projections 2025-2040; published '
+     'totals for state and all 55 counties. Last underlying estimate year unknown.'),
+    # ---- Batch five: selected editions and unresolved publication findings
+    ('AR', 'population', 'state', 'available',
+     'Older February 2015 UALR/Arkansas SDC edition: state and all 75 counties, annual History '
+     'estimates 1980–2013 and Point forecasts 2014–2065. Confidence limits and fitted values are '
+     'deferred.'),
+    ('AR', 'population', 'county', 'available',
+     'Older February 2015 UALR/Arkansas SDC edition: state and all 75 counties, annual History '
+     'estimates 1980–2013 and Point forecasts 2014–2065. Confidence limits and fitted values are '
+     'deferred.'),
+    ('LA', 'population', 'state', 'available',
+     'Older 2009 state-commissioned LSU edition: state and all 64 parishes, 2005 July 1 estimates and '
+     'five-year projections 2010–2030, three migration scenarios. Middle default is a consistent '
+     'server scenario choice.'),
+    ('LA', 'population', 'county', 'available',
+     'Older 2009 state-commissioned LSU edition: state and all 64 parishes, 2005 July 1 estimates and '
+     'five-year projections 2010–2030, three migration scenarios. Middle default is a consistent '
+     'server scenario choice.'),
+    # ---- Batch five: selected editions and unresolved publication findings
+    ('OK', 'population', 'state', 'available',
+     'March 2023 Commerce report: exact published five-year totals for 2025-2070, all projections. '
+     'Last underlying estimate input is unstated; ambiguous historical cells are not loaded.'),
+    ('OK', 'population', 'county', 'available',
+     'March 2023 Commerce report: all 77 counties, published five-year totals for 2025-2070 in integer '
+     'persons, all projections.'),
+    ('VT', 'population', 'state', 'available',
+     'Adopted March 10, 2025 VHFA/DHCD current-trends state population chart: 2030/2040/2050; 18 '
+     'exhaustive age groups normalized to exact totals. Base year is unknown.'),
+    ('VT', 'population', 'county', 'available',
+     'Archived August 2013 ACCD product: all 14 counties, 2010 Census history and 2020/2030 '
+     'projections, source scenarios A/B. Separate from the newer state product.'),
+    ('VT', 'population', 'county_subdivision', 'pdf_only',
+     'Archived August 2013 ACCD town, city, grant and gore projections, source scenarios A/B; not '
+     'loaded pending a historical geography crosswalk.'),
 ]
 
 

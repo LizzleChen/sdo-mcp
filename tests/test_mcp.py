@@ -82,6 +82,45 @@ def test_installed_tools_over_mcp(installed_server, protocol):
 
                     summary = await call("list_states", {})
                     assert summary["database_release"] == "mcp-test"
+                    assert len(summary["states"]) == 50
+                    assert {"AR", "IA", "LA", "MT", "OK", "VT", "WV"} <= set(summary["states"])
+                    assert sum(state["data_loaded"] for state in summary["states"].values()) == 49
+                    assert summary["states"]["MT"]["data_loaded"] is False
+                    vt_settings = summary["states"]["VT"]["scenario_settings_by_geo"]
+                    assert vt_settings["state"]["default_scenario"] == "current_trends"
+                    assert vt_settings["county"]["default_scenario"] == "b"
+                    for state, level, geo, year, value, base in (
+                        ("AR", "county", "Calhoun", 2065, 4158.875482473251, 2013),
+                        ("IA", "county", "Polk", 2000, 326900, 1980),
+                        ("LA", "county", "Jefferson Davis", 2030, 29720, 2005),
+                        ("OK", "county", "Cimarron", 2070, 1356, None),
+                        ("VT", "state", "VT", 2050, 644731, None),
+                        ("VT", "county", "Chittenden", 2030, 162967, 2010),
+                        ("WV", "county", "Wirt", 2040, 4225, None),
+                    ):
+                        forecast = await call("get_forecast", {
+                            "state": state, "geo_level": level, "geo": geo,
+                            "variable": "population", "start_year": year, "end_year": year,
+                        }, "ok")
+                        assert forecast["series"] == [{"year": year, "value": value, "datatype": "projection"}]
+                        assert forecast["source"]["base_year"] == base
+                        assert forecast["source"]["retrieved_at"]
+                        if state == "VT":
+                            assert forecast["scenario"] == vt_settings[level]["default_scenario"]
+                            assert forecast["scenario_note"] == vt_settings[level]["default_scenario_note"]
+                    for level, geo, scenario in (("state", "VT", "b"), ("county", "Chittenden", "current_trends")):
+                        await call("get_forecast", {
+                            "state": "VT", "geo_level": level, "geo": geo,
+                            "variable": "population", "scenario": scenario,
+                        }, "error", True)
+                    await call("get_forecast", {
+                        "state": "MT", "geo_level": "state", "geo": "MT", "variable": "population",
+                    }, "coverage_unknown")
+                    await call("get_components", {"state": "MT", "geo": "MT"}, "coverage_unknown")
+                    for state in ("AR", "IA", "LA", "MT", "OK", "VT", "WV"):
+                        described = await call("describe_source", {"state": state})
+                        assert bool(described["sources_loaded"]) is (state != "MT")
+                        assert described["review"]["status"] == "never_reviewed"
                     assert {"VA", "WI", "UT", "IN", "MI", "PA", "KY", "IL", "MD"} <= set(summary["states"])
                     assert {"AK", "HI", "ME", "NE", "NH", "OH", "NV"} <= set(summary["states"])
                     assert {"CT", "MA", "NJ", "NY", "RI"} <= set(summary["states"])

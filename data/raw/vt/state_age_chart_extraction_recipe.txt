@@ -1,0 +1,12 @@
+Source: https://outside.vermont.gov/agency/ACCD/ACCD_Web_Docs/Housing/Housing-Needs-Assessment/2025-2029/Housing-Targets-Appendix.pdf
+Extract PDF page16 /Resources /XObject /Im1 with pypdf (no Pillow needed).
+The indexed image is1126x394,8bits,FlateDecode; decodedpixelSHA256=d773b9e7fca354c413dfe784f6c789805ce2be369fb27f671a583a0b77d1c469.
+Render original using: pdftoppm -f 16 -l 16 -scale-to 1700 -png -singlefile SOURCE.pdf page16
+Read all18exhaustive agebar labels in each2030/2040/2050column, top to bottom; exact labels only, never widths.
+Independently run local Apple Vision VNRecognizeTextRequest accurate with languagecorrectionfalse on renderedpage.
+For numericNN,NNN labels use boundingboxybetween0.71and0.89; xbetween0.25and0.30(2030),0.50and0.56(2040),0.78and0.83(2050).
+Sort descendingy within eachcolumn. Require18labels percolumn and exact agreement with all54visuallyread values.
+Labels Under5,5to9,...,80to84,85yearsandover exhaust allages. Sum eachcolumn:666640,667903,644731.
+These sums normalize exhaustive agecells inside the published state; no counties/regions are combined.
+VHFA producer version Housing-Targets-Appendix-MAcorrected.pdf contains identicaldecodedchartpixels; independently checked.
+Rebuild uses archivedPDF, exactdecodedimagefingerprint and checkedstructuredextract; OCR is acquisitionQA only.

@@ -1,0 +1,50 @@
+[
+ {
+  "file": "lsu_state_parish_projections_2009_archived20210415.zip",
+  "source": "https://drive.google.com/uc?export=download&id=14faiyMSCeQV9Yx3J7-Sj7DzLzpIGXRXj",
+  "retrieved_at": "2026-10-02",
+  "sha256": "0b66c358d63615c0939104f491e6b8e4cc6380b8c6953e38b0917432ba79abee",
+  "records": 1170,
+  "note": "Original 2009 state-commissioned LSU product recovered from Applied Demography Toolbox archive; original archived official catalog establishes state publication. Archive's indirect 2007 edition label is superseded by original methods and author's 2009 publication record."
+ },
+ {
+  "file": "official_projection_catalog_archived20180809.html",
+  "source": "https://web.archive.org/web/20180809115850id_/http://louisiana.gov/Explore/Population_Projections/",
+  "retrieved_at": "2026-10-02",
+  "sha256": "635780c0200b0caf3deef367b39f4e5d866fdb7395eb3571486addefd579e513",
+  "records": null,
+  "note": "Original 2009 state-commissioned LSU product recovered from Applied Demography Toolbox archive; original archived official catalog establishes state publication. Archive's indirect 2007 edition label is superseded by original methods and author's 2009 publication record."
+ },
+ {
+  "file": "demographics_catalog_2026-10-02.html",
+  "source": "https://www.louisiana.gov/demographics-and-geography/",
+  "retrieved_at": "2026-10-02",
+  "sha256": "a91ce4fb45dd0d97369b03239e413f04e86c5df3bbaf2d49b0778d14c69e3fad",
+  "records": null,
+  "note": "Original 2009 state-commissioned LSU product recovered from Applied Demography Toolbox archive; original archived official catalog establishes state publication. Archive's indirect 2007 edition label is superseded by original methods and author's 2009 publication record."
+ },
+ {
+  "file": "author_publication_record_2018.pdf",
+  "source": "https://www.lsu.edu/hss/sociology/people/faculty/profiles/cvs/blanchard_cv_fall_2018.pdf",
+  "retrieved_at": "2026-10-02",
+  "sha256": "7aaf8fdda515df77ed4b985e54d546d8c3b55c7031e36abf0da807666ebbf2d8",
+  "records": null,
+  "note": "Original 2009 state-commissioned LSU product recovered from Applied Demography Toolbox archive; original archived official catalog establishes state publication. Archive's indirect 2007 edition label is superseded by original methods and author's 2009 publication record."
+ },
+ {
+  "file": "official_state_middle_archived20170131.xls",
+  "source": "https://web.archive.org/web/20170131013214id_/http://louisiana.gov/PopProjections/ExcelFiles/Statewide%20Middle%20Series.xls",
+  "retrieved_at": "2026-10-02",
+  "sha256": "5afb98847bd9cc0898f99c5e1857afe3e472ab49dc0fddaff850e128c0cebfc0",
+  "records": null,
+  "note": "Original government-hosted XLS recovered from Internet Archive; every worksheet cell equals corresponding public archive member. Confirms original Jefferson Davis XLS/report discrepancy; binary workbook metadata differs."
+ },
+ {
+  "file": "official_jefferson_davis_archived20171028.xls",
+  "source": "https://web.archive.org/web/20171028054405id_/http://louisiana.gov/PopProjections/ExcelFiles/Jefferson%20Davis%20Parish.xls",
+  "retrieved_at": "2026-10-02",
+  "sha256": "e038773ab41574dc143b84f1b4e282b150dd2caaa782c5dc8a3a9d6501df1153",
+  "records": null,
+  "note": "Original government-hosted XLS recovered from Internet Archive; every worksheet cell equals corresponding public archive member. Confirms original Jefferson Davis XLS/report discrepancy; binary workbook metadata differs."
+ }
+]
