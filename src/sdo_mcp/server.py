@@ -148,14 +148,23 @@ def _geo_exception(state: str, variable: str, geo_level: str, resolved: dict) ->
     }
 
 
+def _scenario_settings(state: str, geo_level: str | None) -> dict:
+    """Select the settings for separately published geography products."""
+    meta = notes.STATES[state]
+    by_geo = meta.get("scenario_settings_by_geo")
+    if by_geo is not None:
+        return by_geo.get(geo_level, {"scenarios": [], "default_scenario": None})
+    scenario_levels = meta.get("scenario_geo_levels")
+    if scenario_levels is not None and geo_level not in scenario_levels:
+        return {"scenarios": [], "default_scenario": None}
+    return meta
+
+
 def _resolve_scenario(
     state: str, scenario: str | None, geo_level: str | None = None
 ) -> tuple[str | None, dict]:
-    meta = notes.STATES[state]
+    meta = _scenario_settings(state, geo_level)
     published = meta["scenarios"]
-    scenario_levels = meta.get("scenario_geo_levels")
-    if scenario_levels is not None and geo_level not in scenario_levels:
-        published = []
     if scenario:
         s = scenario.strip().lower()
         if s not in published:
@@ -203,6 +212,7 @@ def list_states() -> StatesResult:
                 "scenarios": meta["scenarios"] or None,
                 "default_scenario": meta["default_scenario"],
                 "scenario_geo_levels": scenario_levels,
+                "scenario_settings_by_geo": meta.get("scenario_settings_by_geo"),
                 "employment_note": meta["employment_note"],
                 "variables": variables,
                 "data_loaded": store.state_has_data(conn, state),
@@ -245,8 +255,10 @@ def get_forecast(
     only applies where the selected product publishes scenarios (TX
     Mid/High/Low; AZ and FL Low/Medium/High; WA county Low/Medium/High;
     UT Baseline/High/Low, with High/Low published but not loaded;
-    NY state Middle/High/Low; NJ state projection models; SD Medium Series) and
-    defaults to the state's recommended one. Every point is flagged estimate
+    NY state Middle/High/Low; NJ state projection models; SD Medium Series;
+    VT newer state Current Trends versus older county A/B). Defaults may be
+    publisher recommendations or explicit server choices; `list_states` gives
+    geography-specific settings when products differ. Every point is flagged estimate
     or projection; if the state publishes nothing for the request, a
     structured refusal explains why and points to the closest published
     geography (pointer only, no numbers)."""
@@ -334,7 +346,7 @@ def get_forecast(
             "geo": {"level": geo_level, "id": resolved["geo_id"], "name": resolved["name"]},
             "scenario": scen or None,
             "scenario_note": (
-                notes.STATES[state].get(
+                _scenario_settings(state, geo_level).get(
                     "default_scenario_note",
                     f"defaulted to the state's recommended scenario ({scen})",
                 )
@@ -447,7 +459,7 @@ def get_components(
             "geo": {"level": geo_level, "id": resolved["geo_id"], "name": resolved["name"]},
             "scenario": scen or None,
             "scenario_note": (
-                notes.STATES[state].get(
+                _scenario_settings(state, geo_level).get(
                     "default_scenario_note",
                     f"defaulted to the state's recommended scenario ({scen})",
                 )

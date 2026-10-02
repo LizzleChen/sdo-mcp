@@ -89,6 +89,41 @@ POLICIES = {
      'Review OA for a successor to the old March 2008 Preferred Series. Check estimate input 2007 versus '
      'Census 2000 and explicit 2005 projection labels, county/city FIPS, five-year component units, '
      'households, subcounty and eligible jobs.'),
+    'IA': (90,
+     'Review recovered July 1984 state-demographer report and obtain original December 1989 or later '
+     'official successor; preserve 1980 Census launch versus auxiliary migration inputs, exact summary '
+     'precision and old horizon. Check original numeric PDF OCR, regional/age-sex detail, places, '
+     'households, future components and eligible SDO jobs; resolve any commercial adoption/redistribution '
+     'before substitution.'),
+    'MT': (90,
+     'Resolve specific-edition official ownership/adoption and eREMI redistribution permission, recover '
+     'reproducible complete state/56-county export, current release, estimate boundary and scenarios; '
+     'distinguish April 2013/2019/current products. Audit households, future components, places and '
+     'eligible demographic-program jobs before adding coverage.'),
+    'WV': (90,
+     'Review successor to October 2022 BBER population product, original technical methods and last '
+     'estimate input, Census 2020 summary-date conflict, Roane 2035 sex discrepancy, county FIPS, and '
+     'household/components/subcounty/eligible demographic jobs separately.'),
+    'AR': (90,
+     'Review successors to February 2015 time-series edition, Census 2010 catalog anchor versus 2013 last '
+     'estimates, fractional forecast precision, confidence bounds and fitted-value definitions, broken '
+     'current routes and archive provenance, deferred 2011–2020 cohort and NWA regional products; audit '
+     'households, future components, subcounty and eligible SDO jobs independently, including terms.'),
+    'LA': (90,
+     'Review successors to older 2009 state-commissioned LSU edition, exact release/adoption dates, 2005 '
+     'launch versus 22 storm-adjusted 2007 anchors, omitted January 2009 Census challenges, '
+     'migration-scenario guidance and reversed population order under negative migration, Jefferson Davis '
+     'XLS/report discrepancy, archive provenance and terms; audit municipalities, households, full future '
+     'components and eligible SDO jobs independently.'),
+    'OK': (90,
+     'Review Commerce for a successor to March 2023. Verify the last estimate input against conflicting '
+     '2010/2020 methods, all 77 county tables, typos, duplicates and rounding; check households, future '
+     'components, municipalities and eligible SDO jobs.'),
+    'VT': (90,
+     'Review adopted March 2025 housing-assessment state population and exact raster age labels separately '
+     'from old 2013 county A/B projections based on Census 2010. Check revision, estimate base, complete '
+     'county/population exports, municipal crosswalks, households, future components and eligible ACCD '
+     'jobs.'),
 }
 REVIEWS_PATH = Path(__file__).with_name("source_reviews.json")
 

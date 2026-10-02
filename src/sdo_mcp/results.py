@@ -105,6 +105,12 @@ class ReviewStatus(TypedDict):
     review_links: dict[str, str]
 
 
+class ScenarioSettings(TypedDict):
+    scenarios: list[str]
+    default_scenario: str | None
+    default_scenario_note: str
+
+
 class StateSummary(TypedDict):
     name: str
     agency: str
@@ -113,6 +119,7 @@ class StateSummary(TypedDict):
     scenarios: list[str] | None
     default_scenario: str | None
     scenario_geo_levels: list[str] | None
+    scenario_settings_by_geo: dict[str, ScenarioSettings] | None
     employment_note: str
     variables: dict[str, dict[str, CoverageInventory]]
     review: ReviewStatus

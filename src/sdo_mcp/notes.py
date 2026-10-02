@@ -1711,4 +1711,348 @@ STATES = {
                'state_age_components': 'https://budplan.oa.mo.gov/sites/g/files/zuston231/files/media/pdf/2024/03/pop-projections-by-age-state-totals.pdf',
                'county_pdf': 'https://budplan.oa.mo.gov/sites/g/files/zuston231/files/media/pdf/2024/03/total-pop-all-counties_0.pdf',
                'meric_crosslink': 'https://meric.mo.gov/data/population/new-population-projections'}},
+    'IA': {'name': 'Iowa',
+     'agency': 'Office of the State Demographer, Iowa Office for Planning and Programming (archival '
+               'producer); State Library of Iowa / State Data Center (current discovery office)',
+     'producer_type': 'state agency (archival official demographic office)',
+     'current_vintage': 'Selected archival July 1984 edition, 1980 Census base and four five-year '
+                        'projections 1985–2000. Entire forecast horizon is in the past. This is not '
+                        'asserted to be the newest Iowa forecast; original December 1989 successor tables '
+                        'were not recovered.',
+     'geography_floor': 'State and all 99 counties loaded from the original statewide/county summary. The '
+                        'report also publishes 17 planning regions and age/sex detail, which remain '
+                        'unloaded. Place forecasts are unresolved.',
+     'scenarios': [],
+     'default_scenario': None,
+     'products': ['Iowa Population Projections: 1980–2000, July 1984; 500 selected state/county summary '
+                  'values, including 1980 history and four projected years',
+                  'Regional and age/sex population tables in the same original report, published but not '
+                  'loaded',
+                  'Current legacy SDC index also links federal interim and licensed Woods & Poole products; '
+                  'these are separate candidates and no values are substituted'],
+     'methodology': 'Original state-demographer cohort-component model carries April 1, 1980 base '
+                    'population forward using fertility, mortality and migration assumptions. County '
+                    'projections were adjusted to independently projected state totals. Auxiliary migration '
+                    'inputs in Census P-26 82-19-C do not establish a later population rebase. Projected '
+                    'reference day is unstated. Exact published summary values retained; explicit '
+                    'row-specific OCR repairs checked against rendered original and all 500 '
+                    'Poppler-extracted summary cells.',
+     'employment_note': 'No eligible Iowa state-demographer employment forecast was established. '
+                        'Labor-force and labor-department occupational products are distinct and are not '
+                        'substituted; household and projected-component publication coverage remains '
+                        'unresolved.',
+     'license': 'No explicit data license identified in the original government report or archival catalog. '
+                'State Library archive describes its state-agency documents as intended for use by the '
+                'general public. Cite the Iowa Office of the State Demographer. These findings do not '
+                'authorize redistribution of separately copyrighted Woods & Poole data.',
+     'caveats': ['Selected original July 1984 forecast ends in 2000; no forecast after 2000, interpolation, '
+                 'current estimate or contemporary scenario is manufactured.',
+                 '1980 is an April 1 Census base count, served as estimate/history; all subsequent source '
+                 'years remain projections. base_year=1980 identifies that launch base.',
+                 'County sums minus the published state total are 0/+500/−300/+400/+100 across the five '
+                 'source years; displayed rounding differences are preserved.',
+                 'Summary table selected consistently; regional and age/sex detail remain unloaded. '
+                 'Projected reference day is unstated.',
+                 'Census 1990 report P25-1053 identifies a December 1989 state-agency edition; original '
+                 'successor tables remain unrecovered. Current SDC links federal interim and copyrighted '
+                 'commercial forecasts, whose authority and redistribution rights cannot be inferred from '
+                 'hosting.',
+                 'Households, eligible jobs, projected components and place forecasts remain '
+                 'coverage_unknown; absence of a verified product is not not_published.'],
+     'links': {'agency': 'https://www.iowadatacenter.org/',
+               'archive_catalog': 'https://publications.iowa.gov/21195/',
+               'population_report': 'https://publications.iowa.gov/21195/1/Iowa%20Population%20projections.pdf',
+               'public_use_archive': 'https://publications.iowa.gov/',
+               'legacy_projection_catalog': 'https://www.iowadatacenter.org/browse/projections.html',
+               'population_catalog': 'https://www.iowadatacenter.org/index.php/data-by-subject/population',
+               'unrecovered_1989_successor_evidence': 'https://www2.census.gov/library/publications/1990/demographics/P25-1053.pdf'}},
+    'MT': {'name': 'Montana',
+     'agency': 'Montana Department of Commerce, Census and Economic Information Center (CEIC) / State Data '
+               'Center; eREMI forecasts supplied by Regional Economic Models, Inc.',
+     'producer_type': 'state agency discovery office; third-party forecast ownership/adoption under review',
+     'current_vintage': 'No selected serveable edition. Current Commerce catalog links third-party eREMI '
+                        'population dashboard; current release, estimate boundary and redistribution '
+                        'permission remain unverified. Legislature documents a Montana-specific 2019 '
+                        'dataset, distinct from earlier April 2013 products.',
+     'geography_floor': 'Current Commerce catalog identifies state and county eREMI population projections '
+                        'with county age/race detail. No eligible redistributable state/county export is '
+                        'selected or loaded. Place forecasts and additional products remain unresolved.',
+     'scenarios': [],
+     'default_scenario': None,
+     'products': ['Commerce-hosted eREMI state/county population projection dashboard, third-party source; '
+                  'not selected or loaded pending current-edition authority, redistribution and '
+                  'reproducible export checks',
+                  'Legislative January 2020 demographic report uses a Montana-specific 2019 eREMI '
+                  'population/deaths dataset, 1990–2060; this is evidence of official use, not a '
+                  'redistribution license or current-edition identification'],
+     'methodology': 'The Commerce catalog explicitly describes eREMI as third-party. Official DNRC planning '
+                    'material calls its historical eREMI-based product developed by Commerce; Legislature '
+                    'describes a forecast created specifically for Montana in 2019. These references do not '
+                    'establish complete methods, estimate boundary, reference day or current dashboard '
+                    'release. County/age/race model inputs and scenarios require edition-specific '
+                    'verification.',
+     'employment_note': 'No eligible SDO employment forecast has been selected. Commercial economic '
+                        'forecasts and labor-department occupational projections are not automatically SDO '
+                        'jobs. Household and future-component coverage remains unresolved.',
+     'license': 'No eREMI redistribution authorization was established. Public hosting and official use do '
+                'not establish rights to redistribute a licensed third-party forecast. Only original '
+                'Commerce catalog evidence is archived; no commercial numeric source snapshot was acquired.',
+     'caveats': ['Metadata-only state: no population, household, employment or component observations are '
+                 'loaded. All unresolved products return coverage_unknown.',
+                 'Current dashboard is a Tableau shell; no complete reproducible export was validated. '
+                 'Third-party product provenance, current release and redistribution rights need resolution '
+                 'before ingestion.',
+                 'January 2020 legislative use of a Montana-specific 2019 dataset cannot identify the '
+                 'current dashboard edition; April 2013 and 2019 products must not be mixed.',
+                 'Commerce cautions that projections are harder in small rural counties. Local planning '
+                 'extrapolation guidance is not a municipal state-demographer data product and no local '
+                 'values are constructed.'],
+     'links': {'agency': 'https://commerce.mt.gov/Data-Research/Government/Montana-State-Data-Center',
+               'population_catalog': 'https://commerce.mt.gov/Data-Research/People-Housing/Population',
+               'projection_dashboard': 'https://tableau-ext.mt.gov/t/DOC/views/CEIC_REMI_POPULATION_PROJECTION_COUNTY_AGE_RACE_SFE/Trend?:embed=y&:origin=card_share_link',
+               'legislative_2019_product_evidence': 'https://leg.mt.gov/content/Publications/fiscal/2021-Interim/Jan-2020/Demographic-Report-FINAL.pdf',
+               'historical_state_development_evidence': 'https://dnrc.mt.gov/_docs/water/Hydro_science_data/appendix_b_socioeconomic_portrait.pdf',
+               'planning_scope_guidance': 'https://commerce.mt.gov/_shared/comdev/CTAP/docs/CPP/LUPA/MT_Tech_Population.pdf',
+               'model_owner': 'https://www.remi.com/events/eremi-a-structural-approach-to-long-term-economic-demographic-forecasting'}},
+    'WV': {'name': 'West Virginia',
+     'agency': 'Bureau of Business and Economic Research, West Virginia University',
+     'producer_type': 'university demographic producer; Health Care Authority directs state planning users '
+                      'to its population product',
+     'current_vintage': 'October 2022 edition, currently linked by BBER. Census 2020 anchor, projections '
+                        '2025-2040; last underlying estimate year unconfirmed.',
+     'geography_floor': 'State and all 55 counties, Census 2020 FIPS. Age/sex detail archived but not '
+                        'served. No subcounty series derived.',
+     'scenarios': [],
+     'default_scenario': None,
+     'products': ['Population state and all 55 counties,2020/2025/2030/2035/2040 (loaded)',
+                  'Age/sex tables (archived, not served)'],
+     'methodology': 'Detailed tables explicitly label April 1 Census 2020 history and July 1 projections '
+                    '2025-2040. Census history uses MCP estimate label. Technical model inputs and last '
+                    'estimate year were not established; base_year null. Published combined-sex Total rows '
+                    'are served without adjustments.',
+     'employment_note': 'No eligible SDO total-jobs series verified. BBER short-horizon economic outlooks '
+                        'and WorkForceWV labor-department occupational forecasts are separate products and '
+                        'are not substituted.',
+     'license': 'No explicit data license identified in public original files; cite WVU Bureau of Business '
+                'and Economic Research.',
+     'caveats': ['The model Census anchor is 2020, but publication 2022 is not an established last estimate '
+                 'base. No 2022 row is fabricated.',
+                 'The summary female/combined headings say July 2020 while its male heading and detailed '
+                 'Census 2020 headings say April 2020. All numeric values match; the explicit detailed '
+                 'Census label controls datatype.',
+                 'Roane 2035 male 5976 plus female 6198 sum 12174; both source documents give combined '
+                 '12173, which is retained. Other sex totals and all county/state totals reconcile exactly.',
+                 'Detailed titles misspell Doddridge as Dodridge and Fayette as Feyette; explicit aliases '
+                 'retain correct Census FIPS and summary names.',
+                 'Five-year points only; no interpolation or post 2040 forecast. Household, future '
+                 'component, subcounty and eligible jobs publication coverage remain unknown.',
+                 'Broader product review remains never_reviewed. State-use evidence establishes population '
+                 'eligibility, not a general mandate for BBER economic products.'],
+     'links': {'agency': 'https://business.wvu.edu/research-outreach/bureau-of-business-and-economic-research/data',
+               'population_summary': 'https://business.wvu.edu/files/d/73f29801-fb12-40d4-b8d0-5802a29742be/wvsummary_2022.pdf',
+               'population_detail': 'https://business.wvu.edu/files/d/a0ae66e0-5d50-4c96-b327-8194e3478890/wvcounties_2022.pdf',
+               'state_use': 'https://hca.wv.gov/certificateofneed/Pages/Applications.aspx',
+               'state_application': 'https://hca.wv.gov/certificateofneed/Documents/CON_Application-August_2016.pdf',
+               'census_fscpp_directory': 'https://www.census.gov/programs-surveys/popproj/about/fscpp/contacts.html'}},
+    'AR': {'name': 'Arkansas',
+     'agency': 'Institute for Economic Advancement, University of Arkansas at Little Rock; Arkansas State '
+               'Data Center (now AEDI)',
+     'producer_type': 'university state data center (IEA/UALR; now AEDI)',
+     'current_vintage': 'February 20, 2015 (catalog: Vintage 2010 Census anchor); older recovered edition, '
+                        'no current successor established.',
+     'geography_floor': 'county (all 75 counties and separately published state total)',
+     'scenarios': [],
+     'default_scenario': None,
+     'products': ['Older February 2015 UALR/Arkansas SDC edition: state and all 75 counties, annual History '
+                  'estimates 1980–2013 and Point forecasts 2014–2065. Confidence limits and fitted values '
+                  'are deferred.'],
+     'methodology': 'Holt exponential smoothing of natural-log population, transformed back to fractional '
+                    'persons. July 1 midyear/intercensal History estimates 1980–2013 and annual Point '
+                    'forecasts 2014–2065.',
+     'employment_note': 'No eligible SDO total-jobs forecast established. Occupational forecasts or '
+                        'regional planning products are not substituted.',
+     'license': 'No explicit data license identified; preserve publisher/author attribution and archived '
+                'provenance. Do not imply public-domain status.',
+     'caveats': ['Older recovered edition; past forecast years remain projections of the original edition. '
+                 'No successor was established.',
+                 'Catalog Vintage 2010 describes the Census anchor; the February 2015 edition uses '
+                 'estimates through 2013.',
+                 'Fractional forecast precision is preserved. Confidence limits and fitted historical '
+                 'values are distinct source rows, not scenarios or estimates, and are not served.',
+                 'Separate 2011–2020 single-age race/Hispanic county and planning-district projections are '
+                 'published but deferred. A newer two-county AEDI NWA model does not establish a complete '
+                 'newer statewide original grid.',
+                 'Municipal, household, full future components and eligible SDO jobs publication remains '
+                 'unverified; uncovered variables remain unknown.'],
+     'links': {'agency': 'https://youraedi.com/arkansas-state-data-center/',
+               'original_catalog': 'https://arstatedatacenter.youraedi.com/population-projections-county/',
+               'archived_catalog': 'https://web.archive.org/web/20221210000000id_/https://arstatedatacenter.youraedi.com/population-projections-county/',
+               'selected_download': 'https://web.archive.org/web/20230507205934id_/https://arstatedatacenter.youraedi.com/content/Arkansas_Data/Population_Estimates/Population_Projections/LN(Trans_HIST_not_Adj)_Population_Projection_Charts_to_2065_And_STATE_Revised.xlsx'}},
+    'LA': {'name': 'Louisiana',
+     'agency': 'Louisiana State University Sociology, for Louisiana Division of Administration, Office of '
+               'Electronic Services',
+     'producer_type': 'state-commissioned university demographic program',
+     'current_vintage': '2009 (exact release date unstated); older recovered edition, no current successor '
+                        'established.',
+     'geography_floor': 'county (all 64 parishes and separately published state)',
+     'scenarios': ['middle', 'low', 'high'],
+     'default_scenario': 'middle',
+     'products': ['Older 2009 state-commissioned LSU edition: state and all 64 parishes, 2005 July 1 '
+                  'estimates and five-year projections 2010–2030, three migration scenarios. Middle default '
+                  'is a consistent server scenario choice.'],
+     'methodology': 'Cohort-component model launched from 2005 estimates, with 22 storm-affected parishes '
+                    'rebased to 2007 estimates, constant fertility/survival and migration multipliers. July '
+                    '1 historical estimate and five-year projection points.',
+     'employment_note': 'No eligible SDO employment forecast established. Separate LSU Economics quarterly '
+                        'economic outlook and commercial Moody’s executive-budget forecasts are not '
+                        'selected.',
+     'license': 'No explicit data license identified; preserve publisher/author attribution and archived '
+                'provenance. Do not imply public-domain status.',
+     'caveats': ['Older recovered 2009 edition; past projection years retain their original projection '
+                 'labels. The archive’s indirectly inferred 2007 publication date is incorrect. No '
+                 'successor was established.',
+                 'Last underlying estimate is 2005 for 42 parishes and 2007 for 22 storm-adjusted parishes '
+                 'and the state. Original launch is 2005; no 2007 row is fabricated.',
+                 'Low/High name migration multipliers, not ordered population bounds. The report recommends '
+                 'High through 2020, then Middle for 2025/2030, for state/Orleans/Jefferson/St. Bernard; a '
+                 'consistent Middle default does not splice that recommendation.',
+                 'Accepted January 2009 upward Census revisions to three storm parishes were not '
+                 'incorporated in this edition.',
+                 'Jefferson Davis Middle XLS is retained despite its report Table 1 discrepancy: 2030 XLS '
+                 '29,720 versus report 29,190; cause or revision date is unstated. All other 64 Middle '
+                 'geography grids agree.',
+                 'Original report matches government archive bytes. State Middle and Jefferson Davis '
+                 'workbook cells match separately recovered government originals; binary XLS metadata '
+                 'differs. Public archive hosting does not imply current state endorsement.',
+                 'Municipal, household, full future components and eligible SDO jobs publication remains '
+                 'unverified; uncovered variables remain unknown.'],
+     'links': {'agency': 'https://www.louisiana.gov/demographics-and-geography/',
+               'original_catalog': 'http://louisiana.gov/Explore/Population_Projections/',
+               'archived_catalog': 'https://web.archive.org/web/20180809115850id_/http://louisiana.gov/Explore/Population_Projections/',
+               'selected_download': 'https://drive.google.com/uc?export=download&id=14faiyMSCeQV9Yx3J7-Sj7DzLzpIGXRXj'},
+     'default_scenario_note': "Defaulted to this server's consistent Middle migration scenario. The "
+                              'publisher recommends High through 2020 and Middle thereafter for the state '
+                              'and three storm-affected parishes; it recommends Middle elsewhere.'},
+    'OK': {'name': 'Oklahoma',
+     'agency': 'Oklahoma Department of Commerce, Research and Economic Analysis Division',
+     'producer_type': 'State Department of Commerce demographic research and State Data Center program',
+     'current_vintage': 'March 2023 official Commerce report. Exact five-year totals for 2025-2070 are '
+                        'selected; the last underlying estimate input is unknown.',
+     'geography_floor': 'State and all 77 counties loaded; no municipal observations are derived.',
+     'scenarios': [],
+     'default_scenario': None,
+     'products': ['Population: published state and all 77 county totals, 2025-2070 (loaded)',
+                  'Historical 2000-2020 columns with ambiguous labels and separate annual Census estimates '
+                  '(archived, not loaded)'],
+     'methodology': 'Commerce describes cohort-component and Hamilton-Perry population methods. Operational '
+                    'methods on page 19 use the 2020 population and 2019 ACS/2010 age distributions, while '
+                    'generic methods on page 17 say the state starts with Census 2010. base_year is null '
+                    'because the last underlying estimate input is unstated. No base row is fabricated.',
+     'employment_note': 'Eligible Commerce/SDO jobs forecast coverage remains unverified. OESC industry and '
+                        'occupational forecasts are a separate labor-market product and are not '
+                        'substituted.',
+     'license': 'No explicit data license or copying restriction identified in current '
+                'report/catalog/terms; cite Oklahoma Department of Commerce.',
+     'caveats': ['All selected 2025-2070 cells remain projections, including past 2025. Five-year gaps are '
+                 'not interpolated.',
+                 'The report was published March 2023 and replaces the old 2012/2075 library lead. The old '
+                 'library item has educational-use restrictions and is not archived or served.',
+                 'base_year is null. Census 2020 is an operational anchor, not proof of the last underlying '
+                 'estimate input. State history through 2022 and county history through 2021 are not '
+                 'identified as model inputs.',
+                 'Published county sums minus state totals are -1, 0, -3, +7, +1, -1, +2, +3, +2 and -2 '
+                 'persons for 2025-2070. Published totals are preserved without balancing.',
+                 "Cimarron's page 47 projection label reads Cimmaron; the checked roster resolves FIPS "
+                 '40025. The physical duplicates for Greer and Harmon agree and are each loaded once. Five '
+                 'county footers mistakenly cite Decennial Census; the overall report establishes Commerce '
+                 'authorship.',
+                 'Despite narrative promises of age/sex tables, Appendix 1 contains fertility rates, '
+                 'Appendix 2 mortality rates and Appendix 3 historical components. Complete future age or '
+                 'component products were not established.',
+                 'Population includes civilian residents, stationed Armed Forces and incarcerated '
+                 'residents. The exact future reference day is unstated. Household counts, municipalities, '
+                 'future components and eligible SDO jobs coverage remain unverified.'],
+     'links': {'agency': 'https://www.okcommerce.gov/doing-business/data-reports/census-2030-demographics/',
+               'population_catalog': 'https://www.okcommerce.gov/doing-business/data-reports/census-2030-demographics/',
+               'population_report': 'https://www.okcommerce.gov/wp-content/uploads/Oklahoma-State-and-County-Population-Projections-Through-2070.pdf',
+               'publisher_terms': 'https://www.okcommerce.gov/privacy-policy-legal-notice/',
+               'excluded_2012_library': 'https://digitalprairie.ok.gov/digital/collection/stgovpub/id/107932',
+               'labor_projection_program': 'https://oklahoma.gov/oesc/labor-market/employment-projections.html'}},
+    'VT': {'name': 'Vermont',
+     'agency': 'Vermont Agency of Commerce and Community Development (ACCD); Vermont Housing Finance Agency '
+               '(VHFA, contracted state product producer)',
+     'producer_type': 'State agency demographic producer and adopted commissioned population product',
+     'current_vintage': 'Separate products: current-trends state population in the March 10, 2025 housing '
+                        'appendix, prepared August-October 2024; historical county projections from August '
+                        '2013. The state base is unknown and horizon is 2050. Counties have base 2010 and '
+                        'horizon 2030.',
+     'geography_floor': 'State population at 2030, 2040 and 2050 is normalized from 18 exhaustive age '
+                        'cells. All 14 counties have 2010, 2020 and 2030 Total rows under scenarios A and '
+                        'B. Published towns, cities, grants and gores remain deferred pending '
+                        'county-subdivision crosswalks.',
+     'scenarios': ['current_trends', 'a', 'b'],
+     'default_scenario': None,
+     'scenario_settings_by_geo': {'state': {'scenarios': ['current_trends'],
+                                            'default_scenario': 'current_trends',
+                                            'default_scenario_note': 'The sole selected state series '
+                                                                     'describes the adopted March 2025 '
+                                                                     'chart caption if current trends '
+                                                                     'continue. Upper and lower housing '
+                                                                     'targets are separate quantities.'},
+                                  'county': {'scenarios': ['a', 'b'],
+                                             'default_scenario': 'b',
+                                             'default_scenario_note': 'B is a server choice for the later '
+                                                                      '2000-2010 migration period. The '
+                                                                      'August 2013 publisher names no '
+                                                                      'preferred county scenario. A uses '
+                                                                      '1990-2000 migration.'}},
+     'products': ['State population: adopted March 10, 2025 current-trends illustration at 2030/2040/2050 '
+                  '(loaded by exhaustive age normalization)',
+                  'County population: all 14 counties, 2010 Census and 2020/2030 projections, August 2013 '
+                  'scenarios A/B (loaded)',
+                  'August 2013 population: towns, cities, grants, gores and age detail (published, not '
+                  'loaded)',
+                  '2025-2029 housing targets and household-growth assumptions (published, not '
+                  'household-count forecasts; not loaded)'],
+     'methodology': "DHCD/VAPDA commissioned VHFA's cohort-component population model for legally required "
+                    'housing targets. The state chart uses 0.49% annual net migration from 2020-2023 and '
+                    '2019 vital statistics. Totals sum 18 exhaustive published age cells within the state; '
+                    'they do not combine regions or counties. The last underlying population estimate and '
+                    'launch date are unstated, so base_year is null. The 2013 county model uses Census 2010 '
+                    'age cohorts, county birth rates, declining mortality and state controls. A/B retain '
+                    'separate migration periods.',
+     'employment_note': 'Eligible ACCD/SDO jobs coverage remains unverified. Workforce ages, labor force '
+                        'and occupational projections are not substituted.',
+     'license': 'No explicit data license or restrictive terms identified in official reports/catalogs; '
+                'cite ACCD, DHCD, VHFA and county report authors.',
+     'caveats': ['State and county products have different vintages, bases, horizons and scenario meanings. '
+                 'County forecasts are not controlled to the newer served state series.',
+                 "State scenario current_trends is the server key for the chart's "
+                 'if-current-trends-continue caption. Upper and lower housing targets are separate '
+                 'quantities. Exact state totals are 666640 for 2030, 667903 for 2040 and 644731 for 2050. '
+                 'No launch or intervening year is fabricated.',
+                 'All 54 new state chart labels match the rendered original, independently executed local '
+                 "Apple Vision OCR and identical decoded pixels in VHFA's producer PDF. Original PDF, "
+                 'structured extract, chart fingerprint and extraction recipe are archived. Rebuilding has '
+                 'no OCR dependency.',
+                 "The official housing catalog explicitly documents DHCD/VAPDA's legal mandate and VHFA's "
+                 'contract, and dates the revision March 10, 2025. The appendix states August-October 2024 '
+                 'preparation. This is an adopted demographic projection.',
+                 'County 2010 Census history uses the schema estimate label. 2020 and 2030 remain '
+                 'projections of August 2013. Default b is a server choice. Source A/B labels mean '
+                 '1990s/2000s migration assumptions and are not replaced by High/Low.',
+                 'Old 2013 state A/B tables are archived and independently check old county controls. The '
+                 'newer 2025 state product supersedes them for serving.',
+                 'Towns, cities, grants and gores are not all Census places; municipal crosswalks remain '
+                 'deferred. Census residence differs from seasonal or de facto presence. The exact future '
+                 'reference day is unstated.',
+                 'Home targets include shortages, vacancy, replacement and seasonal homes. They are not '
+                 'household-count forecasts. Household counts, complete future components and eligible SDO '
+                 'jobs coverage remain unverified.'],
+     'links': {'agency': 'https://accd.vermont.gov/community-development/town-future/data',
+               'population_catalog': 'https://accd.vermont.gov/community-development/town-future/data',
+               'population_report': 'https://outside.vermont.gov/agency/ACCD/ACCD_Web_Docs/CD/CPR/Planning-Your-Towns-Future/ACCD-DED-VTPopulationProjections-2010-2030.pdf',
+               'housing_assessment_catalog': 'https://accd.vermont.gov/housing/plans-data-rules/needs-assessment',
+               'state_population_report': 'https://outside.vermont.gov/agency/ACCD/ACCD_Web_Docs/Housing/Housing-Needs-Assessment/2025-2029/Housing-Targets-Appendix.pdf',
+               'producer_chart_check': 'https://vhfa.org/sites/default/files/publications/Housing-Targets-Appendix-MAcorrected.pdf'}},
 }
