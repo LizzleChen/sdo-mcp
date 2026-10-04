@@ -190,12 +190,11 @@ provides the installable wheel, the `2026-10-02` compressed database,
 repository. You can also build from the saved source files in this checkout.
 
 Before starting, install [`uv`](https://docs.astral.sh/uv/getting-started/installation/)
-and use Python 3.12 or newer. The checked development setup uses Python
-3.12.14 with SQLite 3.51.0; `.python-version` pins that version for `uv` in
-this checkout. If `uv python install 3.12.14` has no build for your platform,
-install that version separately with [pyenv](https://github.com/pyenv/pyenv)
-and its required build tools, or use another supported, patched Python 3.12+
-interpreter. An installed wheel needs only that supported patched interpreter.
+and use Python 3.12 or newer. `.python-version` asks `uv` for any Python 3.12
+release in this checkout, so an installed system 3.12 works; otherwise run
+`uv python install 3.12`. The checked development setup uses Python 3.12.14
+with SQLite 3.51.0. An installed wheel needs only a supported, patched Python
+3.12+ interpreter.
 
 ## Install from the GitHub release
 
