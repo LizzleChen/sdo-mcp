@@ -187,7 +187,8 @@ unverified; those requests return `coverage_unknown`.
 The [v0.1.0 GitHub release](https://github.com/LizzleChen/sdo-mcp/releases/tag/v0.1.0)
 provides the installable wheel, the `2026-10-02` compressed database,
 `manifest.json`, and `SHA256SUMS`. Downloads require access to this private
-repository. You can also build from the saved source files in this checkout.
+repository. You can also build from the saved source files in this checkout,
+or [run the server in Docker](#run-with-docker) without installing Python or `uv`.
 
 Before starting, install [`uv`](https://docs.astral.sh/uv/getting-started/installation/)
 and use Python 3.12 or newer. `.python-version` asks `uv` for any Python 3.12
@@ -297,6 +298,61 @@ With no path, the build command writes the repository artifact at
 `data/sdo.sqlite`. It does not use the installed serving location. A different
 serving database can always be selected with `SDO_DB`.
 
+## Run with Docker
+
+The image contains the server and a ready database, so it needs nothing else
+on the host. Build it from this checkout:
+
+```sh
+docker build -t sdo-mcp .
+```
+
+The build takes a few minutes. It rebuilds the database from `data/raw/`
+(offline with respect to the state agencies, with every input fingerprint
+checked), reduces it to the served totals with the release command, and
+installs that archive through `sdo-mcp-install-data`'s checks. The image
+therefore holds the same content as a compressed database release, not the
+age/sex/race detail of the full research build. Source snapshots and ingest
+libraries are not copied into the final image, and the server runs as a
+non-root user.
+
+Publishing a GitHub release also publishes the image to the GitHub Container
+Registry for `linux/amd64` and `linux/arm64`. The package follows this
+repository's private visibility, so sign in with a token that has
+`read:packages` before pulling:
+
+```sh
+docker login ghcr.io -u YOUR_GITHUB_USER
+docker pull ghcr.io/lizzlechen/sdo-mcp:0.1.0
+```
+
+The server speaks MCP over stdio, so the client starts the container and
+keeps its standard input open (`-i`). A client configuration looks like:
+
+```json
+{
+  "mcpServers": {
+    "sdo-forecast": {
+      "command": "docker",
+      "args": ["run", "-i", "--rm", "--network", "none", "sdo-mcp"]
+    }
+  }
+}
+```
+
+Use `ghcr.io/lizzlechen/sdo-mcp:0.1.0` in place of `sdo-mcp` for a pulled
+image. The server never needs network access, so `--network none` is safe.
+With `--read-only`, also pass `--tmpfs /tmp`, because SQLite needs a writable
+temporary folder for some queries. `list_states.database_release` reports
+`image-<release tag>` for a published image and `image-local` for a local
+build; pass `--build-arg DATABASE_RELEASE=NAME` to record another name.
+
+To serve a different database, mount it and point `SDO_DB` at it:
+
+```sh
+docker run -i --rm -v /path/to/sdo.sqlite:/data/sdo.sqlite:ro -e SDO_DB=/data/sdo.sqlite sdo-mcp
+```
+
 ## Use it with an MCP client
 
 After installing the wheel and database, run `sdo-mcp` from any folder. The
@@ -332,7 +388,9 @@ outside the checkout, install a verified compressed database, and exercise all
 four tools over MCP 2026-07-28 and 2025-11-25 connections. The installation check
 needs `uv` and access to its package cache or the package index; state agency
 downloads are never needed. GitHub runs the same checks on pushes and pull
-requests through `.github/workflows/checks.yml`.
+requests through `.github/workflows/checks.yml`. Pull requests that change the
+image build also build the image and call a tool through it
+(`.github/workflows/image.yml`).
 
 ## Tool results
 
