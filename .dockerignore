@@ -1,0 +1,26 @@
+# Only pyproject.toml, uv.lock, src/ and data/raw/ are used by the build.
+.git
+.github
+.claude
+.codex
+.venv
+venv
+dist
+plan
+tests
+docs
+**/__pycache__
+**/*.pyc
+.env
+.env.*
+
+# Built and locally prepared databases
+data/*.sqlite
+data/*.sqlite.*
+data/releases
+
+# Local copies that are not committed build inputs (mirrors .gitignore)
+data/raw/az/All_Series_2025-2060
+data/raw/az/Arizona_Medium Series.xlsx
+data/raw/or/**/*.xlsx
+data/raw/or/**/*.pdf
