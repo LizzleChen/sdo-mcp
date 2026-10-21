@@ -3,6 +3,7 @@
 import json
 import os
 from pathlib import Path
+import shutil
 import sqlite3
 import subprocess
 import sys
@@ -15,7 +16,7 @@ from mcp.shared.exceptions import MCPError
 from mcp.types import INVALID_PARAMS
 import pytest
 
-from sdo_mcp import release, server, store
+from sdo_mcp import bundle, server, store
 
 
 @pytest.fixture(scope="module")
@@ -26,31 +27,32 @@ def installed_server(db_path, tmp_path_factory):
     def run(*args, cwd=folder):
         return subprocess.run(args, cwd=cwd, check=True, capture_output=True, text=True, timeout=180)
 
-    run("uv", "build", "--wheel", "--out-dir", str(folder / "dist"), cwd=root)
+    # Build from a copy so the test bundles its own data without touching the checkout.
+    project = folder / "project"
+    shutil.copytree(root / "src", project / "src",
+                    ignore=shutil.ignore_patterns("__pycache__", "data"))
+    for name in ("pyproject.toml", "hatch_build.py", ".gitignore"):
+        shutil.copy2(root / name, project / name)
+    bundle.bundle_database(db_path, project / "src" / "sdo_mcp" / "data" / "sdo.sqlite")
+    run("uv", "build", "--wheel", "--out-dir", str(folder / "dist"), cwd=project)
     run("uv", "venv", "--python", sys.executable, str(folder / "env"))
     scripts = folder / "env" / ("Scripts" if os.name == "nt" else "bin")
     python = scripts / ("python.exe" if os.name == "nt" else "python")
     wheel, = (folder / "dist").glob("*.whl")
     run("uv", "pip", "install", "--python", str(python), str(wheel))
-    # Check the real compressed-release installation command outside the checkout.
-    prepared = release.prepare_release(db_path, folder / "releases", "mcp-test")
-    manifest = json.loads((prepared / "manifest.json").read_text())
-    database = folder / "installed.sqlite"
-    run(str(python), "-m", "sdo_mcp.install", str(prepared / manifest["file"]),
-        "--sha256", manifest["sha256"], "--destination", str(database))
-    result = run(str(python), "-c", "import sdo_mcp; print(sdo_mcp.__file__)")
+    # Installing the wheel alone must install the data; no SDO_DB is set.
+    result = run(str(python), "-c", "from sdo_mcp import store; print(store.db_path())")
     assert str(folder / "env") in result.stdout
-    return python, folder, database
+    return python, folder
 
 
 @pytest.mark.parametrize("protocol", ["2026-07-28", "2025-11-25"])
 def test_installed_tools_over_mcp(installed_server, protocol):
-    python, folder, database = installed_server
+    python, folder = installed_server
 
     async def check():
         params = StdioServerParameters(
-            command=str(python), args=["-m", "sdo_mcp.server"],
-            cwd=str(folder), env={"SDO_DB": str(database)},
+            command=str(python), args=["-m", "sdo_mcp.server"], cwd=str(folder),
         )
         with anyio.fail_after(45):
             async with stdio_client(params) as (read, write):
@@ -81,7 +83,7 @@ def test_installed_tools_over_mcp(installed_server, protocol):
                         return data
 
                     summary = await call("list_states", {})
-                    assert summary["database_release"] == "mcp-test"
+                    assert summary["database_release"] == client.server_info.version
                     assert len(summary["states"]) == 50
                     assert {"AR", "IA", "LA", "MT", "OK", "VT", "WV"} <= set(summary["states"])
                     assert sum(state["data_loaded"] for state in summary["states"].values()) == 49
@@ -364,7 +366,7 @@ def test_installed_tools_over_mcp(installed_server, protocol):
 
 @pytest.mark.parametrize("broken", [False, True])
 def test_database_failures_are_tool_errors_without_paths(installed_server, tmp_path, broken):
-    python, folder, _ = installed_server
+    python, folder = installed_server
     database = tmp_path / "private-database.sqlite"
     if broken:
         database.write_text("not a database")
@@ -381,7 +383,7 @@ def test_database_failures_are_tool_errors_without_paths(installed_server, tmp_p
                     text = result.content[0].text
                     assert str(tmp_path) not in text
                     if not broken:
-                        assert "sdo-mcp-install-data" in text
+                        assert "Reinstall a released sdo-mcp package" in text
 
     anyio.run(check)
 

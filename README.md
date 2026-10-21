@@ -184,141 +184,85 @@ workbooks, catalog and methodology are archived with retrieval dates and
 fingerprints. Municipal and projected components publication coverage remains
 unverified; those requests return `coverage_unknown`.
 
-The [v0.1.0 GitHub release](https://github.com/LizzleChen/sdo-mcp/releases/tag/v0.1.0)
-provides the installable wheel, the `2026-10-02` compressed database,
-`manifest.json`, and `SHA256SUMS`. Downloads require access to this private
-repository. You can also build from the saved source files in this checkout.
+## Install
 
-Before starting, install [`uv`](https://docs.astral.sh/uv/getting-started/installation/)
-and use Python 3.12 or newer. The checked development setup uses Python
-3.12.14 with SQLite 3.51.0; `.python-version` pins that version for `uv` in
-this checkout. If `uv python install 3.12.14` has no build for your platform,
-install that version separately with [pyenv](https://github.com/pyenv/pyenv)
-and its required build tools, or use another supported, patched Python 3.12+
-interpreter. An installed wheel needs only that supported patched interpreter.
-
-## Install from the GitHub release
-
-Download the four release assets into the same folder. With the GitHub CLI
-signed in to an account that has repository access:
+You need [`uv`](https://docs.astral.sh/uv/getting-started/installation/) and
+Python 3.12 or newer. Each GitHub release has one file to download: the
+package, with the forecast data already inside it. Downloading needs access to
+this private repository, for example through a signed-in GitHub CLI:
 
 ```sh
-gh release download v0.1.0 --repo LizzleChen/sdo-mcp --dir sdo-mcp-v0.1.0
-cd sdo-mcp-v0.1.0
-shasum -a 256 -c SHA256SUMS
-uv tool install --force ./sdo_mcp-0.1.0-py3-none-any.whl
+gh release download --repo LizzleChen/sdo-mcp --pattern '*.whl'
+uv tool install --force ./sdo_mcp-*.whl
 uv tool update-shell
 ```
 
-Restart your shell if it cannot find the installed commands. Then install
-`sdo-2026-10-02.sqlite.gz` using the `sha256` value in `manifest.json`, as
-described below. Both the wheel and database are required before starting
-the MCP server. This release runs locally; it does not provide a hosted MCP URL.
-
-## Install from this checkout
-
-Run these commands from the repository. `uv build` makes the install file and
-`uv tool install` puts its two commands in your user tool environment.
-
-```sh
-uv build --wheel
-uv tool install --force dist/sdo_mcp-*.whl
-uv tool update-shell
-```
-
-Restart your shell after `uv tool update-shell` if it does not find
-`sdo-mcp` immediately. Some desktop MCP clients do not inherit your shell’s
-PATH. For those clients, run `uv tool dir --bin` and use the full path to
-`sdo-mcp` in the client’s private configuration; the checked-in `.mcp.json`
-keeps the portable command name.
-
-The wheel contains the server code and database schema. It does not contain
-the large research database or source snapshots.
-
-## Install a compressed database release
-
-Obtain the versioned `.sqlite.gz` file and its `manifest.json` from a trusted
-maintainer. Read `sha256` from that manifest and use it in this command:
-
-```sh
-sdo-mcp-install-data /path/to/sdo-2026-10-02.sqlite.gz --sha256 PASTE_THE_64_CHARACTER_SHA256_HERE
-```
-
-The fingerprint must come from a trusted source. A fingerprint bundled with
-an untrusted download does not establish who published it. Installation checks
-the compressed file before opening it, limits the expanded size, validates the
-database, and replaces the installed copy only after all checks pass. No source
-checkout or state workbooks are needed to install this release.
-
-The release contains every observation the current tools can serve, every
-source record, and all geography and coverage information. Age, sex, and race
-detail remains in the full research database. The release version is retained
-in the database's `release_metadata` table and in the accompanying manifest.
-
-## Install the full database
-
-If you already have a working database, install a copy of it with the command
-created by the wheel:
-
-```sh
-sdo-mcp-install-data /path/to/sdo-mcp/data/sdo.sqlite
-```
-
-The command checks that the file is a readable SQLite database, passes SQLite
-integrity and foreign-key checks, and has the tables and columns this server
-needs. It then validates a temporary copy before replacing the installed copy
-in one final step. The source file is never changed.
-
-By default, the installed copy is stored here:
-
-* macOS: `~/Library/Application Support/sdo-mcp/sdo.sqlite`
-* Linux and other Unix systems: `$XDG_DATA_HOME/sdo-mcp/sdo.sqlite`, or
-  `~/.local/share/sdo-mcp/sdo.sqlite` when `XDG_DATA_HOME` is not set
-* Windows: `%LOCALAPPDATA%\\sdo-mcp\\sdo.sqlite`
-
-To make a full database from the saved source files, run this from the
-repository instead:
-
-```sh
-uv sync --group ingest
-uv run python -m sdo_mcp.ingest.build /path/to/sdo-mcp/data/sdo.sqlite
-sdo-mcp-install-data /path/to/sdo-mcp/data/sdo.sqlite
-```
-
-The build reads `data/raw/` and is offline with respect to the state agencies.
-It verifies the fingerprints of every registered input before and after loading.
-A failed load or changed fingerprint leaves the existing database untouched.
-Successful replacement keeps the old file beside it as
-`sdo.sqlite.previous-<unique-id>`; retain or remove these recovery copies as needed.
-To recover, install a copy using `sdo-mcp-install-data PATH_TO_RECOVERY_COPY`.
-Saved source files cannot be overwritten with different contents. New editions
-need new filenames, manifest entries, and an updated `ingest/inputs.json` list.
-Reusing a saved file preserves its recorded retrieval date.
-With no path, the build command writes the repository artifact at
-`data/sdo.sqlite`. It does not use the installed serving location. A different
-serving database can always be selected with `SDO_DB`.
+Restart your shell if it cannot find `sdo-mcp`. The server runs locally and
+never downloads data while answering a question. To update, install a newer
+release the same way.
 
 ## Use it with an MCP client
 
-After installing the wheel and database, run `sdo-mcp` from any folder. The
-included `.mcp.json` uses that command name and contains no machine-specific
-checkout path. Copy its `mcpServers.sdo-forecast` entry into the client’s
-configuration if needed.
+Add this entry, also saved in `.mcp.json`, to the client's configuration:
 
-To choose a database explicitly for one launch:
+```json
+{ "mcpServers": { "sdo-forecast": { "command": "sdo-mcp" } } }
+```
+
+Some desktop clients do not inherit your shell's PATH. For those, run
+`uv tool dir --bin` and use the full path to `sdo-mcp` instead.
+
+The package ships every value the tools serve, every source record, and all
+geography and coverage information. Age, sex and race detail stays in the
+full research database. To serve a different database for one launch, such as
+a full local build, set `SDO_DB`:
 
 ```sh
 SDO_DB=/path/to/sdo.sqlite sdo-mcp
 ```
 
-The repository’s saved `.mcp.json` is intended for an installed command. A
-developer working directly from the checkout can continue to use:
+## Rebuild the data
+
+From this checkout, rebuild the full database from the saved source files in
+`data/raw/`:
 
 ```sh
-SDO_DB=/path/to/sdo-mcp/data/sdo.sqlite uv run python -m sdo_mcp.server
+uv sync --group ingest
+uv run python -m sdo_mcp.ingest.build
 ```
 
-after building `data/sdo.sqlite`, or set `SDO_DB` to an installed database.
+This writes `data/sdo.sqlite` and does not contact the state agencies. It
+verifies the fingerprint of every saved source file before and after loading,
+so a changed or replaced government file stops the build. A failed build leaves
+the existing database untouched. A successful one keeps the old file beside it
+as `sdo.sqlite.previous-<unique-id>`; delete these recovery copies when you no
+longer need them. Saved source files cannot be overwritten with different
+contents: new editions need new filenames, manifest entries and an updated
+`ingest/inputs.json` list.
+
+While developing, serve the full build directly:
+
+```sh
+SDO_DB=data/sdo.sqlite uv run python -m sdo_mcp.server
+```
+
+## Make a release
+
+1. Raise `version` in `pyproject.toml` and run `uv lock`.
+2. Rebuild the data as above.
+3. Copy the served rows into the package, then build it:
+
+   ```sh
+   uv run python -m sdo_mcp.bundle
+   uv build --wheel
+   ```
+
+4. Attach `dist/sdo_mcp-<version>-py3-none-any.whl` to a GitHub release.
+
+The bundle step writes `src/sdo_mcp/data/sdo.sqlite`, which Git ignores. It
+compares all served observations and all source, geography and coverage
+records with the full build in both directions, and records the package version
+inside the data. `uv build` refuses to make a package without it.
 
 ## Development checks
 
@@ -327,10 +271,10 @@ uv run pytest
 ```
 
 The checks rebuild from saved sources, confirm failed builds and changed file
-fingerprints preserve the previous database, and compare the compact release
-with the full data. They also build a wheel, install it in a fresh environment
-outside the checkout, install a verified compressed database, and exercise all
-four tools over MCP 2026-07-28 and 2025-11-25 connections. The installation check
+fingerprints preserve the previous database, and compare the bundled data with
+the full build. They also build a package with its data, install it in a fresh
+environment outside the checkout, and exercise all four tools over MCP
+2026-07-28 and 2025-11-25 connections with no `SDO_DB` set. The package check
 needs `uv` and access to its package cache or the package index; state agency
 downloads are never needed. GitHub runs the same checks on pushes and pull
 requests through `.github/workflows/checks.yml`.
@@ -340,8 +284,8 @@ requests through `.github/workflows/checks.yml`.
 All four tools describe their returned fields and provide both structured data
 and a matching JSON text copy. They advertise that they only read local data;
 the serving database connection also prevents writes. MCP reports the package
-version, while `list_states.database_release` identifies the installed compact
-release (`null` for a full build without release metadata).
+version. `list_states.database_release` reports the version recorded in the
+data, which matches the package for a release (`null` for a full local build).
 
 Forecast and component requests distinguish these outcomes:
 
@@ -356,30 +300,12 @@ Forecast and component requests distinguish these outcomes:
 | `coverage_unknown` | This server has no coverage record for the requested combination and cannot establish publication status. |
 
 Missing-data outcomes are normal answers, not MCP errors. Execution failures
-are MCP errors; missing databases include installation guidance without exposing
+are MCP errors; a missing database includes reinstall guidance without exposing
 local file paths. Unknown tool names are protocol errors, separate from tool
 results. These distinctions follow the
 [MCP tool error rules](https://modelcontextprotocol.io/specification/2026-07-28/server/tools).
 
-## Prepare a database release
-
-After rebuilding the full database, run:
-
-```sh
-uv run python -m sdo_mcp.release data/sdo.sqlite --version YYYY-MM-DD
-```
-
-Replace `YYYY-MM-DD` with a new release identifier. This writes
-`data/releases/YYYY-MM-DD/sdo-YYYY-MM-DD.sqlite.gz` and `manifest.json`.
-An existing release folder is never replaced. The command
-compares all served observations and all source, geography, and coverage records
-in both directions before creating the archive. The manifest records the
-release version, full database fingerprint, compressed and expanded fingerprints,
-file sizes, creation time, and record counts. Source retrieval dates stay intact.
-
-These files are local and excluded from Git. Attach both files to a GitHub
-release alongside the matching wheel and checksums when publishing; the
-command itself does not publish or upload them.
+## Source reviews
 
 Source review schedules and publication-versus-loading status are available
 through `list_states`, `describe_source`, and the local report command:

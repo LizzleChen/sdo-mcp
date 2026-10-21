@@ -190,7 +190,7 @@ def report(conn, *, today: date | None = None) -> dict:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--database", type=Path, help="Defaults to SDO_DB or the installed database")
+    parser.add_argument("--database", type=Path, help="Defaults to SDO_DB or the bundled database")
     args = parser.parse_args()
     conn = store.connect(args.database)
     try:

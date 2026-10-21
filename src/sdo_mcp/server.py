@@ -30,8 +30,8 @@ class ForecastServer(MCPServer):
         except UnexpectedToolError as exc:
             if isinstance(exc.__cause__, FileNotFoundError):
                 raise ToolError(
-                    "Forecast database is missing. Install it with "
-                    "sdo-mcp-install-data PATH_TO_SDO_SQLITE or check SDO_DB."
+                    "Forecast database is missing. Reinstall a released sdo-mcp "
+                    "package, which includes the data, or check SDO_DB."
                 ) from exc
             raise
         if isinstance(result, CallToolResult) and result.structured_content:

@@ -6,8 +6,8 @@ rebuild — never patch it by hand.
 Usage: uv run python -m sdo_mcp.ingest.build [db_path]
 
 With no path, this rebuilds the repository artifact at ``data/sdo.sqlite``.
-The installed server uses a separate per-user database path; pass an explicit
-path when a build should go somewhere else.
+The packaged server reads a compact copy made by ``python -m sdo_mcp.bundle``;
+pass an explicit path when a build should go somewhere else.
 """
 
 from __future__ import annotations
@@ -23,7 +23,7 @@ from pathlib import Path
 
 from .. import store
 from ..common import fetch
-from ..install import validate_database
+from ..validate import validate_database
 from . import (
     ak, al, az, ca, co, ct, de, fl, ga, hi, id, il, ks, ky, ma, md, me, mi,
     mn, mo, ms, nc, nd, ne, nh, nj, nm, nv, ny, oh, pa, ri, sc, sd, seed,

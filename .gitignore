@@ -18,6 +18,8 @@ node_modules/
 
 # Built artifact — rebuild from data/raw/ with: uv run python -m sdo_mcp.ingest.build
 data/sdo.sqlite
+# Compact copy shipped in the wheel — make with: uv run python -m sdo_mcp.bundle
+src/sdo_mcp/data/
 
 # Local expansion duplicates; the canonical Arizona archive is committed
 data/raw/az/All_Series_2025-2060/
@@ -34,6 +36,6 @@ data/raw/or/**/*.pdf
 # ignore unzipped raw data files, as zipped files are already tracked in git
 data/raw/az/All_Series_2025-2060/*
 
-# Rebuild recovery copies and locally prepared releases
+# Rebuild recovery copies and releases from the older two-file format
 data/*.sqlite.previous-*
 data/releases/

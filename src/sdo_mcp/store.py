@@ -3,45 +3,27 @@
 from __future__ import annotations
 
 import os
-import platform
 import sqlite3
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 SCHEMA_PATH = Path(__file__).with_name("schema.sql")
 REPOSITORY_DB = REPO_ROOT / "data" / "sdo.sqlite"
-
-
-def user_data_dir() -> Path:
-    """Return the per-user folder used by an installed server."""
-    system = platform.system()
-    if system == "Darwin":
-        return Path.home() / "Library" / "Application Support" / "sdo-mcp"
-    if system == "Windows":
-        return Path(os.environ.get("LOCALAPPDATA", Path.home() / "AppData" / "Local")) / "sdo-mcp"
-    return Path(os.environ.get("XDG_DATA_HOME", Path.home() / ".local" / "share")) / "sdo-mcp"
-
-
-def installed_db_path() -> Path:
-    return user_data_dir() / "sdo.sqlite"
-
-
-# Kept as a public name for callers that imported it before the installed
-# default was introduced. It is evaluated once, like the old repository path.
-DEFAULT_DB = installed_db_path()
+# Written by ``python -m sdo_mcp.bundle`` and shipped inside the wheel.
+BUNDLED_DB = Path(__file__).with_name("data") / "sdo.sqlite"
 
 
 def db_path() -> Path:
     configured = os.environ.get("SDO_DB")
-    return Path(configured).expanduser() if configured else installed_db_path()
+    return Path(configured).expanduser() if configured else BUNDLED_DB
 
 
 def connect(path: Path | str | None = None, create: bool = False) -> sqlite3.Connection:
     p = Path(path) if path else db_path()
     if not create and not p.exists():
         raise FileNotFoundError(
-            f"database not found at {p} — install one with: "
-            "sdo-mcp-install-data PATH_TO_SDO_SQLITE"
+            f"database not found at {p} — reinstall a released sdo-mcp "
+            "package, or set SDO_DB to a built database"
         )
     if create:
         p.parent.mkdir(parents=True, exist_ok=True)
