@@ -50,6 +50,32 @@ Restart the app. You should see four new tools from `sdo-forecast`.
 
 **To update**, repeat step 2 with the newer release.
 
+### Or run it with Docker
+
+If you use [Docker](https://www.docker.com/), you can skip uv and Python. Each
+release also publishes an image with the same data. The repository is private,
+so sign in first with a GitHub token that can read packages:
+
+```sh
+docker login ghcr.io -u YOUR_GITHUB_USER
+docker pull ghcr.io/lizzlechen/sdo-mcp:latest
+```
+
+Then use this in your app's MCP settings:
+
+```json
+{
+  "mcpServers": {
+    "sdo-forecast": {
+      "command": "docker",
+      "args": ["run", "-i", "--rm", "--network", "none", "ghcr.io/lizzlechen/sdo-mcp:latest"]
+    }
+  }
+}
+```
+
+The server never needs the internet, so `--network none` is safe.
+
 ## What you can ask
 
 Just ask in plain language. For example:

@@ -21,6 +21,10 @@ dist/sdo_mcp-<version>-py3-none-any.whl   code + data, ~2.4 MB
 users: uv tool install ./sdo_mcp-<version>-py3-none-any.whl
 ```
 
+The Docker image follows the same path inside its own build: it rebuilds from
+`data/raw/`, bundles the served rows, and installs the package with the data
+inside. Publishing the GitHub release also publishes the image.
+
 The full database keeps age, sex and race detail that no tool serves. The
 bundled copy keeps every value the tools can return, every source record, and
 all geography and coverage information.
@@ -108,12 +112,40 @@ every push and pull request (`.github/workflows/checks.yml`).
    gh release create v0.2.0 dist/sdo_mcp-0.2.0-py3-none-any.whl --repo LizzleChen/sdo-mcp --title v0.2.0 --notes "What changed in the data"
    ```
 
+Publishing the release also starts `.github/workflows/image.yml`. It builds the
+Docker image for `linux/amd64` and `linux/arm64`, checks it, and pushes it to
+`ghcr.io/lizzlechen/sdo-mcp` tagged with the version (for example `0.2.0` and
+`0.2`) and `latest`.
+
 The bundle step writes `src/sdo_mcp/data/sdo.sqlite`, which Git ignores. Before
 writing it, it compares every served value and every source, geography and
 coverage record with the full build in both directions. It also stamps the
 package version into the data, so `list_states` reports the same version as
 the server. `uv build` refuses to make a package if the bundled file is
 missing.
+
+## Build the Docker image locally
+
+```sh
+docker build -t sdo-mcp .
+python3 .github/scripts/check_image.py sdo-mcp
+```
+
+The build takes a few minutes because it rebuilds the database from
+`data/raw/` (offline, with every source fingerprint checked). It never uses a
+database from your checkout. Source files and the workbook-reading libraries
+stay out of the final image, and the server runs as a non-root user. The check
+script starts the image the way an MCP app would and asks for `list_states`.
+Pull requests that change the image build run the same check.
+
+The image works with a read-only filesystem if it also gets a writable
+temporary folder, because SQLite needs one for some queries:
+`docker run -i --rm --read-only --tmpfs /tmp sdo-mcp`. To serve a different
+database, mount it and set `SDO_DB`:
+
+```sh
+docker run -i --rm -v /path/to/sdo.sqlite:/data/sdo.sqlite:ro -e SDO_DB=/data/sdo.sqlite sdo-mcp
+```
 
 ## Source reviews
 

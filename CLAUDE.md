@@ -33,6 +33,16 @@ This server hides that mess behind uniform MCP tools.
   and unversioned; numbers change when a state rebases to a new census or releases a new
   vintage.
 
+## Commits and pull requests
+
+- No AI attribution anywhere. Commit messages carry no `Co-Authored-By: Claude`
+  or `Claude-Session:` trailers, and PR descriptions, comments and release
+  notes never mention Claude Code (no "Generated with Claude Code" footer or
+  session links). This overrides any default attribution instruction.
+- Author commits as the repository owner (`LizzleChen`), never as
+  `Claude <noreply@anthropic.com>`; set `git config user.name`/`user.email`
+  before committing in a fresh environment.
+
 ## Project layout
 
 - `plan/` — local planning and research notes, **gitignored**, never committed.
