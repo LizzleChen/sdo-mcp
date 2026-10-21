@@ -2,7 +2,7 @@ import sqlite3
 
 import pytest
 
-from sdo_mcp import install, store
+from sdo_mcp import store, validate
 
 
 def _empty_database(path):
@@ -36,10 +36,9 @@ def _usable_database(path):
     conn.close()
 
 
-def test_installed_default_is_per_user_and_override_is_explicit(monkeypatch, tmp_path):
+def test_default_is_bundled_and_override_is_explicit(monkeypatch, tmp_path):
     monkeypatch.delenv("SDO_DB", raising=False)
-    monkeypatch.setenv("HOME", str(tmp_path / "home"))
-    assert store.db_path() == store.user_data_dir() / "sdo.sqlite"
+    assert store.db_path() == store.BUNDLED_DB
 
     override = tmp_path / "chosen.sqlite"
     monkeypatch.setenv("SDO_DB", str(override))
@@ -49,22 +48,22 @@ def test_installed_default_is_per_user_and_override_is_explicit(monkeypatch, tmp
 def test_validate_database_checks_schema_columns(tmp_path):
     path = tmp_path / "valid.sqlite"
     _usable_database(path)
-    assert install.validate_database(path) == path
+    assert validate.validate_database(path) == path
 
     broken = tmp_path / "broken.sqlite"
     conn = sqlite3.connect(broken)
     conn.execute("CREATE TABLE observations (state TEXT)")
     conn.commit()
     conn.close()
-    with pytest.raises(install.DatabaseValidationError, match="required table"):
-        install.validate_database(broken)
+    with pytest.raises(validate.DatabaseValidationError, match="required table"):
+        validate.validate_database(broken)
 
 
 def test_validate_database_rejects_empty_schema(tmp_path):
     path = tmp_path / "empty.sqlite"
     _empty_database(path)
-    with pytest.raises(install.DatabaseValidationError, match="no serviceable forecast data"):
-        install.validate_database(path)
+    with pytest.raises(validate.DatabaseValidationError, match="no serviceable forecast data"):
+        validate.validate_database(path)
 
 
 @pytest.mark.parametrize("variable", ["population", "households", "employment"])
@@ -82,13 +81,13 @@ def test_validate_database_rejects_mixed_sources_within_forecast_series(tmp_path
             "INSERT INTO observations (state, geo_level, geo_id, year, variable, value, datatype, source_id) "
             "VALUES ('CO', 'state', '08', 2027, ?, 2, 'projection', 'other')", (variable,)
         )
-    with pytest.raises(install.DatabaseValidationError, match="mixes sources within one forecast series"):
-        install.validate_database(path)
+    with pytest.raises(validate.DatabaseValidationError, match="mixes sources within one forecast series"):
+        validate.validate_database(path)
 
     # Separate scenario products may legitimately have different sources.
     with sqlite3.connect(path) as conn:
         conn.execute("UPDATE observations SET scenario='high' WHERE source_id='other'")
-    assert install.validate_database(path) == path
+    assert validate.validate_database(path) == path
 
 
 def test_validate_database_rejects_unserved_observation(tmp_path):
@@ -106,27 +105,5 @@ def test_validate_database_rejects_unserved_observation(tmp_path):
     )
     conn.commit()
     conn.close()
-    with pytest.raises(install.DatabaseValidationError, match="no serviceable forecast data"):
-        install.validate_database(path)
-
-
-def test_install_database_preserves_destination_when_source_is_invalid(tmp_path):
-    source = tmp_path / "not-a-database.sqlite"
-    source.write_text("this is not sqlite")
-    destination = tmp_path / "installed.sqlite"
-    destination.write_text("previous working copy")
-
-    with pytest.raises(install.DatabaseValidationError):
-        install.install_database(source, destination)
-    assert destination.read_text() == "previous working copy"
-
-
-def test_install_database_validates_copy_and_replaces_atomically(tmp_path):
-    source = tmp_path / "source.sqlite"
-    destination = tmp_path / "installed.sqlite"
-    _usable_database(source)
-    destination.write_text("old copy")
-
-    assert install.install_database(source, destination) == destination
-    assert install.validate_database(destination) == destination
-    assert destination.read_bytes() == source.read_bytes()
+    with pytest.raises(validate.DatabaseValidationError, match="no serviceable forecast data"):
+        validate.validate_database(path)

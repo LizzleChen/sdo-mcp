@@ -1,6 +1,6 @@
 [project]
 name = "sdo-mcp"
-version = "0.1.0"
+version = "0.2.0"
 description = "MCP server for state demography office population, household, and employment forecasts"
 requires-python = ">=3.12"
 dependencies = [
@@ -9,7 +9,6 @@ dependencies = [
 
 [project.scripts]
 sdo-mcp = "sdo_mcp.server:main"
-sdo-mcp-install-data = "sdo_mcp.install:main"
 
 [dependency-groups]
 # Ingest-time only — the serve path stays stdlib (sqlite3).
@@ -30,6 +29,10 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/sdo_mcp"]
+# Gitignored, so it must be named here. Made by: python -m sdo_mcp.bundle
+artifacts = ["src/sdo_mcp/data/sdo.sqlite"]
+
+[tool.hatch.build.targets.wheel.hooks.custom]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
