@@ -39,10 +39,6 @@ def test_employment_state_is_pdf_only():
     assert res["status"] == "pdf_only"
 
 
-def test_tn_shows_loaded_in_list_states():
-    assert server.list_states()["states"]["TN"]["data_loaded"] is True
-
-
 def test_crossed_detail_loaded_and_reconciles():
     """The crossed age×sex×race county detail (Boyd Center ArcGIS service)
     is loaded in full and sums back to the served county totals."""

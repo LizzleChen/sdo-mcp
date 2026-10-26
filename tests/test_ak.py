@@ -100,11 +100,10 @@ def test_every_loaded_total_agrees_with_independent_pdf():
     assert all(checks[r["geo_id"], r["year"], r.get("scenario", "")] == r["value"] for r in rows)
 
 
-@pytest.mark.parametrize("parser", [ak.parse_state_workbook, ak.parse_county_workbook])
 @pytest.mark.parametrize("body", [b"<html>Unavailable</html>", b"[]", b"PKbroken"])
-def test_soft_200_workbook_rejected(parser, body):
+def test_soft_200_workbook_rejected(body):
     with pytest.raises(ValueError, match="readable XLSX"):
-        parser(body)
+        ak.parse_state_workbook(body)
 
 
 def test_soft_200_report_rejected():

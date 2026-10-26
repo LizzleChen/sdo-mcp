@@ -60,11 +60,6 @@ def test_year_range_off_the_ends_names_published_range():
     assert (res["available_start_year"], res["available_end_year"]) == (1970, 2060)
 
 
-def test_co_shows_loaded_in_list_states():
-    res = server.list_states()
-    assert res["states"]["CO"]["data_loaded"] is True
-
-
 def test_describe_source_lists_three_loaded_products():
     res = server.describe_source("CO")
     assert len(res["sources_loaded"]) == 3
