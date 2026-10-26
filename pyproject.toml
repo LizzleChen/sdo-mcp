@@ -3,6 +3,8 @@ name = "sdo-mcp"
 version = "0.2.0"
 description = "MCP server for state demography office population, household, and employment forecasts"
 requires-python = ">=3.12"
+license = "MIT"
+license-files = ["LICENSE"]
 dependencies = [
     "mcp>=2.1.1,<3",
 ]
