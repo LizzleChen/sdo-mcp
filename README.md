@@ -1,15 +1,26 @@
 # SDO Forecast MCP
 
-Ask an AI assistant how many people a US county is expected to have in 2050,
-and get the official state forecast, with its source attached.
+This is an MCP server (Model Context Protocol, a standard way for AI
+assistants to use outside tools). It is a convenient one-stop source of state
+demographic forecasts that you can use from your preferred AI assistant or
+large language model (LLM) app. Ask how many people a US county is expected to
+have in 2050, and get the official state forecast, with its source attached.
+
+> **Check the numbers yourself.** The data may be out of date or wrong. States
+> publish new editions without notice, files can change, and mistakes can slip
+> in when this project collects and converts them. Treat every answer as a
+> starting point, not a final figure. Before you rely on a number, confirm it
+> with the original source or with the state's demography office. The Census
+> Bureau lists each state's contacts on its
+> [FSCPE contacts page](https://www.census.gov/programs-surveys/popest/about/fscpe/contacts.html)
+> (Federal-State Cooperative for Population Estimates).
 
 Population forecasts for counties and cities don't come from the federal
-government. Each state has its own office (the "state demographer") that
-publishes them. Each one uses a different website, file format, set of
+government. Each state has its own State Demography Office (SDO), often called
+the "state demographer", that publishes them. Each one uses a different website, file format, set of
 geographies and timeline. This server gathers those forecasts into one place
 and answers questions about them in the same way for every state. It works
-with Claude and other apps that support MCP (Model Context Protocol, a
-standard way for AI assistants to use outside tools).
+with Claude and other apps that support MCP.
 
 - **49 states loaded**: population forecasts for all of them, plus households,
   jobs, or births, deaths and migration where the state publishes them.
@@ -205,6 +216,15 @@ carries a jobs forecast when the state demography office publishes one itself.
   set `SDO_DB`, check that it points to a real file.
 - **Using a different database.** Set `SDO_DB` to its path, for example
   `SDO_DB=/path/to/sdo.sqlite sdo-mcp`.
+
+## Next steps
+
+- **Confirm the data sources.** Go through each state's source one by one and
+  check that it is the right agency, the newest edition, and that our copy
+  matches what the state publishes. Record what was checked and when.
+- **Create a data retrieval and refresh routine.** Set up a repeatable process
+  that fetches each state's files on a schedule, spots new editions or changed
+  numbers, and rebuilds the data for a new release. Today this is done by hand.
 
 ## For maintainers
 
