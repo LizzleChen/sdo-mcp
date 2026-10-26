@@ -45,7 +45,8 @@ def bundle_database(source: Path | str = store.REPOSITORY_DB,
         temporary = Path(f.name)
     try:
         original = sqlite3.connect(f'{source.resolve().as_uri()}?mode=ro', uri=True)
-        compact = sqlite3.connect(temporary)
+        # uri=True lets the read-only ATTACH below work on SQLite builds without USE_URI.
+        compact = sqlite3.connect(temporary.resolve().as_uri(), uri=True)
         try:
             original.backup(compact)
             compact.execute(f'DELETE FROM observations WHERE NOT ({TOTALS})')
