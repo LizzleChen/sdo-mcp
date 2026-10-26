@@ -226,6 +226,12 @@ carries a jobs forecast when the state demography office publishes one itself.
   that fetches each state's files on a schedule, spots new editions or changed
   numbers, and rebuilds the data for a new release. Today this is done by hand.
 
+## License
+
+The code is released under the [MIT License](LICENSE). The forecast data
+comes from state agencies and stays theirs. Check each state's terms of use
+(see the [source reviews](docs/source-reviews.md)) before reusing the numbers.
+
 ## For maintainers
 
 Rebuilding the data from the saved state files, running the checks and
