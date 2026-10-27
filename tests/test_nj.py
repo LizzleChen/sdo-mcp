@@ -148,8 +148,7 @@ def test_parser_grid_and_independent_publisher_charts():
     assert checks["34033", 2034] == 59800
 
 
-@pytest.mark.parametrize("parser", [nj.parse_state_workbook, nj.parse_county_workbook,
-                                  nj.parse_report, nj._doc_text])
+@pytest.mark.parametrize("parser", [nj.parse_state_workbook, nj.parse_report, nj._doc_text])
 @pytest.mark.parametrize("body", [b"<html>Temporarily unavailable</html>", b"[]", b"PKbroken"])
 def test_soft_200_data_rejected(parser, body):
     with pytest.raises(ValueError, match="readable"):

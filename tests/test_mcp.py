@@ -85,246 +85,30 @@ def test_installed_tools_over_mcp(installed_server, protocol):
                     summary = await call("list_states", {})
                     assert summary["database_release"] == client.server_info.version
                     assert len(summary["states"]) == 50
-                    assert {"AR", "IA", "LA", "MT", "OK", "VT", "WV"} <= set(summary["states"])
                     assert sum(state["data_loaded"] for state in summary["states"].values()) == 49
                     assert summary["states"]["MT"]["data_loaded"] is False
+                    # Per-state values are checked in each state's own tests; here only the
+                    # wire format of each kind of answer is checked.
                     vt_settings = summary["states"]["VT"]["scenario_settings_by_geo"]
-                    assert vt_settings["state"]["default_scenario"] == "current_trends"
-                    assert vt_settings["county"]["default_scenario"] == "b"
-                    for state, level, geo, year, value, base in (
-                        ("AR", "county", "Calhoun", 2065, 4158.875482473251, 2013),
-                        ("IA", "county", "Polk", 2000, 326900, 1980),
-                        ("LA", "county", "Jefferson Davis", 2030, 29720, 2005),
-                        ("OK", "county", "Cimarron", 2070, 1356, None),
-                        ("VT", "state", "VT", 2050, 644731, None),
-                        ("VT", "county", "Chittenden", 2030, 162967, 2010),
-                        ("WV", "county", "Wirt", 2040, 4225, None),
-                    ):
-                        forecast = await call("get_forecast", {
-                            "state": state, "geo_level": level, "geo": geo,
-                            "variable": "population", "start_year": year, "end_year": year,
-                        }, "ok")
-                        assert forecast["series"] == [{"year": year, "value": value, "datatype": "projection"}]
-                        assert forecast["source"]["base_year"] == base
-                        assert forecast["source"]["retrieved_at"]
-                        if state == "VT":
-                            assert forecast["scenario"] == vt_settings[level]["default_scenario"]
-                            assert forecast["scenario_note"] == vt_settings[level]["default_scenario_note"]
-                    for level, geo, scenario in (("state", "VT", "b"), ("county", "Chittenden", "current_trends")):
-                        await call("get_forecast", {
-                            "state": "VT", "geo_level": level, "geo": geo,
-                            "variable": "population", "scenario": scenario,
-                        }, "error", True)
+                    vt = await call("get_forecast", {
+                        "state": "VT", "geo_level": "county", "geo": "Chittenden", "variable": "population",
+                        "start_year": 2030, "end_year": 2030,
+                    }, "ok")
+                    assert vt["series"] == [{"year": 2030, "value": 162967, "datatype": "projection"}]
+                    assert vt["scenario"] == vt_settings["county"]["default_scenario"] == "b"
+                    assert vt["scenario_note"] == vt_settings["county"]["default_scenario_note"]
+                    await call("get_forecast", {
+                        "state": "VT", "geo_level": "county", "geo": "Chittenden",
+                        "variable": "population", "scenario": "current_trends",
+                    }, "error", True)
                     await call("get_forecast", {
                         "state": "MT", "geo_level": "state", "geo": "MT", "variable": "population",
                     }, "coverage_unknown")
-                    await call("get_components", {"state": "MT", "geo": "MT"}, "coverage_unknown")
-                    for state in ("AR", "IA", "LA", "MT", "OK", "VT", "WV"):
-                        described = await call("describe_source", {"state": state})
-                        assert bool(described["sources_loaded"]) is (state != "MT")
-                        assert described["review"]["status"] == "never_reviewed"
-                    assert {"VA", "WI", "UT", "IN", "MI", "PA", "KY", "IL", "MD"} <= set(summary["states"])
-                    assert {"AK", "HI", "ME", "NE", "NH", "OH", "NV"} <= set(summary["states"])
-                    assert {"CT", "MA", "NJ", "NY", "RI"} <= set(summary["states"])
-                    assert {"ID", "KS", "MO", "MS", "ND", "SD"} <= set(summary["states"])
-                    assert all(summary["states"][state]["data_loaded"] for state in ("ID", "KS", "MO", "MS", "ND", "SD"))
-                    for state, level, geo, year, value, base in (
-                        ("ID", "state", "ID", 2034, 2364544, None),
-                        ("KS", "county", "Greeley", 2021, 873, None),
-                        ("MO", "county", "Adair", 2005, 24690, 2007),
-                        ("MS", "state", "MS", 2050, 3064588, 2010),
-                        ("ND", "state", "ND", 2050, 957194, 2020),
-                        ("SD", "county", "Shannon", 2035, 19755.46602925523, 2010),
-                    ):
-                        forecast = await call("get_forecast", {
-                            "state": state, "geo_level": level, "geo": geo,
-                            "variable": "population", "start_year": year, "end_year": year,
-                        }, "ok")
-                        assert forecast["series"] == [{"year": year, "value": value, "datatype": "projection"}]
-                        assert forecast["source"]["base_year"] == base
-                        assert forecast["source"]["retrieved_at"]
-                    await call("get_forecast", {
-                        "state": "KS", "geo_level": "state", "geo": "KS", "variable": "population",
-                    }, "coverage_unknown")
+                    assert (await call("describe_source", {"state": "MT"}))["sources_loaded"] is None
                     await call("get_forecast", {
                         "state": "MS", "geo_level": "county", "geo": "Hinds", "variable": "population",
                     }, "not_loaded")
-                    await call("get_forecast", {
-                        "state": "KS", "geo_level": "county", "geo": "Greeley", "variable": "population",
-                        "start_year": 2026, "end_year": 2030,
-                    }, "empty_range")
-                    await call("get_forecast", {
-                        "state": "SD", "geo_level": "county", "geo": "46102", "variable": "population",
-                    }, "error", True)
-                    await call("get_components", {
-                        "state": "ND", "geo": "ND",
-                    }, "pdf_only")
-                    for state in ("ID", "KS", "MO", "MS", "ND", "SD"):
-                        described = await call("describe_source", {"state": state})
-                        assert described["sources_loaded"]
-                        assert described["review"]["status"] == "never_reviewed"
-                    for state, level, geo, year, value, base, datatype in (
-                        ("CT", "county", "Fairfield", 2040, 905219, 2010, "projection"),
-                        ("CT", "cog", "Southeastern CT", 2040, 303785, 2010, "projection"),
-                        ("MA", "state", "MA", 2020, 7039146.791183238, 2020, "estimate"),
-                        ("NJ", "county", "Bergen", 2034, 1065500, 2014, "projection"),
-                        ("NY", "county", "Albany", 2040, 328968, 2015, "projection"),
-                        ("RI", "county_subdivision", "Providence", 2050, 201447, None, "projection"),
-                    ):
-                        forecast = await call("get_forecast", {
-                            "state": state, "geo_level": level, "geo": geo,
-                            "variable": "population", "start_year": year, "end_year": year,
-                        }, "ok")
-                        assert forecast["series"] == [{"year": year, "value": value, "datatype": datatype}]
-                        assert forecast["source"]["base_year"] == base
-                    ny = await call("get_forecast", {
-                        "state": "NY", "geo_level": "state", "geo": "NY", "variable": "population",
-                        "start_year": 2022, "end_year": 2022,
-                    }, "ok")
-                    assert ny["series"] == [{"year": 2022, "value": 19673203, "datatype": "estimate"}]
-                    assert ny["scenario"] == "middle" and "server" in ny["scenario_note"]
-                    await call("get_forecast", {
-                        "state": "NY", "geo_level": "economic_region", "geo": "Capital District", "variable": "population",
-                    }, "not_loaded")
-                    await call("get_forecast", {
-                        "state": "RI", "geo_level": "county_subdivision", "geo": "Kingstown", "variable": "population",
-                    }, "error", True)
-                    await call("get_forecast", {
-                        "state": "RI", "geo_level": "county", "geo": "Providence", "variable": "population",
-                    }, "coverage_unknown")
-                    for state in ("CT", "MA", "NJ", "NY", "RI"):
-                        described = await call("describe_source", {"state": state})
-                        assert described["sources_loaded"]
-                        assert described["review"]["status"] == "never_reviewed"
-                    for state, geo, year, value, base_year in (
-                        ("AK", "Chugach", 2055, 5623, 2025),
-                        ("HI", "hi-maui-kalawao", 2030, 173620.30660481827, 2020),
-                        ("ME", "Cumberland", 2032, 322972.8624317943, 2022),
-                        ("NE", "Keya Paha", 2050, 514, 2020),
-                        ("NH", "Carroll", 2020, 50111, 2020),
-                        ("OH", "Ottawa", 2050, 31371, 2020),
-                        ("NV", "Carson City", 2044, 64275, 2024),
-                    ):
-                        forecast = await call("get_forecast", {
-                            "state": state, "geo_level": "county", "geo": geo,
-                            "variable": "population", "start_year": year, "end_year": year,
-                        }, "ok")
-                        assert forecast["series"] == [{"year": year, "value": value,
-                                                       "datatype": "estimate" if year == 2020 else "projection"}]
-                        assert forecast["source"]["base_year"] == base_year
-                        assert forecast["source"]["retrieved_at"]
-                    jobs = await call("get_forecast", {
-                        "state": "HI", "geo_level": "county", "geo": "hi-maui-kalawao",
-                        "variable": "employment", "start_year": 2050, "end_year": 2050,
-                    }, "ok")
-                    assert jobs["series"][0]["value"] == 129980
-                    assert jobs["source"]["base_year"] == 2022
-                    for variable in ("population", "employment"):
-                        refusal = await call("get_forecast", {
-                            "state": "HI", "geo_level": "county", "geo": "Maui", "variable": variable,
-                        }, "not_published")
-                        assert "hi-maui-kalawao" in refusal["reason"]
-                        assert "series" not in refusal
-                    await call("get_forecast", {
-                        "state": "AK", "geo_level": "county", "geo": "Chugach",
-                        "variable": "population", "scenario": "high",
-                    }, "error", True)
-                    high = await call("get_forecast", {
-                        "state": "AK", "geo_level": "state", "geo": "AK", "variable": "population",
-                        "scenario": "high", "start_year": 2055, "end_year": 2055,
-                    }, "ok")
-                    assert high["series"][0]["value"] == 925038
-                    await call("get_forecast", {
-                        "state": "ME", "geo_level": "state", "geo": "ME", "variable": "population",
-                        "start_year": 2028, "end_year": 2028,
-                    }, "empty_range")
-                    await call("get_components", {"state": "NH", "geo": "Carroll"}, "pdf_only")
-                    hi_source = await call("describe_source", {"state": "HI"})
-                    assert {source["base_year"] for source in hi_source["sources_loaded"]} == {2020, 2022}
-                    for variable, value in (("population", 584130), ("households", 262030), ("employment", 454800)):
-                        maryland = await call("get_forecast", {
-                            "state": "MD", "geo_level": "county", "geo": "Baltimore City",
-                            "variable": variable, "start_year": 2050, "end_year": 2050,
-                        }, "ok")
-                        assert maryland["geo"]["id"] == "24510"
-                        assert maryland["series"] == [{"year": 2050, "value": value, "datatype": "projection"}]
-                    await call("get_forecast", {
-                        "state": "MD", "geo_level": "place", "geo": "Baltimore", "variable": "population",
-                    }, "coverage_unknown")
-                    illinois = await call("get_forecast", {
-                        "state": "IL", "geo_level": "county", "geo": "Cook", "variable": "population",
-                        "start_year": 2020, "end_year": 2025,
-                    }, "ok")
-                    assert illinois["series"] == [
-                        {"year": 2020, "value": 5262741, "datatype": "estimate"},
-                        {"year": 2025, "value": 5148792, "datatype": "projection"},
-                    ]
-                    assert illinois["source"]["base_year"] == 2020
-                    await call("get_forecast", {
-                        "state": "IL", "geo_level": "place", "geo": "Chicago", "variable": "population",
-                    }, "not_loaded")
-                    await call("get_components", {"state": "IL", "geo": "Cook"}, "pdf_only")
-                    il_description = await call("describe_source", {"state": "IL"})
-                    assert il_description["review"]["status"] == "never_reviewed"
-                    assert "Table 3" in il_description["sources_loaded"][0]["citation"]
-                    for variable, value in (("population", 4785233), ("households", 1944624)):
-                        kentucky = await call("get_forecast", {
-                            "state": "KY", "geo_level": "state", "geo": "KY", "variable": variable,
-                            "start_year": 2050, "end_year": 2050,
-                        }, "ok")
-                        assert kentucky["series"] == [{"year": 2050, "value": value, "datatype": "projection"}]
-                        assert kentucky["source"]["base_year"] == 2021
-                    pennsylvania = await call("get_forecast", {
-                        "state": "PA", "geo_level": "county", "geo": "Philadelphia", "variable": "population",
-                        "start_year": 2020, "end_year": 2025,
-                    }, "ok")
-                    assert pennsylvania["series"] == [
-                        {"year": 2020, "value": 1600600, "datatype": "estimate"},
-                        {"year": 2025, "value": 1662041, "datatype": "projection"},
-                    ]
-                    assert pennsylvania["source"]["vintage"] == "2023"
-                    assert pennsylvania["source"]["base_year"] == 2020
-                    michigan = await call("get_forecast", {
-                        "state": "MI", "geo_level": "county", "geo": "Wayne", "variable": "population",
-                        "start_year": 2050, "end_year": 2050,
-                    }, "ok")
-                    assert michigan["series"] == [{"year": 2050, "value": 1565187.79, "datatype": "projection"}]
-                    assert michigan["source"]["vintage"] == "2024"
-                    assert michigan["source"]["base_year"] is None
-                    indiana = await call("get_forecast", {
-                        "state": "IN", "geo_level": "county", "geo": "Hamilton", "variable": "population",
-                        "start_year": 2050, "end_year": 2050,
-                    }, "ok")
-                    assert indiana["series"] == [{"year": 2050, "value": 529505, "datatype": "projection"}]
-                    assert indiana["source"]["base_year"] == 2023
-                    va = await call("get_forecast", {
-                        "state": "VA", "geo_level": "state", "geo": "VA", "variable": "population",
-                        "start_year": 2030, "end_year": 2030,
-                    }, "ok")
-                    assert va["series"][0]["value"] == 9060432.76370604
-                    wi = await call("get_forecast", {
-                        "state": "WI", "geo_level": "state", "geo": "WI", "variable": "population",
-                        "start_year": 2020, "end_year": 2020,
-                    }, "ok")
-                    assert wi["series"] == [{"year": 2020, "value": 5893718, "datatype": "estimate"}]
-                    ut = await call("get_forecast", {
-                        "state": "UT", "geo_level": "state", "geo": "UT", "variable": "population",
-                        "start_year": 2025, "end_year": 2025,
-                    }, "ok")
-                    assert ut["scenario"] == "baseline"
-                    high = await call("get_forecast", {
-                        "state": "UT", "geo_level": "state", "geo": "UT", "variable": "population",
-                        "scenario": "high",
-                    }, "not_loaded")
-                    assert high["scenario"] == "high"
-                    await call("get_components", {
-                        "state": "UT", "geo": "UT", "scenario": "high",
-                    }, "error", True)
-                    wa_status = summary["states"]["WA"]
-                    assert wa_status["review"]["status"] == "never_reviewed"
-                    assert wa_status["variables"]["components"]["county"]["load_status"] == "loaded"
-                    wa_source = await call("describe_source", {"state": "WA"})
-                    assert wa_source["variables"] == wa_status["variables"]
+                    await call("get_components", {"state": "ND", "geo": "ND"}, "pdf_only")
                     assert (await call("describe_source", {"state": "CO"}))["sources_loaded"]
                     base = dict(state="CO", geo_level="county", geo="Douglas", variable="population")
                     forecast = await call("get_forecast", dict(base, start_year=2024, end_year=2025), "ok")

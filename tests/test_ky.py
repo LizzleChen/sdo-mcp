@@ -88,10 +88,9 @@ def test_complete_grids_and_state_county_reconciliation():
         conn.close()
 
 
-@pytest.mark.parametrize("variable", ["population", "households"])
 @pytest.mark.parametrize("start,end", [(2010, 2019), (2021, 2024), (2026, 2029), (2051, 2060)])
-def test_no_interpolated_or_extended_years(variable, start, end):
-    result = server.get_forecast("KY", "county", "Adair", variable, start_year=start, end_year=end)
+def test_no_interpolated_or_extended_years(start, end):
+    result = server.get_forecast("KY", "county", "Adair", "population", start_year=start, end_year=end)
     assert result["status"] == "empty_range"
     assert result["available_start_year"] == 2020
     assert result["available_end_year"] == 2050

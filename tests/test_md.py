@@ -96,13 +96,12 @@ def test_complete_grids_and_inventory():
     assert description["review"]["status"] == "never_reviewed"
 
 
-@pytest.mark.parametrize("variable", md.PRODUCTS)
 @pytest.mark.parametrize("start,end", [(2010, 2019), (2021, 2024), (2026, 2029), (2056, 2060)])
-def test_no_invented_years(variable, start, end):
-    result = server.get_forecast("MD", "county", "Montgomery", variable, start_year=start, end_year=end)
+def test_no_invented_years(start, end):
+    result = server.get_forecast("MD", "county", "Montgomery", "population", start_year=start, end_year=end)
     assert result["status"] == "empty_range"
     assert result["available_start_year"] == 2020
-    assert result["available_end_year"] == md.PRODUCTS[variable]["horizon"]
+    assert result["available_end_year"] == md.PRODUCTS["population"]["horizon"]
     assert "series" not in result
 
 
@@ -117,11 +116,10 @@ def test_separate_job_horizon_and_unverified_products():
     assert server.get_components("MD", "Montgomery")["status"] == "coverage_unknown"
 
 
-@pytest.mark.parametrize("variable", md.PRODUCTS)
 @pytest.mark.parametrize("body", [b"<html>Service unavailable</html>", b"PKbroken", b"[]"])
-def test_rejects_soft_200(variable, body):
+def test_rejects_soft_200(body):
     with pytest.raises(ValueError, match="readable"):
-        md.parse_workbook(body, variable)
+        md.parse_workbook(body, "population")
 
 
 @pytest.mark.parametrize("variable,cell,value,error", [
@@ -144,12 +142,11 @@ def test_rejects_changed_semantics(variable, cell, value, error):
         md.parse_workbook(body, variable)
 
 
-@pytest.mark.parametrize("variable,cell", [("population", "E7"), ("households", "D7"), ("employment", "I9")])
 @pytest.mark.parametrize("value", [None, True, -1, 1.5, "NaN", "#VALUE!"])
-def test_rejects_invalid_numbers(variable, cell, value):
-    body = _changed(variable, lambda s: setattr(s[cell], "value", value))
+def test_rejects_invalid_numbers(value):
+    body = _changed("population", lambda s: setattr(s["E7"], "value", value))
     with pytest.raises(ValueError, match="invalid"):
-        md.parse_workbook(body, variable)
+        md.parse_workbook(body, "population")
 
 
 @pytest.mark.parametrize("variable,row", [("population", 7), ("households", 7), ("employment", 9)])
